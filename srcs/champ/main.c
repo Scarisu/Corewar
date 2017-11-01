@@ -1,19 +1,20 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   corewar.h                                          :+:      :+:    :+:   */
+/*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: pbernier <pbernier@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2017/09/29 18:25:52 by pbernier          #+#    #+#             */
-/*   Updated: 2017/11/01 17:07:09 by pbernier         ###   ########.fr       */
+/*   Created: 2017/09/29 18:27:41 by pbernier          #+#    #+#             */
+/*   Updated: 2017/09/29 18:29:08 by pbernier         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef COREWAR_H
-# define COREWAR_H
+#include <corewar.h>
 
-# include <libft.h>
-# include "op.h"
-
-#endif
+int		main(int argc, char **argv)
+{
+	(void)argc;
+	(void)argv;
+	return (0);
+}

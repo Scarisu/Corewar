@@ -6,37 +6,56 @@
 #    By: pbernier <pbernier@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2017/09/29 18:30:33 by pbernier          #+#    #+#              #
-#    Updated: 2017/09/29 18:31:04 by pbernier         ###   ########.fr        #
+#    Updated: 2017/11/01 20:18:30 by pbernier         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
-PROJECT			=	COREWAR
-NAME			=	corewar
-OBJDIR			=	objs/
-SRCDIR			=	srcs/
-SRC				=	main.c
-OBJ				=	$(addprefix $(OBJDIR),$(SRC:.c=.o))
+PROJECTASM		=	ASSEMBLEUR
+PROJECTCHAMP	=	LA FALAISE
+PROJECTMV		=	COREWAR
+
+NAMEASM			=	asm
+NAMECHAMP		=	lafalaise
+NAMEMV			=	corewar
+
+DIROBJ			=	objs/
+DIRSRC			=	srcs/
+
+DIRASM			=	asm/
+DIRCHAMP		=	champ/
+DIRMV			=	mv/
+
+SRCASM			=	main.c
+SRCCHAMP		=	main.c
+SRCMV			=	main.c
+
+OBJASM			=	$(addprefix $(DIROBJ)$(DIRASM),$(SRCASM:.c=.o))
+OBJCHAMP		=	$(addprefix $(DIROBJ)$(DIRCHAMP),$(SRCCHAMP:.c=.o))
+OBJMV			=	$(addprefix $(DIROBJ)$(DIRMV),$(SRCMV:.c=.o))
+
 LIB				=	lib/libft/libft.a
 CC				=	gcc
 FLAGS			=	-Wall -Werror -Wextra -Ofast
 DFLAGS			=	-fsanitize=address -g
 INCLUDES		=	-I includes/ -I lib/libft/includes/
 
-all: $(NAME)
+all : $(NAMEASM)
 
-$(NAME): $(OBJDIR) $(OBJ)
+$(NAMEASM): oui $(OBJASM)
 	@make -C ./lib/libft
-	@printf "[$(PROJECT)] Objs compilation done.                                               \n"
-	@$(CC) -o $(NAME) $(OBJ) $(LIB) $(FLAGS)
-	@printf "[$(PROJECT)] $(NAME) compiled.                                                    \n"
+	@printf "[$(PROJECTASM)] Objs compilation done.                                            \n"
+	@$(CC) -o $(NAMEASM) $(OBJASM) $(LIB) $(FLAGS)
+	@printf "[$(PROJECTASM)] $(NAMEASM) compiled.                                              \n"
 
-
-$(OBJDIR)%.o: $(SRCDIR)%.c
-	@printf "[$(PROJECT)] Compiling $< to $@                                                   \r"
+$(DIROBJ)$(OBJASM)%.o: $(DIRSRC)$(DIRASM)%.c
+	@printf "[$(PROJECTASM)] Compiling $< to $@                                                   \r"
 	@$(CC) $(FLAGS) $(INCLUDES) -o $@ -c $<
 
-$(OBJDIR):
-	@mkdir objs
+oui:
+	@mkdir $(DIROBJ)
+	@mkdir $(DIROBJ)$(DIRASM)
+
+
 
 clean:
 	@rm -f $(OBJ)
