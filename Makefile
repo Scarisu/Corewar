@@ -6,68 +6,67 @@
 #    By: pbernier <pbernier@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2017/09/29 18:30:33 by pbernier          #+#    #+#              #
-#    Updated: 2017/11/01 21:07:17 by pbernier         ###   ########.fr        #
+#    Updated: 2017/11/02 14:51:19 by pbernier         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
-PROJECTASM		=	ASSEMBLEUR
-PROJECTCHAMP	=	LA FALAISE
-PROJECTMV		=	COREWAR
-
-NAMEASM			=	asm
-NAMECHAMP		=	lafalaise
-NAMEMV			=	corewar
-
-DIROBJ			=	objs/
+OBJDIR			=	objs/
 DIRSRC			=	srcs/
 
-DIRASM			=	asm/
-DIRCHAMP		=	champ/
-DIRMV			=	mv/
+NAMEASM			=	asm
+NAMECHAMP		=	LaFalaise.s
+NAMEMV			=	corewar
 
-SRCASM			=	main.c
-SRCCHAMP		=	main.c
-SRCMV			=	main.c
+DIRASM			=	$(DIRSRC)asm/
+DIRCHAMP		=	$(DIRSRC)champ/
+DIRMV			=	$(DIRSRC)mv/
 
-OBJASM			=	$(addprefix $(DIROBJ)$(DIRASM),$(SRCASM:.c=.o))
-OBJCHAMP		=	$(addprefix $(DIROBJ)$(DIRCHAMP),$(SRCCHAMP:.c=.o))
-OBJMV			=	$(addprefix $(DIROBJ)$(DIRMV),$(SRCMV:.c=.o))
-
-LIB				=	lib/libft/libft.a
-CC				=	gcc
-FLAGS			=	-Wall -Werror -Wextra -Ofast
-DFLAGS			=	-fsanitize=address -g
-INCLUDES		=	-I includes/ -I lib/libft/includes/
-
-all: $(NAMEASM)
-
-$(NAMEASM): $(DIROBJ) $(DIROBJ)$(DIRASM) $(OBJASM)
-	@make -C ./lib/libft
-	@printf "[$(PROJECTASM)] Objs compilation done.                                            \n"
-	@$(CC) -o $(NAMEASM) $(OBJASM) $(LIB) $(FLAGS)
-	@printf "[$(PROJECTASM)] $(NAMEASM) compiled.                                              \n"
-
-$(DIROBJ)$(DIRASM)%.o: $(DIRSRC)$(DIRASM)%.c
-	@printf "[$(PROJECTASM)] Compiling $< to $@                                                   \r"
-	@$(CC) $(FLAGS) $(INCLUDES) -o $@ -c $<
-
-$(DIROBJ):
-	@mkdir $(DIROBJ)
-
-$(DIROBJ)$(DIRASM):
-	@mkdir $(DIROBJ)$(DIRASM)
-
-clean:
-	@rm -f $(OBJ)
-	@rm -rf $(OBJDIR)
-	@make -C ./lib/libft clean
-	@printf "[$(PROJECT)] Obj removed.                                                           \n"
-
-fclean: clean
-	@rm -f $(LIB)
-	@rm -rf $(NAME)
-	@printf "[$(PROJECT)] $(NAME) removed.                                                       \n"
+all: asm champ mv
 
 re: fclean all
+
+clean: clean_asm clean_champ clean_mv
+	@rm -rf $(OBJDIR)
+
+fclean: clean
+	@rm -f $(NAMEASM)
+	@rm -f $(NAMECHAMP)
+	@rm -f $(NAMEMV)
+
+asm:
+	@make -C $(DIRASM)
+
+re_asm:
+	@make -C $(DIRASM) re
+
+clean_asm:
+	@make -C $(DIRASM) clean
+
+fclean_asm:
+	@make -C $(DIRASM) fclean
+
+champ:
+	@make -C $(DIRCHAMP)
+
+re_champ:
+	@make -C $(DIRCHAMP) re
+
+clean_champ:
+	@make -C $(DIRCHAMP) clean
+
+fclean_champ:
+	@make -C $(DIRCHAMP) fclean
+
+mv:
+	@make -C $(DIRMV)
+
+re_mv:
+	@make -C $(DIRMV) re
+
+clean_mv:
+	@make -C $(DIRMV) clean
+
+fclean_mv:
+	@make -C $(DIRMV) fclean
 
 .PHONY: all clean fclean re
