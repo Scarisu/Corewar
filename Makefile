@@ -6,7 +6,7 @@
 #    By: pbernier <pbernier@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2017/09/29 18:30:33 by pbernier          #+#    #+#              #
-#    Updated: 2017/11/02 21:21:11 by pbernier         ###   ########.fr        #
+#    Updated: 2017/11/02 21:40:17 by pbernier         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -28,7 +28,8 @@ NAMEVM			=	corewar
 SRCASM			=	main.c \
 					usage.c \
 					error.c \
-					line.c
+					line.c \
+					set.c
 SRCCHAMP		=	main.c
 SRCVM			=	main.c
 
