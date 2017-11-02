@@ -1,20 +1,22 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   main.c                                             :+:      :+:    :+:   */
+/*   asm.h                                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: pbernier <pbernier@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2017/09/29 18:27:41 by pbernier          #+#    #+#             */
-/*   Updated: 2017/09/29 18:29:08 by pbernier         ###   ########.fr       */
+/*   Created: 2017/11/02 19:56:24 by pbernier          #+#    #+#             */
+/*   Updated: 2017/11/02 19:56:49 by pbernier         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include <corewar.h>
+#ifndef COREWAR_H
+# define COREWAR_H
 
-int		main(int argc, char **argv)
-{
-	(void)argc;
-	(void)argv;
-	return (0);
-}
+# include "op.h"
+# include "asm.h"
+
+# include <libft.h>
+
+
+#endif

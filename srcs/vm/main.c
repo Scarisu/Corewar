@@ -1,26 +1,20 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   corewar.h                                          :+:      :+:    :+:   */
+/*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: pbernier <pbernier@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2017/09/29 18:25:52 by pbernier          #+#    #+#             */
-/*   Updated: 2017/11/02 19:58:27 by pbernier         ###   ########.fr       */
+/*   Created: 2017/09/29 18:27:41 by pbernier          #+#    #+#             */
+/*   Updated: 2017/11/02 18:07:58 by pbernier         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef ASM_H
-# define ASM_H
+#include <corewar.h>
 
-typedef struct s_map	t_map;
-
-struct			s_coor
+int		main(int argc, char **argv)
 {
-	int			name;
-	long double	x;
-	long double	y;
-	long double	z;
-};
-
-#endif
+	(void)argc;
+	(void)argv;
+	return (0);
+}
