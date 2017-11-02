@@ -6,67 +6,59 @@
 #    By: pbernier <pbernier@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2017/09/29 18:30:33 by pbernier          #+#    #+#              #
-#    Updated: 2017/11/02 14:51:19 by pbernier         ###   ########.fr        #
+#    Updated: 2017/11/02 15:30:20 by pbernier         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
-OBJDIR			=	objs/
+PROJECTASM		= 	ASSEMBLEUR
+PROJECTCHAMP	= 	CHAMPION
+PROJECTMV		= 	MACHINE VIRTUEL
+
+DIROBJ			=	objs/
 DIRSRC			=	srcs/
+
+DIRASM			= 	asm/
+DIRCHAMP		=	champ/
+DIRMV			=	mv/
 
 NAMEASM			=	asm
 NAMECHAMP		=	LaFalaise.s
 NAMEMV			=	corewar
 
-DIRASM			=	$(DIRSRC)asm/
-DIRCHAMP		=	$(DIRSRC)champ/
-DIRMV			=	$(DIRSRC)mv/
+SRCASM			=	main.c
+SRCCHAMP		=	main.c
+SRCMV			=	main.c
 
-all: asm champ mv
+LIB				=	libft.a
+LIBPATH			=	lib/libft/
 
-re: fclean all
+CC				=	gcc
+FLAGS			=	-Wall -Werror -Wextra -Ofast
+DFLAGS			=	-fsanitize=address -g
+INCLUDES		=	-I includes/ -I lib/libft/includes/
 
-clean: clean_asm clean_champ clean_mv
-	@rm -rf $(OBJDIR)
+PATHSRCASM		=	$(addprefix $(DIRSRC),$(DIRASM))
+PATHSRCCHAMP	=	$(addprefix $(DIRSRC),$(DIRCHAMP))
+PATHSRCMV		=	$(addprefix $(DIRSRC),$(DIRMV))
 
-fclean: clean
-	@rm -f $(NAMEASM)
-	@rm -f $(NAMECHAMP)
-	@rm -f $(NAMEMV)
+OBJASM			=	$(addprefix $(DIROBJ)$($DIRASM),$(SRCASM:.c=.o))
+OBJCHAMP		=	$(addprefix $(DIROBJ)$($DIRCHAMP),$(SRCCHAMP:.c=.o))
+OBJMV			=	$(addprefix $(DIROBJ)$($DIRMV),$(SRCMV:.c=.o))
 
-asm:
-	@make -C $(DIRASM)
+all: asm
 
-re_asm:
-	@make -C $(DIRASM) re
+asm: $(DIROBJ) $(DIROBJ)$(DIRASM) $(OBJASM)
+	@make -C $(LIBPATH)
+	@printf "[$(PROJECTASM)] Objs compilation done.                                            \n"
+	@$(CC) -o $(NAMEASM) $(OBJASM) $(LIBPATH)$(LIB) $(FLAGS)
+	@printf "[$(PROJECTASM)] $(NAMEASM) compiled.                                              \n"
 
-clean_asm:
-	@make -C $(DIRASM) clean
+$(OBJASM)%.o: $(PATHASM)%.c
+	@printf "[$(PROJECTASM)] Compiling $< to $@                                                \r"
+	@$(CC) $(FLAGS) $(INCLUDES) -o $@ -c $<
 
-fclean_asm:
-	@make -C $(DIRASM) fclean
+$(DIROBJ)$(DIRASM):
+	mkdir $(DIROBJ)$(DIRASM)
 
-champ:
-	@make -C $(DIRCHAMP)
-
-re_champ:
-	@make -C $(DIRCHAMP) re
-
-clean_champ:
-	@make -C $(DIRCHAMP) clean
-
-fclean_champ:
-	@make -C $(DIRCHAMP) fclean
-
-mv:
-	@make -C $(DIRMV)
-
-re_mv:
-	@make -C $(DIRMV) re
-
-clean_mv:
-	@make -C $(DIRMV) clean
-
-fclean_mv:
-	@make -C $(DIRMV) fclean
-
-.PHONY: all clean fclean re
+$(DIROBJ):
+	mkdir $(DIROBJ)
