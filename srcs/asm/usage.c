@@ -1,32 +1,30 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   asm.h                                              :+:      :+:    :+:   */
+/*   usage.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: pbernier <pbernier@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2017/11/02 19:56:24 by pbernier          #+#    #+#             */
-/*   Updated: 2017/11/02 21:20:35 by pbernier         ###   ########.fr       */
+/*   Created: 2017/11/02 20:39:02 by pbernier          #+#    #+#             */
+/*   Updated: 2017/11/02 21:15:19 by pbernier         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef ASM_H
-# define ASM_H
+#include <corewar.h>
 
-# define NB_ARG 1
-# define EXTENTION 2
-# define FD 3
-
-typedef struct s_asm	t_asm;
-
-struct			s_asm
+void	usage(t_asm *e, int argc, char *argv)
 {
-	char 		*name;
-	int			fd;
-};
+	int	len;
 
-void	usage(t_asm *e, int argc, char *argv);
-void	error(t_asm *e, int err);
-int		line(t_asm *e, char **line);
-
-#endif
+	if (argc != 2)
+		error(e, NB_ARG);
+	len = ft_strlen(argv);
+	e->name = argv;
+	if (e->name[len - 2] != '.' &&
+		e->name[len - 1] != 's')
+		error(e, EXTENTION);
+	if ((e->fd = open(e->name, O_RDONLY)) < 2)
+		error(e, FD);
+	e->name[len - 1] = '\0';
+	e->name[len - 2] = '\0';
+}

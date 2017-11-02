@@ -6,7 +6,7 @@
 /*   By: pbernier <pbernier@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/09/29 18:27:41 by pbernier          #+#    #+#             */
-/*   Updated: 2017/11/02 18:07:52 by pbernier         ###   ########.fr       */
+/*   Updated: 2017/11/02 20:44:43 by pbernier         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,8 @@
 
 int		main(int argc, char **argv)
 {
-	(void)argc;
-	(void)argv;
+	t_asm	env;
+
+	usage(&env, argc, argv[1]);
 	return (0);
 }

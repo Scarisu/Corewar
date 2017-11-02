@@ -6,21 +6,21 @@
 /*   By: pbernier <pbernier@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/09/29 18:25:52 by pbernier          #+#    #+#             */
-/*   Updated: 2017/11/02 19:58:27 by pbernier         ###   ########.fr       */
+/*   Updated: 2017/11/02 20:36:46 by pbernier         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef ASM_H
-# define ASM_H
+#ifndef COREWAR_H
+# define COREWAR_H
 
-typedef struct s_map	t_map;
+# include "op.h"
+# include "asm.h"
 
-struct			s_coor
-{
-	int			name;
-	long double	x;
-	long double	y;
-	long double	z;
-};
+# include <libft.h>
+# include <sys/types.h>
+# include <sys/stat.h>
+# include <fcntl.h>
+# include <unistd.h>
+# include <stdio.h>
 
 #endif
