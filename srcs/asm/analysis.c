@@ -6,7 +6,7 @@
 /*   By: pbernier <pbernier@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/11/07 18:35:10 by pbernier          #+#    #+#             */
-/*   Updated: 2017/11/07 21:45:47 by pbernier         ###   ########.fr       */
+/*   Updated: 2017/11/07 23:42:18 by pbernier         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,16 +36,16 @@ int		name(t_asm *e, char *line)
 	if (!(e->champ.valid.name = ft_strsub(line, I + 1, content_len)))
 		error(e, MALLOC);
 
-	if (!content_len || !valid_name(&e->champ.valid.name))
+	if (!valid_name(&e->champ.valid.name))
 		return (verbos(e, &e->verbos, INVALID_NAME));
 	if (ft_strcmp(e->champ.file_name, e->champ.valid.name))
 		return (verbos(e, &e->verbos, NAME_DIFF_FILE));
+
 	I += content_len + 2;
 	skip_tab(e, line);
 	if (line[I] && line[I] != '\n')
 		return (verbos(e, &e->verbos, INVALID_CHAR));
-	printf("OK\n");
-	//exit(0);
+
 	return (0);
 }
 
@@ -55,6 +55,11 @@ int		valid_name(char **name)
 	char	invalid_char[10];
 
 	i = -1;
+	if (!ft_strlen(*name))
+	{
+		ft_memdel((void **)name);
+		return (0);
+	}
 	ft_memcpy(invalid_char, (char[10]){"/\\:*?\"<>|\0"}, sizeof(char[10]));
 	while ((*name)[++i])
 		if (ft_strchr(invalid_char, (*name)[i]))

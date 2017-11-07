@@ -6,7 +6,7 @@
 /*   By: pbernier <pbernier@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/11/02 19:56:24 by pbernier          #+#    #+#             */
-/*   Updated: 2017/11/07 22:29:39 by pbernier         ###   ########.fr       */
+/*   Updated: 2017/11/07 23:37:00 by pbernier         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -70,5 +70,6 @@ void	print_pos(t_asm *e);
 void	verbos_error(t_asm *e, int err);
 void	adapt_line(t_asm *e, char *line);
 void	arrow(t_asm *e, char **arrow);
+void	nb_error(int nb_error);
 
 #endif
