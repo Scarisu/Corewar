@@ -1,25 +1,23 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   main.c                                             :+:      :+:    :+:   */
+/*   clear.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: pbernier <pbernier@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2017/09/29 18:27:41 by pbernier          #+#    #+#             */
-/*   Updated: 2017/11/06 23:28:45 by pbernier         ###   ########.fr       */
+/*   Created: 2017/11/06 18:06:53 by pbernier          #+#    #+#             */
+/*   Updated: 2017/11/07 00:10:30 by pbernier         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <corewar.h>
 
-int		main(int argc, char **argv)
+void	clean(t_asm *e)
 {
-	t_asm	e;
-
-	usage(&e, argc, argv[1]);
-	set(&e);
-	check_line(&e, &e.champ.line);
-//	!e.verbos.nb_error ? print_verbos() : create();
-	clean(&e);
-	return (0);
+	read(0, e->champ.buff, 1);
+	ft_memdel((void **)&e->champ.line);
+	ft_memdel((void **)&e->champ.all);
+	ft_memdel((void **)&e->champ.valid.name);
+	ft_memdel((void **)&e->champ.valid.comment);
+	ft_memdel((void **)&e->verbos.arrow);
 }

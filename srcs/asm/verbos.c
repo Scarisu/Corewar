@@ -1,25 +1,23 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   main.c                                             :+:      :+:    :+:   */
+/*   verbos.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: pbernier <pbernier@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2017/09/29 18:27:41 by pbernier          #+#    #+#             */
-/*   Updated: 2017/11/06 23:28:45 by pbernier         ###   ########.fr       */
+/*   Created: 2017/11/06 19:25:27 by pbernier          #+#    #+#             */
+/*   Updated: 2017/11/07 01:47:13 by pbernier         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <corewar.h>
 
-int		main(int argc, char **argv)
+int	verbos(t_asm *e, t_verbos *v, int err)
 {
-	t_asm	e;
-
-	usage(&e, argc, argv[1]);
-	set(&e);
-	check_line(&e, &e.champ.line);
-//	!e.verbos.nb_error ? print_verbos() : create();
-	clean(&e);
+	++v->nb_error;
+	printf("verbos : [%d]\n", err);
+	(void)e;
+	(void)v;
+	(void)err;
 	return (0);
 }
