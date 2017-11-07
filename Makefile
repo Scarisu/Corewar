@@ -6,7 +6,7 @@
 #    By: pbernier <pbernier@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2017/09/29 18:30:33 by pbernier          #+#    #+#              #
-#    Updated: 2017/11/06 23:11:18 by pbernier         ###   ########.fr        #
+#    Updated: 2017/11/07 19:28:38 by pbernier         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -31,7 +31,8 @@ SRCASM			=	main.c \
 					line.c \
 					set.c \
 					clear.c \
-					verbos.c
+					verbos.c \
+					analysis.c
 SRCCHAMP		=	main.c
 SRCVM			=	main.c
 

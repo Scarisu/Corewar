@@ -6,7 +6,7 @@
 /*   By: pbernier <pbernier@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/09/29 18:27:41 by pbernier          #+#    #+#             */
-/*   Updated: 2017/11/06 23:28:45 by pbernier         ###   ########.fr       */
+/*   Updated: 2017/11/07 20:00:11 by pbernier         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,8 +16,8 @@ int		main(int argc, char **argv)
 {
 	t_asm	e;
 
-	usage(&e, argc, argv[1]);
 	set(&e);
+	usage(&e, argc, argv[1]);
 	check_line(&e, &e.champ.line);
 //	!e.verbos.nb_error ? print_verbos() : create();
 	clean(&e);
