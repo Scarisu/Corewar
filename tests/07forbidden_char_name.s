@@ -1,3 +1,4 @@
 
+.comment ""
 
    .name	  "./chouquette/\\".s"

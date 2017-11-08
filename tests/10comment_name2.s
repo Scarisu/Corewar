@@ -1,1 +1,2 @@
-        .name #chouquette 	  "10comment_name2.s"
+        .name  	  "10comment_name2#chouquette"
+.comment ""

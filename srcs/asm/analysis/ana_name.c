@@ -6,7 +6,7 @@
 /*   By: pbernier <pbernier@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/11/07 18:35:10 by pbernier          #+#    #+#             */
-/*   Updated: 2017/11/08 20:20:20 by pbernier         ###   ########.fr       */
+/*   Updated: 2017/11/08 22:34:13 by pbernier         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,7 +22,7 @@ int		cmd_name(t_asm *e, char *line)
 		return (verbos(e, NAME_EXIST));
 	I += ft_strlen(NAME_CMD_STRING);
 	if (!skip_tab(e, line) || (line[I] != '\"' && line[I] != '\''))
-		return (verbos(e, SYNTAX_NAME));
+		return (verbos(e, SYNTAX));
 	if (!check_name(e, line) || !skip_tab(e, line))
 		return (0);
 	if (line[I] && line[I] != '\n')
@@ -35,10 +35,12 @@ int		check_name(t_asm *e, char *line)
 	int		content_len;
 
 	content_len = I + 1;
-	while (line[content_len] && line[content_len] != line[I])
+	while (line[content_len]
+		&& line[content_len] != line[I]
+		&& line[content_len] != COMMENT_CHAR)
 		++content_len;
-	if (!line[content_len])
-		return (verbos(e, SYNTAX_NAME));
+	if (!line[content_len] || line[content_len] == COMMENT_CHAR)
+		return (verbos(e, SYNTAX));
 	content_len -= I + 1;
 	if (!(e->champ.valid.name = ft_strsub(line, I + 1, content_len)))
 		error(e, MALLOC);

@@ -6,7 +6,7 @@
 /*   By: pbernier <pbernier@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/11/02 19:56:24 by pbernier          #+#    #+#             */
-/*   Updated: 2017/11/08 20:16:15 by pbernier         ###   ########.fr       */
+/*   Updated: 2017/11/08 22:48:57 by pbernier         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,29 +24,29 @@ typedef struct s_asm	t_asm;
 
 struct			s_verbos
 {
-	int			nb_error;
-	int			nb_line;
 	int			i;
 	int			sw;
+	int			nb_error;
+	int			nb_line;
 	int			len_arrow;
-	void		(*tab[5])(t_asm *);
+	void		(*tab[6])(t_asm *);
 };
 
 struct			s_valid
 {
 	char		*name;
-	char		*comment;
 	char		*prev;
+	char		*comment;
 };
 
 struct			s_champ
 {
 	int			fd;
+	char		buff[1];
+	char		*all;
+	char		*line;
 	char		*file_path;
 	char 		*file_name;
-	char		buff[1];
-	char		*line;
-	char		*all;
 	t_valid		valid;
 };
 
@@ -72,11 +72,13 @@ void	print_pos(t_asm *e);
 void	adapt_line(t_asm *e, char *line);
 void	arrow(t_asm *e);
 void	nb_error(t_asm *e);
+int 	cmd_comment(t_asm *e, char *line);
 
 void	name_exist(t_asm *e);
-void	syntax_name(t_asm *e);
+void	syntax(t_asm *e);
 void	invalid_name(t_asm *e);
 void	name_diff_file(t_asm *e);
 void	invalid_char(t_asm *e);
+void	comment_exist(t_asm *e);
 
 #endif

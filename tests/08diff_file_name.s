@@ -1,1 +1,2 @@
-		.name	  								 "08not_same_name.s"
+		.name	  								 "08not_same_name"
+.comment ""

@@ -6,7 +6,7 @@
 /*   By: pbernier <pbernier@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/11/02 21:18:25 by pbernier          #+#    #+#             */
-/*   Updated: 2017/11/08 20:19:23 by pbernier         ###   ########.fr       */
+/*   Updated: 2017/11/08 22:26:13 by pbernier         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,7 +44,7 @@ void	check_line(t_asm *e, char **line)
 	{
 		sw = 1;
 		sw = (sw) ? cmd_name(e, *line) : sw;
-		//sw = (sw) ? comment(e *line) : 0;
+		sw = (sw) ? cmd_comment(e, *line) : sw;
 		ft_memdel((void **)&e->champ.valid.prev);
 		e->champ.valid.prev = ft_strdup(*line);
 		ft_strjoin_clean(&e->champ.all, line);

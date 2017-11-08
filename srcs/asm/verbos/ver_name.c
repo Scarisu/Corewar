@@ -6,7 +6,7 @@
 /*   By: pbernier <pbernier@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/11/08 00:56:01 by pbernier          #+#    #+#             */
-/*   Updated: 2017/11/08 21:39:06 by pbernier         ###   ########.fr       */
+/*   Updated: 2017/11/08 22:22:56 by pbernier         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,7 +21,7 @@ void	name_exist(t_asm *e)
 	ft_putstr_fd(WHITE "\"", 2);
 }
 
-void	syntax_name(t_asm *e)
+void	syntax(t_asm *e)
 {
 	int	i;
 

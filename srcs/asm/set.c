@@ -6,7 +6,7 @@
 /*   By: pbernier <pbernier@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/11/02 21:34:13 by pbernier          #+#    #+#             */
-/*   Updated: 2017/11/08 18:37:05 by pbernier         ###   ########.fr       */
+/*   Updated: 2017/11/08 22:45:37 by pbernier         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,7 +25,7 @@ void	set_data(t_asm *e)
 	e->champ.valid.prev = NULL;
 	e->verbos.nb_error = 0;
 	e->verbos.nb_line = 1;
-	e->verbos.i = 0;
+	I = 0;
 	e->verbos.sw = 1;
 	e->verbos.len_arrow = 0;
 }
@@ -33,8 +33,9 @@ void	set_data(t_asm *e)
 void	set_ptr(t_verbos *v)
 {
 	v->tab[NAME_EXIST] = name_exist;
-	v->tab[SYNTAX_NAME] = syntax_name;
+	v->tab[SYNTAX] = syntax;
 	v->tab[INVALID_NAME] = invalid_name;
 	v->tab[NAME_DIFF_FILE] = name_diff_file;
 	v->tab[INVALID_CHAR] = invalid_char;
+	v->tab[COMMENT_EXIST] = comment_exist;
 }

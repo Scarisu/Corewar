@@ -1,1 +1,2 @@
-  #chouquette       .name	  "09comment_name1.s"
+  #chouquette       .name	  "09comment_name1"
+.comment ""
