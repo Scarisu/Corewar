@@ -3,4 +3,4 @@
 
 
 
-		    .name  	  "11comment_name3.s" #chouquette
+		    .name  	  "11comment_name3" #chouquette

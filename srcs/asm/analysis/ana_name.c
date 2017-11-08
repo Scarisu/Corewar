@@ -6,7 +6,7 @@
 /*   By: pbernier <pbernier@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/11/07 18:35:10 by pbernier          #+#    #+#             */
-/*   Updated: 2017/11/08 01:03:10 by pbernier         ###   ########.fr       */
+/*   Updated: 2017/11/08 20:01:20 by pbernier         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,14 +17,13 @@ int		name(t_asm *e, char *line)
 	int		content_len;
 
 	I = 0;
-	skip_tab(e, line);
-	if (!(ft_strstr(line,  NAME_CMD_STRING) == &(line)[I]))
+	if (!skip_tab(e, line) ||
+		!(ft_strstr(line,  NAME_CMD_STRING) == &(line)[I]))
 		return (1);
 	if ((e->champ.valid.name))
 		return (verbos(e, NAME_EXIST));
 	I += ft_strlen(NAME_CMD_STRING);
-	skip_tab(e, line);
-	if (line[I] != '\"' && line[I] != '\'')
+	if (!skip_tab(e, line) || (line[I] != '\"' && line[I] != '\''))
 		return (verbos(e, SYNTAX_NAME));
 	content_len = I + 1;
 	while (line[content_len] && line[content_len] != line[I])
@@ -39,10 +38,10 @@ int		name(t_asm *e, char *line)
 	if (ft_strcmp(e->champ.file_name, e->champ.valid.name))
 		return (verbos(e, NAME_DIFF_FILE));
 	I += content_len + 2;
-	skip_tab(e, line);
+	if (!skip_tab(e, line))
+		return (0);
 	if (line[I] && line[I] != '\n')
 		return (verbos(e, INVALID_CHAR));
-
 	return (0);
 }
 

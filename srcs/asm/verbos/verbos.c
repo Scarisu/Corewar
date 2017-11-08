@@ -6,7 +6,7 @@
 /*   By: pbernier <pbernier@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/11/06 19:25:27 by pbernier          #+#    #+#             */
-/*   Updated: 2017/11/08 01:28:42 by pbernier         ###   ########.fr       */
+/*   Updated: 2017/11/08 18:40:20 by pbernier         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,7 +17,7 @@ int		verbos(t_asm *e, int err)
 	++e->verbos.nb_error;
 	print_pos(e);
 	ft_putstr_fd(RED_MINUS "error: ", 2);
-	e->verbos->tab[err](e);
+	e->verbos.tab[err](e);
 	ft_putstr_fd(RESET "\n", 2);
 	adapt_line(e, e->champ.line);
 	arrow(e);
@@ -52,9 +52,9 @@ void	arrow(t_asm *e)
 	int	space;
 
 	space = 0;
-	printf("[%d]\n", e->verbos.len_arrow);
 	while (space++ != I)
 		ft_putchar_fd(' ', 2);
+	ft_putstr_fd(GREEN_MINUS "^", 2);
 	while (e->verbos.len_arrow-- > 0)
 		ft_putchar_fd('~', 2);
 	ft_putstr_fd(RESET "\n", 2);

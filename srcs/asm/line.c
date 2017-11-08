@@ -6,7 +6,7 @@
 /*   By: pbernier <pbernier@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/11/02 21:18:25 by pbernier          #+#    #+#             */
-/*   Updated: 2017/11/08 01:14:34 by pbernier         ###   ########.fr       */
+/*   Updated: 2017/11/08 19:42:23 by pbernier         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,16 +45,22 @@ void	check_line(t_asm *e, char **line)
 		sw = 1;
 		sw = (sw) ? name(e, *line) : sw;
 		//sw = (sw) ? comment(e *line) : 0;
+		ft_memdel((void **)&e->champ.valid.prev);
+		e->champ.valid.prev = ft_strdup(*line);
 		ft_strjoin_clean(&e->champ.all, line);
 		ft_memdel((void **)line);
 		++e->verbos.nb_line;
 	}
 }
 
-void	skip_tab(t_asm *e, char *line)
+int		skip_tab(t_asm *e, char *line)
 {
 	while (line[I] == ' ')
 		++I;
 	if (line[I] == COMMENT_CHAR)
-		I = ft_strlen(line);
+	{
+		I += (I != 0) ? -1 : 0;
+		return (0);
+	}
+	return (1);
 }

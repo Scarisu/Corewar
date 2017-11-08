@@ -6,7 +6,7 @@
 /*   By: pbernier <pbernier@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/11/02 21:34:13 by pbernier          #+#    #+#             */
-/*   Updated: 2017/11/08 01:26:20 by pbernier         ###   ########.fr       */
+/*   Updated: 2017/11/08 18:37:05 by pbernier         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,9 +32,9 @@ void	set_data(t_asm *e)
 
 void	set_ptr(t_verbos *v)
 {
-	v->tab[NAME_EXIST] = &name_exist;
-	v->tab[SYNTAX_NAME] = &syntax_name;
-	v->tab[INVALID_NAME] = &invalid_name;
-	v->tab[NAME_DIFF_FILE] = &name_diff_file;
-	v->tab[INVALID_CHAR] = &invalid_char;
+	v->tab[NAME_EXIST] = name_exist;
+	v->tab[SYNTAX_NAME] = syntax_name;
+	v->tab[INVALID_NAME] = invalid_name;
+	v->tab[NAME_DIFF_FILE] = name_diff_file;
+	v->tab[INVALID_CHAR] = invalid_char;
 }
