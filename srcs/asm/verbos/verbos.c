@@ -6,7 +6,7 @@
 /*   By: pbernier <pbernier@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/11/06 19:25:27 by pbernier          #+#    #+#             */
-/*   Updated: 2017/11/08 18:40:20 by pbernier         ###   ########.fr       */
+/*   Updated: 2017/11/08 21:09:13 by pbernier         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,11 +40,19 @@ void	adapt_line(t_asm *e, char *line)
 	int	start;
 	int end;
 
-	ft_putstr_fd(line, 2);
-	(void)e;
-	(void)start;
-	(void)end;
-	(void)line;
+	start = 0;
+	end = I + 30;
+	if (I > 30)
+	{
+		start = I - 30;
+		ft_putstr_fd("  ...", 2);
+		I = 35;
+	}
+	while (line[start] && start <= end && line[start] != '\n')
+		ft_putchar_fd(line[start++], 2);
+	if (line[start] && line[start] != '\n')
+		ft_putstr_fd("...", 2);
+	ft_putchar_fd('\n', 2);
 }
 
 void	arrow(t_asm *e)

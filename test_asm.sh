@@ -1,4 +1,5 @@
 clear
+make asm_clean
 make asm
 
 printf "\n\033[1;34m-----------------------------------------\033[0;m\n"
@@ -8,6 +9,7 @@ printf "\033[1;34m-----------------------------------------\033[0;m\n"
 	printf "\n[1] \033[4mMultiple .name\033[0m: \033[38;5;8m[01multiple_name.s]\033[0m\n"
 	./asm ./tests/01multiple_name.s
 	read
+
 	printf "\n[2] \033[4mBad Syntax .name (1)\033[0m: \033[38;5;8m[02bad_syntax_name1.s]\033[0m\n"
 	./asm ./tests/02bad_syntax_name1.s
 	read
@@ -37,4 +39,16 @@ printf "\033[1;34m-----------------------------------------\033[0;m\n"
 	read
 	printf "\n[11] \033[4mComment .name (3)\033[0m: \033[38;5;8m[11comment_name3.s]\033[0m\n"
 	./asm ./tests/11comment_name3.s
+	read
+	printf "\n[12] \033[4mError > 30 before\033[0m: \033[38;5;8m[12Error_30_before.s]\033[0m\n"
+	./asm ./tests/12Error_30_before.s
+	read
+	printf "\n[13] \033[4mError > 30 char after (1)\033[0m: \033[38;5;8m[13Error_30_after1.s]\033[0m\n"
+	./asm ./tests/13Error_30_after1.s
+	read
+	printf "\n[14] \033[4mError > 30 char after (2)\033[0m: \033[38;5;8m[14Error_30_after2.s]\033[0m\n"
+	./asm ./tests/14Error_30_after2.s
+	read
+	printf "\n[15] \033[4mError > 61 char\033[0m: \033[38;5;8m[15Error_61.s]\033[0m\n"
+	./asm ./tests/15Error_61.s
 	read

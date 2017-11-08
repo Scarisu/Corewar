@@ -6,7 +6,7 @@
 /*   By: pbernier <pbernier@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/11/02 19:56:24 by pbernier          #+#    #+#             */
-/*   Updated: 2017/11/08 19:39:40 by pbernier         ###   ########.fr       */
+/*   Updated: 2017/11/08 20:16:15 by pbernier         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -63,14 +63,15 @@ void	set_ptr(t_verbos *v);
 int		get_line(t_asm *e, char **line);
 void	clean(t_asm *e);
 void	check_line(t_asm *e, char **line);
-int		name(t_asm *e, char *line);
+int		cmd_name(t_asm *e, char *line);
+int		check_name(t_asm *e, char *line);
 int		verbos(t_asm *e, int err);
 int		skip_tab(t_asm *e, char *line);
 int		valid_name(char **name);
 void	print_pos(t_asm *e);
 void	adapt_line(t_asm *e, char *line);
 void	arrow(t_asm *e);
-void	nb_error(int nb_error);
+void	nb_error(t_asm *e);
 
 void	name_exist(t_asm *e);
 void	syntax_name(t_asm *e);

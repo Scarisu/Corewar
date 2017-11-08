@@ -6,7 +6,7 @@
 /*   By: pbernier <pbernier@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/11/08 00:56:01 by pbernier          #+#    #+#             */
-/*   Updated: 2017/11/08 19:58:41 by pbernier         ###   ########.fr       */
+/*   Updated: 2017/11/08 21:39:06 by pbernier         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,7 +29,7 @@ void	syntax_name(t_asm *e)
 	while (e->champ.line[i] && (i - (I + 1)) < 30
 		&& e->champ.line[i] != '\n' && e->champ.line[i] != ' '
 		&& e->champ.line[i] != COMMENT_CHAR)
-			++i;
+		++i;
 	e->verbos.len_arrow = i - (I + 1);
 	ft_putstr_fd(WHITE "Syntax error", 2);
 }
@@ -64,6 +64,7 @@ void	invalid_char(t_asm *e)
 
 	i = I;
 	print = -1;
+	ft_bzero(invalid, 31);
 	while (e->champ.line[i] && (i - (I + 1)) < 30
 		&& e->champ.line[i] != '\n' && e->champ.line[i] != ' '
 		&& e->champ.line[i] != COMMENT_CHAR)
@@ -78,9 +79,8 @@ void	invalid_char(t_asm *e)
 	ft_putstr_fd(": {" GREY, 2);
 	while (invalid[++print])
 	{
-	 	if (print)
-			ft_putstr_fd(WHITE "," GREY, 2);
-	 	ft_putchar_fd(invalid[print], 2);
+		(print) ? ft_putstr_fd(WHITE "," GREY, 2) : 0;
+		ft_putchar_fd(invalid[print], 2);
 	}
 	ft_putstr_fd(WHITE "}", 2);
 }

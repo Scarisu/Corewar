@@ -6,7 +6,7 @@
 /*   By: pbernier <pbernier@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/11/02 21:18:25 by pbernier          #+#    #+#             */
-/*   Updated: 2017/11/08 19:42:23 by pbernier         ###   ########.fr       */
+/*   Updated: 2017/11/08 20:19:23 by pbernier         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,10 +40,10 @@ void	check_line(t_asm *e, char **line)
 {
 	int	sw;
 
-	while (get_line(e, line))
+	while (get_line(e, line) && e->verbos.nb_error <= 10)
 	{
 		sw = 1;
-		sw = (sw) ? name(e, *line) : sw;
+		sw = (sw) ? cmd_name(e, *line) : sw;
 		//sw = (sw) ? comment(e *line) : 0;
 		ft_memdel((void **)&e->champ.valid.prev);
 		e->champ.valid.prev = ft_strdup(*line);
@@ -51,6 +51,8 @@ void	check_line(t_asm *e, char **line)
 		ft_memdel((void **)line);
 		++e->verbos.nb_line;
 	}
+	ft_memdel((void **)&e->champ.valid.prev);
+	ft_memdel((void **)line);
 }
 
 int		skip_tab(t_asm *e, char *line)
