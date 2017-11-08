@@ -6,7 +6,7 @@
 /*   By: pbernier <pbernier@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/11/02 19:56:24 by pbernier          #+#    #+#             */
-/*   Updated: 2017/11/07 23:37:00 by pbernier         ###   ########.fr       */
+/*   Updated: 2017/11/08 01:28:34 by pbernier         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,9 +27,9 @@ struct			s_verbos
 	int			nb_error;
 	int			nb_line;
 	int			i;
-	int			len;
 	int			sw;
-	char		*arrow;
+	int			len_arrow;
+	void		(*tab[5])(t_asm);
 };
 
 struct			s_valid
@@ -58,18 +58,24 @@ struct			s_asm
 
 void	usage(t_asm *e, int argc, char *av);
 void	error(t_asm *e, int err);
-void	set(t_asm *e);
+void	set_data(t_asm *e);
+void	set_ptr(t_verbos *v);
 int		get_line(t_asm *e, char **line);
 void	clean(t_asm *e);
 void	check_line(t_asm *e, char **line);
 int		name(t_asm *e, char *line);
-int		verbos(t_asm *e, t_verbos *v, int err);
+int		verbos(t_asm *e, int err);
 void	skip_tab(t_asm *e, char *line);
 int		valid_name(char **name);
 void	print_pos(t_asm *e);
-void	verbos_error(t_asm *e, int err);
 void	adapt_line(t_asm *e, char *line);
-void	arrow(t_asm *e, char **arrow);
+void	arrow(t_asm *e);
 void	nb_error(int nb_error);
+
+void	name_exist(t_asm *e);
+void	syntax_name(t_asm *e);
+void	invalid_name(t_asm *e);
+void	name_diff_file(t_asm *e);
+void	invalid_char(t_asm *e);
 
 #endif

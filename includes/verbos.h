@@ -6,7 +6,7 @@
 /*   By: pbernier <pbernier@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/11/06 19:20:02 by pbernier          #+#    #+#             */
-/*   Updated: 2017/11/07 20:29:29 by pbernier         ###   ########.fr       */
+/*   Updated: 2017/11/08 01:02:46 by pbernier         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,10 +36,10 @@
 /*
 ** verbos
 */
-# define NAME_EXIST 1
-# define SYN_NAME 2
-# define INVALID_NAME 3
-# define NAME_DIFF_FILE 4
-# define INVALID_CHAR 5
+# define NAME_EXIST 0
+# define SYNTAX_NAME 1
+# define INVALID_NAME 2
+# define NAME_DIFF_FILE 3
+# define INVALID_CHAR 4
 
 # endif

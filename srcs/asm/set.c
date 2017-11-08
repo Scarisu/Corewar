@@ -6,14 +6,16 @@
 /*   By: pbernier <pbernier@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/11/02 21:34:13 by pbernier          #+#    #+#             */
-/*   Updated: 2017/11/07 21:16:30 by pbernier         ###   ########.fr       */
+/*   Updated: 2017/11/08 01:26:20 by pbernier         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <corewar.h>
 
-void	set(t_asm *e)
+void	set_data(t_asm *e)
 {
+	e->champ.fd = -1;
+	e->champ.file_path = NULL;
 	e->champ.file_name = NULL;
 	e->champ.line = NULL;
 	if (!(e->champ.all = ft_strnew(0)))
@@ -23,6 +25,16 @@ void	set(t_asm *e)
 	e->champ.valid.prev = NULL;
 	e->verbos.nb_error = 0;
 	e->verbos.nb_line = 1;
-	if (!(e->verbos.arrow = ft_strdup("^")))
-		error(e, MALLOC);
+	e->verbos.i = 0;
+	e->verbos.sw = 1;
+	e->verbos.len_arrow = 0;
+}
+
+void	set_ptr(t_verbos *v)
+{
+	v->tab[NAME_EXIST] = &name_exist;
+	v->tab[SYNTAX_NAME] = &syntax_name;
+	v->tab[INVALID_NAME] = &invalid_name;
+	v->tab[NAME_DIFF_FILE] = &name_diff_file;
+	v->tab[INVALID_CHAR] = &invalid_char;
 }

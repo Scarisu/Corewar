@@ -1,7 +1,7 @@
 make asm
 
 printf "\n\033[1;34m-----------------------------------------\033[0;m\n"
-printf "\033[1;34m			Assembleur\033[0;m\n"
+printf "\033[1;34m              Assembleur\033[0;m\n"
 printf "\033[1;34m-----------------------------------------\033[0;m\n"
 
 	printf "\n[1] \033[4mMultiple .name\033[0m: \033[38;5;8m[01multiple_name.s]\033[0m\n"

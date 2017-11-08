@@ -6,7 +6,7 @@
 #    By: pbernier <pbernier@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2017/09/29 18:30:33 by pbernier          #+#    #+#              #
-#    Updated: 2017/11/07 19:28:38 by pbernier         ###   ########.fr        #
+#    Updated: 2017/11/08 01:18:26 by pbernier         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -31,8 +31,9 @@ SRCASM			=	main.c \
 					line.c \
 					set.c \
 					clear.c \
-					verbos.c \
-					analysis.c
+					verbos/verbos.c \
+					analysis/ana_name.c \
+					verbos/ver_name.c
 SRCCHAMP		=	main.c
 SRCVM			=	main.c
 
@@ -82,6 +83,8 @@ $(PATHOBJASM)%.o: $(PATHSRCASM)%.c
 
 $(PATHOBJASM):
 	@mkdir $(PATHOBJASM)
+	@mkdir $(PATHOBJASM)verbos
+	@mkdir $(PATHOBJASM)analysis
 
 asm_clean:
 	@rm -f $(OBJASM)

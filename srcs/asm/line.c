@@ -6,7 +6,7 @@
 /*   By: pbernier <pbernier@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/11/02 21:18:25 by pbernier          #+#    #+#             */
-/*   Updated: 2017/11/07 21:17:07 by pbernier         ###   ########.fr       */
+/*   Updated: 2017/11/08 01:14:34 by pbernier         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,7 +40,7 @@ void	check_line(t_asm *e, char **line)
 {
 	int	sw;
 
-	while ((e->verbos.len = get_line(e, line)))
+	while (get_line(e, line))
 	{
 		sw = 1;
 		sw = (sw) ? name(e, *line) : sw;
