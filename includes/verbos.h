@@ -6,7 +6,7 @@
 /*   By: pbernier <pbernier@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/11/06 19:20:02 by pbernier          #+#    #+#             */
-/*   Updated: 2017/11/09 00:34:45 by pbernier         ###   ########.fr       */
+/*   Updated: 2017/11/09 01:50:28 by pbernier         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,8 +42,9 @@
 # define NAME_DIFF_FILE 3
 # define INVALID_CHAR 4
 # define COMMENT_EXIST 5
+# define INVALID_COMMANDE 6
 
-# define MISSING_NAME 6
-# define MISSING_COMMENT 7
+# define MISSING_NAME 7
+# define MISSING_COMMENT 8
 
 # endif

@@ -6,7 +6,7 @@
 #    By: pbernier <pbernier@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2017/09/29 18:30:33 by pbernier          #+#    #+#              #
-#    Updated: 2017/11/09 00:59:59 by pbernier         ###   ########.fr        #
+#    Updated: 2017/11/09 01:55:34 by pbernier         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -31,12 +31,13 @@ SRCASM			=	main.c \
 					line.c \
 					set.c \
 					clear.c \
-					verbos/verbos.c \
 					analysis/ana_name.c \
-					verbos/ver_name.c \
 					analysis/ana_comment.c \
+					analysis/ana_diverse.c \
+					verbos/verbos.c \
+					verbos/ver_name.c \
 					verbos/ver_comment.c \
-					verbos/ver_data.c
+					verbos/ver_diverse.c
 SRCCHAMP		=	main.c
 SRCVM			=	main.c
 

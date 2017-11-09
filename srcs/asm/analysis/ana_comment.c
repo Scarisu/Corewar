@@ -6,7 +6,7 @@
 /*   By: pbernier <pbernier@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/11/08 21:51:26 by pbernier          #+#    #+#             */
-/*   Updated: 2017/11/09 01:17:11 by pbernier         ###   ########.fr       */
+/*   Updated: 2017/11/09 01:58:29 by pbernier         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,6 +16,7 @@ int		cmd_comment(t_asm *e, char *line)
 {
 	int		content_len;
 
+	I = 0;
 	if (!skip_tab(e, line) ||
 		!(ft_strstr(line, COMMENT_CMD_STRING) == &(line)[I]))
 		return (1);

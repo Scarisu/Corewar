@@ -6,7 +6,7 @@
 /*   By: pbernier <pbernier@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/11/02 21:34:13 by pbernier          #+#    #+#             */
-/*   Updated: 2017/11/09 01:12:41 by pbernier         ###   ########.fr       */
+/*   Updated: 2017/11/09 02:24:12 by pbernier         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,6 +30,7 @@ void	set_data(t_asm *e)
 	I = 0;
 	e->verbos.sw = 1;
 	e->verbos.len_arrow = 0;
+	e->verbos.cmd_invalid = NULL;
 }
 
 void	set_ptrft(t_asm *e)
@@ -40,9 +41,11 @@ void	set_ptrft(t_asm *e)
 	e->verbos.tab[NAME_DIFF_FILE] = name_diff_file;
 	e->verbos.tab[INVALID_CHAR] = invalid_char;
 	e->verbos.tab[COMMENT_EXIST] = comment_exist;
+	e->verbos.tab[INVALID_COMMANDE] = invalid_command;
 	e->verbos.tab[MISSING_NAME] = missing_name;
 	e->verbos.tab[MISSING_COMMENT] = missing_comment;
-
-	e->tab[0] = cmd_name;
-	e->tab[1] = cmd_comment;
+	e->tab[0] = skip_tab;
+	e->tab[1] = cmd_name;
+	e->tab[2] = cmd_comment;
+	e->tab[3] = cmd_check;
 }

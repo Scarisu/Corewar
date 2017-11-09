@@ -6,7 +6,7 @@
 /*   By: pbernier <pbernier@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/11/06 18:06:53 by pbernier          #+#    #+#             */
-/*   Updated: 2017/11/08 19:37:42 by pbernier         ###   ########.fr       */
+/*   Updated: 2017/11/09 02:14:11 by pbernier         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,5 +20,6 @@ void	clean(t_asm *e)
 	ft_memdel((void **)&e->champ.valid.name);
 	ft_memdel((void **)&e->champ.valid.comment);
 	ft_memdel((void **)&e->champ.valid.prev);
+	ft_memdel((void **)&e->verbos.cmd_invalid);
 	read(0, e->champ.buff, 1);
 }
