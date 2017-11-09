@@ -6,7 +6,7 @@
 /*   By: pbernier <pbernier@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/11/07 18:35:10 by pbernier          #+#    #+#             */
-/*   Updated: 2017/11/09 01:57:12 by pbernier         ###   ########.fr       */
+/*   Updated: 2017/11/09 04:01:14 by pbernier         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,14 +24,14 @@ int		cmd_name(t_asm *e, char *line)
 	I += ft_strlen(NAME_CMD_STRING);
 	if (!skip_tab(e, line) || (line[I] != '\"' && line[I] != '\''))
 		return (verbos(e, SYNTAX));
-	if (!check_name(e, line) || !skip_tab(e, line))
+	if (!save_name(e, line) || !skip_tab(e, line))
 		return (0);
 	if (line[I] && line[I] != '\n')
 		return (verbos(e, INVALID_CHAR));
 	return (0);
 }
 
-int		check_name(t_asm *e, char *line)
+int		save_name(t_asm *e, char *line)
 {
 	int		content_len;
 

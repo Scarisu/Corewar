@@ -6,7 +6,7 @@
 /*   By: pbernier <pbernier@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/11/02 21:18:25 by pbernier          #+#    #+#             */
-/*   Updated: 2017/11/09 02:22:06 by pbernier         ###   ########.fr       */
+/*   Updated: 2017/11/09 04:35:48 by pbernier         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,7 +27,7 @@ int		get_line(t_asm *e, char **line)
 		if ((ret = read(e->champ.fd, e->champ.buff, 1)) == -1)
 			error(e, READ_CHAMP);
 		if (!ret || BUFF == 0)
-			return (ret);
+			return (0);
 		if (BUFF == '\t' || BUFF == '\r' || BUFF == '\v' || BUFF == '\f')
 			BUFF = ' ';
 		ft_strjoin_clean_char(line, BUFF);

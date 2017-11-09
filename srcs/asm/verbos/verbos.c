@@ -6,7 +6,7 @@
 /*   By: pbernier <pbernier@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/11/06 19:25:27 by pbernier          #+#    #+#             */
-/*   Updated: 2017/11/09 01:07:31 by pbernier         ###   ########.fr       */
+/*   Updated: 2017/11/09 04:40:39 by pbernier         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,7 +30,8 @@ int		verbos(t_asm *e, int err)
 
 void	print_pos(t_asm *e, int err)
 {
-	ft_putstr_fd(GRAS WHITE, 2);
+	ft_putstr_fd(GRAS, 2);
+	ft_putstr_fd(WHITE, 2);
 	ft_putstr_fd(e->champ.file_path, 2);
 	ft_putstr_fd(":", 2);
 	if (err == MISSING_NAME ||

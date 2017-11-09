@@ -6,7 +6,7 @@
 /*   By: pbernier <pbernier@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/11/02 19:56:24 by pbernier          #+#    #+#             */
-/*   Updated: 2017/11/09 02:19:46 by pbernier         ###   ########.fr       */
+/*   Updated: 2017/11/09 04:46:52 by pbernier         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,7 +25,7 @@ typedef struct s_asm	t_asm;
 struct			s_verbos
 {
 	int			i;
-	int			sw;
+	int			sw;//
 	int			nb_error;
 	int			nb_line;
 	int			len_arrow;
@@ -68,7 +68,7 @@ void	set_ptrft(t_asm *e);
 int		get_line(t_asm *e, char **line);
 void	clean(t_asm *e);
 void	check_line(t_asm *e);
-int		check_name(t_asm *e, char *line);
+int		save_name(t_asm *e, char *line);
 int		verbos(t_asm *e, int err);
 int		valid_name(char *name);
 void	print_pos(t_asm *e, int err);
@@ -76,6 +76,7 @@ void	adapt_line(t_asm *e, char *line);
 void	arrow(t_asm *e);
 void	nb_error(t_asm *e);
 void	missing_data(t_asm *e);
+int		save_comment(t_asm *e, char *line);
 
 int		skip_tab(t_asm *e, char *line);
 int		cmd_name(t_asm *e, char *line);
