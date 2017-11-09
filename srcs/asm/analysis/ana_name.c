@@ -6,7 +6,7 @@
 /*   By: pbernier <pbernier@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/11/07 18:35:10 by pbernier          #+#    #+#             */
-/*   Updated: 2017/11/08 22:34:13 by pbernier         ###   ########.fr       */
+/*   Updated: 2017/11/09 01:14:54 by pbernier         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,6 +18,7 @@ int		cmd_name(t_asm *e, char *line)
 	if (!skip_tab(e, line) ||
 		!(ft_strstr(line, NAME_CMD_STRING) == &(line)[I]))
 		return (1);
+	e->champ.valid.name_done = 1;
 	if ((e->champ.valid.name))
 		return (verbos(e, NAME_EXIST));
 	I += ft_strlen(NAME_CMD_STRING);
@@ -44,7 +45,7 @@ int		check_name(t_asm *e, char *line)
 	content_len -= I + 1;
 	if (!(e->champ.valid.name = ft_strsub(line, I + 1, content_len)))
 		error(e, MALLOC);
-	if (!valid_name(&e->champ.valid.name))
+	if (!valid_name(e->champ.valid.name))
 		return (verbos(e, INVALID_NAME));
 	if (ft_strcmp(e->champ.file_name, e->champ.valid.name))
 		return (verbos(e, NAME_DIFF_FILE));
@@ -52,17 +53,17 @@ int		check_name(t_asm *e, char *line)
 	return (1);
 }
 
-int		valid_name(char **name)
+int		valid_name(char *name)
 {
 	int		i;
 	char	invalid_char[10];
 
 	i = -1;
-	if (!ft_strlen(*name))
+	if (!ft_strlen(name))
 		return (0);
 	ft_memcpy(invalid_char, (char[10]){"/\\:*?\"<>|\0"}, sizeof(char[10]));
-	while ((*name)[++i])
-		if (ft_strchr(invalid_char, (*name)[i]))
+	while (name[++i])
+		if (ft_strchr(invalid_char, name[i]))
 			return (0);
 	return (1);
 }

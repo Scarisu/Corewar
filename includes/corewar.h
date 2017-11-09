@@ -6,11 +6,11 @@
 /*   By: pbernier <pbernier@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/09/29 18:25:52 by pbernier          #+#    #+#             */
-/*   Updated: 2017/11/02 20:36:46 by pbernier         ###   ########.fr       */
+/*   Updated: 2017/11/08 23:37:37 by pbernier         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef COREWAR_H
+#ifndef COREWAR_H 
 # define COREWAR_H
 
 # include "op.h"

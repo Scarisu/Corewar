@@ -1,5 +1,5 @@
 clear
-make asm_clean
+make asm_fclean
 make asm
 
 printf "\n\033[1;34m-----------------------------------------\033[0;m\n"
@@ -9,7 +9,6 @@ printf "\033[1;34m-----------------------------------------\033[0;m\n"
 	printf "\n[1] \033[4mMultiple .name\033[0m: \033[38;5;8m[01multiple_name.s]\033[0m\n"
 	./asm ./tests/01multiple_name.s
 	read
-
 	printf "\n[2] \033[4mBad Syntax .name (1)\033[0m: \033[38;5;8m[02bad_syntax_name1.s]\033[0m\n"
 	./asm ./tests/02bad_syntax_name1.s
 	read
@@ -25,7 +24,6 @@ printf "\033[1;34m-----------------------------------------\033[0;m\n"
 	printf "\n[6] \033[4mEmpty .name\033[0m: \033[38;5;8m[06empty_name.s]\033[0m\n"
 	./asm ./tests/06empty_name.s
 	read
-	#name x 2
 	printf "\n[7] \033[4mForbidden char .name\033[0m: \033[38;5;8m[07forbidden_char_name.s]\033[0m\n"
 	./asm ./tests/07forbidden_char_name.s
 	read
@@ -76,4 +74,13 @@ printf "\033[1;34m-----------------------------------------\033[0;m\n"
 	read
 	printf "\n[23] \033[4mComment .comment (3)\033[0m: \033[38;5;8m[23comment_name3.s]\033[0m\n"
 	./asm ./tests/23comment_name3.s
+	read
+	printf "\n[24] \033[4mMissing .name\033[0m: \033[38;5;8m[24missing_name.s]\033[0m\n"
+	./asm ./tests/24missing_name.s
+	read
+	printf "\n[25] \033[4mMissing .comment\033[0m: \033[38;5;8m[25missing_comment.s]\033[0m\n"
+	./asm ./tests/25missing_comment.s
+	read
+	printf "\n[26] \033[4mMissing Both\033[0m: \033[38;5;8m[26missing_both.s]\033[0m\n"
+	./asm ./tests/26missing_both.s
 	read

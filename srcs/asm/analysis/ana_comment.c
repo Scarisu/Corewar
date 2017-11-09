@@ -6,7 +6,7 @@
 /*   By: pbernier <pbernier@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/11/08 21:51:26 by pbernier          #+#    #+#             */
-/*   Updated: 2017/11/08 22:43:27 by pbernier         ###   ########.fr       */
+/*   Updated: 2017/11/09 01:17:11 by pbernier         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,6 +19,7 @@ int		cmd_comment(t_asm *e, char *line)
 	if (!skip_tab(e, line) ||
 		!(ft_strstr(line, COMMENT_CMD_STRING) == &(line)[I]))
 		return (1);
+	e->champ.valid.comment_done = 1;
 	if ((e->champ.valid.comment))
 		return (verbos(e, COMMENT_EXIST));
 	I += ft_strlen(COMMENT_CMD_STRING);
