@@ -6,7 +6,7 @@
 /*   By: pbernier <pbernier@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/11/09 00:11:55 by pbernier          #+#    #+#             */
-/*   Updated: 2017/11/13 19:57:53 by pbernier         ###   ########.fr       */
+/*   Updated: 2017/11/13 23:05:24 by pbernier         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -72,7 +72,7 @@ void	invalid_char(t_asm *e)
 		&& e->champ.line[i] != '\n' && e->champ.line[i] != ' '
 		&& e->champ.line[i] != COMMENT_CHAR)
 	{
-		if (!((int)e->champ.line[i] <= 255 && e->champ.line[i] >= 0))
+		if (!((int)e->champ.line[i] <= 127 && e->champ.line[i] >= 0))
 			++nb_uni;
 		else if (!ft_strchr(inv, e->champ.line[i]) && ++nb_inv < 6)
 			inv[ft_strlen(inv)] = e->champ.line[i];

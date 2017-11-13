@@ -6,7 +6,7 @@
 /*   By: pbernier <pbernier@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/11/09 01:32:42 by pbernier          #+#    #+#             */
-/*   Updated: 2017/11/13 18:17:41 by pbernier         ###   ########.fr       */
+/*   Updated: 2017/11/13 22:23:36 by pbernier         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,13 +16,10 @@ int		skip_tab(t_asm *e, char *line)
 {
 	while (line[I] == ' ')
 		++I;
-	if (!line[I] ||
-		line[I] == COMMENT_CHAR ||
-		line[I] == '\n')
-	{
+	if (line[I] == COMMENT_CHAR)
 		I += (I != 0) ? -1 : 0;
+	if (!line[I] || line[I] == '\n' || line[I] == COMMENT_CHAR)
 		return (0);
-	}
 	return (1);
 }
 

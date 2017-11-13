@@ -6,41 +6,19 @@
 /*   By: pbernier <pbernier@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/11/13 17:36:15 by pbernier          #+#    #+#             */
-/*   Updated: 2017/11/13 19:19:11 by pbernier         ###   ########.fr       */
+/*   Updated: 2017/11/13 23:41:42 by pbernier         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <corewar.h>
 
-void	label_invalid_char(t_asm *e)
+void	invalid_label(t_asm *e)
 {
-	// int		i;
-	// int		print;
-	// char	invalid[31];
-	//
-	// i = I;
-	// print = -1;
-	// ft_bzero(invalid, 31);
-	// while (e->champ.line[i] && (i - (I + 1)) < 30
-	// 	&& e->champ.line[i] != '\n'
-	// 	&& e->champ.line[i] != ' '
-	// 	&& e->champ.line[i] != LABEL_CHAR
-	// 	&& e->champ.line[i] != COMMENT_CHAR)
-	// {
-	// 	if (!ft_strchr(LABEL_CHARS, e->champ.line[i]) &&
-	// 		!ft_strchr(invalid, e->champ.line[i]))
-	// 		invalid[ft_strlen(invalid)] = e->champ.line[i];
-	// 	++i;
-	// }
-	// e->verbos.len_arrow = i - (I + 1);
-	// ft_putstr_fd(WHITE "Invalid character", 2);
-	// ft_strlen(invalid) > 1 ? ft_putchar_fd('s', 2) : 0;
-	// ft_putstr_fd(" used for label: {" GREY, 2);
-	// while (invalid[++print])
-	// {
-	// 	(print) ? ft_putstr_fd(WHITE "," GREY, 2) : 0;
-	// 	ft_putchar_fd(invalid[print], 2);
-	// }
-	// ft_putstr_fd(WHITE "}", 2);
+	if ((e->verbos.len_arrow = ft_strlen(e->champ.valid.label->name)) > 30)
+		e->verbos.len_arrow = 30;
+	printf("[%s]", e->champ.valid.label->name);
+	ft_memdel((void **)&e->champ.valid.label->name);
+	ft_putstr_fd(WHITE "Label can't be null and ", 2);
+	ft_putstr_fd("must only contain {" GREY LABEL_CHARS WHITE "}", 2);
 	(void)e;
 }

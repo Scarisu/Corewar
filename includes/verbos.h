@@ -6,7 +6,7 @@
 /*   By: pbernier <pbernier@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/11/06 19:20:02 by pbernier          #+#    #+#             */
-/*   Updated: 2017/11/13 18:49:03 by pbernier         ###   ########.fr       */
+/*   Updated: 2017/11/13 22:42:12 by pbernier         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,7 +46,7 @@
 # define COMMENT_LEN 7
 # define INVALID_COMMANDE 8
 
-# define LABEL_INVALID_CHAR 9
+# define INVALID_LABEL 9
 // # define
 // # define
 
