@@ -6,7 +6,7 @@
 /*   By: pbernier <pbernier@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/11/09 00:11:55 by pbernier          #+#    #+#             */
-/*   Updated: 2017/11/13 19:39:50 by pbernier         ###   ########.fr       */
+/*   Updated: 2017/11/13 19:57:53 by pbernier         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -62,24 +62,20 @@ void	invalid_char(t_asm *e)
 	int		i;
 	int		nb_inv;
 	int		nb_uni;
-	char	inv[31];
+	char	inv[6];
 
 	i = I;
 	nb_inv = 0;
 	nb_uni = 0;
-	ft_bzero(inv, 31);
+	ft_bzero(inv, 6);
 	while (e->champ.line[i] && (i - (I + 1)) < 30
 		&& e->champ.line[i] != '\n' && e->champ.line[i] != ' '
 		&& e->champ.line[i] != COMMENT_CHAR)
 	{
-		if (!ft_strchr(inv, e->champ.line[i]))
-		{
-			++nb_inv;
-			if ((int)e->champ.line[i] <= 255 && e->champ.line[i] >= 0)
-			 	inv[ft_strlen(inv)] = e->champ.line[i];
-			else
-			 	++nb_uni;
-		}
+		if (!((int)e->champ.line[i] <= 255 && e->champ.line[i] >= 0))
+			++nb_uni;
+		else if (!ft_strchr(inv, e->champ.line[i]) && ++nb_inv < 6)
+			inv[ft_strlen(inv)] = e->champ.line[i];
 		++i;
 	}
 	e->verbos.len_arrow = i - (I + 1) - (nb_uni / 2);
@@ -99,7 +95,11 @@ void	print_invalid_char(int nb_inv, int nb_uni, char inv[31])
 		(print) ? ft_putstr_fd(WHITE "," GREY, 2) : 0;
 		ft_putchar_fd(inv[print], 2);
 	}
-	(print) && (nb_uni) ? ft_putstr_fd(WHITE ", ", 2) : 0;
-	(nb_uni) ? ft_putstr_fd(WHITE "...", 2) : 0;
+	if ((print) && (nb_uni))
+		ft_putstr_fd(WHITE ", ", 2);
+	else if (ft_strlen(inv) < (size_t)nb_inv)
+		ft_putstr_fd(WHITE " ", 2);
+	if ((nb_uni) || ft_strlen(inv) < (size_t)nb_inv)
+		ft_putstr_fd(WHITE "...", 2);
 	ft_putstr_fd(WHITE "}", 2);
 }
