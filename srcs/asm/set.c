@@ -6,7 +6,7 @@
 /*   By: pbernier <pbernier@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/11/02 21:34:13 by pbernier          #+#    #+#             */
-/*   Updated: 2017/11/09 03:58:21 by pbernier         ###   ########.fr       */
+/*   Updated: 2017/11/09 20:38:16 by pbernier         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,10 +37,12 @@ void	set_ptrft(t_asm *e)
 {
 	e->verbos.tab[NAME_EXIST] = name_exist;
 	e->verbos.tab[SYNTAX] = syntax;
+	e->verbos.tab[NAME_LEN] = name_len;
 	e->verbos.tab[INVALID_NAME] = invalid_name;
 	e->verbos.tab[NAME_DIFF_FILE] = name_diff_file;
 	e->verbos.tab[INVALID_CHAR] = invalid_char;
 	e->verbos.tab[COMMENT_EXIST] = comment_exist;
+	e->verbos.tab[COMMENT_LEN] = comment_len;
 	e->verbos.tab[INVALID_COMMANDE] = invalid_command;
 	e->verbos.tab[MISSING_NAME] = missing_name;
 	e->verbos.tab[MISSING_COMMENT] = missing_comment;

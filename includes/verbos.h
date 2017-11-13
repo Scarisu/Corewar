@@ -6,7 +6,7 @@
 /*   By: pbernier <pbernier@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/11/06 19:20:02 by pbernier          #+#    #+#             */
-/*   Updated: 2017/11/09 04:40:52 by pbernier         ###   ########.fr       */
+/*   Updated: 2017/11/09 20:37:11 by pbernier         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,13 +38,15 @@
 */
 # define NAME_EXIST 0
 # define SYNTAX 1
-# define INVALID_NAME 2
-# define NAME_DIFF_FILE 3
-# define INVALID_CHAR 4
-# define COMMENT_EXIST 5
-# define INVALID_COMMANDE 6
+# define NAME_LEN 2
+# define INVALID_NAME 3
+# define NAME_DIFF_FILE 4
+# define INVALID_CHAR 5
+# define COMMENT_EXIST 6
+# define COMMENT_LEN 7
+# define INVALID_COMMANDE 8
 
-# define MISSING_NAME 7
-# define MISSING_COMMENT 8
+# define MISSING_NAME 9
+# define MISSING_COMMENT 10
 
 # endif

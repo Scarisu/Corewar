@@ -86,3 +86,9 @@ printf "\033[1;34m-----------------------------------------\033[0;m\n"
 	printf "\n[27] \033[4mInvalid Command\033[0m: \033[38;5;8m[27invalid_command.s]\033[0m\n"
 	./asm ./tests/27invalid_command.s
 	read
+	printf "\n[28] \033[4mName too long\033[0m: \033[38;5;8m[28name_too_long.s]\033[0m\n"
+	./asm ./tests/28name_too_long.s
+	read
+	printf "\n[29] \033[4mDescription too long\033[0m: \033[38;5;8m[29comment_too_long.s]\033[0m\n"
+	./asm ./tests/29comment_too_long.s
+	read

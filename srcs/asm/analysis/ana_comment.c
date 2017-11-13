@@ -6,7 +6,7 @@
 /*   By: pbernier <pbernier@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/11/08 21:51:26 by pbernier          #+#    #+#             */
-/*   Updated: 2017/11/09 04:06:10 by pbernier         ###   ########.fr       */
+/*   Updated: 2017/11/09 20:42:29 by pbernier         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,9 +18,9 @@ int		cmd_comment(t_asm *e, char *line)
 	if (!skip_tab(e, line) ||
 		!(ft_strstr(line, COMMENT_CMD_STRING) == &(line)[I]))
 		return (1);
-	e->champ.valid.comment_done = 1;
-	if ((e->champ.valid.comment))
+	if ((e->champ.valid.comment_done))
 		return (verbos(e, COMMENT_EXIST));
+	e->champ.valid.comment_done = 1;
 	I += ft_strlen(COMMENT_CMD_STRING);
 	if (!skip_tab(e, line) || (line[I] != '\"' && line[I] != '\''))
 		return (verbos(e, SYNTAX));
@@ -44,6 +44,8 @@ int		save_comment(t_asm *e, char *line)
 	content_len -= I + 1;
 	if (!(e->champ.valid.comment = ft_strsub(line, I + 1, content_len)))
 		error(e, MALLOC);
+	if (content_len > COMMENT_LENGTH)
+		return (verbos(e, COMMENT_LEN));
 	I += content_len + 2;
 	return (1);
 }

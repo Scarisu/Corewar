@@ -6,7 +6,7 @@
 /*   By: pbernier <pbernier@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/11/07 18:35:10 by pbernier          #+#    #+#             */
-/*   Updated: 2017/11/09 04:01:14 by pbernier         ###   ########.fr       */
+/*   Updated: 2017/11/09 20:12:36 by pbernier         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,9 +18,9 @@ int		cmd_name(t_asm *e, char *line)
 	if (!skip_tab(e, line) ||
 		!(ft_strstr(line, NAME_CMD_STRING) == &(line)[I]))
 		return (1);
-	e->champ.valid.name_done = 1;
-	if ((e->champ.valid.name))
+	if ((e->champ.valid.name_done))
 		return (verbos(e, NAME_EXIST));
+	e->champ.valid.name_done = 1;
 	I += ft_strlen(NAME_CMD_STRING);
 	if (!skip_tab(e, line) || (line[I] != '\"' && line[I] != '\''))
 		return (verbos(e, SYNTAX));
@@ -45,6 +45,8 @@ int		save_name(t_asm *e, char *line)
 	content_len -= I + 1;
 	if (!(e->champ.valid.name = ft_strsub(line, I + 1, content_len)))
 		error(e, MALLOC);
+	if (content_len > PROG_NAME_LENGTH)
+		return (verbos(e, NAME_LEN));
 	if (!valid_name(e->champ.valid.name))
 		return (verbos(e, INVALID_NAME));
 	if (ft_strcmp(e->champ.file_name, e->champ.valid.name))

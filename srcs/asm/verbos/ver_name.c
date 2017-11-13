@@ -6,7 +6,7 @@
 /*   By: pbernier <pbernier@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/11/08 00:56:01 by pbernier          #+#    #+#             */
-/*   Updated: 2017/11/08 22:22:56 by pbernier         ###   ########.fr       */
+/*   Updated: 2017/11/09 20:14:09 by pbernier         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,22 +16,13 @@ void	name_exist(t_asm *e)
 {
 	if ((e->verbos.len_arrow = ft_strlen(NAME_CMD_STRING) - 1) > 30)
 		e->verbos.len_arrow = 30;
-	ft_putstr_fd(WHITE "Champion's name already set: \"" GREY, 2);
-	ft_putstr_fd(e->champ.valid.name, 2);
-	ft_putstr_fd(WHITE "\"", 2);
-}
-
-void	syntax(t_asm *e)
-{
-	int	i;
-
-	i = I + 1;
-	while (e->champ.line[i] && (i - (I + 1)) < 30
-		&& e->champ.line[i] != '\n' && e->champ.line[i] != ' '
-		&& e->champ.line[i] != COMMENT_CHAR)
-		++i;
-	e->verbos.len_arrow = i - (I + 1);
-	ft_putstr_fd(WHITE "Syntax error", 2);
+	ft_putstr_fd(WHITE "Champion's name already set", 2);
+	if ((e->champ.valid.name))
+	{
+		ft_putstr_fd(": \"" GREY, 2);
+		ft_putstr_fd(e->champ.valid.name, 2);
+		ft_putstr_fd(WHITE "\"", 2);
+	}
 }
 
 void	invalid_name(t_asm *e)
@@ -56,31 +47,26 @@ void	name_diff_file(t_asm *e)
 	ft_putstr_fd(WHITE "\"}", 2);
 }
 
-void	invalid_char(t_asm *e)
+void	name_len(t_asm *e)
 {
-	int		i;
-	int		print;
-	char	invalid[31];
+	int start;
 
-	i = I;
-	print = -1;
-	ft_bzero(invalid, 31);
-	while (e->champ.line[i] && (i - (I + 1)) < 30
-		&& e->champ.line[i] != '\n' && e->champ.line[i] != ' '
-		&& e->champ.line[i] != COMMENT_CHAR)
-	{
-		if (!ft_strchr(invalid, e->champ.line[i]))
-			invalid[ft_strlen(invalid)] = e->champ.line[i];
-		++i;
-	}
-	e->verbos.len_arrow = i - (I + 1);
-	ft_putstr_fd(WHITE "Invalid character", 2);
-	ft_strlen(invalid) > 1 ? ft_putchar_fd('s', 2) : 0;
-	ft_putstr_fd(": {" GREY, 2);
-	while (invalid[++print])
-	{
-		(print) ? ft_putstr_fd(WHITE "," GREY, 2) : 0;
-		ft_putchar_fd(invalid[print], 2);
-	}
+	start = 0;
+	if ((e->verbos.len_arrow = ft_strlen(e->champ.valid.name) + 1) > 30)
+		e->verbos.len_arrow = 30;
+	ft_putstr_fd(WHITE "Champion's name too long {" GREY, 2);
+	ft_putnbr_fd(ft_strlen(e->champ.valid.name), 2);
+	ft_memdel((void **)&e->champ.valid.name);
+	ft_putstr_fd(WHITE "}, max name len: {", 2);
+	ft_putstr_fd(GREY, 2);
+	ft_putnbr_fd(PROG_NAME_LENGTH, 2);
 	ft_putstr_fd(WHITE "}", 2);
 }
+
+/*
+** void	syntax(t_asm *e);
+*/
+
+/*
+** void	invalid_char(t_asm *e);
+*/

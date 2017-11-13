@@ -6,7 +6,7 @@
 /*   By: pbernier <pbernier@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/11/02 19:56:24 by pbernier          #+#    #+#             */
-/*   Updated: 2017/11/09 04:46:52 by pbernier         ###   ########.fr       */
+/*   Updated: 2017/11/09 20:34:33 by pbernier         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,7 +31,7 @@ struct			s_verbos
 	int			len_arrow;
 	int			line_left;
 	char		*cmd_invalid;
-	void		(*tab[9])(t_asm *);
+	void		(*tab[11])(t_asm *);
 };
 
 struct			s_valid
@@ -85,10 +85,12 @@ int 	cmd_check(t_asm *e, char *line);
 
 void	name_exist(t_asm *e);
 void	syntax(t_asm *e);
+void	name_len(t_asm *e);
 void	invalid_name(t_asm *e);
 void	name_diff_file(t_asm *e);
 void	invalid_char(t_asm *e);
 void	comment_exist(t_asm *e);
+void	comment_len(t_asm *e);
 void	missing_name(t_asm *e);
 void	missing_comment(t_asm *e);
 void	invalid_command(t_asm *e);
