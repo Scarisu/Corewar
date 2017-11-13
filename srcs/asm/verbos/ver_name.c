@@ -6,7 +6,7 @@
 /*   By: pbernier <pbernier@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/11/08 00:56:01 by pbernier          #+#    #+#             */
-/*   Updated: 2017/11/09 20:14:09 by pbernier         ###   ########.fr       */
+/*   Updated: 2017/11/13 17:39:42 by pbernier         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,7 +36,7 @@ void	invalid_name(t_asm *e)
 
 void	name_diff_file(t_asm *e)
 {
-	if ((e->verbos.len_arrow = ft_strlen(e->champ.valid.name) + 1) > 30)
+	if ((e->verbos.len_arrow = ft_strlen(e->champ.valid.name) + 1)  > 30)
 		e->verbos.len_arrow = 30;
 	ft_putstr_fd(WHITE "Champion's name is different from ", 2);
 	ft_putstr_fd("the orignal file: {\"" GREY, 2);

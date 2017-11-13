@@ -6,7 +6,7 @@
 /*   By: pbernier <pbernier@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/11/02 21:18:25 by pbernier          #+#    #+#             */
-/*   Updated: 2017/11/09 04:35:48 by pbernier         ###   ########.fr       */
+/*   Updated: 2017/11/13 18:22:12 by pbernier         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,7 +44,8 @@ void	check_line(t_asm *e)
 		(e->verbos.line_left = get_line(e, &e->champ.line)))
 	{
 		i = 0;
-		while (i < 4 && (e->tab[i](e, e->champ.line)))
+		I = 0;
+		while (i < 5 && (e->tab[i](e, e->champ.line)))
 			++i;
 		ft_memdel((void **)&e->champ.valid.prev);
 		if (!(e->champ.valid.prev = ft_strdup(e->champ.line)))

@@ -1,2 +1,2 @@
-.name   "05bad_syntax_name4"  c#
+.name   "05bad_syntax_name4"  ..érg33%0gãl#
 .comment ""

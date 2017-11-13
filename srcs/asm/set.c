@@ -6,7 +6,7 @@
 /*   By: pbernier <pbernier@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/11/02 21:34:13 by pbernier          #+#    #+#             */
-/*   Updated: 2017/11/09 20:38:16 by pbernier         ###   ########.fr       */
+/*   Updated: 2017/11/13 18:52:37 by pbernier         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,10 +44,12 @@ void	set_ptrft(t_asm *e)
 	e->verbos.tab[COMMENT_EXIST] = comment_exist;
 	e->verbos.tab[COMMENT_LEN] = comment_len;
 	e->verbos.tab[INVALID_COMMANDE] = invalid_command;
+	e->verbos.tab[LABEL_INVALID_CHAR] = label_invalid_char;
 	e->verbos.tab[MISSING_NAME] = missing_name;
 	e->verbos.tab[MISSING_COMMENT] = missing_comment;
 	e->tab[0] = skip_tab;
 	e->tab[1] = cmd_name;
 	e->tab[2] = cmd_comment;
 	e->tab[3] = cmd_check;
+	e->tab[4] = ins_label;
 }
