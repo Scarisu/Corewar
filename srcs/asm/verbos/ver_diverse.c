@@ -6,7 +6,7 @@
 /*   By: pbernier <pbernier@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/11/09 00:11:55 by pbernier          #+#    #+#             */
-/*   Updated: 2017/11/13 23:05:24 by pbernier         ###   ########.fr       */
+/*   Updated: 2017/11/14 17:48:13 by pbernier         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,14 +46,7 @@ void	invalid_command(t_asm *e)
 
 void	syntax(t_asm *e)
 {
-	int	i;
-
-	i = I + 1;
-	while (e->champ.line[i] && (i - (I + 1)) < 30
-		&& e->champ.line[i] != '\n' && e->champ.line[i] != ' '
-		&& e->champ.line[i] != COMMENT_CHAR)
-		++i;
-	e->verbos.len_arrow = i - (I + 1);
+	e->verbos.len_arrow = 0;
 	ft_putstr_fd(WHITE "Syntax error", 2);
 }
 

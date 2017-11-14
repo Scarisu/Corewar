@@ -6,7 +6,7 @@
 /*   By: pbernier <pbernier@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/11/07 18:35:10 by pbernier          #+#    #+#             */
-/*   Updated: 2017/11/13 18:37:45 by pbernier         ###   ########.fr       */
+/*   Updated: 2017/11/14 17:59:37 by pbernier         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,9 +14,7 @@
 
 int		cmd_name(t_asm *e, char *line)
 {
-	I = 0;
-	if (!skip_tab(e, line) ||
-		!(ft_strstr(line, NAME_CMD_STRING) == &(line)[I]))
+	if (!(ft_strstr(line, NAME_CMD_STRING) == &(line)[I]))
 		return (1);
 	if ((e->champ.valid.name_done))
 		return (verbos(e, NAME_EXIST));

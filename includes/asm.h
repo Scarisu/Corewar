@@ -6,7 +6,7 @@
 /*   By: pbernier <pbernier@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/11/02 19:56:24 by pbernier          #+#    #+#             */
-/*   Updated: 2017/11/14 01:04:00 by pbernier         ###   ########.fr       */
+/*   Updated: 2017/11/14 22:19:39 by pbernier         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,7 +32,8 @@ struct			s_verbos
 	int			len_arrow;
 	int			line_left;
 	char		*cmd_invalid;
-	void		(*tab[12])(t_asm *);
+	char		*opcode;
+	void		(*tab[14])(t_asm *);
 };
 
 struct			s_label
@@ -70,7 +71,7 @@ struct			s_asm
 {
 	t_champ		champ;
 	t_verbos	verbos;
-	int			(*tab[5])(t_asm *, char *);
+	int			(*tab[6])(t_asm *, char *);
 };
 
 void	usage(t_asm *e, int argc, char *av);
@@ -92,12 +93,15 @@ void	arrow(t_asm *e);
 void	nb_error(t_asm *e);
 void	missing_data(t_asm *e);
 int		save_comment(t_asm *e, char *line);
+int		exist_opcode(char *opcode);
+void	check_param(t_asm *e, char *line);
 
 int		skip_tab(t_asm *e, char *line);
 int		cmd_name(t_asm *e, char *line);
 int 	cmd_comment(t_asm *e, char *line);
 int 	cmd_check(t_asm *e, char *line);
 int		ins_label(t_asm *e, char *line);
+int		ins_opcode(t_asm *e, char *line);
 
 void	name_exist(t_asm *e);
 void	syntax(t_asm *e);
@@ -112,5 +116,7 @@ void	missing_name(t_asm *e);
 void	missing_comment(t_asm *e);
 void	invalid_command(t_asm *e);
 void	invalid_label(t_asm *e);
+void	invalid_opcode(t_asm *e);
+void 	opcode_exist(t_asm *e);
 
 #endif

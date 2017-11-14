@@ -6,7 +6,7 @@
 /*   By: pbernier <pbernier@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/11/02 21:34:13 by pbernier          #+#    #+#             */
-/*   Updated: 2017/11/14 02:04:20 by pbernier         ###   ########.fr       */
+/*   Updated: 2017/11/14 20:06:09 by pbernier         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,6 +34,7 @@ void		set_data(t_asm *e)
 	I = 0;
 	e->verbos.len_arrow = 0;
 	e->verbos.cmd_invalid = NULL;
+	e->verbos.opcode = NULL;
 }
 
 void		set_ptrft(t_asm *e)
@@ -48,6 +49,8 @@ void		set_ptrft(t_asm *e)
 	e->verbos.tab[COMMENT_LEN] = comment_len;
 	e->verbos.tab[INVALID_COMMANDE] = invalid_command;
 	e->verbos.tab[INVALID_LABEL] = invalid_label;
+	e->verbos.tab[INVALID_OPCODE] = invalid_opcode;
+	e->verbos.tab[OPCODE_EXIST] = opcode_exist;
 	e->verbos.tab[MISSING_NAME] = missing_name;
 	e->verbos.tab[MISSING_COMMENT] = missing_comment;
 	e->tab[0] = skip_tab;
@@ -55,6 +58,7 @@ void		set_ptrft(t_asm *e)
 	e->tab[2] = cmd_comment;
 	e->tab[3] = cmd_check;
 	e->tab[4] = ins_label;
+	e->tab[5] = ins_opcode;
 }
 
 t_label		*set_label(t_asm *e, int coo[2])

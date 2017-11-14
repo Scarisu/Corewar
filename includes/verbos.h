@@ -6,7 +6,7 @@
 /*   By: pbernier <pbernier@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/11/06 19:20:02 by pbernier          #+#    #+#             */
-/*   Updated: 2017/11/13 22:42:12 by pbernier         ###   ########.fr       */
+/*   Updated: 2017/11/14 20:02:40 by pbernier         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,12 +45,12 @@
 # define COMMENT_EXIST 6
 # define COMMENT_LEN 7
 # define INVALID_COMMANDE 8
-
 # define INVALID_LABEL 9
-// # define
+# define INVALID_OPCODE 10
+# define OPCODE_EXIST 11
 // # define
 
-# define MISSING_NAME 10
-# define MISSING_COMMENT 11
+# define MISSING_NAME 12
+# define MISSING_COMMENT 13
 
 # endif
