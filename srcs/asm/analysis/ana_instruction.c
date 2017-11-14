@@ -6,7 +6,7 @@
 /*   By: pbernier <pbernier@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/11/13 17:35:29 by pbernier          #+#    #+#             */
-/*   Updated: 2017/11/13 23:53:08 by pbernier         ###   ########.fr       */
+/*   Updated: 2017/11/14 02:03:05 by pbernier         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,7 @@
 
 int		ins_label(t_asm *e, char *line)
 {
-	int 	content_len;
+	int	content_len;
 
 	I = 0;
 	//MAUVAISE VERIF

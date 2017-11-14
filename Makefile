@@ -6,7 +6,7 @@
 #    By: pbernier <pbernier@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2017/09/29 18:30:33 by pbernier          #+#    #+#              #
-#    Updated: 2017/11/13 17:37:42 by pbernier         ###   ########.fr        #
+#    Updated: 2017/11/14 00:06:54 by pbernier         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -25,7 +25,8 @@ NAMEASM			=	asm
 NAMECHAMP		=	LaFalaise.s
 NAMEVM			=	corewar
 
-SRCASM			=	main.c \
+SRCASM			=	op.c \
+					main.c \
 					usage.c \
 					error.c \
 					line.c \

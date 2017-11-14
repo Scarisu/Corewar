@@ -6,7 +6,7 @@
 /*   By: pbernier <pbernier@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/11/06 18:06:53 by pbernier          #+#    #+#             */
-/*   Updated: 2017/11/13 23:51:33 by pbernier         ###   ########.fr       */
+/*   Updated: 2017/11/14 02:03:36 by pbernier         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,7 +26,7 @@ void	clean(t_asm *e)
 	read(0, e->champ.buff, 1);
 }
 
-void clean_label(t_label *l)
+void	clean_label(t_label *l)
 {
 	t_label *prev;
 

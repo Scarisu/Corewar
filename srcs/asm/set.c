@@ -6,7 +6,7 @@
 /*   By: pbernier <pbernier@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/11/02 21:34:13 by pbernier          #+#    #+#             */
-/*   Updated: 2017/11/13 23:52:49 by pbernier         ###   ########.fr       */
+/*   Updated: 2017/11/14 02:04:20 by pbernier         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -57,7 +57,7 @@ void		set_ptrft(t_asm *e)
 	e->tab[4] = ins_label;
 }
 
-t_label*	set_label(t_asm *e, int coo[2])
+t_label		*set_label(t_asm *e, int coo[2])
 {
 	t_label *new;
 
