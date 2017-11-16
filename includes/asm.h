@@ -6,7 +6,7 @@
 /*   By: pbernier <pbernier@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/11/02 19:56:24 by pbernier          #+#    #+#             */
-/*   Updated: 2017/11/14 22:19:39 by pbernier         ###   ########.fr       */
+/*   Updated: 2017/11/16 20:50:37 by pbernier         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,9 +31,11 @@ struct			s_verbos
 	int			nb_line;
 	int			len_arrow;
 	int			line_left;
+	int			opcode;
+	int			reg_nbr;
 	char		*cmd_invalid;
-	char		*opcode;
-	void		(*tab[14])(t_asm *);
+	char		*opcode_name;
+	void		(*tab[20])(t_asm *);
 };
 
 struct			s_label
@@ -72,6 +74,7 @@ struct			s_asm
 	t_champ		champ;
 	t_verbos	verbos;
 	int			(*tab[6])(t_asm *, char *);
+	int			(*arg_value[3])(t_asm *, char *);
 };
 
 void	usage(t_asm *e, int argc, char *av);
@@ -94,7 +97,11 @@ void	nb_error(t_asm *e);
 void	missing_data(t_asm *e);
 int		save_comment(t_asm *e, char *line);
 int		exist_opcode(char *opcode);
-void	check_param(t_asm *e, char *line);
+int		type_param(int type, char first_char);
+
+int		arg_reg_value(t_asm *e, char *line);
+int		arg_dir_value(t_asm *e, char *line);
+int		arg_ind_value(t_asm *e, char *line);
 
 int		skip_tab(t_asm *e, char *line);
 int		cmd_name(t_asm *e, char *line);
@@ -102,6 +109,8 @@ int 	cmd_comment(t_asm *e, char *line);
 int 	cmd_check(t_asm *e, char *line);
 int		ins_label(t_asm *e, char *line);
 int		ins_opcode(t_asm *e, char *line);
+
+int		check_param(t_asm *e, int opcode, char *line);
 
 void	name_exist(t_asm *e);
 void	syntax(t_asm *e);
@@ -118,5 +127,11 @@ void	invalid_command(t_asm *e);
 void	invalid_label(t_asm *e);
 void	invalid_opcode(t_asm *e);
 void 	opcode_exist(t_asm *e);
+void	need_arg(t_asm *e);
+void	invalid_reg(t_asm *e);
+void 	wrong_arg(t_asm *e);
+void	not_enought_arg(t_asm *e);
+void	invalid_arg_label(t_asm *e);
+void	invalid_dir(t_asm *e);
 
 #endif

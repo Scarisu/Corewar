@@ -6,7 +6,7 @@
 /*   By: pbernier <pbernier@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/11/06 19:20:02 by pbernier          #+#    #+#             */
-/*   Updated: 2017/11/14 20:02:40 by pbernier         ###   ########.fr       */
+/*   Updated: 2017/11/16 20:49:14 by pbernier         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,9 +48,14 @@
 # define INVALID_LABEL 9
 # define INVALID_OPCODE 10
 # define OPCODE_EXIST 11
-// # define
+# define NEED_ARG 12
+# define WRONG_ARG 13
+# define INVALID_REG 14
+# define NOT_ENOUGHT_ARG 15
+# define INVALID_ARG_LABEL 16
+# define INVALID_DIR 17
 
-# define MISSING_NAME 12
-# define MISSING_COMMENT 13
+# define MISSING_NAME 18
+# define MISSING_COMMENT 19
 
 # endif

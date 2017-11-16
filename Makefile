@@ -6,7 +6,7 @@
 #    By: pbernier <pbernier@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2017/09/29 18:30:33 by pbernier          #+#    #+#              #
-#    Updated: 2017/11/14 00:06:54 by pbernier         ###   ########.fr        #
+#    Updated: 2017/11/16 20:15:20 by pbernier         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -36,11 +36,14 @@ SRCASM			=	op.c \
 					analysis/ana_comment.c \
 					analysis/ana_diverse.c \
 					analysis/ana_instruction.c \
+					analysis/ana_argument.c \
+					analysis/ana_type.c \
 					verbos/verbos.c \
 					verbos/ver_name.c \
 					verbos/ver_comment.c \
 					verbos/ver_diverse.c \
-					verbos/ver_instruction.c
+					verbos/ver_instruction.c \
+					verbos/ver_argument.c
 SRCCHAMP		=	main.c
 SRCVM			=	main.c
 

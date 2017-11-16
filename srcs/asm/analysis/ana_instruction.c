@@ -6,7 +6,7 @@
 /*   By: pbernier <pbernier@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/11/13 17:35:29 by pbernier          #+#    #+#             */
-/*   Updated: 2017/11/14 22:15:20 by pbernier         ###   ########.fr       */
+/*   Updated: 2017/11/16 20:31:32 by pbernier         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,24 +49,24 @@ int		valid_label(char *name)
 
 int		ins_opcode(t_asm *e, char *line)
 {
-	int		opcode;
 	int		content_len;
 
 	if (!skip_tab(e, line))
 		return (verbos(e, SYNTAX));
 	content_len = I;
 	while (line[content_len]
-		&& line[content_len] != ' ')
+		&& line[content_len] != ' '
+		&& line[content_len] != '\n')
 			++content_len;
-	if (line[content_len] != ' ')
-		return (verbos(e, INVALID_OPCODE));
+	//if (line[content_len] != ' ')
+		//return (verbos(e, INVALID_OPCODE));
 	content_len -= I;
-	if (!(e->verbos.opcode = ft_strsub(line, I, content_len)))
+	if (!(e->verbos.opcode_name = ft_strsub(line, I, content_len)))
 		error(e, MALLOC);
-	if ((opcode = exist_opcode(e->verbos.opcode)) < 0)
+	if ((e->verbos.opcode = exist_opcode(e->verbos.opcode_name)) < 0)
 		return (verbos(e, OPCODE_EXIST));
-	check_param(e, line);
-	return (0);
+	I += content_len;
+	return (check_param(e, e->verbos.opcode, line));
 }
 
 int		exist_opcode(char *opcode)

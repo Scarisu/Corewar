@@ -6,7 +6,7 @@
 /*   By: pbernier <pbernier@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/11/13 17:36:15 by pbernier          #+#    #+#             */
-/*   Updated: 2017/11/14 22:22:03 by pbernier         ###   ########.fr       */
+/*   Updated: 2017/11/16 20:31:12 by pbernier         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,11 +29,11 @@ void	invalid_opcode(t_asm *e)
 
 void 	opcode_exist(t_asm *e)
 {
-	if ((e->verbos.len_arrow = ft_strlen(e->verbos.opcode)) - 1 > 30)
+	if ((e->verbos.len_arrow = ft_strlen(e->verbos.opcode_name) - 1) > 30)
 		e->verbos.len_arrow = 30;
 	ft_putstr_fd(WHITE "Opcode \"" GREY, 2);
-	ft_putstr_fd(e->verbos.opcode, 2);
-	ft_memdel((void **)&e->verbos.opcode);
+	ft_putstr_fd(e->verbos.opcode_name, 2);
+	ft_memdel((void **)&e->verbos.opcode_name);
 	ft_putstr_fd(WHITE "\" doesn't exist", 2);
 }
 

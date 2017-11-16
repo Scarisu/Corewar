@@ -6,7 +6,7 @@
 /*   By: pbernier <pbernier@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/11/02 21:34:13 by pbernier          #+#    #+#             */
-/*   Updated: 2017/11/14 20:06:09 by pbernier         ###   ########.fr       */
+/*   Updated: 2017/11/16 19:55:07 by pbernier         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,7 +34,7 @@ void		set_data(t_asm *e)
 	I = 0;
 	e->verbos.len_arrow = 0;
 	e->verbos.cmd_invalid = NULL;
-	e->verbos.opcode = NULL;
+	e->verbos.opcode_name = NULL;
 }
 
 void		set_ptrft(t_asm *e)
@@ -53,12 +53,19 @@ void		set_ptrft(t_asm *e)
 	e->verbos.tab[OPCODE_EXIST] = opcode_exist;
 	e->verbos.tab[MISSING_NAME] = missing_name;
 	e->verbos.tab[MISSING_COMMENT] = missing_comment;
+	e->verbos.tab[NEED_ARG] = need_arg;
+	e->verbos.tab[WRONG_ARG] = wrong_arg;
+	e->verbos.tab[INVALID_REG] = invalid_reg;
+	e->verbos.tab[NOT_ENOUGHT_ARG] = not_enought_arg;
 	e->tab[0] = skip_tab;
 	e->tab[1] = cmd_name;
 	e->tab[2] = cmd_comment;
 	e->tab[3] = cmd_check;
 	e->tab[4] = ins_label;
 	e->tab[5] = ins_opcode;
+	e->arg_value[0] = arg_reg_value;
+	e->arg_value[1] = arg_dir_value;
+	e->arg_value[2] = arg_ind_value;
 }
 
 t_label		*set_label(t_asm *e, int coo[2])
