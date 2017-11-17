@@ -2,10 +2,10 @@
 .comment "test syntax label"
 
 prut:	live %1
-		ld %3,r-2
-		st r2444,r+4
+		ld %3,r2
+		st r2444,r4
 		add r2,r3,r4
-		sub r3,r5,r3
+		sub r3,r5,r
 		and :prut,:prut,r5
 		or	:%45,:prut,r2
 			xor

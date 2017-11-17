@@ -6,46 +6,33 @@
 #    By: pbernier <pbernier@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2017/09/29 18:30:33 by pbernier          #+#    #+#              #
-#    Updated: 2017/11/16 20:15:20 by pbernier         ###   ########.fr        #
+#    Updated: 2017/11/17 16:30:05 by pbernier         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
 PROJECTASM		= 	ASSEMBLEUR
-PROJECTCHAMP	= 	CHAMPION
 PROJECTVM		= 	MACHINE VIRTUEL
 
 DIROBJ			=	objs/
 DIRSRC			=	srcs/
 
 DIRASM			= 	asm/
-DIRCHAMP		=	champ/
+ SDIRASMANA		=	analysis/
+ SDIRASMVER		=	verbos/
 DIRVM			=	vm/
 
 NAMEASM			=	asm
-NAMECHAMP		=	LaFalaise.s
 NAMEVM			=	corewar
 
-SRCASM			=	op.c \
-					main.c \
-					usage.c \
-					error.c \
-					line.c \
-					set.c \
-					clear.c \
-					analysis/ana_name.c \
-					analysis/ana_comment.c \
-					analysis/ana_diverse.c \
-					analysis/ana_instruction.c \
-					analysis/ana_argument.c \
-					analysis/ana_type.c \
-					verbos/verbos.c \
-					verbos/ver_name.c \
-					verbos/ver_comment.c \
-					verbos/ver_diverse.c \
-					verbos/ver_instruction.c \
-					verbos/ver_argument.c
-SRCCHAMP		=	main.c
-SRCVM			=	main.c
+SRCASMRAC		=	op.c main.c usage.c error.c \
+					line.c set.c clear.c
+SRCASMANA		=	ana_name.c ana_comment.c ana_diverse.c \
+					ana_instruction.c ana_argument.c ana_type.c
+SRCASMVER		=	verbos.c ver_name.c ver_comment.c \
+					ver_diverse.c ver_instruction.c \
+					ver_argument.c ver_type.c
+
+SRCVMRAC		=	main.c
 
 LIB				=	libft.a
 LIBPATH			=	lib/libft/
@@ -55,27 +42,35 @@ FLAGS			=	-Wall -Werror -Wextra
 DFLAGS			=	-fsanitize=address -g
 INCLUDES		=	-I includes/ -I lib/libft/includes/
 
+SRCASM			=	$(SRCASMRAC) \
+					$(addprefix $(SDIRASMANA),$(SRCASMANA)) \
+					$(addprefix $(SDIRASMVER),$(SRCASMVER))
+SRCVM			=	$(SRCVMRAC)
+
 PATHOBJASM		=	$(addprefix $(DIROBJ),$(DIRASM))
-PATHOBJCHAMP	=	$(addprefix $(DIROBJ),$(DIRCHAMP))
 PATHOBJVM		=	$(addprefix $(DIROBJ),$(DIRVM))
 
 PATHSRCASM		=	$(addprefix $(DIRSRC),$(DIRASM))
-PATHSRCCHAMP	=	$(addprefix $(DIRSRC),$(DIRCHAMP))
 PATHSRCVM		=	$(addprefix $(DIRSRC),$(DIRVM))
 
 OBJASM			=	$(addprefix $(PATHOBJASM),$(SRCASM:.c=.o))
-OBJCHAMP		=	$(addprefix $(PATHOBJCHAMP),$(SRCCHAMP:.c=.o))
 OBJVM			=	$(addprefix $(PATHOBJVM),$(SRCVM:.c=.o))
 
-all: $(LIBPATH)$(LIB) $(NAMEASM) $(NAMECHAMP) $(NAMEVM)
+all: $(LIBPATH)$(LIB) $(NAMEASM) $(NAMEVM)
 
-clean: asm_clean champ_clean vm_clean
+clean:
 	@rm -rf $(DIROBJ)
+	@printf "[$(PROJECTASM)] Obj removed.\n"
+	@printf "[$(PROJECTVM)] Obj removed.\n"
 	@make -C $(LIBPATH) clean
 
-fclean: asm_fclean champ_fclean vm_fclean
-	@rm -rf $(DIROBJ)
-	@make -C $(LIBPATH) fclean
+fclean: clean
+	@rm -f $(NAMEASM)
+	@printf "[$(PROJECTASM)] $(NAMEASM) removed.\n"
+	@rm -f $(NAMEVM)
+	@printf "[$(PROJECTVM)] $(NAMEVM) removed.\n"
+	@rm -rf $(LIBPATH)$(LIB)
+	@printf "[??] $(NAMEVM) removed.\n"
 
 re: fclean all
 
@@ -93,8 +88,8 @@ $(PATHOBJASM)%.o: $(PATHSRCASM)%.c
 
 $(PATHOBJASM):
 	@mkdir $(PATHOBJASM)
-	@mkdir $(PATHOBJASM)verbos
-	@mkdir $(PATHOBJASM)analysis
+	@mkdir $(PATHOBJASM)$(SDIRASMANA)
+	@mkdir $(PATHOBJASM)$(SDIRASMVER)
 
 asm_clean:
 	@rm -f $(OBJASM)
@@ -106,29 +101,6 @@ asm_fclean: asm_clean
 	@printf "[$(PROJECTASM)] $(NAMEASM) removed.												 \n"
 
 asm_re: asm_fclean asm
-
-$(NAMECHAMP): $(LIBPATH)$(LIB) $(DIROBJ) $(PATHOBJCHAMP) $(OBJCHAMP)
-	@printf "[$(PROJECTCHAMP)] Objs compilation done.                                            \n"
-	@$(CC) -o $(NAMECHAMP) $(OBJCHAMP) $(LIBPATH)$(LIB) $(FLAGS)
-	@printf "[$(PROJECTCHAMP)] $(NAMECHAMP) compiled.                                            \n"
-
-$(PATHOBJCHAMP)%.o: $(PATHSRCCHAMP)%.c
-	@printf "[$(PROJECTCHAMP)] Compiling $< to $@                                                \r"
-	@$(CC) $(FLAGS) $(INCLUDES) -o $@ -c $<
-
-$(PATHOBJCHAMP):
-	@mkdir $(PATHOBJCHAMP)
-
-champ_clean:
-	@rm -f $(OBJCHAMP)
-	@rm -rf $(PATHOBJCHAMP)
-	@printf "[$(PROJECTCHAMP)] Obj removed.														\n"
-
-champ_fclean: champ_clean
-	@rm -f $(NAMECHAMP)
-	@printf "[$(PROJECTCHAMP)] $(NAMECHAMP) removed.											\n"
-
-champ_re: champ_fclean champ
 
 $(NAMEVM): $(LIBPATH)$(LIB) $(DIROBJ) $(PATHOBJVM) $(OBJVM)
 	@printf "[$(PROJECTVM)] Objs compilation done.                                            	\n"

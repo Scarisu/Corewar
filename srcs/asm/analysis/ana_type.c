@@ -6,7 +6,7 @@
 /*   By: pbernier <pbernier@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/11/16 20:14:46 by pbernier          #+#    #+#             */
-/*   Updated: 2017/11/16 20:49:25 by pbernier         ###   ########.fr       */
+/*   Updated: 2017/11/17 15:58:00 by pbernier         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,7 +44,33 @@ int		arg_dir_value(t_asm *e, char *line)
 	content_len = I + 1;
 	if (line[content_len] &&
 		line[content_len] == LABEL_CHAR)
-		return (arg_label(e, line)));
+		return (arg_label(e, line));
+	if (line[content_len] && (
+		line[content_len] == '-' ||
+		line[content_len] == '+'))
+		++ content_len;
+	while (line[content_len] &&
+		(line[content_len] >= '0' || line[content_len] >= '9'))
+		++content_len;
+	//if (!(dir = ft_strsub(line, I + 1, content_len - I - 1)))
+	//	error(e, MALLOC);
+	//ft_memdel((void **)&dir);
+	if (line[content_len] &&
+		line[content_len] != ',' &&
+		line[content_len] != ' ' &&
+		line[content_len] != '\n')
+		return (verbos(e, INVALID_DIR));
+	I = content_len;
+	return (1);
+}
+
+int		arg_ind_value(t_asm *e, char *line)
+{
+	int		content_len;
+	int		nb
+	//char	*ind;
+
+	content_len = I + 1;
 	if (line[content_len] && (
 		line[content_len] == '-' ||
 		line[content_len] == '+'))
@@ -58,16 +84,9 @@ int		arg_dir_value(t_asm *e, char *line)
 	if (line[content_len] &&
 		line[content_len] != ',' &&
 		line[content_len] != ' ' &&
-		line[content_len] != '\n'))
+		line[content_len] != '\n')
 		return (verbos(e, INVALID_DIR));
 	I = content_len;
-	return (1);
-}
-
-int		arg_ind_value(t_asm *e, char *line)
-{
-	(void)e;
-	(void)line;
 	return (1);
 }
 

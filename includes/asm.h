@@ -6,7 +6,7 @@
 /*   By: pbernier <pbernier@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/11/02 19:56:24 by pbernier          #+#    #+#             */
-/*   Updated: 2017/11/16 20:50:37 by pbernier         ###   ########.fr       */
+/*   Updated: 2017/11/17 15:21:48 by pbernier         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,6 +17,8 @@
 
 # define BUFF e->champ.buff[0]
 # define I e->verbos.i
+# define NUMBER 1
+# define LABEL 2
 
 typedef struct s_verbos	t_verbos;
 typedef struct s_label	t_label;
@@ -101,6 +103,7 @@ int		type_param(int type, char first_char);
 
 int		arg_reg_value(t_asm *e, char *line);
 int		arg_dir_value(t_asm *e, char *line);
+int		arg_label(t_asm *e, char *line);
 int		arg_ind_value(t_asm *e, char *line);
 
 int		skip_tab(t_asm *e, char *line);

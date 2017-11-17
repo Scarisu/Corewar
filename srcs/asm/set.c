@@ -6,7 +6,7 @@
 /*   By: pbernier <pbernier@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/11/02 21:34:13 by pbernier          #+#    #+#             */
-/*   Updated: 2017/11/16 19:55:07 by pbernier         ###   ########.fr       */
+/*   Updated: 2017/11/17 14:05:46 by pbernier         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -57,6 +57,8 @@ void		set_ptrft(t_asm *e)
 	e->verbos.tab[WRONG_ARG] = wrong_arg;
 	e->verbos.tab[INVALID_REG] = invalid_reg;
 	e->verbos.tab[NOT_ENOUGHT_ARG] = not_enought_arg;
+	e->verbos.tab[INVALID_ARG_LABEL] = invalid_arg_label;
+	e->verbos.tab[INVALID_DIR] = invalid_dir;
 	e->tab[0] = skip_tab;
 	e->tab[1] = cmd_name;
 	e->tab[2] = cmd_comment;
