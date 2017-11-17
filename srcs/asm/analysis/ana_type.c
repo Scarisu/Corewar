@@ -6,7 +6,7 @@
 /*   By: pbernier <pbernier@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/11/16 20:14:46 by pbernier          #+#    #+#             */
-/*   Updated: 2017/11/17 15:58:00 by pbernier         ###   ########.fr       */
+/*   Updated: 2017/11/17 18:10:54 by pbernier         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -67,7 +67,6 @@ int		arg_dir_value(t_asm *e, char *line)
 int		arg_ind_value(t_asm *e, char *line)
 {
 	int		content_len;
-	int		nb
 	//char	*ind;
 
 	content_len = I + 1;
