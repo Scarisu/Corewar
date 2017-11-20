@@ -1,22 +1,26 @@
 PROJECT_ASM		=	ASSEMBLEUR
 PROJECT_VM		= 	MACHINE VIRTUEL
 
+NO_TO_BE		=	ON
+
 DIR_OBJ			:=	$(MP)objs/
 DIR_SRC			=	srcs/
 
+DIR_INC			=	includes/
 DIR_ASM			=	asm/
 DIR_VM			=	vm/
 
 NAME_ASM		:=	$(MP)asm
-NAME_VM			=	corewar
+NAME_VM			:=	$(MP)corewar
 
 LIB				=	libft.a
 LIB_MAKE		:=	$(MP)lib/libft/
 LIB_PATH		:=	$(MP)lib/libft/$(LIB)
 
 CC				=	gcc
-FLAGS			=	-Wall -Werror -Wextra
+FLAGS			:=	$(WFLAGS)
+WFLAGS			=	-Wall -Werror -Wextra
 DFLAGS			=	-fsanitize=address -g
 
-INCLUDES		:=	-I $(MP)includes/ \
+INCLUDES		:=	-I $(MP)$(DIR_INC) \
 					-I $(MP)lib/libft/includes/

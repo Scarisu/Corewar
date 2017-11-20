@@ -6,7 +6,7 @@
 /*   By: pbernier <pbernier@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/11/13 17:36:15 by pbernier          #+#    #+#             */
-/*   Updated: 2017/11/16 20:31:12 by pbernier         ###   ########.fr       */
+/*   Updated: 2017/11/20 16:38:10 by pbernier         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,7 +24,7 @@ void	invalid_label(t_asm *e)
 void	invalid_opcode(t_asm *e)
 {
 	ft_putstr_fd(WHITE "Invalid opcode", 2);
-	(void)e;
+	(void)e; 
 }
 
 void 	opcode_exist(t_asm *e)

@@ -6,7 +6,7 @@
 #    By: pbernier <pbernier@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2017/02/21 03:19:16 by pbernier          #+#    #+#              #
-#    Updated: 2017/11/17 18:09:16 by pbernier         ###   ########.fr        #
+#    Updated: 2017/11/20 20:24:09 by pbernier         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -14,6 +14,7 @@ PROJECT		=	LIBFT
 NAME		=	libft.a
 OBJDIR		=	objs/
 SRCDIR		=	srcs/
+INC			=	includes/libft.h
 SRC			=	ft_putstr.c \
 				ft_putchar.c \
 				ft_strlen.c \
@@ -91,12 +92,17 @@ SRC			=	ft_putstr.c \
 				ft_llen.c \
 				get_next_line.c \
 				ft_puttab_fd.c
+
 OBJ			=	$(addprefix $(OBJDIR),$(SRC:.c=.o))
+
 CC			=	gcc
-CFLAGS		=	-Wall -Werror -Wextra -I includes/ -Ofast
-DFLAGS		= 	-fsanitize=address -g
+FLAGS		:=	$(WFLAGS)
+WFLAGS		=	-Wall -Werror -Wextra
+DFLAGS		=	-fsanitize=address -g
+INCLUDES	=	-I includes/
 
 all: $(NAME)
+	@echo > /dev/null
 
 $(NAME): $(OBJDIR) $(OBJ)
 	@printf "[$(PROJECT)] Objs compilation done.                                              \n"
@@ -104,15 +110,14 @@ $(NAME): $(OBJDIR) $(OBJ)
 	@ranlib $(NAME)
 	@printf "[$(PROJECT)] $(NAME) compiled.                                                   \n"
 
-$(OBJDIR)%.o: $(SRCDIR)%.c
-	@printf "\r[$(PROJECT)] Compiling $< to $@                            \r"
-	@$(CC) $(CFLAGS) -o $@ -c $<
+$(OBJDIR)%.o: $(SRCDIR)%.c $(INC)
+	@printf "\r[$(PROJECT)] Compiling $(notdir $<) to $(notdir $@)                            \r"
+	@$(CC) $(FLAGS) $(INCLUDES) -o $@ -c $<
 
 $(OBJDIR):
 	@mkdir objs
 
 clean:
-	@rm -rf $(OBJ)
 	@rm -rf $(OBJDIR)
 	@printf "[$(PROJECT)] Obj removed.\n"
 
