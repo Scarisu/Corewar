@@ -1,15 +1,16 @@
 MP				=
-include			$(MP)includes/Makefile
+GLOBAL			=	$(MP)includes/Makefile
+include			$(GLOBAL)
 
 MAKE_ASM		=	$(DIR_SRC)$(DIR_ASM)
 MAKE_VM			=	$(DIR_SRC)$(DIR_VM)
 
-all: $(LIB_PATH) $(NAME_ASM) $(NAME_VM)
+all: $(NAME_ASM) $(NAME_VM)
 ifeq ($(NO_TO_BE),OFF)
 	@echo > /dev/null
 endif
 
-$(LIB_PATH):
+lib:
 	@make -C $(LIB_MAKE)
 
 $(NAME_ASM):
@@ -17,6 +18,27 @@ $(NAME_ASM):
 
 $(NAME_VM):
 	@make -C $(MAKE_VM) $(NAME_VM)
+
+lldb_$(NAME_ASM):
+	@make -C $(MAKE_ASM) lldb
+
+lldb_$(NAME_VM):
+	@make -C $(MAKE_VM) lldb
+
+lldb: lldb_$(NAME_ASM) lldb_$(NAME_VM)
+
+
+normal_$(NAME_ASM):
+	@make -C $(MAKE_ASM) normal
+
+normal_$(NAME_VM):
+	@make -C $(MAKE_VM) normal
+
+normal: normal_$(NAME_ASM) normal_$(NAME_VM)
+
+flag:
+	@make -C $(MAKE_ASM) flag
+	@make -C $(MAKE_VM) flag
 
 clean_lib:
 	@make -C $(LIB_MAKE) clean
@@ -28,7 +50,6 @@ clean_$(NAME_VM):
 	@make -C $(MAKE_VM) clean
 
 clean: clean_lib clean_$(NAME_ASM) clean_$(NAME_VM)
-	@rm -rf $(DIR_OBJ)
 
 fclean_$(NAME_ASM):
 	@make -C $(MAKE_ASM) fclean
@@ -52,8 +73,11 @@ re_$(NAME_VM):
 
 re: re_lib re_$(NAME_ASM) re_$(NAME_VM)
 
-.PHONY: all $(LIB_PATH) $(NAME_ASM) $(NAME_VM) \
-		clean_$(NAME_ASM) clean_$(NAME_VM) clean \
-		fclean_$(NAME_ASM) fclean_$(NAME_VM) fclean \
-		re_$(NAME_ASM) re_$(NAME_VM) re \
+.PHONY: all  $(NAME_ASM) $(NAME_VM) lib\
+		lldb_$(NAME_ASM) lldb_$(NAME_VM) lldb \
+		normal_$(NAME_ASM) normal_$(NAME_VM) normal \
+		flag \
+		clean_$(NAME_ASM) clean_$(NAME_VM) clean_lib clean \
+		fclean_$(NAME_ASM) fclean_$(NAME_VM) fclean_lib fclean \
+		re_$(NAME_ASM) re_$(NAME_VM) re_lib re \
 		clean_lib fclean_lib re_lib

@@ -1,3 +1,4 @@
+PROJECT_LIBFT	=	LIBFT
 PROJECT_ASM		=	ASSEMBLEUR
 PROJECT_VM		= 	MACHINE VIRTUEL
 
@@ -12,13 +13,13 @@ DIR_VM			=	vm/
 
 NAME_ASM		:=	$(MP)asm
 NAME_VM			:=	$(MP)corewar
+NAME_LIBFT		=	libft.a
 
 LIB				=	libft.a
 LIB_MAKE		:=	$(MP)lib/libft/
 LIB_PATH		:=	$(MP)lib/libft/$(LIB)
 
 CC				=	gcc
-FLAGS			:=	$(WFLAGS)
 WFLAGS			=	-Wall -Werror -Wextra
 DFLAGS			=	-fsanitize=address -g
 

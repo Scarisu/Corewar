@@ -1,5 +1,6 @@
 MP				=	../../
-include			$(MP)includes/Makefile
+GLOBAL			=	$(MP)includes/Makefile
+include			$(GLOBAL)
 
 DIR_ANALYS		=	analysis/
 DIR_VERBOS		=	verbos/
@@ -30,6 +31,7 @@ SRC_RACINE		=	op.c \
 					set.c \
 					clear.c
 
+FLAGS			=	$(WFLAGS)
 INC				=	$(addprefix $(MP)$(DIR_INC),$(SRC_INCLUD))
 PATH_OBJ		=	$(DIR_OBJ)$(DIR_ASM)
 DIR				=	$(DIR_ANALYS) $(DIR_VERBOS) $(DIR_RACINE)
@@ -45,27 +47,57 @@ endif
 
 $(notdir $(NAME_ASM)): all
 
-$(NAME_ASM): $(LIB_PATH) $(DIR_OBJ) $(PATH_OBJ) $(OBJ)
+$(NAME_ASM): $(LIB_PATH) $(PATH_OBJ) $(OBJ)
 	@printf "[$(PROJECT_ASM)] Objs compilation done.      \n"
 	@$(CC) -o $(NAME_ASM) $(OBJ) $(LIB_PATH) $(FLAGS)
-	@printf "[$(PROJECT_ASM)] $(notdir $(NAME_ASM)) compiled.\n"
+	@printf "[$(PROJECT_ASM)] "
+ifeq ($(FLAGS),$(DFLAGS))
+	@printf "(lldb mode) \n"
+endif
+	@printf "$(notdir $(NAME_ASM)) compiled.\n"
 
-$(PATH_OBJ)%.o: %.c $(INC)
+$(PATH_OBJ)%.o: %.c $(INC) Makefile
 	@printf "[$(PROJECT_ASM)] Compiling $(notdir $<) to $(notdir $@)              \r"
 	@$(CC) $(FLAGS) $(INCLUDES) -o $@ -c $<
 
 $(LIB_PATH):
 	@make -C $(LIB_MAKE)
 
-$(DIR_OBJ):
-	@mkdir $(DIR_OBJ)
-
 $(PATH_OBJ):
-	@mkdir $(PATH_OBJ)
-	@mkdir $(addprefix $(PATH_OBJ),$(DIR))
+	@mkdir -p $(DIR_OBJ)
+	@mkdir -p $(PATH_OBJ)
+	@mkdir -p $(addprefix $(PATH_OBJ),$(DIR))
+
+lldb:
+ifeq ($(FLAGS),$(WFLAGS))
+	@sed '/^FLAGS/ s/WFLAGS/DFLAGS/g' Makefile > Makefile.tmp
+	@mv	Makefile.tmp Makefile
+	@printf "[$(PROJECT_ASM)] Swap to lldb mode.\n"
+else
+	@printf "[$(PROJECT_ASM)] Already in lldb mode.\n"
+endif
+	@echo > /dev/null
+
+normal:
+ifeq ($(FLAGS),$(DFLAGS))
+	@sed '/^FLAGS/ s/DFLAGS/WFLAGS/g' Makefile > Makefile.tmp
+	@mv	Makefile.tmp Makefile
+	@printf "[$(PROJECT_ASM)] Swap to normal mode.\n"
+else
+	@printf "[$(PROJECT_ASM)] Already in normal mode.\n"
+endif
+	@echo > /dev/null
+
+flag:
+	@printf "[$(PROJECT_ASM)] "
+ifeq ($(FLAGS),$(WFLAGS))
+	@printf "Normal mode activated {$(FLAGS)}.\n"
+else
+	@printf "Lldb mode activated {$(FLAGS)}.\n"
+endif
 
 clean:
-	@rm -rf $(PATH_OBJ)
+	@[ -e "$(DIR_OBJ)$(DIR_VM)" ] && rm -rf $(PATH_OBJ) || rm -rf $(DIR_OBJ)
 	@printf "[$(PROJECT_ASM)] Obj removed.\n"
 
 fclean: clean
@@ -74,4 +106,4 @@ fclean: clean
 
 re: fclean $(NAME_ASM)
 
-.PHONY: all $(notdir $(NAME_ASM)) clean fclean re
+.PHONY: all $(notdir $(NAME_ASM)) lldb clean fclean re

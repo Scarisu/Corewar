@@ -1,5 +1,6 @@
 MP				=	../../
-include			$(MP)includes/Makefile
+GLOBAL			=	$(MP)includes/Makefile
+include			$(GLOBAL)
 
 DIR_RACINE		=
 
@@ -7,6 +8,7 @@ SRC_INCLUD		=	corewar.h \
 					op.h
 SRC_RACINE		=	main.c
 
+FLAGS			=	$(WFLAGS)
 INC				=	$(addprefix $(MP)$(DIR_INC),$(SRC_INCLUD))
 PATH_OBJ		=	$(DIR_OBJ)$(DIR_VM)
 DIR				=	$(DIR_RACINE)
@@ -20,26 +22,57 @@ endif
 
 $(notdir $(NAME_VM)): all
 
-$(NAME_VM): $(LIB_PATH) $(DIR_OBJ) $(PATH_OBJ) $(OBJ) $(LIB_MAKE)
+$(NAME_VM): $(LIB_PATH) $(PATH_OBJ) $(OBJ)
 	@printf "[$(PROJECT_VM)] Objs compilation done.      \n"
 	@$(CC) -o $(NAME_VM) $(OBJ) $(LIB_PATH) $(FLAGS)
-	@printf "[$(PROJECT_VM)] $(notdir $(NAME_VM)) compiled.\n"
+	@printf "[$(PROJECT_VM)] "
+ifeq ($(FLAGS),$(DFLAGS))
+	@printf "(lldb mode) \n"
+endif
+	@printf "$(notdir $(NAME_VM)) compiled.\n"
 
-$(PATH_OBJ)%.o: %.c $(INC)
+$(PATH_OBJ)%.o: %.c $(INC) Makefile
 	@printf "[$(PROJECT_VM)] Compiling $(notdir $<) to $(notdir $@)              \r"
 	@$(CC) $(FLAGS) $(INCLUDES) -o $@ -c $<
 
 $(LIB_PATH):
 	@make -C $(LIB_MAKE)
 
-$(DIR_OBJ):
-	@mkdir $(DIR_OBJ)
-
 $(PATH_OBJ):
-	@mkdir $(PATH_OBJ)
+	@mkdir -p $(DIR_OBJ)
+	@mkdir -p $(PATH_OBJ)
+#@mkdir -p $(addprefix $(PATH_OBJ),$(DIR))
+
+lldb:
+ifeq ($(FLAGS),$(WFLAGS))
+	@sed '/^FLAGS/ s/WFLAGS/DFLAGS/g' Makefile > Makefile.tmp
+	@mv	Makefile.tmp Makefile
+	@printf "[$(PROJECT_VM)] Swap to lldb mode.\n"
+else
+	@printf "[$(PROJECT_VM)] Already in lldb mode.\n"
+endif
+	@echo > /dev/null
+
+normal:
+ifeq ($(FLAGS),$(DFLAGS))
+	@sed '/^FLAGS/ s/DFLAGS/WFLAGS/g' Makefile > Makefile.tmp
+	@mv	Makefile.tmp Makefile
+	@printf "[$(PROJECT_VM)] Swap to normal mode.\n"
+else
+	@printf "[$(PROJECT_VM)] Already in normal mode.\n"
+endif
+	@echo > /dev/null
+
+flag:
+	@printf "[$(PROJECT_VM)] "
+ifeq ($(FLAGS),$(WFLAGS))
+	@printf "Normal mode activated {$(FLAGS)}.\n"
+else
+	@printf "Lldb mode activated {$(FLAGS)}.\n"
+endif
 
 clean:
-	@rm -rf $(PATH_OBJ)
+	@[ -e "$(DIR_OBJ)$(DIR_ASM)" ] && rm -rf $(PATH_OBJ) || rm -rf $(DIR_OBJ)
 	@printf "[$(PROJECT_VM)] Obj removed.\n"
 
 fclean: clean
