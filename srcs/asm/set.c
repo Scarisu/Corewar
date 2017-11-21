@@ -6,7 +6,7 @@
 /*   By: pbernier <pbernier@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/11/02 21:34:13 by pbernier          #+#    #+#             */
-/*   Updated: 2017/11/17 14:05:46 by pbernier         ###   ########.fr       */
+/*   Updated: 2017/11/21 22:10:03 by pbernier         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,17 +14,17 @@
 
 void		set_data(t_asm *e)
 {
+	e->head = NULL;
+	if (!(e->file = ft_strnew(0)))
+		error(e, MALLOC);
 	e->champ.fd = -1;
 	e->champ.file_path = NULL;
 	e->champ.file_name = NULL;
 	e->champ.line = NULL;
-	if (!(e->champ.all = ft_strnew(0)))
-		error(e, MALLOC);
 	e->champ.valid.name_done = 0;
 	e->champ.valid.comment_done = 0;
 	e->champ.valid.name = NULL;
 	e->champ.valid.comment = NULL;
-	e->champ.valid.prev = NULL;
 	e->champ.valid.label = set_label(e, (int[2]){0, 0});
 	e->champ.valid.label_start = e->champ.valid.label;
 	e->champ.valid.check = set_label(e, (int[2]){0, 0});

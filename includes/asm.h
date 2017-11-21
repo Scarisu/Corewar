@@ -6,7 +6,7 @@
 /*   By: pbernier <pbernier@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/11/02 19:56:24 by pbernier          #+#    #+#             */
-/*   Updated: 2017/11/17 15:21:48 by pbernier         ###   ########.fr       */
+/*   Updated: 2017/11/21 22:18:58 by pbernier         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,6 +25,14 @@ typedef struct s_label	t_label;
 typedef struct s_valid	t_valid;
 typedef struct s_champ	t_champ;
 typedef struct s_asm	t_asm;
+
+struct			s_label
+{
+	int			coo[2];
+	int			*type;
+	char		*print;
+	t_label		*next;
+};
 
 struct			s_verbos
 {
@@ -52,7 +60,6 @@ struct			s_valid
 	int			name_done;
 	int			comment_done;
 	char		*name;
-	char		*prev;
 	char		*comment;
 	t_label		*label;
 	t_label		*label_start;
@@ -64,7 +71,6 @@ struct			s_champ
 {
 	int			fd;
 	char		buff[1];
-	char		*all;
 	char		*line;
 	char		*file_path;
 	char 		*file_name;
@@ -75,6 +81,8 @@ struct			s_asm
 {
 	t_champ		champ;
 	t_verbos	verbos;
+	char		*head;
+	char		*file;
 	int			(*tab[6])(t_asm *, char *);
 	int			(*arg_value[3])(t_asm *, char *);
 };
