@@ -10,7 +10,7 @@ ifeq ($(NO_TO_BE),OFF)
 	@echo > /dev/null
 endif
 
-lib:
+libft:
 	@make -C $(LIB_MAKE)
 
 $(NAME_ASM):
@@ -18,6 +18,9 @@ $(NAME_ASM):
 
 $(NAME_VM):
 	@make -C $(MAKE_VM) $(NAME_VM)
+
+lldb_libft:
+	@make -C $(LIB_MAKE) lldb
 
 lldb_$(NAME_ASM):
 	@make -C $(MAKE_ASM) lldb
@@ -27,6 +30,8 @@ lldb_$(NAME_VM):
 
 lldb: lldb_$(NAME_ASM) lldb_$(NAME_VM)
 
+normal_libft:
+	@make -C $(LIB_MAKE) normal
 
 normal_$(NAME_ASM):
 	@make -C $(MAKE_ASM) normal
@@ -39,8 +44,9 @@ normal: normal_$(NAME_ASM) normal_$(NAME_VM)
 flag:
 	@make -C $(MAKE_ASM) flag
 	@make -C $(MAKE_VM) flag
+	@make -C $(LIB_MAKE) flag
 
-clean_lib:
+clean_libft:
 	@make -C $(LIB_MAKE) clean
 
 clean_$(NAME_ASM):
@@ -51,18 +57,18 @@ clean_$(NAME_VM):
 
 clean: clean_lib clean_$(NAME_ASM) clean_$(NAME_VM)
 
+fclean_libft:
+	@make -C $(LIB_MAKE) fclean
+
 fclean_$(NAME_ASM):
 	@make -C $(MAKE_ASM) fclean
 
 fclean_$(NAME_VM):
 	@make -C $(MAKE_VM) fclean
 
-fclean_lib:
-	@make -C $(LIB_MAKE) fclean
+fclean: fclean_libft fclean_$(NAME_ASM) fclean_$(NAME_VM)
 
-fclean: fclean_lib fclean_$(NAME_ASM) fclean_$(NAME_VM)
-
-re_lib:
+re_libft:
 	@make -C $(LIB_MAKE) re
 
 re_$(NAME_ASM):
@@ -71,13 +77,13 @@ re_$(NAME_ASM):
 re_$(NAME_VM):
 	@make -C $(MAKE_VM) re
 
-re: re_lib re_$(NAME_ASM) re_$(NAME_VM)
+re: re_libft re_$(NAME_ASM) re_$(NAME_VM)
 
-.PHONY: all  $(NAME_ASM) $(NAME_VM) lib\
-		lldb_$(NAME_ASM) lldb_$(NAME_VM) lldb \
-		normal_$(NAME_ASM) normal_$(NAME_VM) normal \
+.PHONY: all  $(NAME_ASM) $(NAME_VM) libft \
+		lldb_libft lldb_$(NAME_ASM) lldb_$(NAME_VM) lldb \
+		normal_libft normal_$(NAME_ASM) normal_$(NAME_VM) normal \
 		flag \
-		clean_$(NAME_ASM) clean_$(NAME_VM) clean_lib clean \
-		fclean_$(NAME_ASM) fclean_$(NAME_VM) fclean_lib fclean \
-		re_$(NAME_ASM) re_$(NAME_VM) re_lib re \
+		clean_$(NAME_ASM) clean_$(NAME_VM) clean_libft clean \
+		fclean_$(NAME_ASM) fclean_$(NAME_VM) fclean_libft fclean \
+		re_$(NAME_ASM) re_$(NAME_VM) re_libft re \
 		clean_lib fclean_lib re_lib

@@ -52,7 +52,7 @@ $(NAME_ASM): $(LIB_PATH) $(PATH_OBJ) $(OBJ)
 	@$(CC) -o $(NAME_ASM) $(OBJ) $(LIB_PATH) $(FLAGS)
 	@printf "[$(PROJECT_ASM)] "
 ifeq ($(FLAGS),$(DFLAGS))
-	@printf "(lldb mode) \n"
+	@printf "(lldb mode) "
 endif
 	@printf "$(notdir $(NAME_ASM)) compiled.\n"
 
@@ -69,6 +69,7 @@ $(PATH_OBJ):
 	@mkdir -p $(addprefix $(PATH_OBJ),$(DIR))
 
 lldb:
+	@make -C $(LIB_MAKE) lldb
 ifeq ($(FLAGS),$(WFLAGS))
 	@sed '/^FLAGS/ s/WFLAGS/DFLAGS/g' Makefile > Makefile.tmp
 	@mv	Makefile.tmp Makefile
@@ -76,9 +77,9 @@ ifeq ($(FLAGS),$(WFLAGS))
 else
 	@printf "[$(PROJECT_ASM)] Already in lldb mode.\n"
 endif
-	@echo > /dev/null
 
 normal:
+	@make -C $(LIB_MAKE) normal
 ifeq ($(FLAGS),$(DFLAGS))
 	@sed '/^FLAGS/ s/DFLAGS/WFLAGS/g' Makefile > Makefile.tmp
 	@mv	Makefile.tmp Makefile
@@ -86,7 +87,7 @@ ifeq ($(FLAGS),$(DFLAGS))
 else
 	@printf "[$(PROJECT_ASM)] Already in normal mode.\n"
 endif
-	@echo > /dev/null
+
 
 flag:
 	@printf "[$(PROJECT_ASM)] "
