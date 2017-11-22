@@ -84,7 +84,7 @@ SRC			=	ft_putstr.c \
 OBJ			=	$(addprefix $(OBJDIR),$(SRC:.c=.o))
 CC			=	gcc
 WFLAGS		=	-Wall -Werror -Wextra
-DFLAGS		=	-fsanitize=address -g
+DFLAGS		=	$(WFLAGS) -fsanitize=address -g
 FLAGS		=	$(WFLAGS)
 INCLUDES	=	-I includes/
 

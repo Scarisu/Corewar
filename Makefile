@@ -5,7 +5,7 @@ include			$(GLOBAL)
 MAKE_ASM		=	$(DIR_SRC)$(DIR_ASM)
 MAKE_VM			=	$(DIR_SRC)$(DIR_VM)
 
-all: $(NAME_ASM) $(NAME_VM)
+all: libft $(NAME_ASM) $(NAME_VM)
 ifeq ($(NO_TO_BE),OFF)
 	@echo > /dev/null
 endif
