@@ -13,14 +13,22 @@ reset="\033[0m"
 grey="\033[38;5;8m"
 
 if [[ $1 =~ ^-[${flag_list}]+$ ]]; then
-	printf "ok\n"
+	if [[ $1 =~ [d] ]]; then
+		unset ${*}
+		for i in ${*}
+		do
+			printf "ok $i\n"
+		done
+
+	fi
 else if [ $1 ]; then
 	printf "usage: $0 [-${flag_list}] [file ...]\n"
 	exit
 fi fi
 
-if []
 
+
+exit
 make asm
 
 for name in ${all_tests}
