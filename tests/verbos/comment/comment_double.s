@@ -1,5 +1,5 @@
-    .comment        "chouquette"
- .name     "16double_description"
 
+.name     "comment_double"
 
-		   .comment "yes" 
+.comment       "Test de la reaction du verbos lorsque la commande .comment est utilisé deux fois"
+.comment 	"Deuxieme test de la reaction du verbos lorsque la commande .comment est utilisé deux fois"

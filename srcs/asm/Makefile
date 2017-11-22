@@ -31,7 +31,7 @@ SRC_RACINE		=	op.c \
 					set.c \
 					clear.c
 
-FLAGS			=	$(WFLAGS)
+FLAGS			=	$(DFLAGS)
 INC				=	$(addprefix $(MP)$(DIR_INC),$(SRC_INCLUD))
 PATH_OBJ		=	$(DIR_OBJ)$(DIR_ASM)
 DIR				=	$(DIR_ANALYS) $(DIR_VERBOS) $(DIR_RACINE)
