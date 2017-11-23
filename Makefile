@@ -1,129 +1,89 @@
-# **************************************************************************** #
-#                                                                              #
-#                                                         :::      ::::::::    #
-#    Makefile                                           :+:      :+:    :+:    #
-#                                                     +:+ +:+         +:+      #
-#    By: pbernier <pbernier@student.42.fr>          +#+  +:+       +#+         #
-#                                                 +#+#+#+#+#+   +#+            #
-#    Created: 2017/09/29 18:30:33 by pbernier          #+#    #+#              #
-#    Updated: 2017/11/17 16:30:05 by pbernier         ###   ########.fr        #
-#                                                                              #
-# **************************************************************************** #
+MP				=
+GLOBAL			=	$(MP)includes/Makefile
+include			$(GLOBAL)
 
-PROJECTASM		= 	ASSEMBLEUR
-PROJECTVM		= 	MACHINE VIRTUEL
+MAKE_ASM		=	$(DIR_SRC)$(DIR_ASM)
+MAKE_VM			=	$(DIR_SRC)$(DIR_VM)
 
-DIROBJ			=	objs/
-DIRSRC			=	srcs/
+all: libft $(NAME_ASM) $(NAME_VM)
+ifeq ($(NO_TO_BE),OFF)
+	@echo > /dev/null
+endif
 
-DIRASM			= 	asm/
- SDIRASMANA		=	analysis/
- SDIRASMVER		=	verbos/
-DIRVM			=	vm/
+libft:
+	@make -C $(LIB_MAKE)
 
-NAMEASM			=	asm
-NAMEVM			=	corewar
+$(NAME_ASM):
+	@make -C $(MAKE_ASM) $(NAME_ASM)
 
-SRCASMRAC		=	op.c main.c usage.c error.c \
-					line.c set.c clear.c
-SRCASMANA		=	ana_name.c ana_comment.c ana_diverse.c \
-					ana_instruction.c ana_argument.c ana_type.c
-SRCASMVER		=	verbos.c ver_name.c ver_comment.c \
-					ver_diverse.c ver_instruction.c \
-					ver_argument.c ver_type.c
+$(NAME_VM):
+	@make -C $(MAKE_VM) $(NAME_VM)
 
-SRCVMRAC		=	main.c
+lldb_libft:
+	@make -C $(LIB_MAKE) lldb
 
-LIB				=	libft.a
-LIBPATH			=	lib/libft/
+lldb_$(NAME_ASM):
+	@make -C $(MAKE_ASM) lldb
 
-CC				=	gcc
-FLAGS			=	-Wall -Werror -Wextra
-DFLAGS			=	-fsanitize=address -g
-INCLUDES		=	-I includes/ -I lib/libft/includes/
+lldb_$(NAME_VM):
+	@make -C $(MAKE_VM) lldb
 
-SRCASM			=	$(SRCASMRAC) \
-					$(addprefix $(SDIRASMANA),$(SRCASMANA)) \
-					$(addprefix $(SDIRASMVER),$(SRCASMVER))
-SRCVM			=	$(SRCVMRAC)
+lldb: lldb_$(NAME_ASM) lldb_$(NAME_VM)
 
-PATHOBJASM		=	$(addprefix $(DIROBJ),$(DIRASM))
-PATHOBJVM		=	$(addprefix $(DIROBJ),$(DIRVM))
+normal_libft:
+	@make -C $(LIB_MAKE) normal
 
-PATHSRCASM		=	$(addprefix $(DIRSRC),$(DIRASM))
-PATHSRCVM		=	$(addprefix $(DIRSRC),$(DIRVM))
+normal_$(NAME_ASM):
+	@make -C $(MAKE_ASM) normal
 
-OBJASM			=	$(addprefix $(PATHOBJASM),$(SRCASM:.c=.o))
-OBJVM			=	$(addprefix $(PATHOBJVM),$(SRCVM:.c=.o))
+normal_$(NAME_VM):
+	@make -C $(MAKE_VM) normal
 
-all: $(LIBPATH)$(LIB) $(NAMEASM) $(NAMEVM)
+normal: normal_$(NAME_ASM) normal_$(NAME_VM)
 
-clean:
-	@rm -rf $(DIROBJ)
-	@printf "[$(PROJECTASM)] Obj removed.\n"
-	@printf "[$(PROJECTVM)] Obj removed.\n"
-	@make -C $(LIBPATH) clean
+flag:
+	@make -C $(MAKE_ASM) flag
+	@make -C $(MAKE_VM) flag
+	@make -C $(LIB_MAKE) flag
 
-fclean: clean
-	@rm -f $(NAMEASM)
-	@printf "[$(PROJECTASM)] $(NAMEASM) removed.\n"
-	@rm -f $(NAMEVM)
-	@printf "[$(PROJECTVM)] $(NAMEVM) removed.\n"
-	@rm -rf $(LIBPATH)$(LIB)
-	@printf "[??] $(NAMEVM) removed.\n"
+clean_libft:
+	@make -C $(LIB_MAKE) clean
 
-re: fclean all
+clean_$(NAME_ASM):
+	@make -C $(MAKE_ASM) clean
 
-$(LIBPATH)$(LIB):
-	@make -C $(LIBPATH)
+clean_$(NAME_VM):
+	@make -C $(MAKE_VM) clean
 
-$(NAMEASM): $(LIBPATH)$(LIB) $(DIROBJ) $(PATHOBJASM) $(OBJASM)
-	@printf "[$(PROJECTASM)] Objs compilation done.                                            \n"
-	@$(CC) -o $(NAMEASM) $(OBJASM) $(LIBPATH)$(LIB) $(FLAGS)
-	@printf "[$(PROJECTASM)] $(NAMEASM) compiled.                                              \n"
+clean: clean_lib clean_$(NAME_ASM) clean_$(NAME_VM)
 
-$(PATHOBJASM)%.o: $(PATHSRCASM)%.c
-	@printf "[$(PROJECTASM)] Compiling $< to $@                                                \r"
-	@$(CC) $(FLAGS) $(INCLUDES) -o $@ -c $<
+fclean_libft:
+	@make -C $(LIB_MAKE) fclean
 
-$(PATHOBJASM):
-	@mkdir $(PATHOBJASM)
-	@mkdir $(PATHOBJASM)$(SDIRASMANA)
-	@mkdir $(PATHOBJASM)$(SDIRASMVER)
+fclean_$(NAME_ASM):
+	@make -C $(MAKE_ASM) fclean
 
-asm_clean:
-	@rm -f $(OBJASM)
-	@rm -rf $(PATHOBJASM)
-	@printf "[$(PROJECTASM)] Obj removed.														\n"
+fclean_$(NAME_VM):
+	@make -C $(MAKE_VM) fclean
 
-asm_fclean: asm_clean
-	@rm -f $(NAMEASM)
-	@printf "[$(PROJECTASM)] $(NAMEASM) removed.												 \n"
+fclean: fclean_libft fclean_$(NAME_ASM) fclean_$(NAME_VM)
 
-asm_re: asm_fclean asm
+re_libft:
+	@make -C $(LIB_MAKE) re
 
-$(NAMEVM): $(LIBPATH)$(LIB) $(DIROBJ) $(PATHOBJVM) $(OBJVM)
-	@printf "[$(PROJECTVM)] Objs compilation done.                                            	\n"
-	@$(CC) -o $(NAMEVM) $(OBJVM) $(LIBPATH)$(LIB) $(FLAGS)
-	@printf "[$(PROJECTVM)] $(NAMEASM) compiled.          	                                    \n"
+re_$(NAME_ASM):
+	@make -C $(MAKE_ASM) re
 
-$(PATHOBJVM)%.o: $(PATHSRCVM)%.c
-	@printf "[$(PROJECTVM)] Compiling $< to $@              	                                  \r"
-	@$(CC) $(FLAGS) $(INCLUDES) -o $@ -c $<
+re_$(NAME_VM):
+	@make -C $(MAKE_VM) re
 
-$(PATHOBJVM):
-	@mkdir $(PATHOBJVM)
+re: re_libft re_$(NAME_ASM) re_$(NAME_VM)
 
-vm_clean:
-	@rm -f $(OBJVM)
-	@rm -rf $(PATHOBJVM)
-	@printf "[$(PROJECTVM)] Obj removed.													\n"
-
-vm_fclean: vm_clean
-	@rm -f $(NAMEVM)
-	@printf "[$(PROJECTVM)] $(NAMEVM) removed.												\n"
-
-vm_re: vm_fclean vm
-
-$(DIROBJ):
-	@mkdir $(DIROBJ)
+.PHONY: all  $(NAME_ASM) $(NAME_VM) libft \
+		lldb_libft lldb_$(NAME_ASM) lldb_$(NAME_VM) lldb \
+		normal_libft normal_$(NAME_ASM) normal_$(NAME_VM) normal \
+		flag \
+		clean_$(NAME_ASM) clean_$(NAME_VM) clean_libft clean \
+		fclean_$(NAME_ASM) fclean_$(NAME_VM) fclean_libft fclean \
+		re_$(NAME_ASM) re_$(NAME_VM) re_libft re \
+		clean_lib fclean_lib re_lib
