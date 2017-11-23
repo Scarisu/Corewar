@@ -13,6 +13,12 @@ underline="\033[4m"
 reset="\033[0m"
 grey="\033[38;5;8m"
 
+make asm
+
+if [ -e ! ${asm} ]; then
+	exit
+fi
+
 if [[ $1 =~ ^-[${flag_list}]+$ ]]; then
 	if [[ $1 =~ [d] ]]; then
 		dir_list=( "$@" )
@@ -53,8 +59,6 @@ if [ -n "${dir_invalid}" ]; then
 fi
 
 nb_tests=${#all_tests[@]}
-
-make asm
 
 for name in ${all_tests[@]}; do
 	((nb_done++))

@@ -6,7 +6,7 @@
 /*   By: pbernier <pbernier@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/09/29 18:27:41 by pbernier          #+#    #+#             */
-/*   Updated: 2017/11/20 19:30:58 by pbernier         ###   ########.fr       */
+/*   Updated: 2017/11/23 03:11:02 by pbernier         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,6 +18,7 @@ int		main(int argc, char **argv)
 
 	set_data(&e);
 	set_ptrft(&e);
+	set_ptrver(&e);
 	usage(&e, argc, argv[1]);
 	check_line(&e);
 	e.verbos.nb_error ? nb_error(&e) : printf("[TADA]\n");

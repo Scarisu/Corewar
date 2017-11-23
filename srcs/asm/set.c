@@ -6,7 +6,7 @@
 /*   By: pbernier <pbernier@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/11/02 21:34:13 by pbernier          #+#    #+#             */
-/*   Updated: 2017/11/21 22:10:03 by pbernier         ###   ########.fr       */
+/*   Updated: 2017/11/23 03:25:14 by pbernier         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,9 +35,24 @@ void		set_data(t_asm *e)
 	e->verbos.len_arrow = 0;
 	e->verbos.cmd_invalid = NULL;
 	e->verbos.opcode_name = NULL;
+	e->verbos.frag = NULL;
+	e->verbos.frag_start = set_frag(e, (int[2]){0, 0});
 }
 
 void		set_ptrft(t_asm *e)
+{
+	e->tab[0] = skip_tab;
+	e->tab[1] = cmd_name;
+	e->tab[2] = cmd_comment;
+	e->tab[3] = cmd_check;
+	e->tab[4] = ins_label;
+	e->tab[5] = ins_opcode;
+	e->arg_value[0] = arg_reg_value;
+	e->arg_value[1] = arg_dir_value;
+	e->arg_value[2] = arg_ind_value;
+}
+
+void	set_ptrver(t_asm *e)
 {
 	e->verbos.tab[NAME_EXIST] = name_exist;
 	e->verbos.tab[SYNTAX] = syntax;
@@ -59,15 +74,6 @@ void		set_ptrft(t_asm *e)
 	e->verbos.tab[NOT_ENOUGHT_ARG] = not_enought_arg;
 	e->verbos.tab[INVALID_ARG_LABEL] = invalid_arg_label;
 	e->verbos.tab[INVALID_DIR] = invalid_dir;
-	e->tab[0] = skip_tab;
-	e->tab[1] = cmd_name;
-	e->tab[2] = cmd_comment;
-	e->tab[3] = cmd_check;
-	e->tab[4] = ins_label;
-	e->tab[5] = ins_opcode;
-	e->arg_value[0] = arg_reg_value;
-	e->arg_value[1] = arg_dir_value;
-	e->arg_value[2] = arg_ind_value;
 }
 
 t_label		*set_label(t_asm *e, int coo[2])
@@ -78,6 +84,19 @@ t_label		*set_label(t_asm *e, int coo[2])
 		error(e, MALLOC);
 	ft_memcpy(new->coo, coo, sizeof(int[2]));
 	new->name = NULL;
+	new->next = NULL;
+	return (new);
+}
+
+t_frag		*set_frag(t_asm *e, int coo[2])
+{
+	t_frag	*new;
+
+	if (!(new = (t_frag *)malloc(sizeof(t_frag))))
+		error(e, MALLOC);
+	ft_memcpy(new->coo, coo, sizeof(int[2]));
+	new->type = 0;
+	new->print = NULL;
 	new->next = NULL;
 	return (new);
 }

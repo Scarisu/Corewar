@@ -13,14 +13,16 @@ SRC_INCLUD		=	corewar.h \
 SRC_ANALYS		=	ana_name.c \
 					ana_comment.c \
 					ana_diverse.c \
-					ana_instruction.c \
+					ana_opcode.c \
+					ana_label.c \
 					ana_argument.c \
 					ana_type.c
 SRC_VERBOS		=	verbos.c \
 					ver_name.c \
 					ver_comment.c \
 					ver_diverse.c \
-					ver_instruction.c \
+					ver_opcode.c \
+					ver_label.c \
 					ver_argument.c \
 					ver_type.c
 SRC_RACINE		=	op.c \
@@ -31,7 +33,7 @@ SRC_RACINE		=	op.c \
 					set.c \
 					clear.c
 
-FLAGS			=	$(DFLAGS)
+FLAGS			=	$(WFLAGS)
 INC				=	$(addprefix $(MP)$(DIR_INC),$(SRC_INCLUD))
 PATH_OBJ		=	$(DIR_OBJ)$(DIR_ASM)
 DIR				=	$(DIR_ANALYS) $(DIR_VERBOS) $(DIR_RACINE)
@@ -48,7 +50,7 @@ endif
 $(notdir $(NAME_ASM)): all
 
 $(NAME_ASM): $(LIB_PATH) $(PATH_OBJ) $(OBJ)
-	@printf "[$(PROJECT_ASM)] Objs compilation done.      \n"
+	@printf "[$(PROJECT_ASM)] Objs compilation done.                    \n"
 	@$(CC) -o $(NAME_ASM) $(OBJ) $(LIB_PATH) $(FLAGS)
 	@printf "[$(PROJECT_ASM)] "
 ifeq ($(FLAGS),$(DFLAGS))
