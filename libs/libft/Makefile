@@ -79,7 +79,10 @@ SRC			=	ft_putstr.c \
 				ft_strreset.c \
 				ft_llen.c \
 				get_next_line.c \
-				ft_puttab_fd.c
+				ft_puttab_fd.c \
+				ft_get_file.c \
+				ft_tablen.c \
+				ft_ttoa.c
 
 OBJ			=	$(addprefix $(OBJDIR),$(SRC:.c=.o))
 CC			=	gcc

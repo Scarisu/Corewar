@@ -6,7 +6,7 @@
 /*   By: pbernier <pbernier@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/11/09 00:30:13 by pbernier          #+#    #+#             */
-/*   Updated: 2017/11/22 06:44:38 by pbernier         ###   ########.fr       */
+/*   Updated: 2017/11/23 07:01:48 by rlecart          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -130,5 +130,8 @@ int					ft_intlen_base(int nbr, int base);
 int					ft_absolute(int nbr);
 void				ft_strreset(char **as, char *reset);
 size_t				ft_llen(long long nbr);
+char				**ft_get_file(char *file);
+size_t				ft_tablen(void **tab);
+char				*ft_ttoa(char **tab);
 
 #endif

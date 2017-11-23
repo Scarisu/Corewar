@@ -16,12 +16,12 @@ NAME_VM			:=	$(MP)corewar
 NAME_LIBFT		=	libft.a
 
 LIB				=	libft.a
-LIB_MAKE		:=	$(MP)lib/libft/
-LIB_PATH		:=	$(MP)lib/libft/$(LIB)
+LIB_MAKE		:=	$(MP)libs/libft/
+LIB_PATH		:=	$(LIB_MAKE)$(LIB)
 
 CC				=	gcc
 WFLAGS			=	-Wall -Werror -Wextra
 DFLAGS			=	$(WFLAGS) -fsanitize=address -g
 
 INCLUDES		:=	-I $(MP)$(DIR_INC) \
-					-I $(MP)lib/libft/includes/
+					-I $(MP)libs/libft/includes/

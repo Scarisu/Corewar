@@ -6,7 +6,7 @@
 /*   By: pbernier <pbernier@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/11/02 19:56:24 by pbernier          #+#    #+#             */
-/*   Updated: 2017/11/23 03:26:49 by pbernier         ###   ########.fr       */
+/*   Updated: 2017/11/23 06:19:46 by rlecart          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,6 +23,7 @@ typedef struct s_valid	t_valid;
 typedef struct s_champ	t_champ;
 typedef struct s_asm	t_asm;
 
+# include <corewar.h>
 # include <verbos.h>
 
 struct			s_label

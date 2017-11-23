@@ -6,7 +6,10 @@ DIR_RACINE		=
 
 SRC_INCLUD		=	corewar.h \
 					op.h
-SRC_RACINE		=	main.c
+SRC_RACINE		=	main.c \
+					battle.c \
+					get.c \
+					usage.c
 
 FLAGS			=	$(WFLAGS)
 INC				=	$(addprefix $(MP)$(DIR_INC),$(SRC_INCLUD))

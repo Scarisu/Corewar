@@ -25,7 +25,7 @@ SRC_VERBOS		=	verbos.c \
 					ver_label.c \
 					ver_argument.c \
 					ver_type.c
-SRC_RACINE		=	op.c \
+SRC_RACINE		=	../op.c \
 					main.c \
 					usage.c \
 					error.c \

@@ -1,24 +1,23 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   main.c                                             :+:      :+:    :+:   */
+/*   ft_tablen.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: pbernier <pbernier@student.42.fr>          +#+  +:+       +#+        */
+/*   By: rlecart <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2017/09/29 18:27:41 by pbernier          #+#    #+#             */
-/*   Updated: 2017/11/23 09:58:45 by rlecart          ###   ########.fr       */
+/*   Created: 2017/11/23 06:48:12 by rlecart           #+#    #+#             */
+/*   Updated: 2017/11/23 06:49:39 by rlecart          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include <vm.h>
+#include <libft.h>
 
-int		main(int argc, char **argv)
+size_t	ft_tablen(void **tab)
 {
-	t_champ		*champs;
+	size_t	len;
 
-	if (argc <= 1)
-		usage();
-	champs = get_all_champs(argv + 1);
-	battle(champs);
-	return (0);
+	len = 0;
+	while (tab[len])
+		len++;
+	return (len);
 }

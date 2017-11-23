@@ -1,24 +1,19 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   main.c                                             :+:      :+:    :+:   */
+/*   usage.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: pbernier <pbernier@student.42.fr>          +#+  +:+       +#+        */
+/*   By: rlecart <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2017/09/29 18:27:41 by pbernier          #+#    #+#             */
-/*   Updated: 2017/11/23 09:58:45 by rlecart          ###   ########.fr       */
+/*   Created: 2017/11/23 06:25:10 by rlecart           #+#    #+#             */
+/*   Updated: 2017/11/23 09:58:58 by rlecart          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <vm.h>
 
-int		main(int argc, char **argv)
+void	usage(void)
 {
-	t_champ		*champs;
-
-	if (argc <= 1)
-		usage();
-	champs = get_all_champs(argv + 1);
-	battle(champs);
-	return (0);
+	ft_putstr_fd("usage: ./corewar [-dump nbr_cycles] [[-n number] champion1.cor] ...", 2);
+	exit(-1);
 }

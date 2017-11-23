@@ -6,7 +6,7 @@
 /*   By: pbernier <pbernier@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/09/29 18:25:52 by pbernier          #+#    #+#             */
-/*   Updated: 2017/11/20 16:44:27 by pbernier         ###   ########.fr       */
+/*   Updated: 2017/11/23 06:19:25 by rlecart          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,8 +14,7 @@
 # define COREWAR_H
 
 # include "op.h"
-# include "asm.h"
-# include <../lib/libft/includes/libft.h>
+# include <../libs/libft/includes/libft.h> // A modifier c'est pas bo
 
 # include <sys/types.h>
 # include <sys/stat.h>
