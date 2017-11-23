@@ -54,6 +54,9 @@ fi
 
 nb_tests=${#all_tests[@]}
 
+#description=$(grep -A1 $(basename name_forbidden_char.s) ${file_test}description.txt)
+
+
 make asm
 
 for name in ${all_tests[@]}; do

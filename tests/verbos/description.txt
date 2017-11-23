@@ -1,0 +1,119 @@
+comment_bad_syntax_1.s
+Bad syntax for .comment 1
+#
+#
+#
+
+comment_bad_syntax_2.s
+Bad syntax for .comment 2
+#
+#
+#
+
+comment_bad_syntax_3.s
+Bad syntax for .comment 3
+#
+#
+#
+
+comment_bad_syntax_4.s
+Bad syntax for .comment 4
+#
+#
+#
+
+comment_double.s
+Command .comment used twice
+#
+#
+#
+
+comment_empty.s
+Empty description
+#
+#
+#
+
+comment_missing.s
+Command .comment not used
+#
+#
+#
+
+comment_too_long.s
+Description too long
+#
+#
+#
+
+command_invalid.s
+Command invalid
+#
+#
+#
+
+label_bad_syntax_1.s
+???
+#
+#
+#
+
+name_bad_syntax_1.s
+Bad syntax for .name 1
+#
+#
+#
+
+name_bad_syntax_2.s
+Bad syntax for .name 2
+#
+#
+#
+
+name_bad_syntax_3.s
+Bad syntax for .name 3
+#
+#
+#
+
+name_bad_syntax_4.s
+Bad syntax for .name 4
+#
+#
+#
+
+name_diff_file.s
+Champion's name different from
+#
+#
+#
+
+name_double.s
+Command .name used twice
+#
+#
+#
+
+name_empty.s
+Champion's name empty
+#
+#
+#
+
+name_forbidden_char.s
+Champion's name invalid
+#
+#
+#
+
+name_missing.s
+Command .name not used
+#
+#
+#
+
+name_too_long.s
+Champion's name too long
+#
+#
+#
