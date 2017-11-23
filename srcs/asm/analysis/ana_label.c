@@ -6,7 +6,7 @@
 /*   By: pbernier <pbernier@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/11/23 03:01:03 by pbernier          #+#    #+#             */
-/*   Updated: 2017/11/23 03:05:33 by pbernier         ###   ########.fr       */
+/*   Updated: 2017/11/23 07:55:01 by pbernier         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,7 +28,11 @@ int		ins_label(t_asm *e, char *line)
 		error(e, MALLOC);
 	if (!valid_label(e->champ.valid.label->name))
 		return (verbos(e, INVALID_LABEL));
-	e->champ.valid.label->next = set_label(e, (int[2]){e->verbos.nb_line, I});
+	e->champ.valid.label->coo[0] = e->verbos.nb_line;
+	e->champ.valid.label->coo[1] = I;
+	if (!(e->champ.valid.label->line = ft_strdup(line)))
+		error(e, MALLOC);
+	e->champ.valid.label->next = set_label(e, (int[2]){0, 0});
 	e->champ.valid.label = e->champ.valid.label->next;
 	I += content_len + 1;
 	return (1);
@@ -44,5 +48,38 @@ int		valid_label(char *name)
 	while (name[++i])
 		if (!ft_strchr(LABEL_CHARS, name[i]))
 			return (0);
+	return (1);
+}
+
+int		label_mutli(t_asm *e)
+{
+	t_label		*label;
+
+	label = e->champ.valid.label_start;
+	while (label)
+	{
+		e->verbos.pars = label->next;
+		e->verbos.prev_pars = label;
+		while (e->verbos.pars && e->verbos.pars->name)
+		{
+			if (!ft_strcmp(label->name, e->verbos.pars->name))
+			{
+				if (!(e->champ.line = ft_strdup(e->verbos.pars->line)))
+				 	error(e, MALLOC);
+				ft_memdel((void **)&e->verbos.pars->line);
+				e->verbos.nb_line = e->verbos.pars->coo[0];
+				I = e->verbos.pars->coo[1];
+				verbos(e, LABEL_MULTI_INIT);
+				ft_memdel((void **)&e->champ.line);
+				e->verbos.prev_pars->next = e->verbos.pars->next;
+				ft_memdel((void **)&e->verbos.pars);
+				e->verbos.pars = e->verbos.prev_pars;
+			}
+			else
+				e->verbos.prev_pars = e->verbos.pars;
+			e->verbos.pars = e->verbos.pars->next;
+		}
+		label = label->next;
+	}
 	return (1);
 }

@@ -6,7 +6,7 @@
 /*   By: pbernier <pbernier@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/11/02 21:34:13 by pbernier          #+#    #+#             */
-/*   Updated: 2017/11/23 03:25:14 by pbernier         ###   ########.fr       */
+/*   Updated: 2017/11/23 07:20:40 by pbernier         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,6 +35,8 @@ void		set_data(t_asm *e)
 	e->verbos.len_arrow = 0;
 	e->verbos.cmd_invalid = NULL;
 	e->verbos.opcode_name = NULL;
+	e->verbos.pars = NULL;
+	e->verbos.prev_pars = NULL;
 	e->verbos.frag = NULL;
 	e->verbos.frag_start = set_frag(e, (int[2]){0, 0});
 }
@@ -74,6 +76,7 @@ void	set_ptrver(t_asm *e)
 	e->verbos.tab[NOT_ENOUGHT_ARG] = not_enought_arg;
 	e->verbos.tab[INVALID_ARG_LABEL] = invalid_arg_label;
 	e->verbos.tab[INVALID_DIR] = invalid_dir;
+	e->verbos.tab[LABEL_MULTI_INIT] = label_multi_init;
 }
 
 t_label		*set_label(t_asm *e, int coo[2])
@@ -84,6 +87,7 @@ t_label		*set_label(t_asm *e, int coo[2])
 		error(e, MALLOC);
 	ft_memcpy(new->coo, coo, sizeof(int[2]));
 	new->name = NULL;
+	new->line = NULL;
 	new->next = NULL;
 	return (new);
 }

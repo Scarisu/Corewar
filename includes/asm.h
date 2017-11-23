@@ -6,7 +6,7 @@
 /*   By: pbernier <pbernier@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/11/02 19:56:24 by pbernier          #+#    #+#             */
-/*   Updated: 2017/11/23 03:26:49 by pbernier         ###   ########.fr       */
+/*   Updated: 2017/11/23 06:53:03 by pbernier         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,6 +29,7 @@ struct			s_label
 {
 	int			coo[2];
 	char		*name;
+	char		*line;
 	t_label		*next;
 };
 
@@ -97,6 +98,7 @@ int					arg_label(t_asm *e, char *line);
 int					arg_ind_value(t_asm *e, char *line);
 
 void	missing_data(t_asm *e);
+int		label_mutli(t_asm *e);
 
 void	clean(t_asm *e);
 void		clean_label(t_label *l);
