@@ -6,7 +6,7 @@
 /*   By: pbernier <pbernier@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/11/23 03:01:03 by pbernier          #+#    #+#             */
-/*   Updated: 2017/11/23 07:55:01 by pbernier         ###   ########.fr       */
+/*   Updated: 2017/11/23 09:59:32 by pbernier         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,18 +51,16 @@ int		valid_label(char *name)
 	return (1);
 }
 
-int		label_mutli(t_asm *e)
+void	label_mutli(t_asm *e)
 {
-	t_label		*label;
-
-	label = e->champ.valid.label_start;
-	while (label)
+	e->champ.valid.label = e->champ.valid.label_start;
+	while (e->champ.valid.label)
 	{
-		e->verbos.pars = label->next;
-		e->verbos.prev_pars = label;
+		e->verbos.pars = e->champ.valid.label->next;
+		e->verbos.prev_pars = e->champ.valid.label;
 		while (e->verbos.pars && e->verbos.pars->name)
 		{
-			if (!ft_strcmp(label->name, e->verbos.pars->name))
+			if (!ft_strcmp(e->champ.valid.label->name, e->verbos.pars->name))
 			{
 				if (!(e->champ.line = ft_strdup(e->verbos.pars->line)))
 				 	error(e, MALLOC);
@@ -79,7 +77,25 @@ int		label_mutli(t_asm *e)
 				e->verbos.prev_pars = e->verbos.pars;
 			e->verbos.pars = e->verbos.pars->next;
 		}
-		label = label->next;
+		e->champ.valid.label = e->champ.valid.label->next;
 	}
-	return (1);
 }
+
+// void	label_exist(t_asm *e)
+// {
+// 	e->champ.valid.check = e->champ.valid.check_start;
+// 	while (e->champ.valid.check && e->champ.valid.check->name)
+// 	{
+// 		e->champ.valid.label = e->champ.valid.label_start;
+// 		while (e->champ.valid.label && e->champ.valid.label->name
+// 		&& ft_strcmp(e->champ.valid.label->name, e->champ.valid.check->name))
+// 			e->champ.valid.label = e->champ.valid.label->next;
+// 		if (e->champ.valid.label->name)
+// 			ft_memcpy(e->champ.valid.label->coo, (int[2]){0,0} , sizeof(int[2]));
+// 		else
+// 			printf("balo\n");
+// 			//verbos
+//
+// 	}
+// 	(void)e;
+// }
