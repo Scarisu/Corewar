@@ -6,7 +6,7 @@
 /*   By: pbernier <pbernier@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/11/02 19:56:24 by pbernier          #+#    #+#             */
-/*   Updated: 2017/11/23 09:25:08 by pbernier         ###   ########.fr       */
+/*   Updated: 2017/11/28 20:02:12 by pbernier         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,6 +15,7 @@
 
 # define BUFF e->champ.buff[0]
 # define I e->verbos.i
+# define V_LINE e->verbos.frag->print
 # define NUMBER 1
 # define LABEL 2
 

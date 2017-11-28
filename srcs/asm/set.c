@@ -6,7 +6,7 @@
 /*   By: pbernier <pbernier@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/11/02 21:34:13 by pbernier          #+#    #+#             */
-/*   Updated: 2017/11/23 07:20:40 by pbernier         ###   ########.fr       */
+/*   Updated: 2017/11/28 19:13:49 by pbernier         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,8 +37,8 @@ void		set_data(t_asm *e)
 	e->verbos.opcode_name = NULL;
 	e->verbos.pars = NULL;
 	e->verbos.prev_pars = NULL;
-	e->verbos.frag = NULL;
-	e->verbos.frag_start = set_frag(e, (int[2]){0, 0});
+	e->verbos.frag = set_frag(e, (int[2]){0, 0});
+	e->verbos.frag_start = e->verbos.frag;
 }
 
 void		set_ptrft(t_asm *e)

@@ -6,7 +6,7 @@
 /*   By: pbernier <pbernier@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/11/02 21:18:25 by pbernier          #+#    #+#             */
-/*   Updated: 2017/11/23 09:24:39 by pbernier         ###   ########.fr       */
+/*   Updated: 2017/11/28 19:19:44 by pbernier         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,7 +52,7 @@ void	check_line(t_asm *e)
 	}
 	ft_memdel((void **)&e->champ.line);
 	label_mutli(e);
-	label_exist(e);
+	//label_exist(e);
 	//ft_memdel((void **)&e->champ.line);
 	missing_data(e);
 

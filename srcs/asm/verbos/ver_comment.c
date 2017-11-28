@@ -6,7 +6,7 @@
 /*   By: pbernier <pbernier@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/11/08 21:52:00 by pbernier          #+#    #+#             */
-/*   Updated: 2017/11/20 19:06:54 by pbernier         ###   ########.fr       */
+/*   Updated: 2017/11/28 20:24:15 by pbernier         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,29 +16,36 @@ void	comment_exist(t_asm *e)
 {
 	if ((e->verbos.len_arrow = ft_strlen(COMMENT_CMD_STRING) - 1) > 30)
 		e->verbos.len_arrow = 30;
-	ft_putstr_fd(WHITE "Champion's description already set", 2);
+	add_cont(e, &V_LINE, WHITE "Champion's description already set");
 	if ((e->champ.valid.comment))
 	{
-		ft_putstr_fd(": \"" GREY, 2);
-		ft_putstr_fd(e->champ.valid.comment, 2);
-		ft_putstr_fd(WHITE "\"", 2);
+		add_cont(e, &V_LINE, ": \"" GREY);
+		add_cont(e, &V_LINE, e->champ.valid.comment);
+		add_cont(e, &V_LINE, WHITE "\"");
 	}
 }
 
 void	comment_len(t_asm *e)
 {
-	int start;
+	int		start;
+	char 	*nbr;
 
 	start = 0;
+	nbr = NULL;
 	if ((e->verbos.len_arrow = ft_strlen(e->champ.valid.comment) + 1) > 30)
 		e->verbos.len_arrow = 30;
-	ft_putstr_fd(WHITE "Champion's description too long {" GREY, 2);
-	ft_putnbr_fd(ft_strlen(e->champ.valid.comment), 2);
+	add_cont(e, &V_LINE, WHITE "Champion's description too long {" GREY);
+	if (!(nbr = ft_itoa(ft_strlen(e->champ.valid.comment))))
+		error(e, MALLOC);
 	ft_memdel((void **)&e->champ.valid.comment);
-	ft_putstr_fd(WHITE "}, max description len: {", 2);
-	ft_putstr_fd(GREY, 2);
-	ft_putnbr_fd(COMMENT_LENGTH, 2);
-	ft_putstr_fd(WHITE "}", 2);
+	add_cont(e, &V_LINE, nbr);
+	ft_memdel((void **)&nbr);
+	add_cont(e, &V_LINE, WHITE "}, max description len: {" GREY);
+	if (!(nbr = ft_itoa(COMMENT_LENGTH)))
+		error(e, MALLOC);
+	add_cont(e, &V_LINE, nbr);
+	ft_memdel((void **)&nbr);
+	add_cont(e, &V_LINE, WHITE "}");
 	(void)e;
 }
 

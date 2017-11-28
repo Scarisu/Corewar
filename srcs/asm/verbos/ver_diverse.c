@@ -6,7 +6,7 @@
 /*   By: pbernier <pbernier@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/11/09 00:11:55 by pbernier          #+#    #+#             */
-/*   Updated: 2017/11/14 17:48:13 by pbernier         ###   ########.fr       */
+/*   Updated: 2017/11/28 20:40:26 by pbernier         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,17 +14,18 @@
 
 void	missing_name(t_asm *e)
 {
-	ft_putstr_fd(WHITE "Missing champion's name\n", 2);
-	ft_putstr_fd(RESET "usage: " GREY NAME_CMD_STRING	" \"name\"", 2);
-	ft_putstr_fd(RESET "\n", 2);
+	add_cont(e, &V_LINE, WHITE "Missing champion's name\n");
+	add_cont(e, &V_LINE, RESET "usage: " GREY NAME_CMD_STRING " \"name\"");
+	add_cont(e, &V_LINE, RESET "\n");
 	(void)e;
 }
 
 void	missing_comment(t_asm *e)
 {
-	ft_putstr_fd(WHITE "Missing champion's description\n", 2);
-	ft_putstr_fd(RESET "usage: " GREY COMMENT_CMD_STRING " \"description\"", 2);
-	ft_putstr_fd(RESET "\n", 2);
+	add_cont(e, &V_LINE, WHITE "Missing champion's description\n");
+	add_cont(e, &V_LINE, RESET "usage: " GREY COMMENT_CMD_STRING);
+	add_cont(e, &V_LINE, " \"description\"");
+	add_cont(e, &V_LINE, RESET "\n");
 	(void)e;
 }
 
@@ -35,19 +36,19 @@ void	invalid_command(t_asm *e)
 	start = 0;
 	if ((e->verbos.len_arrow = ft_strlen(e->verbos.cmd_invalid)) > 30)
 		e->verbos.len_arrow = 30;
-	ft_putstr_fd(WHITE "Command \"" GREY, 2);
+	add_cont(e, &V_LINE, WHITE "Command \"" GREY);
 	while (e->verbos.cmd_invalid[start] && start < 30)
-		ft_putchar_fd(e->verbos.cmd_invalid[start++], 2);
+		add_cont(e, &V_LINE, &e->verbos.cmd_invalid[start++]);
 	if (start == 30 && ft_strlen(e->verbos.cmd_invalid) > 30)
-		ft_putstr_fd(WHITE " ...", 2);
+		add_cont(e, &V_LINE, WHITE " ...");
 	ft_memdel((void **)&e->verbos.cmd_invalid);
-	ft_putstr_fd(WHITE "\" doesn't exist", 2);
+	add_cont(e, &V_LINE, WHITE "\" doesn't exist");
 }
 
 void	syntax(t_asm *e)
 {
 	e->verbos.len_arrow = 0;
-	ft_putstr_fd(WHITE "Syntax error", 2);
+	add_cont(e, &V_LINE, WHITE "Syntax error");
 }
 
 void	invalid_char(t_asm *e)
@@ -72,27 +73,27 @@ void	invalid_char(t_asm *e)
 		++i;
 	}
 	e->verbos.len_arrow = i - (I + 1) - (nb_uni / 2);
-	print_invalid_char(nb_inv, nb_uni, inv);
+	print_invalid_char(e, nb_inv, nb_uni, inv);
 }
 
-void	print_invalid_char(int nb_inv, int nb_uni, char inv[31])
+void	print_invalid_char(t_asm *e, int nb_inv, int nb_uni, char inv[31])
 {
 	int		print;
 
 	print = -1;
-	ft_putstr_fd(WHITE "Invalid character", 2);
-	nb_inv > 1 ? ft_putchar_fd('s', 2) : 0;
-	ft_putstr_fd(": {" GREY, 2);
+	add_cont(e, &V_LINE, WHITE "Invalid character");
+	nb_inv > 1 ? add_cont(e, &V_LINE, "s") : 0;
+	add_cont(e, &V_LINE, ": {" GREY);
 	while (inv[++print])
 	{
-		(print) ? ft_putstr_fd(WHITE "," GREY, 2) : 0;
-		ft_putchar_fd(inv[print], 2);
+		(print) ? add_cont(e, &V_LINE, WHITE "," GREY) : 0;
+		add_cont(e, &V_LINE, &inv[print]);
 	}
 	if ((print) && (nb_uni))
-		ft_putstr_fd(WHITE ", ", 2);
+		add_cont(e, &V_LINE, WHITE ", ");
 	else if (ft_strlen(inv) < (size_t)nb_inv)
-		ft_putstr_fd(WHITE " ", 2);
+		add_cont(e, &V_LINE, WHITE " ");
 	if ((nb_uni) || ft_strlen(inv) < (size_t)nb_inv)
-		ft_putstr_fd(WHITE "...", 2);
-	ft_putstr_fd(WHITE "}", 2);
+		add_cont(e, &V_LINE, WHITE "...");
+	add_cont(e, &V_LINE, WHITE "}");
 }
