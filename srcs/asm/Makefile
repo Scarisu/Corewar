@@ -13,14 +13,16 @@ SRC_INCLUD		=	corewar.h \
 SRC_ANALYS		=	ana_name.c \
 					ana_comment.c \
 					ana_diverse.c \
-					ana_instruction.c \
+					ana_opcode.c \
+					ana_label.c \
 					ana_argument.c \
 					ana_type.c
 SRC_VERBOS		=	verbos.c \
 					ver_name.c \
 					ver_comment.c \
 					ver_diverse.c \
-					ver_instruction.c \
+					ver_opcode.c \
+					ver_label.c \
 					ver_argument.c \
 					ver_type.c
 SRC_RACINE		=	op.c \
@@ -31,7 +33,7 @@ SRC_RACINE		=	op.c \
 					set.c \
 					clear.c
 
-FLAGS			=	$(DFLAGS)
+FLAGS			=	$(WFLAGS)
 INC				=	$(addprefix $(MP)$(DIR_INC),$(SRC_INCLUD))
 PATH_OBJ		=	$(DIR_OBJ)$(DIR_ASM)
 DIR				=	$(DIR_ANALYS) $(DIR_VERBOS) $(DIR_RACINE)
@@ -48,11 +50,11 @@ endif
 $(notdir $(NAME_ASM)): all
 
 $(NAME_ASM): $(LIB_PATH) $(PATH_OBJ) $(OBJ)
-	@printf "[$(PROJECT_ASM)] Objs compilation done.      \n"
+	@printf "[$(PROJECT_ASM)] Objs compilation done.                    \n"
 	@$(CC) -o $(NAME_ASM) $(OBJ) $(LIB_PATH) $(FLAGS)
 	@printf "[$(PROJECT_ASM)] "
 ifeq ($(FLAGS),$(DFLAGS))
-	@printf "(lldb mode) \n"
+	@printf "(lldb mode) "
 endif
 	@printf "$(notdir $(NAME_ASM)) compiled.\n"
 
@@ -69,24 +71,27 @@ $(PATH_OBJ):
 	@mkdir -p $(addprefix $(PATH_OBJ),$(DIR))
 
 lldb:
+	@make -C $(LIB_MAKE) lldb
 ifeq ($(FLAGS),$(WFLAGS))
 	@sed '/^FLAGS/ s/WFLAGS/DFLAGS/g' Makefile > Makefile.tmp
 	@mv	Makefile.tmp Makefile
 	@printf "[$(PROJECT_ASM)] Swap to lldb mode.\n"
+	@make
 else
 	@printf "[$(PROJECT_ASM)] Already in lldb mode.\n"
 endif
-	@echo > /dev/null
 
 normal:
+	@make -C $(LIB_MAKE) normal
 ifeq ($(FLAGS),$(DFLAGS))
 	@sed '/^FLAGS/ s/DFLAGS/WFLAGS/g' Makefile > Makefile.tmp
 	@mv	Makefile.tmp Makefile
 	@printf "[$(PROJECT_ASM)] Swap to normal mode.\n"
+	@make
 else
 	@printf "[$(PROJECT_ASM)] Already in normal mode.\n"
 endif
-	@echo > /dev/null
+
 
 flag:
 	@printf "[$(PROJECT_ASM)] "

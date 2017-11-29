@@ -58,6 +58,11 @@ nb_tests=${#all_tests[@]}
 
 
 make asm
+read
+
+if [ -e ! ${asm} ]; then
+	exit
+fi
 
 for name in ${all_tests[@]}; do
 	((nb_done++))

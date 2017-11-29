@@ -21,7 +21,7 @@ LIB_PATH		:=	$(MP)lib/libft/$(LIB)
 
 CC				=	gcc
 WFLAGS			=	-Wall -Werror -Wextra
-DFLAGS			=	-fsanitize=address -g
+DFLAGS			=	$(WFLAGS) -fsanitize=address -g
 
 INCLUDES		:=	-I $(MP)$(DIR_INC) \
 					-I $(MP)lib/libft/includes/

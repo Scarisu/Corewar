@@ -6,7 +6,7 @@
 /*   By: pbernier <pbernier@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/11/14 22:21:27 by pbernier          #+#    #+#             */
-/*   Updated: 2017/11/17 15:05:26 by pbernier         ###   ########.fr       */
+/*   Updated: 2017/11/23 02:45:10 by pbernier         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,7 +22,7 @@ int		check_param(t_asm *e, int opcode, char *line)
 	if (!skip_tab(e, line))
 		return (verbos(e, NEED_ARG));
 	ft_memcpy(type_list, g_op_tab[opcode].type, sizeof(int[MAX_ARGS_NUMBER]));
-	printf("LINE\n");
+//	printf("LINE\n");
 	while ((type_list[nb_params]))
 	{
 		if ((i = type_param(type_list[nb_params], line[I])) < 0)
@@ -35,15 +35,15 @@ int		check_param(t_asm *e, int opcode, char *line)
 		++nb_params;
 	}
 	ft_memdel((void **)&e->verbos.opcode_name);
-	printf("..\n");
-	printf("[%s][%d]\n[%d][%d][%d][%d]\n\n",
-			g_op_tab[opcode].name,
-			g_op_tab[opcode].nb_params,
-			g_op_tab[opcode].type[0],
-			g_op_tab[opcode].type[1],
-			g_op_tab[opcode].type[2],
-			g_op_tab[opcode].type[3]
-			);
+	//printf("..\n");
+	//printf("[%s][%d]\n[%d][%d][%d][%d]\n\n",
+			// g_op_tab[opcode].name,
+			// g_op_tab[opcode].nb_params,
+			// g_op_tab[opcode].type[0],
+			// g_op_tab[opcode].type[1],
+			// g_op_tab[opcode].type[2],
+			// g_op_tab[opcode].type[3]
+			// );
 	return (0);
 }
 

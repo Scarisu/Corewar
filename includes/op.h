@@ -6,7 +6,7 @@
 /*   By: zaz <zaz@student.42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2013/10/04 11:33:27 by zaz               #+#    #+#             */
-/*   Updated: 2017/11/16 19:54:38 by pbernier         ###   ########.fr       */
+/*   Updated: 2017/11/23 03:25:11 by pbernier         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -63,7 +63,6 @@ typedef struct					s_op
 }								t_op;
 
 extern t_op				g_op_tab[];
-
 
 #define T_REG					1
 #define T_DIR					2

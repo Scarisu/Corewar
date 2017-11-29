@@ -6,7 +6,7 @@
 /*   By: pbernier <pbernier@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/11/02 21:18:25 by pbernier          #+#    #+#             */
-/*   Updated: 2017/11/14 17:57:44 by pbernier         ###   ########.fr       */
+/*   Updated: 2017/11/29 20:32:35 by pbernier         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,14 +47,11 @@ void	check_line(t_asm *e)
 		I = 0;
 		while (i < 6 && (e->tab[i](e, e->champ.line)))
 			++i;
-		ft_memdel((void **)&e->champ.valid.prev);
-		if (!(e->champ.valid.prev = ft_strdup(e->champ.line)))
-			error(e, MALLOC);
-		ft_strjoin_clean(&e->champ.all, &e->champ.line);
 		ft_memdel((void **)&e->champ.line);
 		++e->verbos.nb_line;
 	}
-	ft_memdel((void **)&e->champ.valid.prev);
 	ft_memdel((void **)&e->champ.line);
+	label_mutli(e, &e->verbos, &e->champ.valid);
 	missing_data(e);
+
 }

@@ -6,7 +6,7 @@
 /*   By: pbernier <pbernier@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/11/08 00:56:01 by pbernier          #+#    #+#             */
-/*   Updated: 2017/11/20 16:17:09 by pbernier         ###   ########.fr       */
+/*   Updated: 2017/11/29 19:58:12 by pbernier         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,12 +16,12 @@ void	name_exist(t_asm *e)
 {
 	if ((e->verbos.len_arrow = ft_strlen(NAME_CMD_STRING) - 1) > 30)
 		e->verbos.len_arrow = 30;
-	ft_putstr_fd(WHITE "Champion's name already set", 2);
+	add_cont(e, &V_LINE, WHITE "Champion's name already set");
 	if ((e->champ.valid.name))
 	{
-		ft_putstr_fd(": \"" GREY, 2);
-		ft_putstr_fd(e->champ.valid.name, 2);
-		ft_putstr_fd(WHITE "\"", 2);
+		add_cont(e, &V_LINE, ": \"" GREY);
+		add_cont(e, &V_LINE, e->champ.valid.name);
+		add_cont(e, &V_LINE, WHITE "\"");
 	}
 }
 
@@ -30,37 +30,44 @@ void	invalid_name(t_asm *e)
 	if ((e->verbos.len_arrow = ft_strlen(e->champ.valid.name) + 1) > 30)
 		e->verbos.len_arrow = 30;
 	ft_memdel((void **)&e->champ.valid.name);
-	ft_putstr_fd(WHITE "Champion's name can't be null ", 2);
-	ft_putstr_fd("or contain { /\\:*?\"<>| }", 2);
+	add_cont(e, &V_LINE, WHITE "Champion's name can't be null ");
+	add_cont(e, &V_LINE, "or contain { /\\:*?\"<>| }");
 }
 
 void	name_diff_file(t_asm *e)
 {
 	if ((e->verbos.len_arrow = ft_strlen(e->champ.valid.name) + 1) > 30)
 		e->verbos.len_arrow = 30;
-	ft_putstr_fd(WHITE "Champion's name is different from ", 2);
-	ft_putstr_fd("the orignal file: {\"" GREY, 2);
-	ft_putstr_fd(e->champ.file_name, 2);
-	ft_putstr_fd(WHITE "\", \"" GREY, 2);
-	ft_putstr_fd(e->champ.valid.name, 2);
+	add_cont(e, &V_LINE, WHITE "Champion's name is different from ");
+	add_cont(e, &V_LINE, "the orignal file: {\"" GREY);
+	add_cont(e, &V_LINE, e->champ.file_name);
+	add_cont(e, &V_LINE, WHITE "\", \"" GREY);
+	add_cont(e, &V_LINE, e->champ.valid.name);
 	ft_memdel((void **)&e->champ.valid.name);
-	ft_putstr_fd(WHITE "\"}", 2);
+	add_cont(e, &V_LINE, WHITE "\"}");
 }
 
 void	name_len(t_asm *e)
 {
-	int start;
+	int		start;
+	char	*nbr;
 
 	start = 0;
+	nbr = NULL;
 	if ((e->verbos.len_arrow = ft_strlen(e->champ.valid.name) + 1) > 30)
 		e->verbos.len_arrow = 30;
-	ft_putstr_fd(WHITE "Champion's name too long {" GREY, 2);
-	ft_putnbr_fd(ft_strlen(e->champ.valid.name), 2);
+	add_cont(e, &V_LINE, WHITE "Champion's name too long {" GREY);
+	if (!(nbr = ft_itoa(ft_strlen(e->champ.valid.name))))
+		error(e, MALLOC);
 	ft_memdel((void **)&e->champ.valid.name);
-	ft_putstr_fd(WHITE "}, max name len: {", 2);
-	ft_putstr_fd(GREY, 2);
-	ft_putnbr_fd(PROG_NAME_LENGTH, 2);
-	ft_putstr_fd(WHITE "}", 2);
+	add_cont(e, &V_LINE, nbr);
+	ft_memdel((void **)&nbr);
+	add_cont(e, &V_LINE, WHITE "}, max name len: {" GREY);
+	if (!(nbr = ft_itoa(PROG_NAME_LENGTH)))
+		error(e, MALLOC);
+	add_cont(e, &V_LINE, nbr);
+	ft_memdel((void **)&nbr);
+	add_cont(e, &V_LINE, WHITE "}");
 }
 
 /*
