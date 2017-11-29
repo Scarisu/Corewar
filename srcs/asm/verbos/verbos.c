@@ -6,7 +6,7 @@
 /*   By: pbernier <pbernier@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/11/06 19:25:27 by pbernier          #+#    #+#             */
-/*   Updated: 2017/11/28 21:04:33 by pbernier         ###   ########.fr       */
+/*   Updated: 2017/11/29 19:55:19 by pbernier         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,22 +14,20 @@
 
 int		verbos(t_asm *e, int err)
 {
-	++e->verbos.nb_error;
-	e->verbos.frag->coo[0] = e->verbos.nb_line;
-	e->verbos.frag->coo[1] = I;
-	e->verbos.frag->type = ERROR;
+	(err == NAME_DIFF_FILE) ? ++e->verbos.nb_warning : ++e->verbos.nb_error;
+	if (err != MISSING_NAME && err != MISSING_COMMENT)
+		ft_memcpy(e->verbos.frag->coo,
+			(int[2]){e->verbos.nb_line, I + 1}, sizeof(int[2]));
 	if (!(e->verbos.frag->print = ft_strnew(1)))
 		error(e, MALLOC);
 	print_pos(e, err);
-	add_cont(e, &V_LINE, " error: ");
+	(err == NAME_DIFF_FILE) ?
+		add_cont(e, &V_LINE, PINK " warning: ") :
+		add_cont(e, &V_LINE, RED_MINUS " error: ");
 	e->verbos.tab[err](e);
-	ft_putstr_fd(RESET "\n", 2);
-	if (err != MISSING_NAME &&
-		err != MISSING_COMMENT)
-	{
+	add_cont(e, &V_LINE, RESET "\n");
+	if (err != MISSING_NAME && err != MISSING_COMMENT)
 		adapt_line(e, e->champ.line);
-		arrow(e);
-	}
 	e->verbos.frag->next = set_frag(e, (int[2]){0, 0});
 	e->verbos.frag = e->verbos.frag->next;
 	return (0);
@@ -60,8 +58,9 @@ void	print_pos(t_asm *e, int err)
 
 void	adapt_line(t_asm *e, char *line)
 {
-	int	start;
-	int end;
+	int		start;
+	int		end;
+	char	tmp[2];
 
 	start = 0;
 	end = I + 30;
@@ -72,10 +71,14 @@ void	adapt_line(t_asm *e, char *line)
 		I = 35;
 	}
 	while (line[start] && start <= end && line[start] != '\n')
-		add_cont(e, &V_LINE, &line[start++]);
+	{
+		ft_memcpy(tmp, (char[2]){line[start++], '\0'}, sizeof(char[2]));
+		add_cont(e, &V_LINE, tmp);
+	}
 	if (line[start] && line[start] != '\n')
 		add_cont(e, &V_LINE, "...");
 	add_cont(e, &V_LINE, "\n");
+	arrow(e);
 }
 
 void	arrow(t_asm *e)

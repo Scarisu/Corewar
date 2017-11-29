@@ -6,7 +6,7 @@
 /*   By: pbernier <pbernier@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/11/06 19:20:02 by pbernier          #+#    #+#             */
-/*   Updated: 2017/11/28 21:07:25 by pbernier         ###   ########.fr       */
+/*   Updated: 2017/11/29 19:39:23 by pbernier         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,6 +23,7 @@
 # define GREY "\033[38;5;8m"
 # define WHITE "\033[38;5;7m"
 # define GRAS "\033[1m"
+# define PINK "\033[35m"
 
 /*
 ** error
@@ -72,7 +73,6 @@ typedef struct s_verbos	t_verbos;
 struct			s_frag
 {
 	int			coo[2];
-	int			type;
 	char		*print;
 	t_frag		*next;
 };
@@ -81,7 +81,7 @@ struct			s_verbos
 {
 	int			i;
 	int			nb_error;
-	int			nb_warning;	
+	int			nb_warning;
 	int			nb_line;
 	int			len_arrow;
 	int			line_left;
@@ -134,7 +134,6 @@ void		missing_comment(t_asm *e);
 
 void	adapt_line(t_asm *e, char *line);
 void	arrow(t_asm *e);
-void	nb_error(t_asm *e);
 
 
 

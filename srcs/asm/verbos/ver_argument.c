@@ -6,13 +6,13 @@
 /*   By: pbernier <pbernier@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/11/14 22:21:56 by pbernier          #+#    #+#             */
-/*   Updated: 2017/11/28 20:30:45 by pbernier         ###   ########.fr       */
+/*   Updated: 2017/11/29 19:59:50 by pbernier         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <corewar.h>
 
-void 	need_arg(t_asm *e)
+void	need_arg(t_asm *e)
 {
 	char	*nbr;
 
@@ -30,19 +30,17 @@ void 	need_arg(t_asm *e)
 		add_cont(e, &V_LINE, "s");
 }
 
-void 	wrong_arg(t_asm *e)
+void	wrong_arg(t_asm *e)
 {
 	add_cont(e, &V_LINE, WHITE "Wrong argument, \"" GREY);
 	add_cont(e, &V_LINE, e->verbos.opcode_name);
 	ft_memdel((void **)&e->verbos.opcode_name);
 	add_cont(e, &V_LINE, WHITE "\" expect {" GREY);
-	//
 	add_cont(e, &V_LINE, WHITE "}");
 }
 
 void	not_enought_arg(t_asm *e)
 {
 	ft_memdel((void **)&e->verbos.opcode_name);
-	//
 	add_cont(e, &V_LINE, WHITE "NOT ENOUGHT ARG");
 }

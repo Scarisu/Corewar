@@ -6,7 +6,7 @@
 /*   By: pbernier <pbernier@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/11/23 03:01:03 by pbernier          #+#    #+#             */
-/*   Updated: 2017/11/28 18:48:31 by pbernier         ###   ########.fr       */
+/*   Updated: 2017/11/29 20:34:16 by pbernier         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,7 +20,7 @@ int		ins_label(t_asm *e, char *line)
 	while (line[content_len]
 		&& line[content_len] != LABEL_CHAR
 		&& line[content_len] != ' ')
-			++content_len;
+		++content_len;
 	if (line[content_len] != LABEL_CHAR)
 		return (1);
 	content_len -= I;
@@ -51,51 +51,53 @@ int		valid_label(char *name)
 	return (1);
 }
 
-void	label_mutli(t_asm *e)
+void	label_mutli(t_asm *e, t_verbos *ver, t_valid *val)
 {
-	e->champ.valid.label = e->champ.valid.label_start;
-	while (e->champ.valid.label)
+	val->label = val->label_start;
+	while (val->label)
 	{
-		e->verbos.pars = e->champ.valid.label->next;
-		e->verbos.prev_pars = e->champ.valid.label;
-		while (e->verbos.pars && e->verbos.pars->name)
+		ver->pars = val->label->next;
+		ver->prev_pars = val->label;
+		while (ver->pars && ver->pars->name)
 		{
-			if (!ft_strcmp(e->champ.valid.label->name, e->verbos.pars->name))
+			if (!ft_strcmp(val->label->name, ver->pars->name))
 			{
-				if (!(e->champ.line = ft_strdup(e->verbos.pars->line)))
-				 	error(e, MALLOC);
-				ft_memdel((void **)&e->verbos.pars->line);
-				e->verbos.nb_line = e->verbos.pars->coo[0];
-				I = e->verbos.pars->coo[1];
+				if (!(e->champ.line = ft_strdup(ver->pars->line)))
+					error(e, MALLOC);
+				ft_memdel((void **)&ver->pars->line);
+				ver->nb_line = ver->pars->coo[0];
+				I = ver->pars->coo[1];
 				verbos(e, LABEL_MULTI_INIT);
 				ft_memdel((void **)&e->champ.line);
-				e->verbos.prev_pars->next = e->verbos.pars->next;
-				ft_memdel((void **)&e->verbos.pars);
-				e->verbos.pars = e->verbos.prev_pars;
+				ver->prev_pars->next = ver->pars->next;
+				ft_memdel((void **)&ver->pars);
+				ver->pars = ver->prev_pars;
 			}
 			else
-				e->verbos.prev_pars = e->verbos.pars;
-			e->verbos.pars = e->verbos.pars->next;
+				ver->prev_pars = ver->pars;
+			ver->pars = ver->pars->next;
 		}
-		e->champ.valid.label = e->champ.valid.label->next;
+		val->label = val->label->next;
 	}
 }
 
-// void	label_exist(t_asm *e)
-// {
-// 	e->champ.valid.check = e->champ.valid.check_start;
-// 	while (e->champ.valid.check && e->champ.valid.check->name)
-// 	{
-// 		e->champ.valid.label = e->champ.valid.label_start;
-// 		while (e->champ.valid.label && e->champ.valid.label->name
-// 		&& ft_strcmp(e->champ.valid.label->name, e->champ.valid.check->name))
-// 			e->champ.valid.label = e->champ.valid.label->next;
-// 		if (e->champ.valid.label->name)
-// 			ft_memcpy(e->champ.valid.label->coo, (int[2]){0,0} , sizeof(int[2]));
-// 		else
-// 			printf("balo\n");
-// 			//verbos
-//
-// 	}
-// 	(void)e;
-// }
+/*
+**void	label_exist(t_asm *e)
+**{
+**	e->champ.valid.check = e->champ.valid.check_start;
+**	while (e->champ.valid.check && e->champ.valid.check->name)
+**	{
+**		e->champ.valid.label = e->champ.valid.label_start;
+**		while (e->champ.valid.label && e->champ.valid.label->name
+**		&& ft_strcmp(e->champ.valid.label->name, e->champ.valid.check->name))
+**			e->champ.valid.label = e->champ.valid.label->next;
+**		if (e->champ.valid.label->name)
+**			ft_memcpy(e->champ.valid.label->coo, (int[2]){0,0}, sizeof(int[2]));
+**		else
+**			printf("balo\n");
+**			//verbos
+**
+**	}
+**	(void)e;
+**}
+*/

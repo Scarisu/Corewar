@@ -6,7 +6,7 @@
 /*   By: pbernier <pbernier@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/11/09 00:11:55 by pbernier          #+#    #+#             */
-/*   Updated: 2017/11/28 20:40:26 by pbernier         ###   ########.fr       */
+/*   Updated: 2017/11/29 19:56:44 by pbernier         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,14 +31,19 @@ void	missing_comment(t_asm *e)
 
 void	invalid_command(t_asm *e)
 {
-	int start;
+	int		start;
+	char	tmp[2];
 
 	start = 0;
 	if ((e->verbos.len_arrow = ft_strlen(e->verbos.cmd_invalid)) > 30)
 		e->verbos.len_arrow = 30;
 	add_cont(e, &V_LINE, WHITE "Command \"" GREY);
 	while (e->verbos.cmd_invalid[start] && start < 30)
-		add_cont(e, &V_LINE, &e->verbos.cmd_invalid[start++]);
+	{
+		ft_memcpy(tmp, (char[2]){e->verbos.cmd_invalid[start++], '\0'},
+			sizeof(char[2]));
+		add_cont(e, &V_LINE, tmp);
+	}
 	if (start == 30 && ft_strlen(e->verbos.cmd_invalid) > 30)
 		add_cont(e, &V_LINE, WHITE " ...");
 	ft_memdel((void **)&e->verbos.cmd_invalid);
@@ -79,6 +84,7 @@ void	invalid_char(t_asm *e)
 void	print_invalid_char(t_asm *e, int nb_inv, int nb_uni, char inv[31])
 {
 	int		print;
+	char	tmp[2];
 
 	print = -1;
 	add_cont(e, &V_LINE, WHITE "Invalid character");
@@ -87,7 +93,8 @@ void	print_invalid_char(t_asm *e, int nb_inv, int nb_uni, char inv[31])
 	while (inv[++print])
 	{
 		(print) ? add_cont(e, &V_LINE, WHITE "," GREY) : 0;
-		add_cont(e, &V_LINE, &inv[print]);
+		ft_memcpy(tmp, (char[2]){inv[print], '\0'}, sizeof(char[2]));
+		add_cont(e, &V_LINE, tmp);
 	}
 	if ((print) && (nb_uni))
 		add_cont(e, &V_LINE, WHITE ", ");

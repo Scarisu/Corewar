@@ -6,7 +6,7 @@
 /*   By: pbernier <pbernier@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/11/16 20:14:46 by pbernier          #+#    #+#             */
-/*   Updated: 2017/11/23 02:31:55 by pbernier         ###   ########.fr       */
+/*   Updated: 2017/11/29 20:07:09 by pbernier         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,7 +39,6 @@ int		arg_reg_value(t_asm *e, char *line)
 int		arg_dir_value(t_asm *e, char *line)
 {
 	int		content_len;
-	//char	*dir;
 
 	content_len = I + 1;
 	if (line[content_len] &&
@@ -48,13 +47,10 @@ int		arg_dir_value(t_asm *e, char *line)
 	if (line[content_len] && (
 		line[content_len] == '-' ||
 		line[content_len] == '+'))
-		++ content_len;
+		++content_len;
 	while (line[content_len] &&
 		(line[content_len] >= '0' || line[content_len] >= '9'))
 		++content_len;
-	//if (!(dir = ft_strsub(line, I + 1, content_len - I - 1)))
-	//	error(e, MALLOC);
-	//ft_memdel((void **)&dir);
 	if (line[content_len] &&
 		line[content_len] != ',' &&
 		line[content_len] != ' ' &&
@@ -67,7 +63,6 @@ int		arg_dir_value(t_asm *e, char *line)
 int		arg_ind_value(t_asm *e, char *line)
 {
 	int		content_len;
-	//char	*ind;
 
 	content_len = I + 1;
 	if (line[content_len] && (
@@ -77,9 +72,6 @@ int		arg_ind_value(t_asm *e, char *line)
 	while (line[content_len] &&
 		(line[content_len] >= '0' || line[content_len] >= '9'))
 		++content_len;
-	//if (!(dir = ft_strsub(line, I + 1, content_len - I - 1)))
-	//	error(e, MALLOC);
-	//ft_memdel((void **)&dir);
 	if (line[content_len] &&
 		line[content_len] != ',' &&
 		line[content_len] != ' ' &&
@@ -98,7 +90,7 @@ int		arg_label(t_asm *e, char *line)
 		&& line[content_len] != ','
 		&& line[content_len] != ' '
 		&& line[content_len] != '\n')
-			++content_len;
+		++content_len;
 	content_len -= I + 2;
 	if (!(e->champ.valid.check->name = ft_strsub(line, I + 2, content_len)))
 		error(e, MALLOC);

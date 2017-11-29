@@ -6,13 +6,13 @@
 /*   By: pbernier <pbernier@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/11/02 21:34:13 by pbernier          #+#    #+#             */
-/*   Updated: 2017/11/28 19:13:49 by pbernier         ###   ########.fr       */
+/*   Updated: 2017/11/29 19:57:46 by pbernier         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <corewar.h>
 
-void		set_data(t_asm *e)
+void	set_data(t_asm *e)
 {
 	e->head = NULL;
 	if (!(e->file = ft_strnew(0)))
@@ -30,6 +30,7 @@ void		set_data(t_asm *e)
 	e->champ.valid.check = set_label(e, (int[2]){0, 0});
 	e->champ.valid.check_start = e->champ.valid.check;
 	e->verbos.nb_error = 0;
+	e->verbos.nb_warning = 0;
 	e->verbos.nb_line = 1;
 	I = 0;
 	e->verbos.len_arrow = 0;
@@ -41,7 +42,7 @@ void		set_data(t_asm *e)
 	e->verbos.frag_start = e->verbos.frag;
 }
 
-void		set_ptrft(t_asm *e)
+void	set_ptrft(t_asm *e)
 {
 	e->tab[0] = skip_tab;
 	e->tab[1] = cmd_name;
@@ -79,7 +80,7 @@ void	set_ptrver(t_asm *e)
 	e->verbos.tab[LABEL_MULTI_INIT] = label_multi_init;
 }
 
-t_label		*set_label(t_asm *e, int coo[2])
+t_label	*set_label(t_asm *e, int coo[2])
 {
 	t_label *new;
 
@@ -92,14 +93,13 @@ t_label		*set_label(t_asm *e, int coo[2])
 	return (new);
 }
 
-t_frag		*set_frag(t_asm *e, int coo[2])
+t_frag	*set_frag(t_asm *e, int coo[2])
 {
 	t_frag	*new;
 
 	if (!(new = (t_frag *)malloc(sizeof(t_frag))))
 		error(e, MALLOC);
 	ft_memcpy(new->coo, coo, sizeof(int[2]));
-	new->type = 0;
 	new->print = NULL;
 	new->next = NULL;
 	return (new);

@@ -6,7 +6,7 @@
 /*   By: pbernier <pbernier@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/09/29 18:27:41 by pbernier          #+#    #+#             */
-/*   Updated: 2017/11/28 21:06:47 by pbernier         ###   ########.fr       */
+/*   Updated: 2017/11/29 19:38:12 by pbernier         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,17 +21,45 @@ int		main(int argc, char **argv)
 	set_ptrver(&e);
 	usage(&e, argc, argv[1]);
 	check_line(&e);
-	print_verbos(&e->verbos);
+	if (!print_verbos(&e.verbos))
+		printf("[TADA]\n");
 	clean(&e);
 	return (0);
 }
 
-void	nb_error(t_asm *e)
+int		print_verbos(t_verbos *v)
 {
-	if ((e->verbos.line_left))
+	int		left;
+	t_frag	*print;
+
+	if (!(left = v->nb_error + v->nb_warning))
+		return (0);
+	while (left)
+	{
+		v->frag = v->frag_start;
+		print = NULL;
+		while (v->frag && v->frag->next)
+		{
+			if (v->frag->coo[0] != -1 &&
+			(!print || v->frag->coo[0] < print->coo[0]))
+				print = v->frag;
+			v->frag = v->frag->next;
+		}
+		ft_putstr_fd(print->print, 2);
+		--left;
+		print->coo[0] = -1;
+		print->coo[1] = -1;
+	}
+	return (nb_error(v));
+}
+
+int		nb_error(t_verbos *v)
+{
+	if ((v->line_left))
 		ft_putstr_fd("Minimun ", 2);
-	ft_putnbr_fd(e->verbos.nb_error, 2);
-	ft_putstr_fd(" error", 2);
-	(e->verbos.nb_error > 1) ? ft_putchar_fd('s', 2) : 0;
+	ft_putnbr_fd(v->nb_error + v->nb_warning, 2);
+	(!v->nb_error) ? ft_putstr_fd(" warning", 2) : ft_putstr_fd(" error", 2);
+	(v->nb_error + v->nb_warning > 1) ? ft_putchar_fd('s', 2) : 0;
 	ft_putstr_fd(" generated.\n", 2);
+	return (v->nb_error);
 }

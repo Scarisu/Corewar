@@ -6,7 +6,7 @@
 /*   By: pbernier <pbernier@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/11/02 19:56:24 by pbernier          #+#    #+#             */
-/*   Updated: 2017/11/28 20:02:12 by pbernier         ###   ########.fr       */
+/*   Updated: 2017/11/29 20:26:41 by pbernier         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -99,8 +99,11 @@ int					arg_label(t_asm *e, char *line);
 int					arg_ind_value(t_asm *e, char *line);
 
 void	missing_data(t_asm *e);
-void	label_mutli(t_asm *e);
+void	label_mutli(t_asm *e, t_verbos *ver, t_valid *val);
 void	label_exist(t_asm *e);
+
+int		print_verbos(t_verbos *v);
+int		nb_error(t_verbos *v);
 
 
 void	clean(t_asm *e);

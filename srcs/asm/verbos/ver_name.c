@@ -6,7 +6,7 @@
 /*   By: pbernier <pbernier@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/11/08 00:56:01 by pbernier          #+#    #+#             */
-/*   Updated: 2017/11/28 20:57:17 by pbernier         ###   ########.fr       */
+/*   Updated: 2017/11/29 19:58:12 by pbernier         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,8 +49,8 @@ void	name_diff_file(t_asm *e)
 
 void	name_len(t_asm *e)
 {
-	int start;
-	char *nbr;
+	int		start;
+	char	*nbr;
 
 	start = 0;
 	nbr = NULL;

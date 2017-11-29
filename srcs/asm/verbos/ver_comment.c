@@ -6,7 +6,7 @@
 /*   By: pbernier <pbernier@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/11/08 21:52:00 by pbernier          #+#    #+#             */
-/*   Updated: 2017/11/28 20:24:15 by pbernier         ###   ########.fr       */
+/*   Updated: 2017/11/29 19:57:15 by pbernier         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,7 +28,7 @@ void	comment_exist(t_asm *e)
 void	comment_len(t_asm *e)
 {
 	int		start;
-	char 	*nbr;
+	char	*nbr;
 
 	start = 0;
 	nbr = NULL;
