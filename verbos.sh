@@ -56,7 +56,6 @@ nb_tests=${#all_tests[@]}
 
 #description=$(grep -A1 $(basename name_forbidden_char.s) ${file_test}description.txt)
 
-
 make asm
 read
 
@@ -71,6 +70,5 @@ for name in ${all_tests[@]}; do
 	printf "${reset}: "
 	printf "${grey}[$(basename ${name})]${reset}\n"
 	./${asm_name} ${name}
-	# printf "${asm_name} ${name}"
 	read
 done
