@@ -6,7 +6,7 @@
 /*   By: pbernier <pbernier@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/11/06 19:20:02 by pbernier          #+#    #+#             */
-/*   Updated: 2017/11/29 19:39:23 by pbernier         ###   ########.fr       */
+/*   Updated: 2017/12/01 01:14:46 by pbernier         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,6 +33,7 @@
 # define OPEN_CHAMP 3
 # define READ_CHAMP 4
 # define MALLOC 5
+# define CREATE 6
 
 /*
 ** verbos

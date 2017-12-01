@@ -1,7 +1,7 @@
 
 asm_name="asm"
 file_test="tests/verbos/"
-dir_list=("comment" "diverse" "instruction" "name")
+dir_list=("comment" "diverse" "instruction" "name" "champs")
 
 #d = directory
 flag_list="d"

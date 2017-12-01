@@ -6,7 +6,7 @@
 /*   By: pbernier <pbernier@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/09/29 18:27:41 by pbernier          #+#    #+#             */
-/*   Updated: 2017/11/29 19:38:12 by pbernier         ###   ########.fr       */
+/*   Updated: 2017/12/01 01:36:49 by pbernier         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,7 +22,7 @@ int		main(int argc, char **argv)
 	usage(&e, argc, argv[1]);
 	check_line(&e);
 	if (!print_verbos(&e.verbos))
-		printf("[TADA]\n");
+		create_cor(&e);
 	clean(&e);
 	return (0);
 }
@@ -62,4 +62,17 @@ int		nb_error(t_verbos *v)
 	(v->nb_error + v->nb_warning > 1) ? ft_putchar_fd('s', 2) : 0;
 	ft_putstr_fd(" generated.\n", 2);
 	return (v->nb_error);
+}
+
+int		create_cor(t_asm *e)
+{
+	int	fd;
+
+	add_cont(e, &e->champ.file_path, e->champ.file_name);
+	add_cont(e, &e->champ.file_path, ".cor");
+	if ((fd = open(e->champ.file_path,
+		O_CREAT | O_RDWR | O_TRUNC, 0755)) < 2)
+		error(e, CREATE);
+	ft_putstr_fd(e->head, fd);
+	return (1);
 }

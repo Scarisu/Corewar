@@ -6,7 +6,7 @@
 /*   By: pbernier <pbernier@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/11/02 19:56:24 by pbernier          #+#    #+#             */
-/*   Updated: 2017/11/29 20:26:41 by pbernier         ###   ########.fr       */
+/*   Updated: 2017/12/01 01:09:08 by pbernier         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -104,6 +104,7 @@ void	label_exist(t_asm *e);
 
 int		print_verbos(t_verbos *v);
 int		nb_error(t_verbos *v);
+int 	create_cor(t_asm *e);
 
 
 void	clean(t_asm *e);
