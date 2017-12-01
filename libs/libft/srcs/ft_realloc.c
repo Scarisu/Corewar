@@ -1,22 +1,35 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   battle.c                                           :+:      :+:    :+:   */
+/*   ft_realloc.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: rlecart <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2017/11/23 06:12:46 by rlecart           #+#    #+#             */
-/*   Updated: 2017/12/01 01:15:04 by rlecart          ###   ########.fr       */
+/*   Created: 2017/08/05 12:58:01 by rlecart           #+#    #+#             */
+/*   Updated: 2017/11/30 22:58:09 by rlecart          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include <vm.h>
+#include <libft.h>
 
-void	battle(t_champ *champs, int nbc)
+void	*ft_realloc(void *ptr, size_t size)
 {
-	char	*map;
+	char	*newptr;
 
-	map = ft_memalloc(MEM_SIZE);
-	(void)champs;
-	(void)nbc;
+	if (!size && ptr)
+	{
+		if (!(newptr = malloc(1)))
+			return (NULL);
+		ft_memdel(&ptr);
+		return (newptr);
+	}
+	if (!(newptr = malloc(size)))
+		return (NULL);
+	ft_memset(newptr, 0, size);
+	if (ptr)
+	{
+		ft_memcpy(newptr, ptr, size);
+		ft_memdel(&ptr);
+	}
+	return (newptr);
 }

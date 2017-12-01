@@ -6,7 +6,7 @@
 /*   By: pbernier <pbernier@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/11/09 00:30:13 by pbernier          #+#    #+#             */
-/*   Updated: 2017/11/23 07:01:48 by rlecart          ###   ########.fr       */
+/*   Updated: 2017/12/01 01:46:05 by rlecart          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,6 +17,7 @@
 # include <string.h>
 # include <stdlib.h>
 # include <stdio.h>
+# include <stdbool.h>
 # include <unistd.h>
 # include <fcntl.h>
 # include <sys/types.h>
@@ -133,5 +134,7 @@ size_t				ft_llen(long long nbr);
 char				**ft_get_file(char *file);
 size_t				ft_tablen(void **tab);
 char				*ft_ttoa(char **tab);
+void				*ft_realloc(void *ptr, size_t size);
+void				*ft_memsub(void *src, unsigned int start, unsigned int len);
 
 #endif

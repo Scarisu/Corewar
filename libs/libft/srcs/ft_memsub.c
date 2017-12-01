@@ -1,22 +1,29 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   battle.c                                           :+:      :+:    :+:   */
+/*   ft_memsub.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: rlecart <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2017/11/23 06:12:46 by rlecart           #+#    #+#             */
-/*   Updated: 2017/12/01 01:15:04 by rlecart          ###   ########.fr       */
+/*   Created: 2017/12/01 01:31:27 by rlecart           #+#    #+#             */
+/*   Updated: 2017/12/01 02:00:10 by rlecart          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include <vm.h>
+#include <libft.h>
 
-void	battle(t_champ *champs, int nbc)
+void	*ft_memsub(void *src, unsigned int start, unsigned int len)
 {
-	char	*map;
+	char			*src_tmp;
+	char			*ret_tmp;
+	void			*ret;
+	unsigned int	i;
 
-	map = ft_memalloc(MEM_SIZE);
-	(void)champs;
-	(void)nbc;
+	i = -1;
+	ret = ft_memalloc(len);
+	src_tmp = src;
+	ret_tmp = ret;
+	while (++i < len)
+		ret_tmp[i] = src_tmp[start + i];
+	return (ret);
 }
