@@ -6,7 +6,7 @@
 /*   By: pbernier <pbernier@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/11/16 20:14:46 by pbernier          #+#    #+#             */
-/*   Updated: 2017/11/29 20:07:09 by pbernier         ###   ########.fr       */
+/*   Updated: 2017/12/01 00:12:57 by pbernier         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,6 +18,8 @@ int		arg_reg_value(t_asm *e, char *line)
 	int		nb_reg;
 	char	*reg;
 
+	while (line[I] == ' ')
+		++I;
 	content_len = I + 1;
 	while (line[content_len] &&
 		(line[content_len] >= '0' || line[content_len] >= '9'))
@@ -40,6 +42,8 @@ int		arg_dir_value(t_asm *e, char *line)
 {
 	int		content_len;
 
+	while (line[I] == ' ')
+		++I;
 	content_len = I + 1;
 	if (line[content_len] &&
 		line[content_len] == LABEL_CHAR)
@@ -64,6 +68,8 @@ int		arg_ind_value(t_asm *e, char *line)
 {
 	int		content_len;
 
+	while (line[I] == ' ')
+		++I;
 	content_len = I + 1;
 	if (line[content_len] && (
 		line[content_len] == '-' ||
@@ -98,6 +104,6 @@ int		arg_label(t_asm *e, char *line)
 		return (verbos(e, INVALID_ARG_LABEL));
 	e->champ.valid.check->next = set_label(e, (int[2]){e->verbos.nb_line, I});
 	e->champ.valid.check = e->champ.valid.check->next;
-	I += content_len;
+	I += content_len + 2;
 	return (1);
 }

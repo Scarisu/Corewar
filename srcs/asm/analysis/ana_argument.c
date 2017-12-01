@@ -6,7 +6,7 @@
 /*   By: pbernier <pbernier@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/11/14 22:21:27 by pbernier          #+#    #+#             */
-/*   Updated: 2017/11/23 02:45:10 by pbernier         ###   ########.fr       */
+/*   Updated: 2017/12/01 00:32:31 by pbernier         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,16 +25,28 @@ int		check_param(t_asm *e, int opcode, char *line)
 //	printf("LINE\n");
 	while ((type_list[nb_params]))
 	{
-		if ((i = type_param(type_list[nb_params], line[I])) < 0)
+		while (line[I] == ' ')
+			++I;
+		i = type_param(type_list[nb_params], line[I]);
+	//	printf("%d - [%d]\n", e->verbos.nb_line, i);
+		if (i < 0)
 			return (verbos(e, WRONG_ARG));
 		if (!e->arg_value[i](e, line))
 			return (0);
+		//printf("[%s]\n", &line[I]);
+
+		//printf(" {%d < %d}", nb_params + 1, g_op_tab[opcode].nb_params);
 		if (nb_params + 1 < g_op_tab[opcode].nb_params && line[I] != ',')
+		{
+			//printf(" - la\n\n");
 			return (verbos(e, NOT_ENOUGHT_ARG));
+		}
+		//printf("\n");
 		++I;
 		++nb_params;
 	}
 	ft_memdel((void **)&e->verbos.opcode_name);
+	//printf("\n");
 	//printf("..\n");
 	//printf("[%s][%d]\n[%d][%d][%d][%d]\n\n",
 			// g_op_tab[opcode].name,
@@ -62,7 +74,10 @@ int		type_param(int type, char first_char)
 		if (type >= type_exist[i])
 		{
 			type -= type_exist[i];
-			if (first_char == limit[i])
+			if (first_char == limit[i] ||
+				(i == 0 && (
+				(first_char >= '0' && first_char <= '9') ||
+				first_char == '-' || first_char == '+')))
 				return (ret[i]);
 			else if (!type)
 				return (-1);

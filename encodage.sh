@@ -1,45 +1,61 @@
 
 asm_name="asm"
-asm_resources="asm"
+resources_file="resources/"
 file_test="tests/champions/"
+result_file="result.txt"
 
-all_champ=$(echo "$(ls tests/champions/asm/*.s)")
+make asm
+
+mkdir -p ${resources_file}
+curl -s https://projects.intra.42.fr/uploads/document/document/391/corewar.tar | tar x - -C ${resources_file}
+
+line_champs=$(find ./resources -name "*.s")
+all_champs=()
+for champ in ${line_champs[@]}; do
+	all_champs[${#all_champs[@]}]=${champ}
+done
+nb_champs=${#all_champs[@]}
+nb_done=0
 
 underline="\033[4m"
 reset="\033[0m"
 grey="\033[38;5;8m"
 
-make asm
-rm -f *.cor
-rm -f ${file_test}/asm/*.cor
-rm -f ${file_test}result.txt
+rm -f $(find ./${resources} -name "*.cor")
+rm -f $(find ./${file_test} -name "*.cor")
+rm -f ${file_test}${result_file}
+
 mkdir -p ${file_test}cor_mine
 mkdir -p ${file_test}cor_real
 
-mkdir -p .tmp
-mkdir -p .tmp/real
-mkdir -p .tmp/mine
+printf "$(date +%d)/$(date +%m)/$(date +%Y)\n" >> ${file_test}${result_file}
+printf "$(date +%H):$(date +%M)\n\n" >> ${file_test}${result_file}
 
-cp ${asm_name} .tmp/mine
-cp resources/${asm_resources} .tmp/real
+for champ in ${all_champs[@]}; do
+	((nb_done++))
 
-for champ in ${all_champ[@]}; do
-	printf "./.tmp/mine/${asm_name} ${champ}\n"
-	touch ./.tmp/mine/test.cor
-
-	cor_mine=$(ls -t .tmp/mine/*.cor)
-	if [[ -n "${cor_mine}" ]]; then
-		mv ${cor_mine} ${file_test}cor_mine/
+	cor="$(echo "${champ}" | sed 's/\.s//').cor"
+	printf "[${cor}]\n" >> ${file_test}${result_file}
+	printf "\n[${nb_done}/${nb_champs}] "
+	printf "${grey}[$(basename ${cor})]${reset}\n"
+	read
+	printf "[MINE] - "
+	./${asm_name} ${champ}
+	if [ -e ${cor} ]; then
+		mv ${cor} ${file_test}cor_mine
 	else
-		printf "\"${grey}./${asm_name}${reset}\""
-		printf " couldn't compile ${grey}$(basename ${champ})${reset}\n"
+		printf "[MINE] - $(basename ${cor}) hasn't been created\n" >> ${file_test}${result_file}
+	fi
+	printf "[REAL] - "
+	./${resources_file}asm ${champ}
+	if [ -e ${cor} ]; then
+		mv ${cor} ${file_test}cor_real
+	else
+		printf "[REAL] - $(basename ${cor}) hasn't been created\n" >> ${file_test}${result_file}
 	fi
 
-	printf "./.tmp/real/${asm_resources} ${champ}\n"
-	touch ./.tmp/real/test.cor
-
-	cor_real=$(ls -t ${file_test}/asm/*.cor)
-
-
-	read
+	if [ -e "${file_test}cor_mine/$(basename ${cor})" ] && [ -e "${file_test}cor_real/$(basename ${cor})" ]; then
+		bash -c "diff -y <(xxd ${file_test}cor_real/$(basename ${cor})) <(xxd ${file_test}cor_mine/$(basename ${cor}))" >> ${file_test}${result_file}
+	fi
+	printf "\n" >> ${file_test}${result_file}
 done

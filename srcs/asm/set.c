@@ -6,7 +6,7 @@
 /*   By: pbernier <pbernier@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/11/02 21:34:13 by pbernier          #+#    #+#             */
-/*   Updated: 2017/11/29 19:57:46 by pbernier         ###   ########.fr       */
+/*   Updated: 2017/12/01 01:24:01 by pbernier         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,8 @@
 
 void	set_data(t_asm *e)
 {
-	e->head = NULL;
+	if (!(e->head = ft_strnew(0)))
+		error(e, MALLOC);
 	if (!(e->file = ft_strnew(0)))
 		error(e, MALLOC);
 	e->champ.fd = -1;
