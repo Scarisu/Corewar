@@ -6,38 +6,41 @@
 /*   By: pbernier <pbernier@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/11/14 22:21:56 by pbernier          #+#    #+#             */
-/*   Updated: 2017/11/20 16:44:34 by pbernier         ###   ########.fr       */
+/*   Updated: 2017/11/29 19:59:50 by pbernier         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <corewar.h>
 
-void 	need_arg(t_asm *e)
+void	need_arg(t_asm *e)
 {
-	ft_putstr_fd(WHITE "Not enought arguments, opcode \"" GREY, 2);
-	ft_putstr_fd(e->verbos.opcode_name, 2);
+	char	*nbr;
+
+	nbr = NULL;
+	add_cont(e, &V_LINE, WHITE "Not enought arguments, opcode \"" GREY);
+	add_cont(e, &V_LINE, e->verbos.opcode_name);
 	ft_memdel((void **)&e->verbos.opcode_name);
-	ft_putstr_fd(WHITE "\" need {" GREY, 2);
-	ft_putnbr_fd(g_op_tab[e->verbos.opcode].nb_params, 2);
-	ft_putstr_fd(WHITE "} argument", 2);
-	g_op_tab[e->verbos.opcode].nb_params > 1 ? ft_putchar_fd('s', 2) : 0;
+	add_cont(e, &V_LINE, WHITE "\" need {" GREY);
+	if (!(nbr = ft_itoa(g_op_tab[e->verbos.opcode].nb_params)))
+		error(e, MALLOC);
+	add_cont(e, &V_LINE, nbr);
+	ft_memdel((void **)&nbr);
+	add_cont(e, &V_LINE, WHITE "} argument");
+	if (g_op_tab[e->verbos.opcode].nb_params > 1)
+		add_cont(e, &V_LINE, "s");
 }
 
-void 	wrong_arg(t_asm *e)
+void	wrong_arg(t_asm *e)
 {
-
-	ft_putstr_fd(WHITE "Wrong argument, \"" GREY, 2);
-	ft_putstr_fd(e->verbos.opcode_name, 2);
+	add_cont(e, &V_LINE, WHITE "Wrong argument, \"" GREY);
+	add_cont(e, &V_LINE, e->verbos.opcode_name);
 	ft_memdel((void **)&e->verbos.opcode_name);
-	ft_putstr_fd(WHITE "\" expect {" GREY, 2);
-	//
-	ft_putstr_fd(WHITE "}", 2);
+	add_cont(e, &V_LINE, WHITE "\" expect {" GREY);
+	add_cont(e, &V_LINE, WHITE "}");
 }
 
 void	not_enought_arg(t_asm *e)
 {
 	ft_memdel((void **)&e->verbos.opcode_name);
-	//
-	ft_putstr_fd(WHITE "NOT ENOUGHT ARG", 2);
-	(void)e;
+	add_cont(e, &V_LINE, WHITE "NOT ENOUGHT ARG");
 }

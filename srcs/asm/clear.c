@@ -6,7 +6,7 @@
 /*   By: pbernier <pbernier@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/11/06 18:06:53 by pbernier          #+#    #+#             */
-/*   Updated: 2017/11/23 02:42:47 by pbernier         ###   ########.fr       */
+/*   Updated: 2017/11/23 05:58:47 by pbernier         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,6 +35,7 @@ void	clean_label(t_label *l)
 	while ((prev = l))
 	{
 		ft_memdel((void **)&l->name);
+		ft_memdel((void **)&l->line);
 		l = l->next;
 		ft_memdel((void **)&prev);
 	}

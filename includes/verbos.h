@@ -6,7 +6,7 @@
 /*   By: pbernier <pbernier@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/11/06 19:20:02 by pbernier          #+#    #+#             */
-/*   Updated: 2017/11/23 03:33:09 by pbernier         ###   ########.fr       */
+/*   Updated: 2017/11/29 19:39:23 by pbernier         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,6 +23,7 @@
 # define GREY "\033[38;5;8m"
 # define WHITE "\033[38;5;7m"
 # define GRAS "\033[1m"
+# define PINK "\033[35m"
 
 /*
 ** error
@@ -38,6 +39,7 @@
 */
 # define ERROR 1
 # define WARNING 2
+
 /*
 ** verbos
 */
@@ -60,8 +62,10 @@
 # define INVALID_ARG_LABEL 16
 # define INVALID_DIR 17
 
-# define MISSING_NAME 18
-# define MISSING_COMMENT 19
+# define LABEL_MULTI_INIT 18
+
+# define MISSING_NAME 19
+# define MISSING_COMMENT 20
 
 typedef struct s_frag	t_frag;
 typedef struct s_verbos	t_verbos;
@@ -69,7 +73,6 @@ typedef struct s_verbos	t_verbos;
 struct			s_frag
 {
 	int			coo[2];
-	int			*type;
 	char		*print;
 	t_frag		*next;
 };
@@ -78,6 +81,7 @@ struct			s_verbos
 {
 	int			i;
 	int			nb_error;
+	int			nb_warning;
 	int			nb_line;
 	int			len_arrow;
 	int			line_left;
@@ -85,14 +89,17 @@ struct			s_verbos
 	int			reg_nbr;
 	char		*cmd_invalid;
 	char		*opcode_name;
+	t_label		*pars;
+	t_label		*prev_pars;
 	t_frag		*frag;
 	t_frag		*frag_start;
-	void		(*tab[20])(t_asm *);
+	void		(*tab[21])(t_asm *);
 };
 
 int		verbos(t_asm *e, int err);
 
 void	print_pos(t_asm *e, int err);
+void	add_cont(t_asm *e, char **line, char const *add);
 
 void		name_exist(t_asm *e);
 void		syntax(t_asm *e);
@@ -100,7 +107,8 @@ void		name_len(t_asm *e);
 void		invalid_name(t_asm *e);
 void		name_diff_file(t_asm *e);
 void		invalid_char(t_asm *e);
-void		print_invalid_char(int nb_inv, int nb_uni, char inv[31]);
+void			print_invalid_char(t_asm *e, int nb_inv,
+				int nb_uni, char inv[31]);
 
 void		comment_exist(t_asm *e);
 void		comment_len(t_asm *e);
@@ -119,12 +127,13 @@ void		invalid_reg(t_asm *e);
 void		invalid_arg_label(t_asm *e);
 void		invalid_dir(t_asm *e);
 
+void		label_multi_init(t_asm *e);
+
 void		missing_name(t_asm *e);
 void		missing_comment(t_asm *e);
 
 void	adapt_line(t_asm *e, char *line);
 void	arrow(t_asm *e);
-void	nb_error(t_asm *e);
 
 
 

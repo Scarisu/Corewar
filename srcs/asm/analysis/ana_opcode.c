@@ -6,7 +6,7 @@
 /*   By: pbernier <pbernier@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/11/13 17:35:29 by pbernier          #+#    #+#             */
-/*   Updated: 2017/11/23 03:05:29 by pbernier         ###   ########.fr       */
+/*   Updated: 2017/11/29 20:09:59 by pbernier         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,8 +23,8 @@ int		ins_opcode(t_asm *e, char *line)
 		&& line[content_len] != ' '
 		&& line[content_len] != '\n')
 			++content_len;
-	//if (line[content_len] != ' ')
-		//return (verbos(e, INVALID_OPCODE));
+	if (line[content_len] != ' ')
+		return (verbos(e, INVALID_OPCODE));
 	content_len -= I;
 	if (!(e->verbos.opcode_name = ft_strsub(line, I, content_len)))
 		error(e, MALLOC);

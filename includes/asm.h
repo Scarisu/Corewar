@@ -6,7 +6,7 @@
 /*   By: pbernier <pbernier@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/11/02 19:56:24 by pbernier          #+#    #+#             */
-/*   Updated: 2017/11/23 06:19:46 by rlecart          ###   ########.fr       */
+/*   Updated: 2017/12/01 04:52:16 by rlecart          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,6 +15,7 @@
 
 # define BUFF e->champ.buff[0]
 # define I e->verbos.i
+# define V_LINE e->verbos.frag->print
 # define NUMBER 1
 # define LABEL 2
 
@@ -30,6 +31,7 @@ struct			s_label
 {
 	int			coo[2];
 	char		*name;
+	char		*line;
 	t_label		*next;
 };
 
@@ -98,6 +100,12 @@ int					arg_label(t_asm *e, char *line);
 int					arg_ind_value(t_asm *e, char *line);
 
 void	missing_data(t_asm *e);
+void	label_mutli(t_asm *e, t_verbos *ver, t_valid *val);
+void	label_exist(t_asm *e);
+
+int		print_verbos(t_verbos *v);
+int		nb_error(t_verbos *v);
+
 
 void	clean(t_asm *e);
 void		clean_label(t_label *l);

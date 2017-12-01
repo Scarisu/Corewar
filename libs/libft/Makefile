@@ -118,6 +118,7 @@ ifeq ($(FLAGS),$(WFLAGS))
 	@sed '/^FLAGS/ s/WFLAGS/DFLAGS/g' Makefile > Makefile.tmp
 	@mv	Makefile.tmp Makefile
 	@printf "[$(PROJECT)] Swap to lldb mode.\n"
+	@make
 else
 	@printf "[$(PROJECT)] Already in lldb mode.\n"
 endif
@@ -128,6 +129,7 @@ ifeq ($(FLAGS),$(DFLAGS))
 	@sed '/^FLAGS/ s/DFLAGS/WFLAGS/g' Makefile > Makefile.tmp
 	@mv	Makefile.tmp Makefile
 	@printf "[$(PROJECT)] Swap to normal mode.\n"
+	@make
 else
 	@printf "[$(PROJECT)] Already in normal mode.\n"
 endif

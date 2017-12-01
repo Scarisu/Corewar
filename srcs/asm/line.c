@@ -6,7 +6,7 @@
 /*   By: pbernier <pbernier@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/11/02 21:18:25 by pbernier          #+#    #+#             */
-/*   Updated: 2017/11/21 22:11:19 by pbernier         ###   ########.fr       */
+/*   Updated: 2017/11/29 20:32:35 by pbernier         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,5 +51,7 @@ void	check_line(t_asm *e)
 		++e->verbos.nb_line;
 	}
 	ft_memdel((void **)&e->champ.line);
+	label_mutli(e, &e->verbos, &e->champ.valid);
 	missing_data(e);
+
 }
