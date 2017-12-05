@@ -6,7 +6,7 @@
 /*   By: pbernier <pbernier@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/11/07 18:35:10 by pbernier          #+#    #+#             */
-/*   Updated: 2017/11/14 17:59:37 by pbernier         ###   ########.fr       */
+/*   Updated: 2017/12/05 21:51:23 by pbernier         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,25 +45,6 @@ int		save_name(t_asm *e, char *line)
 		error(e, MALLOC);
 	if (content_len > PROG_NAME_LENGTH)
 		return (verbos(e, NAME_LEN));
-	if (!valid_name(e->champ.valid.name))
-		return (verbos(e, INVALID_NAME));
-	if (ft_strcmp(e->champ.file_name, e->champ.valid.name))
-		return (verbos(e, NAME_DIFF_FILE));
 	I += content_len + 2;
-	return (1);
-}
-
-int		valid_name(char *name)
-{
-	int		i;
-	char	invalid_char[10];
-
-	i = -1;
-	if (!ft_strlen(name))
-		return (0);
-	ft_memcpy(invalid_char, (char[10]){"/\\:*?\"<>|\0"}, sizeof(char[10]));
-	while (name[++i])
-		if (ft_strchr(invalid_char, name[i]))
-			return (0);
 	return (1);
 }

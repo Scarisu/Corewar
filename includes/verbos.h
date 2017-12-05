@@ -6,7 +6,7 @@
 /*   By: pbernier <pbernier@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/11/06 19:20:02 by pbernier          #+#    #+#             */
-/*   Updated: 2017/12/01 01:14:46 by pbernier         ###   ########.fr       */
+/*   Updated: 2017/12/05 21:49:10 by pbernier         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,26 +47,26 @@
 # define NAME_EXIST 0
 # define SYNTAX 1
 # define NAME_LEN 2
-# define INVALID_NAME 3
-# define NAME_DIFF_FILE 4
-# define INVALID_CHAR 5
-# define COMMENT_EXIST 6
-# define COMMENT_LEN 7
-# define INVALID_COMMANDE 8
-# define INVALID_LABEL 9
-# define INVALID_OPCODE 10
-# define OPCODE_EXIST 11
-# define NEED_ARG 12
-# define WRONG_ARG 13
-# define INVALID_REG 14
-# define NOT_ENOUGHT_ARG 15
-# define INVALID_ARG_LABEL 16
-# define INVALID_DIR 17
+// # define INVALID_NAME 3
+// # define NAME_DIFF_FILE 4
+# define INVALID_CHAR 3
+# define COMMENT_EXIST 4
+# define COMMENT_LEN 5
+# define INVALID_COMMANDE 6
+# define INVALID_LABEL 7
+# define INVALID_OPCODE 8
+# define OPCODE_EXIST 9
+# define NEED_ARG 10
+# define WRONG_ARG 11
+# define INVALID_REG 12
+# define NOT_ENOUGHT_ARG 13
+# define INVALID_ARG_LABEL 14
+# define INVALID_DIR 15
 
-# define LABEL_MULTI_INIT 18
+# define LABEL_MULTI_INIT 16
 
-# define MISSING_NAME 19
-# define MISSING_COMMENT 20
+# define MISSING_NAME 17
+# define MISSING_COMMENT 18
 
 typedef struct s_frag	t_frag;
 typedef struct s_verbos	t_verbos;
@@ -94,7 +94,7 @@ struct			s_verbos
 	t_label		*prev_pars;
 	t_frag		*frag;
 	t_frag		*frag_start;
-	void		(*tab[21])(t_asm *);
+	void		(*tab[19])(t_asm *);
 };
 
 int		verbos(t_asm *e, int err);
@@ -105,8 +105,8 @@ void	add_cont(t_asm *e, char **line, char const *add);
 void		name_exist(t_asm *e);
 void		syntax(t_asm *e);
 void		name_len(t_asm *e);
-void		invalid_name(t_asm *e);
-void		name_diff_file(t_asm *e);
+//void		invalid_name(t_asm *e);
+//void		name_diff_file(t_asm *e);
 void		invalid_char(t_asm *e);
 void			print_invalid_char(t_asm *e, int nb_inv,
 				int nb_uni, char inv[31]);

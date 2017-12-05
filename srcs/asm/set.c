@@ -6,7 +6,7 @@
 /*   By: pbernier <pbernier@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/11/02 21:34:13 by pbernier          #+#    #+#             */
-/*   Updated: 2017/12/01 01:24:01 by pbernier         ###   ########.fr       */
+/*   Updated: 2017/12/05 21:49:25 by pbernier         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,6 +18,7 @@ void	set_data(t_asm *e)
 		error(e, MALLOC);
 	if (!(e->file = ft_strnew(0)))
 		error(e, MALLOC);
+	e->size = 0;
 	e->champ.fd = -1;
 	e->champ.file_path = NULL;
 	e->champ.file_name = NULL;
@@ -61,8 +62,6 @@ void	set_ptrver(t_asm *e)
 	e->verbos.tab[NAME_EXIST] = name_exist;
 	e->verbos.tab[SYNTAX] = syntax;
 	e->verbos.tab[NAME_LEN] = name_len;
-	e->verbos.tab[INVALID_NAME] = invalid_name;
-	e->verbos.tab[NAME_DIFF_FILE] = name_diff_file;
 	e->verbos.tab[INVALID_CHAR] = invalid_char;
 	e->verbos.tab[COMMENT_EXIST] = comment_exist;
 	e->verbos.tab[COMMENT_LEN] = comment_len;
@@ -88,6 +87,7 @@ t_label	*set_label(t_asm *e, int coo[2])
 	if (!(new = (t_label *)malloc(sizeof(t_label))))
 		error(e, MALLOC);
 	ft_memcpy(new->coo, coo, sizeof(int[2]));
+	new->octets = -1;
 	new->name = NULL;
 	new->line = NULL;
 	new->next = NULL;

@@ -6,7 +6,7 @@
 /*   By: pbernier <pbernier@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/11/02 19:56:24 by pbernier          #+#    #+#             */
-/*   Updated: 2017/12/01 01:09:08 by pbernier         ###   ########.fr       */
+/*   Updated: 2017/12/05 21:42:53 by pbernier         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,6 +29,7 @@ typedef struct s_asm	t_asm;
 struct			s_label
 {
 	int			coo[2];
+	int			octets;
 	char		*name;
 	char		*line;
 	t_label		*next;
@@ -60,6 +61,7 @@ struct			s_asm
 {
 	t_champ		champ;
 	t_verbos	verbos;
+	int			size;
 	char		*head;
 	char		*file;
 	int			(*tab[6])(t_asm *, char *);

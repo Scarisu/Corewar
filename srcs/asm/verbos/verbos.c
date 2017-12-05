@@ -6,7 +6,7 @@
 /*   By: pbernier <pbernier@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/11/06 19:25:27 by pbernier          #+#    #+#             */
-/*   Updated: 2017/11/29 19:55:19 by pbernier         ###   ########.fr       */
+/*   Updated: 2017/12/05 21:52:54 by pbernier         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,16 +14,17 @@
 
 int		verbos(t_asm *e, int err)
 {
-	(err == NAME_DIFF_FILE) ? ++e->verbos.nb_warning : ++e->verbos.nb_error;
+	//++e->verbos.nb_warning;
+	++e->verbos.nb_error;
 	if (err != MISSING_NAME && err != MISSING_COMMENT)
 		ft_memcpy(e->verbos.frag->coo,
 			(int[2]){e->verbos.nb_line, I + 1}, sizeof(int[2]));
 	if (!(e->verbos.frag->print = ft_strnew(1)))
 		error(e, MALLOC);
 	print_pos(e, err);
-	(err == NAME_DIFF_FILE) ?
-		add_cont(e, &V_LINE, PINK " warning: ") :
-		add_cont(e, &V_LINE, RED_MINUS " error: ");
+//	(err == NAME_DIFF_FILE) ?
+	//	add_cont(e, &V_LINE, PINK " warning: ") :
+	add_cont(e, &V_LINE, RED_MINUS " error: ");
 	e->verbos.tab[err](e);
 	add_cont(e, &V_LINE, RESET "\n");
 	if (err != MISSING_NAME && err != MISSING_COMMENT)

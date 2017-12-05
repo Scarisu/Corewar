@@ -6,7 +6,7 @@
 /*   By: pbernier <pbernier@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/11/23 03:01:03 by pbernier          #+#    #+#             */
-/*   Updated: 2017/11/29 20:34:16 by pbernier         ###   ########.fr       */
+/*   Updated: 2017/12/05 21:47:01 by pbernier         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,6 +30,7 @@ int		ins_label(t_asm *e, char *line)
 		return (verbos(e, INVALID_LABEL));
 	e->champ.valid.label->coo[0] = e->verbos.nb_line;
 	e->champ.valid.label->coo[1] = I;
+	e->champ.valid.label->octets = e->size;
 	if (!(e->champ.valid.label->line = ft_strdup(line)))
 		error(e, MALLOC);
 	e->champ.valid.label->next = set_label(e, (int[2]){0, 0});

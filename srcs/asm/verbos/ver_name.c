@@ -6,7 +6,7 @@
 /*   By: pbernier <pbernier@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/11/08 00:56:01 by pbernier          #+#    #+#             */
-/*   Updated: 2017/11/29 19:58:12 by pbernier         ###   ########.fr       */
+/*   Updated: 2017/12/05 21:51:42 by pbernier         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,28 +23,6 @@ void	name_exist(t_asm *e)
 		add_cont(e, &V_LINE, e->champ.valid.name);
 		add_cont(e, &V_LINE, WHITE "\"");
 	}
-}
-
-void	invalid_name(t_asm *e)
-{
-	if ((e->verbos.len_arrow = ft_strlen(e->champ.valid.name) + 1) > 30)
-		e->verbos.len_arrow = 30;
-	ft_memdel((void **)&e->champ.valid.name);
-	add_cont(e, &V_LINE, WHITE "Champion's name can't be null ");
-	add_cont(e, &V_LINE, "or contain { /\\:*?\"<>| }");
-}
-
-void	name_diff_file(t_asm *e)
-{
-	if ((e->verbos.len_arrow = ft_strlen(e->champ.valid.name) + 1) > 30)
-		e->verbos.len_arrow = 30;
-	add_cont(e, &V_LINE, WHITE "Champion's name is different from ");
-	add_cont(e, &V_LINE, "the orignal file: {\"" GREY);
-	add_cont(e, &V_LINE, e->champ.file_name);
-	add_cont(e, &V_LINE, WHITE "\", \"" GREY);
-	add_cont(e, &V_LINE, e->champ.valid.name);
-	ft_memdel((void **)&e->champ.valid.name);
-	add_cont(e, &V_LINE, WHITE "\"}");
 }
 
 void	name_len(t_asm *e)
