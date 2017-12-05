@@ -6,7 +6,7 @@
 /*   By: pbernier <pbernier@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/11/02 21:34:13 by pbernier          #+#    #+#             */
-/*   Updated: 2017/12/05 21:49:25 by pbernier         ###   ########.fr       */
+/*   Updated: 2017/12/06 00:18:07 by pbernier         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,6 +19,8 @@ void	set_data(t_asm *e)
 	if (!(e->file = ft_strnew(0)))
 		error(e, MALLOC);
 	e->size = 0;
+	e->enco = set_enco(e);
+	e->enco_start = e->enco;
 	e->champ.fd = -1;
 	e->champ.file_path = NULL;
 	e->champ.file_name = NULL;
@@ -61,7 +63,7 @@ void	set_ptrver(t_asm *e)
 {
 	e->verbos.tab[NAME_EXIST] = name_exist;
 	e->verbos.tab[SYNTAX] = syntax;
-	e->verbos.tab[NAME_LEN] = name_len;
+	e->verbos.tab[NAME_LEN] = name_len;c
 	e->verbos.tab[INVALID_CHAR] = invalid_char;
 	e->verbos.tab[COMMENT_EXIST] = comment_exist;
 	e->verbos.tab[COMMENT_LEN] = comment_len;
@@ -87,7 +89,6 @@ t_label	*set_label(t_asm *e, int coo[2])
 	if (!(new = (t_label *)malloc(sizeof(t_label))))
 		error(e, MALLOC);
 	ft_memcpy(new->coo, coo, sizeof(int[2]));
-	new->octets = -1;
 	new->name = NULL;
 	new->line = NULL;
 	new->next = NULL;
@@ -102,6 +103,18 @@ t_frag	*set_frag(t_asm *e, int coo[2])
 		error(e, MALLOC);
 	ft_memcpy(new->coo, coo, sizeof(int[2]));
 	new->print = NULL;
+	new->next = NULL;
+	return (new);
+}
+
+t_enco	*set_enco(t_asm *e)
+{
+	t_enco	*new;
+
+	if (!(new = (t_enco *)malloc(sizeof(t_enco))))
+		error(e, MALLOC);
+	new->hexa = NULL;
+	new->labels = NULL;
 	new->next = NULL;
 	return (new);
 }

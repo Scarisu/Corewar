@@ -6,7 +6,7 @@
 /*   By: pbernier <pbernier@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/11/06 18:06:53 by pbernier          #+#    #+#             */
-/*   Updated: 2017/12/01 01:00:40 by pbernier         ###   ########.fr       */
+/*   Updated: 2017/12/06 00:25:10 by pbernier         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,6 +50,23 @@ void	clean_frag(t_frag *f)
 	{
 		ft_memdel((void **)&f->print);
 		f = f->next;
+		ft_memdel((void **)&prev);
+	}
+}
+
+void	clean_enco(t_enco *e)
+{
+	int	i;
+	t_enco *prev;
+
+	i = -1;
+	while ((prev = e))
+	{
+		ft_memdel((void **)&e->hexa);
+		while ((e->labels) && (e->labels[++i]))
+			ft_memdel((void **)&e->labels[i]);
+		ft_memdel((void **)&e->labels);
+		e = e->next;
 		ft_memdel((void **)&prev);
 	}
 }
