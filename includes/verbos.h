@@ -6,7 +6,7 @@
 /*   By: pbernier <pbernier@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/11/06 19:20:02 by pbernier          #+#    #+#             */
-/*   Updated: 2017/12/05 21:49:10 by pbernier         ###   ########.fr       */
+/*   Updated: 2017/12/06 00:36:22 by pbernier         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -105,8 +105,6 @@ void	add_cont(t_asm *e, char **line, char const *add);
 void		name_exist(t_asm *e);
 void		syntax(t_asm *e);
 void		name_len(t_asm *e);
-//void		invalid_name(t_asm *e);
-//void		name_diff_file(t_asm *e);
 void		invalid_char(t_asm *e);
 void			print_invalid_char(t_asm *e, int nb_inv,
 				int nb_uni, char inv[31]);

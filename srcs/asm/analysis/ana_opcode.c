@@ -6,7 +6,7 @@
 /*   By: pbernier <pbernier@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/11/13 17:35:29 by pbernier          #+#    #+#             */
-/*   Updated: 2017/11/29 22:46:30 by pbernier         ###   ########.fr       */
+/*   Updated: 2017/12/06 01:18:06 by pbernier         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,7 +17,7 @@ int		ins_opcode(t_asm *e, char *line)
 	int		content_len;
 
 	if (!skip_tab(e, line))
-		return (verbos(e, SYNTAX));
+		return (0);
 	content_len = I;
 	while (line[content_len]
 		&& line[content_len] != ' '
@@ -30,7 +30,6 @@ int		ins_opcode(t_asm *e, char *line)
 		error(e, MALLOC);
 	if ((e->verbos.opcode = exist_opcode(e->verbos.opcode_name)) < 0)
 		return (verbos(e, OPCODE_EXIST));
-	
 	I += content_len;
 	return (check_param(e, e->verbos.opcode, line));
 }

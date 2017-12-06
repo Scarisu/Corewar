@@ -6,7 +6,7 @@
 /*   By: pbernier <pbernier@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/11/02 21:34:13 by pbernier          #+#    #+#             */
-/*   Updated: 2017/12/06 00:18:07 by pbernier         ###   ########.fr       */
+/*   Updated: 2017/12/06 00:37:12 by pbernier         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -63,7 +63,7 @@ void	set_ptrver(t_asm *e)
 {
 	e->verbos.tab[NAME_EXIST] = name_exist;
 	e->verbos.tab[SYNTAX] = syntax;
-	e->verbos.tab[NAME_LEN] = name_len;c
+	e->verbos.tab[NAME_LEN] = name_len;
 	e->verbos.tab[INVALID_CHAR] = invalid_char;
 	e->verbos.tab[COMMENT_EXIST] = comment_exist;
 	e->verbos.tab[COMMENT_LEN] = comment_len;

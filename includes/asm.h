@@ -6,7 +6,7 @@
 /*   By: pbernier <pbernier@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/11/02 19:56:24 by pbernier          #+#    #+#             */
-/*   Updated: 2017/12/06 00:14:33 by pbernier         ###   ########.fr       */
+/*   Updated: 2017/12/06 01:18:42 by pbernier         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -106,7 +106,7 @@ int				valid_label(char *name);
 int			ins_opcode(t_asm *e, char *line);
 int				exist_opcode(char *opcode);
 int				check_param(t_asm *e, int opcode, char *line);
-int				type_param(int type, char first_char);
+int				type_param(t_asm *e, int type, char first_char);
 int					arg_reg_value(t_asm *e, char *line);
 int					arg_dir_value(t_asm *e, char *line);
 int					arg_label(t_asm *e, char *line);
