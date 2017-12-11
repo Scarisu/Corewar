@@ -6,7 +6,7 @@
 /*   By: pbernier <pbernier@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/11/17 14:06:50 by pbernier          #+#    #+#             */
-/*   Updated: 2017/12/11 23:53:09 by pbernier         ###   ########.fr       */
+/*   Updated: 2017/12/12 00:31:36 by pbernier         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,5 +28,10 @@ void	invalid_dir_val(t_asm *e)
 {
 	add_cont(e, &V_LINE, WHITE "Invalid argument, direct value must be a ");
 	add_cont(e, &V_LINE, WHITE "valid number or a label");
-	(void)e;
+}
+
+void	invalid_ind_val(t_asm *e)
+{
+	add_cont(e, &V_LINE, WHITE "Invalid argument, indirect value must be a ");
+	add_cont(e, &V_LINE, WHITE "valid number or a label");
 }

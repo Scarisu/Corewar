@@ -6,7 +6,7 @@
 /*   By: pbernier <pbernier@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/11/14 22:21:27 by pbernier          #+#    #+#             */
-/*   Updated: 2017/12/11 22:26:59 by pbernier         ###   ########.fr       */
+/*   Updated: 2017/12/12 00:47:09 by pbernier         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,6 +24,8 @@ int		check_param(t_asm *e, int opcode, char *line)
 	ft_memcpy(type_list, g_op_tab[opcode].type, sizeof(int[MAX_ARGS_NUMBER]));
 	while ((type_list[nb_params]))
 	{
+		while (line[I] == ' ')
+			++I;
 		i = type_param(e, type_list[nb_params], line[I]);
 		if (i < 0)
 			return (verbos(e, WRONG_ARG));
@@ -63,7 +65,7 @@ int		type_param(t_asm *e, int type, char first_char)
 			if (first_char == limit[i] ||
 				(i == 0 && (
 				(first_char >= '0' && first_char <= '9') ||
-				first_char == '-' || first_char == '+')))
+				first_char == '-')))
 			{
 				e->size += (!e->verbos.nb_error) ? type_exist[i] : 0;
 				return (ret[i]);

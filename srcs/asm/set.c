@@ -6,7 +6,7 @@
 /*   By: pbernier <pbernier@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/11/02 21:34:13 by pbernier          #+#    #+#             */
-/*   Updated: 2017/12/11 23:22:48 by pbernier         ###   ########.fr       */
+/*   Updated: 2017/12/12 00:32:06 by pbernier         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -76,7 +76,7 @@ void	set_ptrver(t_asm *e)
 	e->verbos.tab[INVALID_REG] = invalid_reg;
 	e->verbos.tab[NOT_ENOUGHT_ARG] = not_enought_arg;
 	e->verbos.tab[INVALID_DIR_VAL] = invalid_dir_val;
-	//e->verbos.tab[INVALID_ARG_LABEL] = invalid_arg_label;
+	e->verbos.tab[INVALID_IND_VAL] = invalid_ind_val;
 	e->verbos.tab[LABEL_MULTI_INIT] = label_multi_init;
 }
 
