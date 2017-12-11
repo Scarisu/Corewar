@@ -6,7 +6,7 @@
 /*   By: pbernier <pbernier@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/11/06 18:06:53 by pbernier          #+#    #+#             */
-/*   Updated: 2017/12/06 00:25:10 by pbernier         ###   ########.fr       */
+/*   Updated: 2017/12/11 21:14:45 by pbernier         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,7 +24,6 @@ void	clean(t_asm *e)
 	ft_memdel((void **)&e->verbos.cmd_invalid);
 	ft_memdel((void **)&e->verbos.opcode_name);
 	clean_label(e->champ.valid.label_start);
-	clean_label(e->champ.valid.check_start);
 	clean_frag(e->verbos.frag_start);
 	read(0, e->champ.buff, 1);
 }

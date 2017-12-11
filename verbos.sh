@@ -1,12 +1,13 @@
 
 asm_name="asm"
 file_test="tests/verbos/"
-dir_list=("comment" "diverse" "instruction" "name")
+dir_list=("name" "comment" "instruction" "diverse" "argument")
 
 #d = directory
-flag_list="d"
+flag_list="ds"
 all_tests=()
 dir_invalid=()
+champ_invalid=()
 nb_done=0;
 
 underline="\033[4m"
@@ -14,6 +15,30 @@ reset="\033[0m"
 grey="\033[38;5;8m"
 
 if [[ $1 =~ ^-[${flag_list}]+$ ]]; then
+	if [[ $1 =~ [d] ]] && [[ $1 =~ [s] ]]; then
+		printf "$0: no compatible option -- d/s\n";
+		exit
+	fi
+	# if [[ $1 =~ [s] ]]; then
+	# 	unset dir_list
+	# 	all_tests=( "$@" )
+	# 	unset all_tests[0]
+	# 	if [[ -z "${all_tests[@]}" ]]; then
+	# 		printf "usage: $0 -s [file ...]\n"
+	# 		exit
+	# 	fi
+	# 	for name in ${all_tests[@]}; do
+	# 		if [ ! -d "${name}" ]; then
+	# 			champ_invalid[${#champ_invalid[@]}]=${name}
+	# 		fi
+	# 	done
+	# 	if [ -n "${champ_invalid}" ]; then
+	# 		for champ in ${champ_invalid[@]}; do
+	# 			printf "$0: ${champ}: No such file\n"
+	# 		done
+	# 		exit
+	# 	fi
+	# fi
 	if [[ $1 =~ [d] ]]; then
 		dir_list=( "$@" )
 		unset dir_list[0]
@@ -23,10 +48,11 @@ if [[ $1 =~ ^-[${flag_list}]+$ ]]; then
 		fi
 	fi
 	else if [ $1 ]; then
-		printf "usage: $0 [-${flag_list}] [file ...]\n"
+		printf "usage: $0 [-${flag_list}] [file ...] [dir ...]\n"
 		exit
 	fi
 fi
+
 
 for dir in ${dir_list[@]}; do
 	valid="dont exist"
@@ -70,5 +96,6 @@ for name in ${all_tests[@]}; do
 	printf "${reset}: "
 	printf "${grey}[$(basename ${name})]${reset}\n"
 	./${asm_name} ${name}
+	rm -f $(find ./${file_test} -name "*.cor")
 	read
 done

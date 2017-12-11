@@ -6,7 +6,7 @@
 /*   By: pbernier <pbernier@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/11/02 19:56:24 by pbernier          #+#    #+#             */
-/*   Updated: 2017/12/06 01:18:42 by pbernier         ###   ########.fr       */
+/*   Updated: 2017/12/11 21:11:22 by pbernier         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,8 +44,6 @@ struct			s_valid
 	char		*comment;
 	t_label		*label;
 	t_label		*label_start;
-	t_label		*check;
-	t_label		*check_start;
 };
 
 struct			s_champ

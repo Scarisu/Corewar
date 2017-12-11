@@ -6,7 +6,7 @@
 /*   By: pbernier <pbernier@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/11/02 21:34:13 by pbernier          #+#    #+#             */
-/*   Updated: 2017/12/06 00:37:12 by pbernier         ###   ########.fr       */
+/*   Updated: 2017/12/11 21:14:06 by pbernier         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,8 +31,6 @@ void	set_data(t_asm *e)
 	e->champ.valid.comment = NULL;
 	e->champ.valid.label = set_label(e, (int[2]){0, 0});
 	e->champ.valid.label_start = e->champ.valid.label;
-	e->champ.valid.check = set_label(e, (int[2]){0, 0});
-	e->champ.valid.check_start = e->champ.valid.check;
 	e->verbos.nb_error = 0;
 	e->verbos.nb_warning = 0;
 	e->verbos.nb_line = 1;

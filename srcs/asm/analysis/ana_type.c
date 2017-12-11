@@ -6,7 +6,7 @@
 /*   By: pbernier <pbernier@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/11/16 20:14:46 by pbernier          #+#    #+#             */
-/*   Updated: 2017/12/01 00:12:57 by pbernier         ###   ########.fr       */
+/*   Updated: 2017/12/11 21:12:54 by pbernier         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,26 +40,27 @@ int		arg_reg_value(t_asm *e, char *line)
 
 int		arg_dir_value(t_asm *e, char *line)
 {
+	int		nb_value;
 	int		content_len;
+	char	*value;
 
 	while (line[I] == ' ')
 		++I;
 	content_len = I + 1;
-	if (line[content_len] &&
-		line[content_len] == LABEL_CHAR)
+	if (line[content_len] == LABEL_CHAR)
 		return (arg_label(e, line));
-	if (line[content_len] && (
-		line[content_len] == '-' ||
-		line[content_len] == '+'))
+	if (line[content_len] == '-')
 		++content_len;
-	while (line[content_len] &&
-		(line[content_len] >= '0' || line[content_len] >= '9'))
+	while (line[content_len] >= '0' && line[content_len] >= '9')
 		++content_len;
-	if (line[content_len] &&
-		line[content_len] != ',' &&
+	if (line[content_len] != ',' &&
 		line[content_len] != ' ' &&
 		line[content_len] != '\n')
 		return (verbos(e, INVALID_DIR));
+
+	(void)value;
+	(void)nb_value;
+
 	I = content_len;
 	return (1);
 }
@@ -89,21 +90,23 @@ int		arg_ind_value(t_asm *e, char *line)
 
 int		arg_label(t_asm *e, char *line)
 {
-	int	content_len;
-
-	content_len = I + 2;
-	while (line[content_len]
-		&& line[content_len] != ','
-		&& line[content_len] != ' '
-		&& line[content_len] != '\n')
-		++content_len;
-	content_len -= I + 2;
-	if (!(e->champ.valid.check->name = ft_strsub(line, I + 2, content_len)))
-		error(e, MALLOC);
-	if (!valid_label(e->champ.valid.check->name))
-		return (verbos(e, INVALID_ARG_LABEL));
-	e->champ.valid.check->next = set_label(e, (int[2]){e->verbos.nb_line, I});
-	e->champ.valid.check = e->champ.valid.check->next;
-	I += content_len + 2;
+	(void)e;
+	(void)line;
+	// int	content_len;
+    //
+	// content_len = I + 2;
+	// while (line[content_len]
+	// 	&& line[content_len] != ','
+	// 	&& line[content_len] != ' '
+	// 	&& line[content_len] != '\n')
+	// 	++content_len;
+	// content_len -= I + 2;
+	// if (!(e->champ.valid.check->name = ft_strsub(line, I + 2, content_len)))
+	// 	error(e, MALLOC);
+	// if (!valid_label(e->champ.valid.check->name))
+	// 	return (verbos(e, INVALID_ARG_LABEL));
+	// e->champ.valid.check->next = set_label(e, (int[2]){e->verbos.nb_line, I});
+	// e->champ.valid.check = e->champ.valid.check->next;
+	// I += content_len + 2;
 	return (1);
 }
