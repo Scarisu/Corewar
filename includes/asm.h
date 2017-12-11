@@ -6,7 +6,7 @@
 /*   By: pbernier <pbernier@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/11/02 19:56:24 by pbernier          #+#    #+#             */
-/*   Updated: 2017/12/11 21:11:22 by pbernier         ###   ########.fr       */
+/*   Updated: 2017/12/11 21:39:52 by pbernier         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -59,7 +59,7 @@ struct			s_champ
 struct			s_enco
 {
 	char		*hexa;
-	char		**labels;
+	t_label		*arg_label;
 	int			nbr;
 	t_enco		*next;
 };
@@ -107,8 +107,9 @@ int				check_param(t_asm *e, int opcode, char *line);
 int				type_param(t_asm *e, int type, char first_char);
 int					arg_reg_value(t_asm *e, char *line);
 int					arg_dir_value(t_asm *e, char *line);
-int					arg_label(t_asm *e, char *line);
+int						arg_dir_label(t_asm *e, char *line);
 int					arg_ind_value(t_asm *e, char *line);
+int						arg_indir_label(t_asm *e, char *line);
 
 void	missing_data(t_asm *e);
 void	label_mutli(t_asm *e, t_verbos *ver, t_valid *val);

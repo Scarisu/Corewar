@@ -6,7 +6,7 @@
 /*   By: pbernier <pbernier@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/11/23 03:01:03 by pbernier          #+#    #+#             */
-/*   Updated: 2017/12/05 21:47:01 by pbernier         ###   ########.fr       */
+/*   Updated: 2017/12/11 21:37:26 by pbernier         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -81,24 +81,3 @@ void	label_mutli(t_asm *e, t_verbos *ver, t_valid *val)
 		val->label = val->label->next;
 	}
 }
-
-/*
-**void	label_exist(t_asm *e)
-**{
-**	e->champ.valid.check = e->champ.valid.check_start;
-**	while (e->champ.valid.check && e->champ.valid.check->name)
-**	{
-**		e->champ.valid.label = e->champ.valid.label_start;
-**		while (e->champ.valid.label && e->champ.valid.label->name
-**		&& ft_strcmp(e->champ.valid.label->name, e->champ.valid.check->name))
-**			e->champ.valid.label = e->champ.valid.label->next;
-**		if (e->champ.valid.label->name)
-**			ft_memcpy(e->champ.valid.label->coo, (int[2]){0,0}, sizeof(int[2]));
-**		else
-**			printf("balo\n");
-**			//verbos
-**
-**	}
-**	(void)e;
-**}
-*/

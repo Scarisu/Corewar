@@ -6,7 +6,7 @@
 /*   By: pbernier <pbernier@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/11/06 18:06:53 by pbernier          #+#    #+#             */
-/*   Updated: 2017/12/11 21:14:45 by pbernier         ###   ########.fr       */
+/*   Updated: 2017/12/11 21:36:46 by pbernier         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -62,9 +62,7 @@ void	clean_enco(t_enco *e)
 	while ((prev = e))
 	{
 		ft_memdel((void **)&e->hexa);
-		while ((e->labels) && (e->labels[++i]))
-			ft_memdel((void **)&e->labels[i]);
-		ft_memdel((void **)&e->labels);
+		clean_label(e->arg_label);
 		e = e->next;
 		ft_memdel((void **)&prev);
 	}

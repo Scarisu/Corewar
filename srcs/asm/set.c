@@ -6,7 +6,7 @@
 /*   By: pbernier <pbernier@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/11/02 21:34:13 by pbernier          #+#    #+#             */
-/*   Updated: 2017/12/11 21:14:06 by pbernier         ###   ########.fr       */
+/*   Updated: 2017/12/11 22:36:07 by pbernier         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -111,8 +111,10 @@ t_enco	*set_enco(t_asm *e)
 
 	if (!(new = (t_enco *)malloc(sizeof(t_enco))))
 		error(e, MALLOC);
-	new->hexa = NULL;
-	new->labels = NULL;
+	if (!(new->hexa = ft_strnew(0)))
+		error(e, MALLOC);
+	new->arg_label = set_label(e, (int[2]){0, 0});
 	new->next = NULL;
+	new->nbr = 0;
 	return (new);
 }

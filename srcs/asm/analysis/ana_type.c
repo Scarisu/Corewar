@@ -6,7 +6,7 @@
 /*   By: pbernier <pbernier@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/11/16 20:14:46 by pbernier          #+#    #+#             */
-/*   Updated: 2017/12/11 21:12:54 by pbernier         ###   ########.fr       */
+/*   Updated: 2017/12/11 22:47:55 by pbernier         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,7 +40,6 @@ int		arg_reg_value(t_asm *e, char *line)
 
 int		arg_dir_value(t_asm *e, char *line)
 {
-	int		nb_value;
 	int		content_len;
 	char	*value;
 
@@ -48,20 +47,31 @@ int		arg_dir_value(t_asm *e, char *line)
 		++I;
 	content_len = I + 1;
 	if (line[content_len] == LABEL_CHAR)
-		return (arg_label(e, line));
+		return (arg_dir_label(e, line));
 	if (line[content_len] == '-')
 		++content_len;
-	while (line[content_len] >= '0' && line[content_len] >= '9')
+	while (line[content_len] >= '0' && line[content_len] <= '9')
 		++content_len;
-	if (line[content_len] != ',' &&
-		line[content_len] != ' ' &&
-		line[content_len] != '\n')
+	if ((line[content_len] != ',' && line[content_len] != ' ' &&
+		line[content_len] != '\n') || (I + 1) == content_len ||
+		line[content_len - 1] == '-')
 		return (verbos(e, INVALID_DIR));
-
-	(void)value;
-	(void)nb_value;
-
+	if (!(value = ft_strsub(line, I + 1, content_len - I - 1)))
+		error(e, MALLOC);
+	add_cont(e, &e->enco->hexa, (char[2]){ft_atoi(value), '\0'});
+	ft_memdel((void **)&value);
 	I = content_len;
+	return (1);
+}
+
+int		arg_dir_label(t_asm *e, char *line)
+{
+	(void)e;
+	(void)line;
+	while (line[I] == ' ')
+		++I;
+	while (line[I] && line[I] != ' ' && line[I] != ',')
+		++I;
 	return (1);
 }
 
@@ -88,7 +98,7 @@ int		arg_ind_value(t_asm *e, char *line)
 	return (1);
 }
 
-int		arg_label(t_asm *e, char *line)
+int		arg_ind_label(t_asm *e, char *line)
 {
 	(void)e;
 	(void)line;
