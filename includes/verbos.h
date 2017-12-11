@@ -6,7 +6,7 @@
 /*   By: pbernier <pbernier@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/11/06 19:20:02 by pbernier          #+#    #+#             */
-/*   Updated: 2017/12/06 00:36:22 by pbernier         ###   ########.fr       */
+/*   Updated: 2017/12/11 23:07:48 by pbernier         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -60,8 +60,8 @@
 # define WRONG_ARG 11
 # define INVALID_REG 12
 # define NOT_ENOUGHT_ARG 13
-# define INVALID_ARG_LABEL 14
-# define INVALID_DIR 15
+// # define INVALID_ARG_LABEL 14
+# define INVALID_DIR_VAL 15
 
 # define LABEL_MULTI_INIT 16
 
@@ -123,8 +123,8 @@ void		not_enought_arg(t_asm *e);
 void 		wrong_arg(t_asm *e);
 
 void		invalid_reg(t_asm *e);
+void		invalid_dir_val(t_asm *e);
 void		invalid_arg_label(t_asm *e);
-void		invalid_dir(t_asm *e);
 
 void		label_multi_init(t_asm *e);
 

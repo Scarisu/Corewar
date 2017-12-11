@@ -6,7 +6,7 @@
 /*   By: pbernier <pbernier@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/11/17 14:06:50 by pbernier          #+#    #+#             */
-/*   Updated: 2017/12/11 22:25:41 by pbernier         ###   ########.fr       */
+/*   Updated: 2017/12/11 23:06:52 by pbernier         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,15 +26,15 @@ void	invalid_reg(t_asm *e)
 	ft_memdel((void **)&nbr);
 }
 
-void	invalid_arg_label(t_asm *e)
+void	invalid_dir_val(t_asm *e)
 {
-	add_cont(e, &V_LINE, "INVALID ARG LABEL");
+	add_cont(e, &V_LINE, "INVALID DIR VALUE");
 	(void)e;
 }
 
-void	invalid_dir(t_asm *e)
+
+void	invalid_arg_label(t_asm *e)
 {
-	
-	add_cont(e, &V_LINE, "INVALID DIR");
+	add_cont(e, &V_LINE, "INVALID ARG LABEL");
 	(void)e;
 }

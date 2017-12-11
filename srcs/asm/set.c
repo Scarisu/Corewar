@@ -6,7 +6,7 @@
 /*   By: pbernier <pbernier@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/11/02 21:34:13 by pbernier          #+#    #+#             */
-/*   Updated: 2017/12/11 22:36:07 by pbernier         ###   ########.fr       */
+/*   Updated: 2017/12/11 23:22:48 by pbernier         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -75,8 +75,8 @@ void	set_ptrver(t_asm *e)
 	e->verbos.tab[WRONG_ARG] = wrong_arg;
 	e->verbos.tab[INVALID_REG] = invalid_reg;
 	e->verbos.tab[NOT_ENOUGHT_ARG] = not_enought_arg;
-	e->verbos.tab[INVALID_ARG_LABEL] = invalid_arg_label;
-	e->verbos.tab[INVALID_DIR] = invalid_dir;
+	e->verbos.tab[INVALID_DIR_VAL] = invalid_dir_val;
+	//e->verbos.tab[INVALID_ARG_LABEL] = invalid_arg_label;
 	e->verbos.tab[LABEL_MULTI_INIT] = label_multi_init;
 }
 
@@ -113,7 +113,7 @@ t_enco	*set_enco(t_asm *e)
 		error(e, MALLOC);
 	if (!(new->hexa = ft_strnew(0)))
 		error(e, MALLOC);
-	new->arg_label = set_label(e, (int[2]){0, 0});
+	new->arg_label = NULL;
 	new->next = NULL;
 	new->nbr = 0;
 	return (new);

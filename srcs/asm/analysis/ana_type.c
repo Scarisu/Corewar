@@ -6,7 +6,7 @@
 /*   By: pbernier <pbernier@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/11/16 20:14:46 by pbernier          #+#    #+#             */
-/*   Updated: 2017/12/11 22:47:55 by pbernier         ###   ########.fr       */
+/*   Updated: 2017/12/11 23:28:46 by pbernier         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -55,7 +55,7 @@ int		arg_dir_value(t_asm *e, char *line)
 	if ((line[content_len] != ',' && line[content_len] != ' ' &&
 		line[content_len] != '\n') || (I + 1) == content_len ||
 		line[content_len - 1] == '-')
-		return (verbos(e, INVALID_DIR));
+		return (verbos(e, INVALID_DIR_VAL));
 	if (!(value = ft_strsub(line, I + 1, content_len - I - 1)))
 		error(e, MALLOC);
 	add_cont(e, &e->enco->hexa, (char[2]){ft_atoi(value), '\0'});
@@ -66,12 +66,28 @@ int		arg_dir_value(t_asm *e, char *line)
 
 int		arg_dir_label(t_asm *e, char *line)
 {
-	(void)e;
-	(void)line;
-	while (line[I] == ' ')
-		++I;
-	while (line[I] && line[I] != ' ' && line[I] != ',')
-		++I;
+	int		content_len;
+	char	*label;
+
+	content_len = I + 2;
+	while (line[content_len] != ',' && line[content_len] != ' '
+		&& line[content_len] != '\n')
+		++content_len;
+	if (!(label = ft_strsub(line, I + 2, content_len - I - 2)))
+		error(e, MALLOC);
+	if (!valid_label(label))
+	{
+		ft_memdel((void **)&label);
+		return (verbos(e, INVALID_LABEL));
+	}
+	e->enco->next = set_enco(e);
+	e->enco = e->enco->next;
+	e->enco->arg_label = set_label(e, (int[2]){e->verbos.nb_line, I});
+	if (!(e->enco->arg_label->name = ft_strdup(label)))
+		error(e, MALLOC);
+	ft_memdel((void **)&label);
+	if (!(e->enco->arg_label->line = ft_strdup(line)))
+		error(e, MALLOC);
 	return (1);
 }
 
@@ -93,7 +109,7 @@ int		arg_ind_value(t_asm *e, char *line)
 		line[content_len] != ',' &&
 		line[content_len] != ' ' &&
 		line[content_len] != '\n')
-		return (verbos(e, INVALID_DIR));
+		return (0);
 	I = content_len;
 	return (1);
 }
