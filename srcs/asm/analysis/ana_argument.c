@@ -6,7 +6,7 @@
 /*   By: pbernier <pbernier@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/11/14 22:21:27 by pbernier          #+#    #+#             */
-/*   Updated: 2017/12/12 00:47:09 by pbernier         ###   ########.fr       */
+/*   Updated: 2017/12/12 01:05:56 by pbernier         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,8 +26,7 @@ int		check_param(t_asm *e, int opcode, char *line)
 	{
 		while (line[I] == ' ')
 			++I;
-		i = type_param(e, type_list[nb_params], line[I]);
-		if (i < 0)
+		if ((i = type_param(e, type_list[nb_params], line[I])) < 0)
 			return (verbos(e, WRONG_ARG));
 		if (!e->arg_value[i](e, line))
 		{
@@ -36,14 +35,12 @@ int		check_param(t_asm *e, int opcode, char *line)
 		}
 		while (line[I] == ' ')
 			++I;
-		//printf("[%d] < [%d]\n", nb_params + 1, g_op_tab[opcode].nb_params);
 		if (nb_params + 1 < g_op_tab[opcode].nb_params && line[I] != ',')
 			return (verbos(e, NOT_ENOUGHT_ARG));
 		++I;
 		++nb_params;
 	}
 	ft_memdel((void **)&e->verbos.opcode_name);
-	//printf("\n\n");
 	return (0);
 }
 

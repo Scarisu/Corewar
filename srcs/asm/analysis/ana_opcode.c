@@ -6,7 +6,7 @@
 /*   By: pbernier <pbernier@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/11/13 17:35:29 by pbernier          #+#    #+#             */
-/*   Updated: 2017/12/06 01:18:06 by pbernier         ###   ########.fr       */
+/*   Updated: 2017/12/12 01:03:12 by pbernier         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,6 +31,7 @@ int		ins_opcode(t_asm *e, char *line)
 	if ((e->verbos.opcode = exist_opcode(e->verbos.opcode_name)) < 0)
 		return (verbos(e, OPCODE_EXIST));
 	I += content_len;
+	add_cont(e, &e->enco->hexa, (char[2]){e->verbos.opcode, '\0'});
 	return (check_param(e, e->verbos.opcode, line));
 }
 
