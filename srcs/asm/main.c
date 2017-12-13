@@ -74,6 +74,7 @@ void		create_cor(t_asm *e)
 		O_CREAT | O_RDWR | O_TRUNC, 0755)) < 2)
 		error(e, CREATE);
 	ft_putstr_fd(e->head, fd);
+	ft_putstr_fd(e->file, fd);
 	ft_putstr(e->champ.file_name);
 	ft_putstr(".cor a bien été créeeee\n");
 }

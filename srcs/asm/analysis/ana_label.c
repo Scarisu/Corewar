@@ -147,8 +147,6 @@ void	used_label(t_asm *e, t_valid *val)
 		}
 		val->label = val->label->next;
 	}
-	(void)e;
-	(void)val;
 }
 
 

@@ -13,7 +13,6 @@
 .name		"S.A.M."
 .comment	"Ca roxxe du chameau"
 
-entry:
 	sti		r1, %:wall, %1
 	ld		%0, r16
 	fork	%:shield_init
@@ -21,7 +20,6 @@ entry:
 	live	%21
 	fork	%:machine_gun_init
 
-wall_prep:
 	ld		%0, r2
 	ld		%0, r16
 

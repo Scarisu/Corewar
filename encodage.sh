@@ -39,19 +39,21 @@ for champ in ${all_champs[@]}; do
 	printf "\n[${nb_done}/${nb_champs}] "
 	printf "${grey}[$(basename ${cor})]${reset}\n"
 	read
-	printf "[MINE] - "
-	./${asm_name} ${champ}
-	if [ -e ${cor} ]; then
-		mv ${cor} ${file_test}cor_mine
-	else
-		printf "[MINE] - $(basename ${cor}) hasn't been created\n" >> ${file_test}${result_file}
-	fi
+
 	printf "[REAL] - "
 	./${resources_file}asm ${champ}
 	if [ -e ${cor} ]; then
 		mv ${cor} ${file_test}cor_real
 	else
 		printf "[REAL] - $(basename ${cor}) hasn't been created\n" >> ${file_test}${result_file}
+	fi
+
+	printf "\n[MINE] - "
+	./${asm_name} ${champ}
+	if [ -e ${cor} ]; then
+		mv ${cor} ${file_test}cor_mine
+	else
+		printf "[MINE] - $(basename ${cor}) hasn't been created\n" >> ${file_test}${result_file}
 	fi
 
 	if [ -e "${file_test}cor_mine/$(basename ${cor})" ] && [ -e "${file_test}cor_real/$(basename ${cor})" ]; then
