@@ -76,16 +76,18 @@ int		arg_dir_label(t_asm *e, char *line)
 	if (!valid_label(label))
 	{
 		ft_memdel((void **)&label);
-		return (verbos(e, INVALID_LABEL));
+		return (verbos(e, INVALID_LABEL_ARG));
 	}
-	e->enco->next = set_enco(e);
-	e->enco = e->enco->next;
 	e->enco->arg_label = set_label(e, (int[2]){e->verbos.nb_line, I});
+	e->enco->arg_label->type = T_DIR;
+	e->enco->arg_label->octets = e->size;
 	if (!(e->enco->arg_label->name = ft_strdup(label)))
 		error(e, MALLOC);
 	ft_memdel((void **)&label);
 	if (!(e->enco->arg_label->line = ft_strdup(line)))
 		error(e, MALLOC);
+	e->enco->next = set_enco(e);
+	e->enco = e->enco->next;
 	I = content_len;
 	return (1);
 }
@@ -130,16 +132,18 @@ int		arg_ind_label(t_asm *e, char *line)
 	if (!valid_label(label))
 	{
 		ft_memdel((void **)&label);
-		return (verbos(e, INVALID_LABEL));
+		return (verbos(e, INVALID_LABEL_ARG));
 	}
-	e->enco->next = set_enco(e);
-	e->enco = e->enco->next;
 	e->enco->arg_label = set_label(e, (int[2]){e->verbos.nb_line, I});
+	e->enco->arg_label->type = T_IND;
+	e->enco->arg_label->octets = e->size;
 	if (!(e->enco->arg_label->name = ft_strdup(label)))
 		error(e, MALLOC);
 	ft_memdel((void **)&label);
 	if (!(e->enco->arg_label->line = ft_strdup(line)))
 		error(e, MALLOC);
+	e->enco->next = set_enco(e);
+	e->enco = e->enco->next;
 	I = content_len;
 	return (1);
 }

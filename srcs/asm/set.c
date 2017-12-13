@@ -77,7 +77,10 @@ void	set_ptrver(t_asm *e)
 	e->verbos.tab[NOT_ENOUGHT_ARG] = not_enought_arg;
 	e->verbos.tab[INVALID_DIR_VAL] = invalid_dir_val;
 	e->verbos.tab[INVALID_IND_VAL] = invalid_ind_val;
+	e->verbos.tab[INVALID_LABEL_ARG] = invalid_label_arg;
+	e->verbos.tab[LABEL_USED] = label_used;
 	e->verbos.tab[LABEL_MULTI_INIT] = label_multi_init;
+	e->verbos.tab[LABEL_EXIST] = label_exist;
 }
 
 t_label	*set_label(t_asm *e, int coo[2])
@@ -89,6 +92,8 @@ t_label	*set_label(t_asm *e, int coo[2])
 	ft_memcpy(new->coo, coo, sizeof(int[2]));
 	new->name = NULL;
 	new->line = NULL;
+	new->type = 0;
+	new->used = 0;
 	new->next = NULL;
 	return (new);
 }

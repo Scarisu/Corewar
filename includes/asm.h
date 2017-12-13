@@ -33,6 +33,8 @@ struct			s_label
 	int			octets;
 	char		*name;
 	char		*line;
+	int			type;
+	int			used;
 	t_label		*next;
 };
 
@@ -113,12 +115,13 @@ int						arg_ind_label(t_asm *e, char *line);
 
 void	missing_data(t_asm *e);
 void	label_mutli(t_asm *e, t_verbos *ver, t_valid *val);
-void	label_exist(t_asm *e);
+void	set_file(t_asm *e);
+int			exist_label(t_asm *e, t_label *exi, t_valid *val);
+void	used_label(t_asm *e, t_valid *val);
 
 int		print_verbos(t_verbos *v);
 int		nb_error(t_verbos *v);
-int 	create_cor(t_asm *e);
-
+void 	create_cor(t_asm *e);
 
 void	clean(t_asm *e);
 void		clean_label(t_label *l);

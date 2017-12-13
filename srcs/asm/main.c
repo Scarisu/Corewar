@@ -64,7 +64,7 @@ int		nb_error(t_verbos *v)
 	return (v->nb_error);
 }
 
-int		create_cor(t_asm *e)
+void		create_cor(t_asm *e)
 {
 	int	fd;
 
@@ -76,5 +76,4 @@ int		create_cor(t_asm *e)
 	ft_putstr_fd(e->head, fd);
 	ft_putstr(e->champ.file_name);
 	ft_putstr(".cor a bien été créeeee\n");
-	return (1);
 }

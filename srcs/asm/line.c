@@ -40,7 +40,7 @@ void	check_line(t_asm *e)
 {
 	int i;
 
-	while (e->verbos.nb_error <= 10 &&
+	while (e->verbos.nb_error < 10 &&
 		(e->verbos.line_left = get_line(e, &e->champ.line)))
 	{
 		i = 0;
@@ -52,6 +52,7 @@ void	check_line(t_asm *e)
 	}
 	ft_memdel((void **)&e->champ.line);
 	label_mutli(e, &e->verbos, &e->champ.valid);
+	set_file(e);
+	used_label(e, &e->champ.valid);
 	missing_data(e);
-
 }

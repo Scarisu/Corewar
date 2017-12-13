@@ -35,3 +35,8 @@ void	invalid_ind_val(t_asm *e)
 	add_cont(e, &V_LINE, WHITE "Invalid argument, indirect value must be a ");
 	add_cont(e, &V_LINE, WHITE "valid number or a label");
 }
+
+void	invalid_label_arg(t_asm *e)
+{
+	add_cont(e, &V_LINE, WHITE "BAD LABEL ARG");
+}

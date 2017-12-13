@@ -81,3 +81,107 @@ void	label_mutli(t_asm *e, t_verbos *ver, t_valid *val)
 		val->label = val->label->next;
 	}
 }
+
+// void	test(t_asm *e)
+// {
+// 	int i = -1;
+// 	printf("[");
+// 	while (e->enco->hexa[++i])
+// 		printf("%d", e->enco->hexa[i]);
+// 	printf("].");
+// 	if (e->enco->arg_label)
+// 		printf("[%s]", e->enco->arg_label->name);
+// 	printf("\n");
+// }
+
+void	set_file(t_asm *e)
+{
+	e->enco = e->enco_start;
+	while (e->enco && (e->enco->hexa || e->enco->arg_label))
+	{
+		if (e->enco->hexa[0])
+			add_cont(e, &e->file, e->enco->hexa);
+		if (e->enco->arg_label)
+			exist_label(e, e->enco->arg_label, &e->champ.valid);
+		//test(e);
+		e->enco = e->enco->next;
+	}
+}
+
+int		exist_label(t_asm *e, t_label *exi, t_valid *val)
+{
+	val->label = val->label_start;
+	while (val->label && val->label->next)
+	{
+		if (!ft_strcmp(val->label->name, exi->name))
+		{
+			add_cont(e, &e->enco->hexa,
+				(char[2]){val->label->octets - exi->octets, '\0'});
+			val->label->used = 1;
+			return (1);
+		}
+		val->label = val->label->next;
+	}
+	if (!(e->champ.line = ft_strdup(exi->line)))
+	 	error(e, MALLOC);
+	e->verbos.nb_line = exi->coo[0];
+	I = exi->coo[1];
+	verbos(e, LABEL_EXIST);
+	ft_memdel((void **)&e->champ.line);
+	return (0);
+}
+
+void	used_label(t_asm *e, t_valid *val)
+{
+	val->label = val->label_start;
+	while (val->label && val->label->next)
+	{
+		if (!val->label->used)
+		{
+			if (!(e->champ.line = ft_strdup(val->label->line)))
+			 	error(e, MALLOC);
+			e->verbos.nb_line = val->label->coo[0];
+			I = val->label->coo[1];
+			verbos(e, LABEL_USED);
+			ft_memdel((void **)&e->champ.line);
+		}
+		val->label = val->label->next;
+	}
+	(void)e;
+	(void)val;
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+//
