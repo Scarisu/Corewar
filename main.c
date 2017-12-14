@@ -6,7 +6,7 @@
 /*   By: rlecart <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/12/14 05:00:40 by rlecart           #+#    #+#             */
-/*   Updated: 2017/12/14 05:14:48 by rlecart          ###   ########.fr       */
+/*   Updated: 2017/12/14 06:25:58 by pbernier         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -55,12 +55,12 @@ int		main(int argc, char **argv)
 		while (i < len1 || i < len2)
 		{
 			ft_putchar('[');
-			if (i < len1)
+			if (i <= len1)
 				ft_putnbr(str1[i]);
 			else
 				ft_putchar('/');
 			ft_putstr("] - [");
-			if (i < len2)
+			if (i <= len2)
 				ft_putnbr(str2[i]);
 			else
 				ft_putchar('/');

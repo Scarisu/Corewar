@@ -66,8 +66,23 @@ int		nb_error(t_verbos *v)
 
 void		set_head(t_asm *e)
 {
-	add_cont(e, &e->head, (char[2]){(char)COREWAR_EXEC_MAGIC, '\0'});
-	(void)e;
+	int				nb;
+	char			str[5];
+	unsigned int	i;
+
+	str[4] = '\0';
+	i = COREWAR_EXEC_MAGIC;
+	nb = 3;
+	while (i)
+	{
+		//printf("[%d]\n", (char)i);
+		str[nb] = (char)i;
+		nb--;
+		i /= 256;
+	}
+	add_cont(e, &e->head, "COUILLASSE\0");
+
+//	printf("[%d][%d][%d][%d]\n", str[0], str[1], str[2], str[3]);
 }
 
 

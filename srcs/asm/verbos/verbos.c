@@ -105,6 +105,7 @@ void	add_cont(t_asm *e, char **line, char const *add)
 
 	l[0] = (*line) ? ft_strlen(*line) : 0;
 	l[1] = (add) ? ft_strlen(add) : 0;
+	printf(".\n");
 	if (!(final = (char *)malloc(sizeof(char) * (l[0] + l[1] + 1))))
 		error(e, MALLOC);
 	final[l[0] + l[1]] = '\0';
