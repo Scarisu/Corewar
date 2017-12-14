@@ -10,7 +10,7 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-#include <corewar.h>
+#include <asm.h>
 
 void	usage(t_asm *e, int argc, char *av)
 {

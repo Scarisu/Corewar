@@ -13,10 +13,8 @@
 #ifndef COREWAR_H
 # define COREWAR_H
 
-# include "op.h"
-# include "asm.h"
 # include <../lib/libft/includes/libft.h>
-
+# include <op.h>
 # include <sys/types.h>
 # include <sys/stat.h>
 # include <fcntl.h>

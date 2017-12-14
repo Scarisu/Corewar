@@ -26,6 +26,7 @@ typedef struct s_enco	t_enco;
 typedef struct s_asm	t_asm;
 
 # include <verbos.h>
+# include <corewar.h>
 
 struct			s_label
 {
@@ -76,7 +77,6 @@ struct			s_asm
 	t_enco		*enco;
 	t_enco		*enco_start;
 	int			(*tab[6])(t_asm *, char *);
-	int			(*arg_value[3])(t_asm *, char *);
 };
 
 
@@ -107,11 +107,10 @@ int			ins_opcode(t_asm *e, char *line);
 int				exist_opcode(char *opcode);
 int				check_param(t_asm *e, int opcode, char *line);
 int				type_param(t_asm *e, int type, char first_char);
-int					arg_reg_value(t_asm *e, char *line);
-int					arg_dir_value(t_asm *e, char *line);
-int						arg_dir_label(t_asm *e, char *line);
-int					arg_ind_value(t_asm *e, char *line);
-int						arg_ind_label(t_asm *e, char *line);
+int					arg_reg(t_asm *e, char *line);
+int					arg_val(t_asm *e, char *line, int type);
+int					arg_lab(t_asm *e, char *line, int type);
+
 
 void	missing_data(t_asm *e);
 void	label_mutli(t_asm *e, t_verbos *ver, t_valid *val);

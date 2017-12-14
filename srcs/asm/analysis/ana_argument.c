@@ -10,7 +10,7 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-#include <corewar.h>
+#include <asm.h>
 
 int		check_param(t_asm *e, int opcode, char *line)
 {
@@ -28,11 +28,8 @@ int		check_param(t_asm *e, int opcode, char *line)
 			++I;
 		if ((i = type_param(e, type_list[nb_params], line[I])) < 0)
 			return (verbos(e, WRONG_ARG));
-		if (!e->arg_value[i](e, line))
-		{
-			ft_memdel((void **)&e->verbos.opcode_name);
+		if ((i == 0 && !arg_reg(e, line)) || (i != 0 && !arg_val(e, line, i)))
 			return (0);
-		}
 		while (line[I] == ' ')
 			++I;
 		if (nb_params + 1 < g_op_tab[opcode].nb_params && line[I] != ',')
@@ -40,7 +37,6 @@ int		check_param(t_asm *e, int opcode, char *line)
 		++I;
 		++nb_params;
 	}
-	ft_memdel((void **)&e->verbos.opcode_name);
 	return (0);
 }
 

@@ -10,7 +10,7 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-#include <corewar.h>
+#include <asm.h>
 
 void	set_data(t_asm *e)
 {
@@ -52,9 +52,6 @@ void	set_ptrft(t_asm *e)
 	e->tab[3] = cmd_check;
 	e->tab[4] = ins_label;
 	e->tab[5] = ins_opcode;
-	e->arg_value[0] = arg_reg_value;
-	e->arg_value[1] = arg_dir_value;
-	e->arg_value[2] = arg_ind_value;
 }
 
 void	set_ptrver(t_asm *e)

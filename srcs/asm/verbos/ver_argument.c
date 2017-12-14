@@ -10,7 +10,7 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-#include <corewar.h>
+#include <asm.h>
 
 void	need_arg(t_asm *e)
 {
@@ -41,6 +41,5 @@ void	wrong_arg(t_asm *e)
 
 void	not_enought_arg(t_asm *e)
 {
-	ft_memdel((void **)&e->verbos.opcode_name);
 	add_cont(e, &V_LINE, WHITE "NOT ENOUGHT ARG");
 }

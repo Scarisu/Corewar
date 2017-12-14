@@ -10,7 +10,7 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-#include <corewar.h>
+#include <asm.h>
 
 int		get_line(t_asm *e, char **line)
 {
@@ -40,7 +40,7 @@ void	check_line(t_asm *e)
 {
 	int i;
 
-	while ((e->verbos.nb_line - e->verbos.frag_start->coo[0]) < 100 &&
+	while ((e->verbos.nb_line - e->verbos.frag_start->coo[0]) < MAX_LINE &&
 		(e->verbos.line_left = get_line(e, &e->champ.line)))
 	{
 		i = 0;

@@ -13,6 +13,8 @@
 #ifndef VERBOS_H
 # define VERBOS_H
 
+# define MAX_LINE 100
+
 /*
 ** color
 */
@@ -34,12 +36,6 @@
 # define READ_CHAMP 4
 # define MALLOC 5
 # define CREATE 6
-
-/*
-** verbos
-*/
-# define ERROR 1
-# define WARNING 2
 
 /*
 ** verbos

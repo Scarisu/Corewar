@@ -10,19 +10,19 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-#include <corewar.h>
+#include <asm.h>
 
 int		ins_opcode(t_asm *e, char *line)
 {
+	int		ret;
 	int		content_len;
 
 	if (!skip_tab(e, line))
 		return (0);
 	content_len = I;
-	while (line[content_len]
-		&& line[content_len] != ' '
+	while (line[content_len] && line[content_len] != ' '
 		&& line[content_len] != '\n')
-			++content_len;
+		++content_len;
 	if (line[content_len] != ' ')
 		return (verbos(e, INVALID_OPCODE));
 	content_len -= I;
@@ -32,7 +32,9 @@ int		ins_opcode(t_asm *e, char *line)
 		return (verbos(e, OPCODE_EXIST));
 	I += content_len;
 	add_cont(e, &e->enco->hexa, (char[2]){e->verbos.opcode, '\0'});
-	return (check_param(e, e->verbos.opcode, line));
+	ret = check_param(e, e->verbos.opcode, line);
+	ft_memdel((void **)&e->verbos.opcode_name);
+	return (ret);
 }
 
 int		exist_opcode(char *opcode)
