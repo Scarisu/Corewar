@@ -6,7 +6,7 @@
 /*   By: pbernier <pbernier@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/11/09 00:30:13 by pbernier          #+#    #+#             */
-/*   Updated: 2017/12/01 01:46:05 by rlecart          ###   ########.fr       */
+/*   Updated: 2017/12/14 02:46:36 by rlecart          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -102,7 +102,7 @@ char				*ft_strjoin_char(char const *s1, char c);
 char				*ft_strtrim(char const *s);
 char				**ft_strsplit(char const *s, char c);
 char				*ft_itoa(int n);
-char				*ft_itoa_base(int value, int base);
+char				*ft_itoa_base(unsigned int value, int base, char *basestr);
 long				ft_itoo(int value);
 void				ft_putendl(char const *s);
 void				ft_putnbr(int n);

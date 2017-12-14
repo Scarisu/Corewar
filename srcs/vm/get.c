@@ -6,11 +6,20 @@
 /*   By: rlecart <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/11/23 06:15:11 by rlecart           #+#    #+#             */
-/*   Updated: 2017/12/01 02:17:32 by rlecart          ###   ########.fr       */
+/*   Updated: 2017/12/14 02:18:01 by rlecart          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <vm.h>
+
+int			get_nbc(char **argv)
+{
+	int		nbc;
+
+	if ((nbc = ft_atoi(argv[0])) > MAX_PLAYERS)
+		exit(-1);
+	return (nbc);
+}
 
 char		*get_file(char *path, int *len)
 {
@@ -72,8 +81,8 @@ t_champ		*get_all_champs(char **argv, int nbc)
 		champs[i].content = tmp;
 		champs[i].alive = true;
 	}
-	i = -1;
-	while (++i < champs[0].len)
-		printf("%d = %d\n", i, champs[0].content[i]);
+//	i = -1;
+//	while (++i < champs[0].len)
+//		printf("%d = %d\n", i, champs[0].content[i]);
 	return (champs);
 }
