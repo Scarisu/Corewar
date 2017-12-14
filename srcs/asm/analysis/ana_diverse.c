@@ -50,3 +50,16 @@ int		cmd_check(t_asm *e, char *line)
 		error(e, MALLOC);
 	return (verbos(e, INVALID_COMMANDE));
 }
+
+int		valid_label(char *name)
+{
+	int		i;
+
+	i = -1;
+	if (!ft_strlen(name))
+		return (0);
+	while (name[++i])
+		if (!ft_strchr(LABEL_CHARS, name[i]))
+			return (0);
+	return (1);
+}

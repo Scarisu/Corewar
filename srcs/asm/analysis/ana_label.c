@@ -38,19 +38,6 @@ int		ins_label(t_asm *e, char *line)
 	return (1);
 }
 
-int		valid_label(char *name)
-{
-	int		i;
-
-	i = -1;
-	if (!ft_strlen(name))
-		return (0);
-	while (name[++i])
-		if (!ft_strchr(LABEL_CHARS, name[i]))
-			return (0);
-	return (1);
-}
-
 void	label_mutli(t_asm *e, t_verbos *ver, t_valid *val)
 {
 	val->label = val->label_start;
@@ -81,18 +68,6 @@ void	label_mutli(t_asm *e, t_verbos *ver, t_valid *val)
 	}
 }
 
-// void	test(t_asm *e)
-// {
-// 	int i = -1;
-// 	printf("[");
-// 	while (e->enco->hexa[++i])
-// 		printf("%d", e->enco->hexa[i]);
-// 	printf("].");
-// 	if (e->enco->arg_label)
-// 		printf("[%s]", e->enco->arg_label->name);
-// 	printf("\n");
-// }
-
 void	set_file(t_asm *e)
 {
 	e->enco = e->enco_start;
@@ -102,7 +77,6 @@ void	set_file(t_asm *e)
 			add_cont(e, &e->file, e->enco->hexa);
 		if (e->enco->arg_label)
 			exist_label(e, e->enco->arg_label, &e->champ.valid);
-		//test(e);
 		e->enco = e->enco->next;
 	}
 }

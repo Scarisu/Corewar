@@ -64,6 +64,13 @@ int		nb_error(t_verbos *v)
 	return (v->nb_error);
 }
 
+void		set_head(t_asm *e)
+{
+	add_cont(e, &e->head, (char[2]){(char)COREWAR_EXEC_MAGIC, '\0'});
+	(void)e;
+}
+
+
 void		create_cor(t_asm *e)
 {
 	int	fd;

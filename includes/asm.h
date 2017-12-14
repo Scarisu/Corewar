@@ -120,6 +120,7 @@ void	used_label(t_asm *e, t_valid *val);
 
 int		print_verbos(t_verbos *v);
 int		nb_error(t_verbos *v);
+void	set_head(t_asm *e);
 void 	create_cor(t_asm *e);
 
 void	clean(t_asm *e);
