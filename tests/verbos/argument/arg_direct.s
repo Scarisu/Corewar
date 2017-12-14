@@ -11,7 +11,8 @@ test2:	ldi %:test2	,  %:test4	,  r4
 		ldi %-44	,  %:test5	,  r4
 		ldi %:test1	,  %-3		,  r4
 		ld	%:test1	,  r2
+		or 1, 1,1
 
-test4:
+test4: ldi r4, r4, %r4
 test45:
 tegh:
