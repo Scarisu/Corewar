@@ -1,15 +1,47 @@
-
+#Attention aux noms donnés aux dossiers !
 asm_name="asm"
-resources_file="resources/"
+resources_file="vm_champs/"
 file_test="tests/champions/"
 result_file="result.txt"
 
+resources_adress="https://projects.intra.42.fr/uploads/document/document/391/vm_champs.tar"
+
+underline="\033[4m"
+reset="\033[0m"
+grey="\033[38;5;8m"
+
+if [ $1 ]; then
+	if [[ $1 == clean ]]; then
+		rm -rf ${file_test}
+		printf "All .cor from \"${grey}${file_test}${reset}\" removed\n"
+		exit
+	else
+		printf "usage: $0 [clean]\n"
+	fi
+fi
+
 make asm
 
+#Ressource
 mkdir -p ${resources_file}
-curl -s https://projects.intra.42.fr/uploads/document/document/391/corewar.tar | tar x - -C ${resources_file}
+curl -s ${resources_adress} | tar x - -C ${resources_file}
+rm -f $(find ./${resources_file} -name "*.cor")
+resources_asm=$(find ./vm_champs -name "${asm_name}")
+chmod 744 ${resources_asm}
 
-line_champs=$(find ./resources -name "*.s")
+#Test directory
+all_dir=""
+for dir in $(echo ${file_test} | tr "/" "\n"); do
+	all_dir="${all_dir}${dir}/"
+	mkdir -p ${all_dir}
+done
+rm -f $(find ./${file_test} -name "*.cor")
+rm -f ${file_test}${result_file}
+mkdir -p ${file_test}cor_mine
+mkdir -p ${file_test}cor_real
+
+#Setup data
+line_champs=$(find ./vm_champs -name "*.s")
 all_champs=()
 for champ in ${line_champs[@]}; do
 	all_champs[${#all_champs[@]}]=${champ}
@@ -17,37 +49,24 @@ done
 nb_champs=${#all_champs[@]}
 nb_done=0
 
-underline="\033[4m"
-reset="\033[0m"
-grey="\033[38;5;8m"
-
-rm -f $(find ./${resources} -name "*.cor")
-rm -f $(find ./${file_test} -name "*.cor")
-rm -f ${file_test}${result_file}
-
-mkdir -p ${file_test}cor_mine
-mkdir -p ${file_test}cor_real
-
+#Print date on .txt
 printf "$(date +%d)/$(date +%m)/$(date +%Y)\n" >> ${file_test}${result_file}
 printf "$(date +%H):$(date +%M)\n\n" >> ${file_test}${result_file}
 
 for champ in ${all_champs[@]}; do
 	((nb_done++))
-
 	cor="$(echo "${champ}" | sed 's/\.s//').cor"
 	printf "[${cor}]\n" >> ${file_test}${result_file}
 	printf "\n[${nb_done}/${nb_champs}] "
 	printf "${grey}[$(basename ${cor})]${reset}\n"
 	read
-
 	printf "[REAL] - "
-	./${resources_file}asm ${champ}
+	${resources_asm} ${champ}
 	if [ -e ${cor} ]; then
 		mv ${cor} ${file_test}cor_real
 	else
 		printf "[REAL] - $(basename ${cor}) hasn't been created\n" >> ${file_test}${result_file}
 	fi
-
 	printf "\n[MINE] - "
 	./${asm_name} ${champ}
 	if [ -e ${cor} ]; then
@@ -55,7 +74,6 @@ for champ in ${all_champs[@]}; do
 	else
 		printf "[MINE] - $(basename ${cor}) hasn't been created\n" >> ${file_test}${result_file}
 	fi
-
 	if [ -e "${file_test}cor_mine/$(basename ${cor})" ] && [ -e "${file_test}cor_real/$(basename ${cor})" ]; then
 		bash -c "diff -y <(xxd ${file_test}cor_real/$(basename ${cor})) <(xxd ${file_test}cor_mine/$(basename ${cor}))" >> ${file_test}${result_file}
 	fi
