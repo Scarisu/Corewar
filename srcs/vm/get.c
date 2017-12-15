@@ -6,7 +6,7 @@
 /*   By: rlecart <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/11/23 06:15:11 by rlecart           #+#    #+#             */
-/*   Updated: 2017/12/14 02:18:01 by rlecart          ###   ########.fr       */
+/*   Updated: 2017/12/15 05:56:39 by rlecart          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,7 +37,7 @@ char		*get_file(char *path, int *len)
 		result[i] = tmp;
 	}
 	close(fd);
-	*len = i;
+	*len = i + 1;
 	return (result);
 }
 

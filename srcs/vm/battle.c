@@ -6,7 +6,7 @@
 /*   By: rlecart <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/11/23 06:12:46 by rlecart           #+#    #+#             */
-/*   Updated: 2017/12/14 02:49:59 by rlecart          ###   ########.fr       */
+/*   Updated: 2017/12/15 05:44:50 by rlecart          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,7 +22,7 @@ void	display_map(char *map)
 		if (map[i] >= 0 && map[i] < 16)
 			ft_putchar('0');
 		if (map[i] < 0)
-			ft_putstr(ft_itoa_base(255 + map[i], 16, "0123456789abcdef"));
+			ft_putstr(ft_itoa_base(256 + map[i], 16, "0123456789abcdef"));
 		else
 			ft_putstr(ft_itoa_base(map[i], 16, "0123456789abcdef"));
 		if ((i + 1) % ft_sqrt(MEM_SIZE))
