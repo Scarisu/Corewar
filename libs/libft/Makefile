@@ -84,7 +84,8 @@ SRC			=	ft_putstr.c \
 				ft_tablen.c \
 				ft_ttoa.c \
 				ft_realloc.c \
-				ft_memsub.c
+				ft_memsub.c \
+				ft_which_endian.c
 
 OBJ			=	$(addprefix $(OBJDIR),$(SRC:.c=.o))
 CC			=	gcc
@@ -97,7 +98,7 @@ all: $(NAME)
 	@echo > /dev/null
 
 $(NAME): $(OBJDIR) $(OBJ)
-	@printf "[$(PROJECT)] Objs compilation done.                    \n"
+	@printf "[$(PROJECT)] Objs compilation done.                                                   \n"
 	@ar rc $(NAME) $(OBJ)
 	@ranlib $(NAME)
 	@printf "[$(PROJECT)] "
@@ -107,7 +108,7 @@ endif
 	@printf "$(NAME) compiled.\n"
 
 $(OBJDIR)%.o: $(SRCDIR)%.c $(INC) Makefile
-	@printf "\r[$(PROJECT)] Compiling $(notdir $<) to $(notdir $@)                            \r"
+	@printf "\r[$(PROJECT)] Compiling $(notdir $<) to $(notdir $@)                                 \r"
 	@$(CC) $(FLAGS) $(INCLUDES) -o $@ -c $<
 
 $(OBJDIR):
