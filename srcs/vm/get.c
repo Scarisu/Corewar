@@ -6,7 +6,7 @@
 /*   By: rlecart <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/11/23 06:15:11 by rlecart           #+#    #+#             */
-/*   Updated: 2017/12/15 06:35:02 by rlecart          ###   ########.fr       */
+/*   Updated: 2017/12/15 08:36:14 by rlecart          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,7 +17,7 @@ int			get_nbc(char **argv)
 	int		nbc;
 
 	if ((nbc = ft_atoi(argv[0])) > MAX_PLAYERS)
-		exit(-1);
+		error(1);
 	return (nbc);
 }
 
@@ -50,12 +50,12 @@ void		get_head(t_champ *champs, int i)
 		j++;
 	champs[i].name = ft_strdup(&champs[i].content[j]);
 	if ((j = ft_strlen(champs[i].name) + 5) > PROG_NAME_LENGTH - 5)
-		exit(-1);
+		error(2);
 	while (!ft_isalnum(champs[i].content[j]))
 		j++;
 	champs[i].comment = ft_strdup(&champs[i].content[j]);
 	if (ft_strlen(champs[i].comment) > COMMENT_LENGTH)
-		exit(-1);
+		error(3);
 }
 
 t_champ		*get_all_champs(char **argv, int nbc)
@@ -73,7 +73,7 @@ t_champ		*get_all_champs(char **argv, int nbc)
 		champs[i].content = get_file(argv[1 + i], &champs[i].len);
 		get_head(champs, i);
 		if ((champs[i].len -= add) > CHAMP_MAX_SIZE)
-			exit(-1);
+			error(4);
 		tmp = ft_memsub(champs[i].content, add, champs[i].len);
 		ft_strdel(&champs[i].content);
 		champs[i].content = tmp;

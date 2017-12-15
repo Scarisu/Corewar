@@ -6,7 +6,7 @@
 /*   By: rlecart <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/11/23 06:04:11 by rlecart           #+#    #+#             */
-/*   Updated: 2017/12/14 01:46:10 by rlecart          ###   ########.fr       */
+/*   Updated: 2017/12/15 08:45:21 by rlecart          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,8 +25,10 @@ typedef struct		s_champ
 }					t_champ;
 
 int					get_nbc(char **argv);
-void				usage(void);
-void				battle(t_champ *champs, int nbc);
 t_champ				*get_all_champs(char **argv, int nbc);
+
+void				error(int code);
+
+void				battle(t_champ *champs, int nbc);
 
 #endif
