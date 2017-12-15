@@ -72,9 +72,13 @@ void	put_bin(t_asm *e, int **bin, int *add, size_t len_add)
 
 	if ((e->verbos.nb_error))
 		return ;
-	len_bin = (bin == &e->file) ? e->len_file : e->len_head;
-	e->len_file += (bin == &e->file) ? len_add : 0;
-	e->len_head += (bin == &e->head) ? len_add : 0;
+	len_bin = 0;
+	len_bin = (bin == &e->bin.head) ? e->bin.len_head : len_bin;
+	len_bin = (bin == &e->bin.file) ? e->bin.len_file : len_bin;
+	len_bin = (bin == &e->bin.arg) ? e->bin.len_arg : len_bin;
+	e->bin.len_head += (bin == &e->bin.head) ? len_add : 0;
+	e->bin.len_file += (bin == &e->bin.file) ? len_add : 0;
+	e->bin.len_arg += (bin == &e->bin.arg) ? len_add : 0;
 	if (!(final = (int *)malloc(sizeof(int) * (len_bin + len_add))))
 		error(e, MALLOC);
 	ft_memcpy(l, (size_t[2]){0, 0}, sizeof(size_t[2]));

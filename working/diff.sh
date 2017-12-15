@@ -20,6 +20,6 @@ printf "[Press enter]\n"
 mv ${cor} ./mine
 
 rm -f diff/diff_$(basename ${champ%%.*}).txt
-# ./a.out ./real/$(basename ${cor}) ./mine/$(basename ${cor}) | more
+./a.out ./real/$(basename ${cor}) ./mine/$(basename ${cor}) | more
 
 bash -c "diff -y <(xxd real/$(basename ${cor})) <(xxd mine/$(basename ${cor}))" >> diff/diff_$(basename ${champ%%.*}).txt

@@ -24,13 +24,15 @@ void		create_cor(t_asm *e)
 		error(e, CREATE);
     set_head(e);
 	i = 0;
-	while (i < e->len_head)
-		ft_putchar_fd(e->head[i++], fd);
+	while (i < e->bin.len_head)
+		ft_putchar_fd(e->bin.head[i++], fd);
 	i = 0;
-	while (i < e->len_file)
-		ft_putchar_fd(e->file[i++], fd);
+	while (i < e->bin.len_file)
+		ft_putchar_fd(e->bin.file[i++], fd);
 	ft_putstr(e->champ.file_name);
 	ft_putstr(".cor a bien été créeeee\n");
+
+    //printf("[%zu]\n", e->bin.len_file);
 }
 
 void		set_head(t_asm *e)
@@ -40,18 +42,17 @@ void		set_head(t_asm *e)
 
 	ft_memcpy(i, (int[4]){32, 0, 32, 0}, sizeof(int[4]));
     while ((i[0] -= 8) >= 0)
-        put_bin(e, &e->head, (int[1]){(char)(COREWAR_EXEC_MAGIC >> i[0])}, 1);
+        put_bin(e, &e->bin.head, (int[1]){(char)(COREWAR_EXEC_MAGIC >> i[0])}, 1);
     while (e->champ.valid.name && e->champ.valid.name[i[1]])
-        put_bin(e, &e->head, (int[1]){e->champ.valid.name[i[1]++]}, 1);
+        put_bin(e, &e->bin.head, (int[1]){e->champ.valid.name[i[1]++]}, 1);
     if ((zero = PROG_NAME_LENGTH - i[1]))
-        put_bin(e, &e->head, (int[PROG_NAME_LENGTH]){}, zero);
-    put_bin(e, &e->head, (int[4]){}, 4);
+        put_bin(e, &e->bin.head, (int[PROG_NAME_LENGTH]){}, zero);
+    put_bin(e, &e->bin.head, (int[4]){}, 4);
     while ((i[2] -= 8) >= 0)
-        put_bin(e, &e->head, (int[1]){(char)(130 >> i[2])}, 1);
-    //put_bin(e, &e->head, (int[1]){(char)(e->len_file >> i[2])}, 1);
+        put_bin(e, &e->bin.head, (int[1]){(char)(e->bin.len_file >> i[2])}, 1);
     while (e->champ.valid.comment && e->champ.valid.comment[i[3]])
-        put_bin(e, &e->head, (int[1]){e->champ.valid.comment[i[3]++]}, 1);
+        put_bin(e, &e->bin.head, (int[1]){e->champ.valid.comment[i[3]++]}, 1);
     if ((zero = COMMENT_LENGTH - i[3]))
-        put_bin(e, &e->head, (int[COMMENT_LENGTH]){}, zero);
-    put_bin(e, &e->head, (int[4]){}, 4);
+        put_bin(e, &e->bin.head, (int[COMMENT_LENGTH]){}, zero);
+    put_bin(e, &e->bin.head, (int[4]){}, 4);
 }

@@ -14,8 +14,9 @@
 
 void	clean(t_asm *e)
 {
-	ft_memdel((void **)&e->head);
-	ft_memdel((void **)&e->file);
+	ft_memdel((void **)&e->bin.head);
+	ft_memdel((void **)&e->bin.file);
+	ft_memdel((void **)&e->bin.arg);
 	ft_memdel((void **)&e->champ.file_name);
 	ft_memdel((void **)&e->champ.file_path);
 	ft_memdel((void **)&e->champ.line);

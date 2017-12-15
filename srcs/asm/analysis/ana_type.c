@@ -33,7 +33,7 @@ int		arg_reg(t_asm *e, char *line)
 	ft_memdel((void **)&reg);
 	if (nb_reg < 1 || nb_reg > REG_NUMBER)
 		return (verbos(e, INVALID_REG));
-	// add_cont(e, &e->enco->hexa, (char[2]){nb_reg, '\0'});
+	put_bin(e, &e->bin.arg, (int[1]){nb_reg}, 1);
 	I = content_len;
 	return (1);
 }

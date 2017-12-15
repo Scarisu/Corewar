@@ -14,10 +14,12 @@
 
 int		check_param(t_asm *e, int opcode, char *line)
 {
+	int	bin_arg;
 	int	nb_params;
 	int	type_list[4];
 	int	i;
 
+	bin_arg = 0b00000000;
 	nb_params = 0;
 	if (!skip_tab(e, line))
 		return (verbos(e, NEED_ARG));
@@ -26,8 +28,9 @@ int		check_param(t_asm *e, int opcode, char *line)
 	{
 		while (line[I] == ' ')
 			++I;
-		if ((i = type_param(e, type_list[nb_params], line[I])) < 0)
+		if ((i = type_param(type_list[nb_params], line[I])) < 0)
 			return (verbos(e, WRONG_ARG));
+		bin_arg += i + 1;
 		if ((i == 0 && !arg_reg(e, line)) || (i != 0 && !arg_val(e, line, i)))
 			return (0);
 		while (line[I] == ' ')
@@ -36,11 +39,13 @@ int		check_param(t_asm *e, int opcode, char *line)
 			return (verbos(e, NOT_ENOUGHT_ARG));
 		++I;
 		++nb_params;
+		bin_arg <<= 2;
 	}
+	enco_arg(e, opcode, bin_arg);
 	return (0);
 }
 
-int		type_param(t_asm *e, int type, char first_char)
+int		type_param(int type, char first_char)
 {
 	int		i;
 	int		ret[3];
@@ -59,13 +64,22 @@ int		type_param(t_asm *e, int type, char first_char)
 				(i == 0 && (
 				(first_char >= '0' && first_char <= '9') ||
 				first_char == '-')))
-			{
-				//e->size += (!e->verbos.nb_error) ? type_exist[i] : 0;
-				(void)e;
 				return (ret[i]);
-			}
 			else if (!type)
 				return (-1);
 		}
 	return (-1);
+}
+
+void	enco_arg(t_asm *e, int opcode, int bin_arg)
+{
+	// if (opcode != 1 && opcode != 2 && opcode != 6 &&
+	// 	opcode != 7 && opcode != 8 && opcode != 13)
+	(void)opcode;
+	put_bin(e, &e->bin.file, (int[1]){bin_arg}, 1);
+	put_bin(e, &e->bin.file, e->bin.arg, e->bin.len_arg);
+	ft_memdel((void **)&e->bin.arg);
+	e->bin.len_arg = 0;
+	if (!(e->bin.arg = (int *)malloc(sizeof(int))))
+		error(e, MALLOC);
 }

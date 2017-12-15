@@ -22,6 +22,7 @@
 typedef struct s_label	t_label;
 typedef struct s_valid	t_valid;
 typedef struct s_champ	t_champ;
+typedef struct s_bin	t_bin;
 typedef struct s_enco	t_enco;
 typedef struct s_asm	t_asm;
 
@@ -59,6 +60,16 @@ struct			s_champ
 	t_valid		valid;
 };
 
+struct			s_bin
+{
+	int			*head;
+	size_t		len_head;
+	int			*file;
+	size_t		len_file;
+	int			*arg;
+	size_t		len_arg;
+};
+
 struct			s_enco
 {
 	char		*hexa;
@@ -71,10 +82,7 @@ struct			s_asm
 {
 	t_champ		champ;
 	t_verbos	verbos;
-	int			*head;
-	size_t		len_head;
-	int			*file;
-	size_t		len_file;
+	t_bin		bin;
 	t_enco		*enco;
 	t_enco		*enco_start;
 	int			(*tab[6])(t_asm *, char *);
@@ -109,10 +117,11 @@ int				valid_label(char *name);
 int			ins_opcode(t_asm *e, char *line);
 int				exist_opcode(char *opcode);
 int				check_param(t_asm *e, int opcode, char *line);
-int				type_param(t_asm *e, int type, char first_char);
+int				type_param(int type, char first_char);
 int					arg_reg(t_asm *e, char *line);
 int					arg_val(t_asm *e, char *line, int type);
 int					arg_lab(t_asm *e, char *line, int type);
+void			enco_arg(t_asm *e, int opcode, int bin_arg);
 
 
 void	missing_data(t_asm *e);
