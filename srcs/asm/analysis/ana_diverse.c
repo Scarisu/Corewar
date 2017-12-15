@@ -41,10 +41,8 @@ int		cmd_check(t_asm *e, char *line)
 	if (line[I] != '.')
 		return (1);
 	cmd_len = I + 1;
-	while (line[cmd_len]
-		&& line[cmd_len] != ' '
-		&& line[cmd_len] != '\n'
-		&& line[cmd_len] != COMMENT_CHAR)
+	while (line[cmd_len] && line[cmd_len] != ' '
+		&& line[cmd_len] != '\n' && line[cmd_len] != COMMENT_CHAR)
 		++cmd_len;
 	if (!(e->verbos.cmd_invalid = ft_strsub(line, I + 1, cmd_len - (I + 1))))
 		error(e, MALLOC);

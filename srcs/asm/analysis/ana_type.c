@@ -56,7 +56,7 @@ int		arg_val(t_asm *e, char *line, int type)
 			return (verbos(e, (type == 1) ? INVALID_DIR_VAL : INVALID_IND_VAL));
 	if (!(value = ft_strsub(line, I + 2 - type, content_len - I - (2 - type))))
 		error(e, MALLOC);
-	//add_cont(e, &e->enco->hexa, (char[2]){ft_atoi(value), '\0'});
+	put_bin(e, &e->bin.arg, (int[1]){ft_atoi(value)}, 1);
 	ft_memdel((void **)&value);
 	I = content_len;
 	return (1);

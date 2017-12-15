@@ -73,13 +73,21 @@ int		type_param(int type, char first_char)
 
 void	enco_arg(t_asm *e, int opcode, int bin_arg)
 {
-	// if (opcode != 1 && opcode != 2 && opcode != 6 &&
-	// 	opcode != 7 && opcode != 8 && opcode != 13)
-	(void)opcode;
-	put_bin(e, &e->bin.file, (int[1]){bin_arg}, 1);
+	//printf("[%lu]\n", 4 - e->bin.len_arg);
+
+	if (opcode + 1 != 1 && opcode + 1 != 9 &&
+		opcode + 1 != 15 && opcode + 1 != 16)
+		put_bin(e, &e->bin.file, (int[1]){bin_arg}, 1);
+
+	if (opcode + 1 == 1 || opcode + 1 == 2 || opcode + 1 == 6 ||
+	  	opcode + 1 == 7 || opcode + 1 == 8 || opcode + 1 == 13)
+	 	put_bin(e, &e->bin.file, (int[4]){} , 4 - e->bin.len_arg);
+
 	put_bin(e, &e->bin.file, e->bin.arg, e->bin.len_arg);
 	ft_memdel((void **)&e->bin.arg);
 	e->bin.len_arg = 0;
 	if (!(e->bin.arg = (int *)malloc(sizeof(int))))
 		error(e, MALLOC);
+	(void)opcode;
+	(void)bin_arg;
 }
