@@ -6,7 +6,7 @@
 /*   By: rlecart <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/11/23 06:15:11 by rlecart           #+#    #+#             */
-/*   Updated: 2017/12/15 05:56:39 by rlecart          ###   ########.fr       */
+/*   Updated: 2017/12/15 06:35:02 by rlecart          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -56,8 +56,6 @@ void		get_head(t_champ *champs, int i)
 	champs[i].comment = ft_strdup(&champs[i].content[j]);
 	if (ft_strlen(champs[i].comment) > COMMENT_LENGTH)
 		exit(-1);
-//	printf("%s\n", champs[i].name);
-//	printf("%s\n", champs[i].comment);
 }
 
 t_champ		*get_all_champs(char **argv, int nbc)
@@ -81,8 +79,5 @@ t_champ		*get_all_champs(char **argv, int nbc)
 		champs[i].content = tmp;
 		champs[i].alive = true;
 	}
-//	i = -1;
-//	while (++i < champs[0].len)
-//		printf("%d = %d\n", i, champs[0].content[i]);
 	return (champs);
 }
