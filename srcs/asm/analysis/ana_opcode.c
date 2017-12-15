@@ -31,7 +31,7 @@ int		ins_opcode(t_asm *e, char *line)
 	if ((e->verbos.opcode = exist_opcode(e->verbos.opcode_name)) < 0)
 		return (verbos(e, OPCODE_EXIST));
 	I += content_len;
-	add_cont(e, &e->enco->hexa, (char[2]){e->verbos.opcode, '\0'});
+	// add_cont(e, &e->enco->hexa, (char[2]){e->verbos.opcode, '\0'});
 	ret = check_param(e, e->verbos.opcode, line);
 	ft_memdel((void **)&e->verbos.opcode_name);
 	return (ret);

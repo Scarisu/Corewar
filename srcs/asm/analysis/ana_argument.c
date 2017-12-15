@@ -60,7 +60,8 @@ int		type_param(t_asm *e, int type, char first_char)
 				(first_char >= '0' && first_char <= '9') ||
 				first_char == '-')))
 			{
-				e->size += (!e->verbos.nb_error) ? type_exist[i] : 0;
+				//e->size += (!e->verbos.nb_error) ? type_exist[i] : 0;
+				(void)e;
 				return (ret[i]);
 			}
 			else if (!type)

@@ -105,13 +105,15 @@ void	add_cont(t_asm *e, char **line, char const *add)
 
 	l[0] = (*line) ? ft_strlen(*line) : 0;
 	l[1] = (add) ? ft_strlen(add) : 0;
-	printf(".\n");
 	if (!(final = (char *)malloc(sizeof(char) * (l[0] + l[1] + 1))))
 		error(e, MALLOC);
 	final[l[0] + l[1]] = '\0';
-	ft_memcpy(l, ((size_t[2]){-1, 0}), sizeof(size_t[2]));
-	while ((*line)[++l[0]])
+	ft_memcpy(l, ((size_t[2]){0, 0}), sizeof(size_t[2]));
+	while ((*line)[l[0]])
+	{
 		final[l[0]] = (*line)[l[0]];
+		++l[0];
+	}
 	ft_memdel((void **)line);
 	while (add[l[1]])
 		final[l[0]++] = add[l[1]++];

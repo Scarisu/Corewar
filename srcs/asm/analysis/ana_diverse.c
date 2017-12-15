@@ -63,3 +63,28 @@ int		valid_label(char *name)
 			return (0);
 	return (1);
 }
+
+void	put_bin(t_asm *e, int **bin, int *add, size_t len_add)
+{
+	size_t	l[2];
+	size_t	len_bin;
+	int		*final;
+
+	if ((e->verbos.nb_error))
+		return ;
+	len_bin = (bin == &e->file) ? e->len_file : e->len_head;
+	e->len_file += (bin == &e->file) ? len_add : 0;
+	e->len_head += (bin == &e->head) ? len_add : 0;
+	if (!(final = (int *)malloc(sizeof(int) * (len_bin + len_add))))
+		error(e, MALLOC);
+	ft_memcpy(l, (size_t[2]){0, 0}, sizeof(size_t[2]));
+	while (l[0] < len_bin)
+	{
+		final[l[0]] = (*bin)[l[0]];
+		++l[0];
+	}
+	ft_memdel((void **)bin);
+	while (l[1] < len_add)
+		final[l[0]++] = add[l[1]++];
+	*bin = final;
+}

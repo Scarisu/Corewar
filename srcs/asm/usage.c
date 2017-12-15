@@ -19,16 +19,16 @@ void	usage(t_asm *e, int argc, char *av)
 	if (argc != 2)
 		error(e, NB_ARG);
 	len = ft_strlen(av);
-	if (av[len - 2] != '.' &&
-		av[len - 1] != 's')
+	if (av[len - 2] != '.' && av[len - 1] != 's')
 		error(e, EXTENTION);
 	if ((e->champ.fd = open(av, O_RDONLY)) < 2)
 		error(e, OPEN_CHAMP);
 	len -= 3;
 	while (len > 0 && av[len] != '/')
 		--len;
-	if (!(e->champ.file_path = ft_strsub(av, 0, len + 1)))
+	len += (av[len] == '/') ? 1 : 0;
+	if (!(e->champ.file_path = ft_strsub(av, 0, len)))
 		error(e, MALLOC);
-	if (!(e->champ.file_name = ft_strsub(av, len + 1, ft_strlen(av) - len - 3)))
+	if (!(e->champ.file_name = ft_strsub(av, len, ft_strlen(av) - len - 2)))
 		error(e, MALLOC);
 }

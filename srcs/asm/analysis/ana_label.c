@@ -29,7 +29,7 @@ int		ins_label(t_asm *e, char *line)
 		return (verbos(e, INVALID_LABEL));
 	e->champ.valid.label->coo[0] = e->verbos.nb_line;
 	e->champ.valid.label->coo[1] = I;
-	e->champ.valid.label->octets = e->size;
+	//e->champ.valid.label->octets = e->size;
 	if (!(e->champ.valid.label->line = ft_strdup(line)))
 		error(e, MALLOC);
 	e->champ.valid.label->next = set_label(e, (int[2]){0, 0});
@@ -73,8 +73,8 @@ void	set_file(t_asm *e)
 	e->enco = e->enco_start;
 	while (e->enco && (e->enco->hexa || e->enco->arg_label))
 	{
-		if (e->enco->hexa[0])
-			add_cont(e, &e->file, e->enco->hexa);
+		// if (e->enco->hexa[0])
+		// 	add_cont(e, &e->file, e->enco->hexa);
 		if (e->enco->arg_label)
 			exist_label(e, e->enco->arg_label, &e->champ.valid);
 		e->enco = e->enco->next;
@@ -88,8 +88,8 @@ int		exist_label(t_asm *e, t_label *exi, t_valid *val)
 	{
 		if (!ft_strcmp(val->label->name, exi->name))
 		{
-			add_cont(e, &e->enco->hexa,
-				(char[2]){val->label->octets - exi->octets, '\0'});
+			// add_cont(e, &e->enco->hexa,
+			// 	(char[2]){val->label->octets - exi->octets, '\0'});
 			val->label->used = 1;
 			return (1);
 		}

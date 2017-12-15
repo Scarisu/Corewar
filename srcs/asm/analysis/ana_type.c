@@ -33,7 +33,7 @@ int		arg_reg(t_asm *e, char *line)
 	ft_memdel((void **)&reg);
 	if (nb_reg < 1 || nb_reg > REG_NUMBER)
 		return (verbos(e, INVALID_REG));
-	add_cont(e, &e->enco->hexa, (char[2]){nb_reg, '\0'});
+	// add_cont(e, &e->enco->hexa, (char[2]){nb_reg, '\0'});
 	I = content_len;
 	return (1);
 }
@@ -56,7 +56,7 @@ int		arg_val(t_asm *e, char *line, int type)
 			return (verbos(e, (type == 1) ? INVALID_DIR_VAL : INVALID_IND_VAL));
 	if (!(value = ft_strsub(line, I + 2 - type, content_len - I - (2 - type))))
 		error(e, MALLOC);
-	add_cont(e, &e->enco->hexa, (char[2]){ft_atoi(value), '\0'});
+	//add_cont(e, &e->enco->hexa, (char[2]){ft_atoi(value), '\0'});
 	ft_memdel((void **)&value);
 	I = content_len;
 	return (1);
@@ -80,7 +80,7 @@ int		arg_lab(t_asm *e, char *line, int type)
 	}
 	e->enco->arg_label = set_label(e, (int[2]){e->verbos.nb_line, I});
 	e->enco->arg_label->type = (type == 1) ? T_DIR : T_IND;
-	e->enco->arg_label->octets = e->size;
+	//e->enco->arg_label->octets = e->size;
 	!(e->enco->arg_label->name = ft_strdup(label)) ? error(e, MALLOC) : 0;
 	ft_memdel((void **)&label);
 	!(e->enco->arg_label->line = ft_strdup(line)) ? error(e, MALLOC) : 0;

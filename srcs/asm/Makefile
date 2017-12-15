@@ -31,7 +31,8 @@ SRC_RACINE		=	op.c \
 					error.c \
 					line.c \
 					set.c \
-					clear.c
+					clear.c \
+					cor.c
 
 FLAGS			=	$(WFLAGS)
 INC				=	$(addprefix $(MP)$(DIR_INC),$(SRC_INCLUD))

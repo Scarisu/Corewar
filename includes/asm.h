@@ -71,9 +71,10 @@ struct			s_asm
 {
 	t_champ		champ;
 	t_verbos	verbos;
-	int			size;
-	char		*head;
-	char		*file;
+	int			*head;
+	size_t		len_head;
+	int			*file;
+	size_t		len_file;
 	t_enco		*enco;
 	t_enco		*enco_start;
 	int			(*tab[6])(t_asm *, char *);
@@ -90,6 +91,8 @@ void 	set_ptrft(t_asm *e);
 void 	set_ptrver(t_asm *e);
 
 void	usage(t_asm *e, int argc, char *av);
+
+void	put_bin(t_asm *e, int **bin, int *add, size_t len_add);
 
 void	check_line(t_asm *e);
 int			get_line(t_asm *e, char **line);

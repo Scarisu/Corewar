@@ -14,11 +14,12 @@
 
 void	set_data(t_asm *e)
 {
-	if (!(e->head = ft_strnew(0)))
+	if (!(e->head = (int *)malloc(sizeof(int))))
 		error(e, MALLOC);
-	if (!(e->file = ft_strnew(0)))
+	e->len_head = 0;
+	if (!(e->file = (int *)malloc(sizeof(int))))
 		error(e, MALLOC);
-	e->size = 0;
+	e->len_file = 0;
 	e->enco = set_enco(e);
 	e->enco_start = e->enco;
 	e->champ.fd = -1;

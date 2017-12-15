@@ -57,6 +57,5 @@ void	check_line(t_asm *e)
 		set_file(e);
 		used_label(e, &e->champ.valid);
 		missing_data(e);
-		set_head(e);
 	}
 }
