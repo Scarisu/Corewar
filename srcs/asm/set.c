@@ -23,6 +23,7 @@ void	set_data(t_asm *e)
 	if (!(e->bin.arg = (int *)malloc(sizeof(int))))
 		error(e, MALLOC);
 	e->bin.len_arg = 0;
+	e->bin.op_pos = 0;
 	e->enco = set_enco(e);
 	e->enco_start = e->enco;
 	e->champ.fd = -1;

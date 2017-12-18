@@ -51,9 +51,22 @@ int		main(int argc, char **argv)
 		ft_putstr("] - [");
 		ft_putnbr(len2);
 		ft_putendl("]\n");
-		i = -1;
-		while (i < len1 || i < len2)
+		i = 2190;
+		//i = -1;
+		while (i <= len1 || i <= len2)
 		{
+			if (i >= 2193)
+			{
+				ft_putchar('{');
+				if (i - 2192 < 10)
+					ft_putchar('0');
+				if (i - 2192 < 100)
+					ft_putchar('0');
+				ft_putnbr(i - 2192);
+				ft_putstr("} .");
+			}
+			else
+				ft_putstr("       ");
 			ft_putchar('[');
 			if (i <= len1)
 				ft_putnbr(str1[i]);

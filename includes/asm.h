@@ -19,6 +19,23 @@
 # define NUMBER 1
 # define LABEL 2
 
+# define LIVE 1
+# define LD 2
+# define ST 3
+# define ADD 4
+# define SUB 5
+# define AND 6
+# define OR 7
+# define XOR 8
+# define ZJMP 9
+# define LDI 10
+# define STI 11
+# define FORK 12
+# define LLD 13
+# define LLDI 14
+# define LFORK 15
+# define AFF 16
+
 typedef struct s_label	t_label;
 typedef struct s_valid	t_valid;
 typedef struct s_champ	t_champ;
@@ -66,6 +83,7 @@ struct			s_bin
 	size_t		len_head;
 	int			*file;
 	size_t		len_file;
+	int			op_pos;
 	int			*arg;
 	size_t		len_arg;
 };
@@ -119,7 +137,7 @@ int				exist_opcode(char *opcode);
 int				check_param(t_asm *e, int opcode, char *line);
 int				type_param(int type, char first_char);
 int					arg_reg(t_asm *e, char *line);
-int					arg_val(t_asm *e, char *line, int type);
+int					arg_val(t_asm *e, char *line, int type, int opcode);
 int					arg_lab(t_asm *e, char *line, int type);
 void			enco_arg(t_asm *e, int opcode, int bin_arg);
 

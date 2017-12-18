@@ -38,11 +38,16 @@ int		arg_reg(t_asm *e, char *line)
 	return (1);
 }
 
-int		arg_val(t_asm *e, char *line, int type)
+int		arg_val(t_asm *e, char *line, int type, int opcode)
 {
 	int		content_len;
 	char	*value;
 
+	if (type == 1 && (opcode == LIVE || opcode == LD || opcode == AND ||
+	   	opcode == OR || opcode == XOR || opcode == LLD))
+	  	put_bin(e, &e->bin.arg, (int[3]){}, 3);
+	else if (type == 2)
+		put_bin(e, &e->bin.arg, (int[1]){}, 1);
 	content_len = (I + 2 - type);
 	if (line[content_len] == LABEL_CHAR)
 		return (arg_lab(e, line, type));
@@ -80,7 +85,7 @@ int		arg_lab(t_asm *e, char *line, int type)
 	}
 	e->enco->arg_label = set_label(e, (int[2]){e->verbos.nb_line, I});
 	e->enco->arg_label->type = (type == 1) ? T_DIR : T_IND;
-	//e->enco->arg_label->octets = e->size;
+	e->enco->arg_label->octets = e->bin.op_pos;
 	!(e->enco->arg_label->name = ft_strdup(label)) ? error(e, MALLOC) : 0;
 	ft_memdel((void **)&label);
 	!(e->enco->arg_label->line = ft_strdup(line)) ? error(e, MALLOC) : 0;

@@ -32,6 +32,7 @@ int		ins_opcode(t_asm *e, char *line)
 		return (verbos(e, OPCODE_EXIST));
 	I += content_len;
 	put_bin(e, &e->bin.file, (int[1]){g_op_tab[e->verbos.opcode].opcode}, 1);
+	e->bin.op_pos = e->bin.len_file;
 	ret = check_param(e, e->verbos.opcode, line);
 	ft_memdel((void **)&e->verbos.opcode_name);
 	return (ret);

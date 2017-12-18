@@ -16,7 +16,7 @@ int		skip_tab(t_asm *e, char *line)
 {
 	while (line[I] && line[I] == ' ')
 		++I;
-	if (line[I] &&line[I] == COMMENT_CHAR)
+	if (line[I] && line[I] == COMMENT_CHAR)
 	{
 		I += (I != 0) ? -1 : 0;
 		return (0);
