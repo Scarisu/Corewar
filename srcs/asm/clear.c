@@ -16,7 +16,6 @@ void	clean(t_asm *e)
 {
 	ft_memdel((void **)&e->bin.head);
 	ft_memdel((void **)&e->bin.file);
-	ft_memdel((void **)&e->bin.arg);
 	ft_memdel((void **)&e->champ.file_name);
 	ft_memdel((void **)&e->champ.file_path);
 	ft_memdel((void **)&e->champ.line);
@@ -26,6 +25,7 @@ void	clean(t_asm *e)
 	ft_memdel((void **)&e->verbos.opcode_name);
 	clean_label(e->champ.valid.label_start);
 	clean_frag(e->verbos.frag_start);
+	clean_enco(e->enco_start);
 	read(0, e->champ.buff, 1);
 }
 
@@ -59,11 +59,11 @@ void	clean_enco(t_enco *e)
 	int	i;
 	t_enco *prev;
 
-	i = -1;
 	while ((prev = e))
 	{
-		ft_memdel((void **)&e->hexa);
-		clean_label(e->arg_label);
+		i = -1;
+		while (++i < MAX_ARGS_NUMBER - 1)
+			clean_label(e->arg[i].arg_label);
 		e = e->next;
 		ft_memdel((void **)&prev);
 	}

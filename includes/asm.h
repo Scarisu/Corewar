@@ -40,6 +40,7 @@ typedef struct s_label	t_label;
 typedef struct s_valid	t_valid;
 typedef struct s_champ	t_champ;
 typedef struct s_bin	t_bin;
+typedef struct s_arg	t_arg;
 typedef struct s_enco	t_enco;
 typedef struct s_asm	t_asm;
 
@@ -52,7 +53,6 @@ struct			s_label
 	int			octets;
 	char		*name;
 	char		*line;
-	int			type;
 	int			used;
 	t_label		*next;
 };
@@ -79,20 +79,26 @@ struct			s_champ
 
 struct			s_bin
 {
+	int			op_pos;
 	int			*head;
 	size_t		len_head;
 	int			*file;
 	size_t		len_file;
-	int			op_pos;
-	int			*arg;
-	size_t		len_arg;
+};
+
+struct			s_arg
+{
+	int			arg_value;
+	int			type;
+	t_label		*arg_label;
 };
 
 struct			s_enco
 {
-	char		*hexa;
-	t_label		*arg_label;
-	int			nbr;
+	int			opcode;
+	int			bin_arg;
+	t_arg		arg[MAX_ARGS_NUMBER];
+	int			nb_arg;
 	t_enco		*next;
 };
 
@@ -134,17 +140,17 @@ int			ins_label(t_asm *e, char *line);
 int				valid_label(char *name);
 int			ins_opcode(t_asm *e, char *line);
 int				exist_opcode(char *opcode);
-int				check_param(t_asm *e, int opcode, char *line);
+int				check_param(t_asm *e, t_enco *i, char *line);
 int				type_param(int type, char first_char);
-int					arg_reg(t_asm *e, char *line);
-int					arg_val(t_asm *e, char *line, int type, int opcode);
-int					arg_lab(t_asm *e, char *line, int type);
-void			enco_arg(t_asm *e, int opcode, int bin_arg);
+int					arg_reg(t_asm *e, char *line, t_arg *arg);
+int					arg_val(t_asm *e, char *line, t_arg *arg, int type);
+int					arg_lab(t_asm *e, char *line, t_arg *arg, int type);
+int				opcode_position(t_enco *i);
 
 
 void	missing_data(t_asm *e);
 void	label_mutli(t_asm *e, t_verbos *ver, t_valid *val);
-void	set_file(t_asm *e);
+void	set_file(t_asm *e, t_enco *i);
 int			exist_label(t_asm *e, t_label *exi, t_valid *val);
 void	used_label(t_asm *e, t_valid *val);
 
@@ -156,5 +162,6 @@ void 	create_cor(t_asm *e);
 void	clean(t_asm *e);
 void		clean_label(t_label *l);
 void		clean_frag(t_frag *f);
+void		clean_enco(t_enco *e);
 
 #endif

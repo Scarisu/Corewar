@@ -12,10 +12,9 @@
 
 #include <asm.h>
 
-int		arg_reg(t_asm *e, char *line)
+int		arg_reg(t_asm *e, char *line, t_arg *arg)
 {
 	int		content_len;
-	int		nb_reg;
 	char	*reg;
 
 	content_len = I + 1;
@@ -29,28 +28,23 @@ int		arg_reg(t_asm *e, char *line)
 		return (verbos(e, INVALID_REG));
 	if (!(reg = ft_strsub(line, I + 1, content_len - I - 1)))
 		error(e, MALLOC);
-	nb_reg = ft_atoi(reg);
+	arg->arg_value = ft_atoi(reg);
 	ft_memdel((void **)&reg);
-	if (nb_reg < 1 || nb_reg > REG_NUMBER)
+	arg->type = T_REG;
+	if (arg->arg_value < 1 || arg->arg_value > REG_NUMBER)
 		return (verbos(e, INVALID_REG));
-	put_bin(e, &e->bin.arg, (int[1]){nb_reg}, 1);
 	I = content_len;
 	return (1);
 }
 
-int		arg_val(t_asm *e, char *line, int type, int opcode)
+int		arg_val(t_asm *e, char *line, t_arg *arg, int type)
 {
 	int		content_len;
 	char	*value;
 
-	if (type == 1 && (opcode == LIVE || opcode == LD || opcode == AND ||
-	   	opcode == OR || opcode == XOR || opcode == LLD))
-	  	put_bin(e, &e->bin.arg, (int[3]){}, 3);
-	else if (type == 2)
-		put_bin(e, &e->bin.arg, (int[1]){}, 1);
 	content_len = (I + 2 - type);
 	if (line[content_len] == LABEL_CHAR)
-		return (arg_lab(e, line, type));
+		return (arg_lab(e, line, arg, type));
 	if (line[content_len] == '-')
 		++content_len;
 	while (line[content_len] >= '0' && line[content_len] <= '9')
@@ -61,13 +55,14 @@ int		arg_val(t_asm *e, char *line, int type, int opcode)
 			return (verbos(e, (type == 1) ? INVALID_DIR_VAL : INVALID_IND_VAL));
 	if (!(value = ft_strsub(line, I + 2 - type, content_len - I - (2 - type))))
 		error(e, MALLOC);
-	put_bin(e, &e->bin.arg, (int[1]){ft_atoi(value)}, 1);
+	arg->arg_value = ft_atoi(value);
 	ft_memdel((void **)&value);
+	arg->type = (type == 1) ? T_DIR : T_IND;
 	I = content_len;
 	return (1);
 }
 
-int		arg_lab(t_asm *e, char *line, int type)
+int		arg_lab(t_asm *e, char *line, t_arg *arg, int type)
 {
 	int		content_len;
 	char	*label;
@@ -83,14 +78,12 @@ int		arg_lab(t_asm *e, char *line, int type)
 		ft_memdel((void **)&label);
 		return (verbos(e, INVALID_LABEL_ARG));
 	}
-	e->enco->arg_label = set_label(e, (int[2]){e->verbos.nb_line, I});
-	e->enco->arg_label->type = (type == 1) ? T_DIR : T_IND;
-	e->enco->arg_label->octets = e->bin.op_pos;
-	!(e->enco->arg_label->name = ft_strdup(label)) ? error(e, MALLOC) : 0;
+	arg->arg_label = set_label(e, (int[2]){e->verbos.nb_line, I});
+	arg->type = (type == 1) ? T_DIR : T_IND;
+	arg->arg_label->octets = e->bin.op_pos;
+	!(arg->arg_label->name = ft_strdup(label)) ? error(e, MALLOC) : 0;
 	ft_memdel((void **)&label);
-	!(e->enco->arg_label->line = ft_strdup(line)) ? error(e, MALLOC) : 0;
-	e->enco->next = set_enco(e);
-	e->enco = e->enco->next;
+	!(arg->arg_label->line = ft_strdup(line)) ? error(e, MALLOC) : 0;
 	I = content_len;
 	return (1);
 }

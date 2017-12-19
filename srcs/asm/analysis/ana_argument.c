@@ -12,38 +12,31 @@
 
 #include <asm.h>
 
-int		check_param(t_asm *e, int opcode, char *line)
+int		check_param(t_asm *e, t_enco *i, char *line)
 {
-	int	bin_arg;
-	int	nb_params;
-	int	type_list[4];
-	int	i;
+	int	ret;
 
-	//printf("{%d}\n", e->bin.op_pos);
-	bin_arg = 0b00000000;
-	nb_params = 0;
 	if (!skip_tab(e, line))
 		return (verbos(e, NEED_ARG));
-	ft_memcpy(type_list, g_op_tab[opcode].type, sizeof(int[MAX_ARGS_NUMBER]));
-	while ((type_list[nb_params]))
+	while ((g_op_tab[i->opcode - 1].type[i->nb_arg]))
 	{
-		bin_arg <<= 2;
+		i->bin_arg <<= 2;
 		while (line[I] == ' ')
 			++I;
-		if ((i = type_param(type_list[nb_params], line[I])) < 0)
+		if ((ret = type_param(g_op_tab[i->opcode - 1].type[i->nb_arg], line[I])) < 0)
 			return (verbos(e, WRONG_ARG));
-		bin_arg += i + 1;
-		if ((i == 0 && !arg_reg(e, line)) ||
-			(i != 0 && !arg_val(e, line, i, opcode + 1)))
+		i->bin_arg += ret + 1;
+		if ((ret == 0 && !arg_reg(e, line, &i->arg[i->nb_arg])) ||
+			(ret != 0 && !arg_val(e, line, &i->arg[i->nb_arg], ret)))
 			return (0);
 		while (line[I] == ' ')
 			++I;
-		if (nb_params + 1 < g_op_tab[opcode].nb_params && line[I] != ',')
+		if (i->nb_arg + 1 < g_op_tab[i->opcode - 1].nb_params && line[I] != ',')
 			return (verbos(e, NOT_ENOUGHT_ARG));
 		++I;
-		++nb_params;
+		++i->nb_arg;
 	}
-	enco_arg(e, opcode + 1, bin_arg <<= (2 * (4 - nb_params)));
+	e->enco->bin_arg <<= (2 * (4 - i->nb_arg));
 	return (0);
 }
 
@@ -71,15 +64,4 @@ int		type_param(int type, char first_char)
 				return (-1);
 		}
 	return (-1);
-}
-
-void	enco_arg(t_asm *e, int opcode, int bin_arg)
-{
-	if (opcode != LIVE && opcode != ZJMP && opcode != LFORK && opcode != AFF)
-		put_bin(e, &e->bin.file, (int[1]){bin_arg}, 1);
-	put_bin(e, &e->bin.file, e->bin.arg, e->bin.len_arg);
-	ft_memdel((void **)&e->bin.arg);
-	e->bin.len_arg = 0;
-	if (!(e->bin.arg = (int *)malloc(sizeof(int))))
-		error(e, MALLOC);
 }

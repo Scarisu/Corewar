@@ -31,8 +31,6 @@ void		create_cor(t_asm *e)
 		ft_putchar_fd(e->bin.file[i++], fd);
 	ft_putstr(e->champ.file_name);
 	ft_putstr(".cor a bien été créeeee\n");
-
-    //printf("[%zu]\n", e->bin.len_file);
 }
 
 void		set_head(t_asm *e)
@@ -55,4 +53,34 @@ void		set_head(t_asm *e)
     if ((zero = COMMENT_LENGTH - i[3]))
         put_bin(e, &e->bin.head, (int[COMMENT_LENGTH]){}, zero);
     put_bin(e, &e->bin.head, (int[4]){}, 4);
+}
+
+void	set_file(t_asm *e, t_enco *i)
+{
+	int	nb;
+
+	i = e->enco_start;
+	while (i && i->next)
+	{
+		put_bin(e, &e->bin.file, (int[1]){i->opcode}, 1);
+		if (i->opcode != LIVE && i->opcode != ZJMP &&
+			i->opcode != LFORK && i->opcode != AFF)
+			put_bin(e, &e->bin.file, (int[1]){i->bin_arg}, 1);
+		nb = -1;
+		while (++nb < i->nb_arg)
+		{
+			// printf("[%d]\n", i->arg[nb].type);
+			if (i->arg[nb].type == T_DIR && (i->opcode == LIVE ||
+				i->opcode == LD || i->opcode == AND || i->opcode == OR ||
+				i->opcode == XOR || i->opcode == LLD))
+				put_bin(e, &e->bin.file, (int[3]){}, 3);
+			else if (i->arg[nb].type == T_IND)
+				put_bin(e, &e->bin.file, (int[1]){}, 1);
+			if (i->arg[nb].arg_value)
+				put_bin(e, &e->bin.file, (int[1]){i->arg[nb].arg_value}, 1);
+			if (i->arg[nb].arg_label)
+			 	exist_label(e, i->arg[nb].arg_label, &e->champ.valid);
+		}
+		i = i->next;
+	}
 }

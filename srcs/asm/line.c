@@ -54,7 +54,7 @@ void	check_line(t_asm *e)
 	label_mutli(e, &e->verbos, &e->champ.valid);
 	if (!e->verbos.line_left)
 	{
-		set_file(e);
+		set_file(e, e->enco);
 		used_label(e, &e->champ.valid);
 		missing_data(e);
 	}

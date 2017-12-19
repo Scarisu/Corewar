@@ -20,10 +20,7 @@ void	set_data(t_asm *e)
 	if (!(e->bin.file = (int *)malloc(sizeof(int))))
 		error(e, MALLOC);
 	e->bin.len_file = 0;
-	if (!(e->bin.arg = (int *)malloc(sizeof(int))))
-		error(e, MALLOC);
-	e->bin.len_arg = 0;
-	e->bin.op_pos = 0;
+	e->bin.op_pos = 1;
 	e->enco = set_enco(e);
 	e->enco_start = e->enco;
 	e->champ.fd = -1;
@@ -94,7 +91,6 @@ t_label	*set_label(t_asm *e, int coo[2])
 	ft_memcpy(new->coo, coo, sizeof(int[2]));
 	new->name = NULL;
 	new->line = NULL;
-	new->type = 0;
 	new->used = 0;
 	new->next = NULL;
 	return (new);
@@ -114,14 +110,21 @@ t_frag	*set_frag(t_asm *e, int coo[2])
 
 t_enco	*set_enco(t_asm *e)
 {
+	int		i;
 	t_enco	*new;
 
+	i = -1;
 	if (!(new = (t_enco *)malloc(sizeof(t_enco))))
 		error(e, MALLOC);
-	if (!(new->hexa = ft_strnew(0)))
-		error(e, MALLOC);
-	new->arg_label = NULL;
+	new->opcode = 0;
+	new->bin_arg = 0b00000000;
+	while (++i < MAX_ARGS_NUMBER - 1)
+	{
+		new->arg[i].arg_value = 0;
+		new->arg[i].arg_label = NULL;
+		new->arg[i].type = 0;
+	}
+	new->nb_arg = 0;
 	new->next = NULL;
-	new->nbr = 0;
 	return (new);
 }

@@ -17,6 +17,7 @@ int		ins_opcode(t_asm *e, char *line)
 	int		ret;
 	int		content_len;
 
+	//printf("pos [%d]\n", e->bin.op_pos);
 	if (!skip_tab(e, line))
 		return (0);
 	content_len = I;
@@ -31,10 +32,12 @@ int		ins_opcode(t_asm *e, char *line)
 	if ((e->verbos.opcode = exist_opcode(e->verbos.opcode_name)) < 0)
 		return (verbos(e, OPCODE_EXIST));
 	I += content_len;
-	put_bin(e, &e->bin.file, (int[1]){g_op_tab[e->verbos.opcode].opcode}, 1);
-	e->bin.op_pos = e->bin.len_file;
-	ret = check_param(e, e->verbos.opcode, line);
+	e->enco->opcode = g_op_tab[e->verbos.opcode].opcode;
+	ret = check_param(e, e->enco, line);
 	ft_memdel((void **)&e->verbos.opcode_name);
+	e->bin.op_pos += opcode_position(e->enco);
+	e->enco->next = set_enco(e);
+	e->enco = e->enco->next;
 	return (ret);
 }
 
@@ -48,4 +51,24 @@ int		exist_opcode(char *opcode)
 	if (!g_op_tab[i].name)
 		return (-1);
 	return (i);
+}
+
+int		opcode_position(t_enco *i)
+{
+	int	pos;
+	int	nb_arg;
+
+	pos = 1;
+	nb_arg = -1;
+	pos += (i->opcode != LIVE && i->opcode != ZJMP &&
+			i->opcode != LFORK && i->opcode != AFF) ? 1 : 0;
+	while (++nb_arg < i->nb_arg)
+	{
+		pos += (i->arg[nb_arg].type == T_REG) ? 1 : 2;
+		pos += (i->arg[nb_arg].type == T_IND) ? 2 : 0;
+		pos += (i->arg[nb_arg].type == T_DIR && (i->opcode == LIVE ||
+			i->opcode == LD || i->opcode == AND || i->opcode == OR ||
+			i->opcode == XOR || i->opcode == LLD)) ? 2 : 0;
+	}
+	return (pos);
 }
