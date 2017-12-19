@@ -4,6 +4,7 @@ include			$(GLOBAL)
 
 DIR_ANALYS		=	analysis/
 DIR_VERBOS		=	verbos/
+DIR_DATA		=	data/
 DIR_RACINE		=
 
 SRC_INCLUD		=	corewar.h \
@@ -17,7 +18,9 @@ SRC_ANALYS		=	ana_name.c \
 					ana_label.c \
 					ana_argument.c \
 					ana_type.c
-SRC_VERBOS		=	verbos.c \
+SRC_VERBOS		=	usage.c \
+					error.c \
+					verbos.c \
 					ver_name.c \
 					ver_comment.c \
 					ver_diverse.c \
@@ -25,21 +28,20 @@ SRC_VERBOS		=	verbos.c \
 					ver_label.c \
 					ver_argument.c \
 					ver_type.c
-SRC_RACINE		=	op.c \
-					main.c \
-					usage.c \
-					error.c \
-					line.c \
+SRC_DATA		=	op.c \
 					set.c \
-					clear.c \
+					clear.c
+SRC_RACINE		=	main.c \
+					line.c \
 					cor.c
 
 FLAGS			=	$(WFLAGS)
 INC				=	$(addprefix $(MP)$(DIR_INC),$(SRC_INCLUD))
 PATH_OBJ		=	$(DIR_OBJ)$(DIR_ASM)
-DIR				=	$(DIR_ANALYS) $(DIR_VERBOS) $(DIR_RACINE)
+DIR				=	$(DIR_ANALYS) $(DIR_VERBOS) $(DIR_RACINE) $(DIR_DATA)
 SRC				=	$(addprefix $(DIR_ANALYS),$(SRC_ANALYS)) \
 					$(addprefix $(DIR_VERBOS),$(SRC_VERBOS)) \
+					$(addprefix $(DIR_DATA),$(SRC_DATA)) \
 					$(addprefix $(DIR_RACINE),$(SRC_RACINE))
 OBJ				=	$(addprefix $(PATH_OBJ),$(SRC:.c=.o))
 

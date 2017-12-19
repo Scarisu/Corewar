@@ -48,10 +48,10 @@ void	name_len(t_asm *e)
 	add_cont(e, &V_LINE, WHITE "}");
 }
 
-/*
-** void	syntax(t_asm *e);
-*/
-
-/*
-** void	invalid_char(t_asm *e);
-*/
+void	missing_name(t_asm *e)
+{
+	add_cont(e, &V_LINE, WHITE "Missing champion's name\n");
+	add_cont(e, &V_LINE, RESET "usage: " GREY NAME_CMD_STRING " \"name\"");
+	add_cont(e, &V_LINE, RESET "\n");
+	(void)e;
+}

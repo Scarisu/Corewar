@@ -23,7 +23,8 @@ int		check_param(t_asm *e, t_enco *i, char *line)
 		i->bin_arg <<= 2;
 		while (line[I] == ' ')
 			++I;
-		if ((ret = type_param(g_op_tab[i->opcode - 1].type[i->nb_arg], line[I])) < 0)
+		if ((ret =
+		type_param(g_op_tab[i->opcode - 1].type[i->nb_arg], line[I])) < 0)
 			return (verbos(e, WRONG_ARG));
 		i->bin_arg += ret + 1;
 		if ((ret == 0 && !arg_reg(e, line, &i->arg[i->nb_arg])) ||

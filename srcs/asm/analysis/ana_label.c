@@ -48,24 +48,27 @@ void	label_mutli(t_asm *e, t_verbos *ver, t_valid *val)
 		while (ver->pars && ver->pars->name)
 		{
 			if (!ft_strcmp(val->label->name, ver->pars->name))
-			{
-				if (!(e->champ.line = ft_strdup(ver->pars->line)))
-					error(e, MALLOC);
-				ft_memdel((void **)&ver->pars->line);
-				ver->nb_line = ver->pars->coo[0];
-				I = ver->pars->coo[1];
-				verbos(e, LABEL_MULTI_INIT);
-				ft_memdel((void **)&e->champ.line);
-				ver->prev_pars->next = ver->pars->next;
-				ft_memdel((void **)&ver->pars);
-				ver->pars = ver->prev_pars;
-			}
+				del_label_multi(e, ver);
 			else
 				ver->prev_pars = ver->pars;
 			ver->pars = ver->pars->next;
 		}
 		val->label = val->label->next;
 	}
+}
+
+void	del_label_multi(t_asm *e, t_verbos *ver)
+{
+	if (!(e->champ.line = ft_strdup(ver->pars->line)))
+		error(e, MALLOC);
+	ft_memdel((void **)&ver->pars->line);
+	ver->nb_line = ver->pars->coo[0];
+	I = ver->pars->coo[1];
+	verbos(e, LABEL_MULTI_INIT);
+	ft_memdel((void **)&e->champ.line);
+	ver->prev_pars->next = ver->pars->next;
+	ft_memdel((void **)&ver->pars);
+	ver->pars = ver->prev_pars;
 }
 
 int		exist_label(t_asm *e, t_label *exi, t_valid *val, int shift)
@@ -84,7 +87,7 @@ int		exist_label(t_asm *e, t_label *exi, t_valid *val, int shift)
 		val->label = val->label->next;
 	}
 	if (!(e->champ.line = ft_strdup(exi->line)))
-	 	error(e, MALLOC);
+		error(e, MALLOC);
 	e->verbos.nb_line = exi->coo[0];
 	I = exi->coo[1];
 	verbos(e, LABEL_EXIST);
@@ -100,7 +103,7 @@ void	used_label(t_asm *e, t_valid *val)
 		if (!val->label->used)
 		{
 			if (!(e->champ.line = ft_strdup(val->label->line)))
-			 	error(e, MALLOC);
+				error(e, MALLOC);
 			e->verbos.nb_line = val->label->coo[0];
 			I = val->label->coo[1];
 			verbos(e, LABEL_USED);
@@ -109,38 +112,3 @@ void	used_label(t_asm *e, t_valid *val)
 		val->label = val->label->next;
 	}
 }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-//

@@ -52,7 +52,7 @@ int		arg_val(t_asm *e, char *line, t_arg *arg, int type)
 	if ((line[content_len] != ',' && line[content_len] != ' ' &&
 		line[content_len] != '\n') || (I + 2 - type) == content_len ||
 		line[content_len - 1] == '-')
-			return (verbos(e, (type == 1) ? INVALID_DIR_VAL : INVALID_IND_VAL));
+		return (verbos(e, (type == 1) ? INVALID_DIR_VAL : INVALID_IND_VAL));
 	if (!(value = ft_strsub(line, I + 2 - type, content_len - I - (2 - type))))
 		error(e, MALLOC);
 	arg->arg_value = ft_atoi(value);

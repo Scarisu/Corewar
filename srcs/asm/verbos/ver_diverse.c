@@ -12,23 +12,6 @@
 
 #include <asm.h>
 
-void	missing_name(t_asm *e)
-{
-	add_cont(e, &V_LINE, WHITE "Missing champion's name\n");
-	add_cont(e, &V_LINE, RESET "usage: " GREY NAME_CMD_STRING " \"name\"");
-	add_cont(e, &V_LINE, RESET "\n");
-	(void)e;
-}
-
-void	missing_comment(t_asm *e)
-{
-	add_cont(e, &V_LINE, WHITE "Missing champion's description\n");
-	add_cont(e, &V_LINE, RESET "usage: " GREY COMMENT_CMD_STRING);
-	add_cont(e, &V_LINE, " \"description\"");
-	add_cont(e, &V_LINE, RESET "\n");
-	(void)e;
-}
-
 void	invalid_command(t_asm *e)
 {
 	int		start;

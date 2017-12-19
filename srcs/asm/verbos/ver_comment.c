@@ -49,10 +49,11 @@ void	comment_len(t_asm *e)
 	(void)e;
 }
 
-/*
-**	void	syntax(t_asm *e);
-*/
-
-/*
-**	void	invalid_char(t_asm *e);
-*/
+void	missing_comment(t_asm *e)
+{
+	add_cont(e, &V_LINE, WHITE "Missing champion's description\n");
+	add_cont(e, &V_LINE, RESET "usage: " GREY COMMENT_CMD_STRING);
+	add_cont(e, &V_LINE, " \"description\"");
+	add_cont(e, &V_LINE, RESET "\n");
+	(void)e;
+}

@@ -150,7 +150,9 @@ int				opcode_position(t_enco *i);
 
 void	missing_data(t_asm *e);
 void	label_mutli(t_asm *e, t_verbos *ver, t_valid *val);
+void		del_label_multi(t_asm *e, t_verbos *ver);
 void	set_file(t_asm *e, t_enco *i);
+int        set_shift(t_enco *i, int nb);
 int			exist_label(t_asm *e, t_label *exi, t_valid *val, int shift);
 void	used_label(t_asm *e, t_valid *val);
 

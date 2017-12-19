@@ -56,8 +56,8 @@ void	clean_frag(t_frag *f)
 
 void	clean_enco(t_enco *e)
 {
-	int	i;
-	t_enco *prev;
+	int		i;
+	t_enco	*prev;
 
 	while ((prev = e))
 	{
