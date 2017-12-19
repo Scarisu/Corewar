@@ -81,7 +81,7 @@ int		main(int argc, char **argv)
 			else if ((str1[i] >= 100) || (str1[i] <= 10 && str1[i] > -100))
 				ft_putchar(' ');
 
-			ft_putstr(" - [");
+			ft_putstr(" -    [");
 			if (i <= len2)
 				ft_putnbr(str2[i]);
 			else

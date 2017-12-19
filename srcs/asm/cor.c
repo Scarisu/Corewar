@@ -65,24 +65,24 @@ void	set_file(t_asm *e, t_enco *i)
 	while (i && i->next)
 	{
 		put_bin(e, &e->bin.file, (int[1]){i->opcode}, 1);
-		if (i->opcode != LIVE && i->opcode != ZJMP && i->opcode != FORK &&
-			i->opcode != LFORK && i->opcode != AFF)
+		if (i->opcode != LIVE && i->opcode != ZJMP &&
+            i->opcode != FORK && i->opcode != LFORK)
 			put_bin(e, &e->bin.file, (int[1]){i->bin_arg}, 1);
 		nb = -1;
 		while (++nb < i->nb_arg)
 		{
             shift = (i->arg[nb].type == T_REG) ? 1 : 2;
-            shift += (i->arg[nb].type == T_IND) ? 2 : 0;
-            shift += (i->arg[nb].type == T_DIR && (i->opcode == LIVE ||
-                i->opcode == LD || i->opcode == AND || i->opcode == OR ||
-                i->opcode == XOR || i->opcode == LLD)) ? 2 : 0;
+            shift += (i->arg[nb].type == T_DIR &&
+            (i->opcode == LIVE || i->opcode == LD || i->opcode == AND ||
+            i->opcode == OR || i->opcode == XOR || i->opcode == LLD)) ? 2 : 0;
             shift *= 8;
             if (i->arg[nb].arg_label)
 			 	exist_label(e, i->arg[nb].arg_label, &e->champ.valid, shift);
             else
                 while ((shift -= 8) >= 0)
-                    put_bin(e, &e->bin.file, (int[1]){i->arg[nb].arg_value >> shift}, 1);
-		}
+                    put_bin(e, &e->bin.file,
+                    (int[1]){i->arg[nb].arg_value >> shift}, 1);
+        }
 		i = i->next;
 	}
 }

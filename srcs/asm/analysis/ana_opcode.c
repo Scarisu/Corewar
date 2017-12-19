@@ -17,7 +17,6 @@ int		ins_opcode(t_asm *e, char *line)
 	int		ret;
 	int		content_len;
 
-	//printf("pos [%d]\n", e->bin.op_pos);
 	if (!skip_tab(e, line))
 		return (0);
 	content_len = I;
@@ -60,15 +59,14 @@ int		opcode_position(t_enco *i)
 
 	pos = 1;
 	nb_arg = -1;
-	pos += (i->opcode != LIVE && i->opcode != ZJMP && i->opcode != FORK &&
-			i->opcode != LFORK && i->opcode != AFF) ? 1 : 0;
+	pos += (i->opcode != LIVE && i->opcode != ZJMP &&
+			i->opcode != FORK && i->opcode != LFORK) ? 1 : 0;
 	while (++nb_arg < i->nb_arg)
 	{
 		pos += (i->arg[nb_arg].type == T_REG) ? 1 : 2;
-		pos += (i->arg[nb_arg].type == T_IND) ? 2 : 0;
-		pos += (i->arg[nb_arg].type == T_DIR && (i->opcode == LIVE ||
-			i->opcode == LD || i->opcode == AND || i->opcode == OR ||
-			i->opcode == XOR || i->opcode == LLD)) ? 2 : 0;
+		pos += (i->arg[nb_arg].type == T_DIR &&
+		(i->opcode == LIVE || i->opcode == LD || i->opcode == AND ||
+		i->opcode == OR || i->opcode == XOR || i->opcode == LLD)) ? 2 : 0;
 	}
 	return (pos);
 }
