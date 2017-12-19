@@ -27,6 +27,7 @@ void		create_cor(t_asm *e)
 	while (i < e->bin.len_head)
 		ft_putchar_fd(e->bin.head[i++], fd);
 	i = 0;
+    //printf("{%zu}\n", e->bin.len_file);
 	while (i < e->bin.len_file)
 		ft_putchar_fd(e->bin.file[i++], fd);
 	ft_putstr(e->champ.file_name);
@@ -57,29 +58,30 @@ void		set_head(t_asm *e)
 
 void	set_file(t_asm *e, t_enco *i)
 {
+    int shift;
 	int	nb;
 
 	i = e->enco_start;
 	while (i && i->next)
 	{
 		put_bin(e, &e->bin.file, (int[1]){i->opcode}, 1);
-		if (i->opcode != LIVE && i->opcode != ZJMP &&
+		if (i->opcode != LIVE && i->opcode != ZJMP && i->opcode != FORK &&
 			i->opcode != LFORK && i->opcode != AFF)
 			put_bin(e, &e->bin.file, (int[1]){i->bin_arg}, 1);
 		nb = -1;
 		while (++nb < i->nb_arg)
 		{
-			// printf("[%d]\n", i->arg[nb].type);
-			if (i->arg[nb].type == T_DIR && (i->opcode == LIVE ||
-				i->opcode == LD || i->opcode == AND || i->opcode == OR ||
-				i->opcode == XOR || i->opcode == LLD))
-				put_bin(e, &e->bin.file, (int[3]){}, 3);
-			else if (i->arg[nb].type == T_IND)
-				put_bin(e, &e->bin.file, (int[1]){}, 1);
-			if (i->arg[nb].arg_value)
-				put_bin(e, &e->bin.file, (int[1]){i->arg[nb].arg_value}, 1);
-			if (i->arg[nb].arg_label)
-			 	exist_label(e, i->arg[nb].arg_label, &e->champ.valid);
+            shift = (i->arg[nb].type == T_REG) ? 1 : 2;
+            shift += (i->arg[nb].type == T_IND) ? 2 : 0;
+            shift += (i->arg[nb].type == T_DIR && (i->opcode == LIVE ||
+                i->opcode == LD || i->opcode == AND || i->opcode == OR ||
+                i->opcode == XOR || i->opcode == LLD)) ? 2 : 0;
+            shift *= 8;
+            if (i->arg[nb].arg_label)
+			 	exist_label(e, i->arg[nb].arg_label, &e->champ.valid, shift);
+            else
+                while ((shift -= 8) >= 0)
+                    put_bin(e, &e->bin.file, (int[1]){i->arg[nb].arg_value >> shift}, 1);
 		}
 		i = i->next;
 	}

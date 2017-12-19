@@ -68,14 +68,16 @@ void	label_mutli(t_asm *e, t_verbos *ver, t_valid *val)
 	}
 }
 
-int		exist_label(t_asm *e, t_label *exi, t_valid *val)
+int		exist_label(t_asm *e, t_label *exi, t_valid *val, int shift)
 {
 	val->label = val->label_start;
 	while (val->label && val->label->next)
 	{
 		if (!ft_strcmp(val->label->name, exi->name))
 		{
-			put_bin(e, &e->bin.file, (int[1]){val->label->octets - exi->octets}, 1);
+			while ((shift -= 8) >= 0)
+				put_bin(e, &e->bin.file,
+					(int[1]){((val->label->octets - exi->octets)) >> shift}, 1);
 			val->label->used = 1;
 			return (1);
 		}

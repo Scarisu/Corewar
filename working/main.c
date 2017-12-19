@@ -51,8 +51,8 @@ int		main(int argc, char **argv)
 		ft_putstr("] - [");
 		ft_putnbr(len2);
 		ft_putendl("]\n");
-		i = 2190;
-		//i = -1;
+		//i = 2190;
+		i = -1;
 		while (i <= len1 || i <= len2)
 		{
 			if (i >= 2193)
@@ -67,17 +67,37 @@ int		main(int argc, char **argv)
 			}
 			else
 				ft_putstr("       ");
+
 			ft_putchar('[');
 			if (i <= len1)
 				ft_putnbr(str1[i]);
 			else
 				ft_putchar('/');
-			ft_putstr("] - [");
+			ft_putchar(']');
+			if (str1[i] < 10 && str1[i] >= 0)
+				ft_putstr("   ");
+			else if ((str1[i] < 100 && str1[i] >= 10) || (str1[i] < 0 && str1[i] > -10))
+				ft_putstr("  ");
+			else if ((str1[i] >= 100) || (str1[i] <= 10 && str1[i] > -100))
+				ft_putchar(' ');
+
+			ft_putstr(" - [");
 			if (i <= len2)
 				ft_putnbr(str2[i]);
 			else
 				ft_putchar('/');
-			ft_putendl("]");
+			ft_putchar(']');
+			if (str2[i] < 10 && str2[i] >= 0)
+				ft_putstr("   ");
+			else if ((str2[i] < 100 && str2[i] >= 10) || (str2[i] < 0 && str2[i] > -10))
+				ft_putstr("  ");
+			else if ((str2[i] >= 100) || (str2[i] <= 10 && str2[i] > -100))
+				ft_putchar(' ');
+
+			if ((i <= len1 && i <= len2 && str1[i] != str2[i]) ||
+				i > len1 || i > len2)
+				ft_putstr("  {DIFF}");
+			ft_putchar('\n');
 			i++;
 		}
 	}

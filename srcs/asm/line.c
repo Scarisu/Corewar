@@ -40,8 +40,10 @@ void	check_line(t_asm *e)
 {
 	int i;
 
-	while ((e->verbos.nb_line - e->verbos.frag_start->coo[0]) < MAX_LINE &&
-		(e->verbos.line_left = get_line(e, &e->champ.line)))
+	while ((!e->verbos.nb_error
+		|| ((e->verbos.nb_error)
+		&& (e->verbos.nb_line - e->verbos.frag_start->coo[0]) < MAX_LINE))
+		&& (e->verbos.line_left = get_line(e, &e->champ.line)))
 	{
 		i = 0;
 		I = 0;

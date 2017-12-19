@@ -29,6 +29,8 @@ rm -f $(find ./${resources_file} -name "*.cor")
 resources_asm=$(find ./vm_champs -name "${asm_name}")
 chmod 744 ${resources_asm}
 
+resources_asm="./.resources/asm"
+
 #Test directory
 all_dir=""
 for dir in $(echo ${file_test} | tr "/" "\n"); do

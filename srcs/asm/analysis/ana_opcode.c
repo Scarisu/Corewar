@@ -60,7 +60,7 @@ int		opcode_position(t_enco *i)
 
 	pos = 1;
 	nb_arg = -1;
-	pos += (i->opcode != LIVE && i->opcode != ZJMP &&
+	pos += (i->opcode != LIVE && i->opcode != ZJMP && i->opcode != FORK &&
 			i->opcode != LFORK && i->opcode != AFF) ? 1 : 0;
 	while (++nb_arg < i->nb_arg)
 	{
