@@ -6,7 +6,7 @@
 /*   By: rlecart <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/11/23 06:25:10 by rlecart           #+#    #+#             */
-/*   Updated: 2017/12/15 08:48:32 by rlecart          ###   ########.fr       */
+/*   Updated: 2017/12/19 10:14:28 by rlecart          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,6 +15,7 @@
 int		display_error(char *str)
 {
 	ft_putstr_fd(str, 2);
+	ft_putstr_fd("\n", 2);
 	return (-1);
 }
 

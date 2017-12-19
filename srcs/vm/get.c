@@ -6,20 +6,11 @@
 /*   By: rlecart <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/11/23 06:15:11 by rlecart           #+#    #+#             */
-/*   Updated: 2017/12/15 08:36:14 by rlecart          ###   ########.fr       */
+/*   Updated: 2017/12/19 09:40:54 by rlecart          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <vm.h>
-
-int			get_nbc(char **argv)
-{
-	int		nbc;
-
-	if ((nbc = ft_atoi(argv[0])) > MAX_PLAYERS)
-		error(1);
-	return (nbc);
-}
 
 char		*get_file(char *path, int *len)
 {
@@ -58,7 +49,7 @@ void		get_head(t_champ *champs, int i)
 		error(3);
 }
 
-t_champ		*get_all_champs(char **argv, int nbc)
+t_champ		*get_all_champs(char **argv, t_corewar data)
 {
 	int			i;
 	int			add;
@@ -67,8 +58,8 @@ t_champ		*get_all_champs(char **argv, int nbc)
 
 	i = -1;
 	add = PROG_NAME_LENGTH + COMMENT_LENGTH + 16 + 1;
-	champs = ft_memalloc(nbc * sizeof(t_champ));
-	while (++i < nbc)
+	champs = ft_memalloc(data.nbc * sizeof(t_champ));
+	while (++i < data.nbc)
 	{
 		champs[i].content = get_file(argv[1 + i], &champs[i].len);
 		get_head(champs, i);

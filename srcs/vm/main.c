@@ -6,7 +6,7 @@
 /*   By: pbernier <pbernier@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/09/29 18:27:41 by pbernier          #+#    #+#             */
-/*   Updated: 2017/12/15 08:45:35 by rlecart          ###   ########.fr       */
+/*   Updated: 2017/12/19 07:48:27 by rlecart          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,13 +14,17 @@
 
 int		main(int argc, char **argv)
 {
-	int			nbc;
 	t_champ		*champs;
+	t_corewar	data;
 
-	if (argc <= 1)
-		error(0);
-	nbc = get_nbc(argv + 1);
-	champs = get_all_champs(argv + 1, nbc);
-	battle(champs, nbc);
+	data = check_all(argc - 1, argv + 1);
+	printf("data.nbc = %d\n", data.nbc);
+	printf("data.dump = %d\n", data.dump);
+	printf("data.numbers[0] = %d\n", data.numbers[0]);
+	printf("data.numbers[1] = %d\n", data.numbers[1]);
+	printf("data.numbers[2] = %d\n", data.numbers[2]);
+	printf("data.numbers[3] = %d\n", data.numbers[3]);
+	champs = get_all_champs(argv + 1, data);
+	battle(champs, data);
 	return (0);
 }

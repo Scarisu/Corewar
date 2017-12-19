@@ -6,7 +6,7 @@
 /*   By: rlecart <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/11/23 06:12:46 by rlecart           #+#    #+#             */
-/*   Updated: 2017/12/15 07:29:16 by rlecart          ###   ########.fr       */
+/*   Updated: 2017/12/19 10:12:59 by rlecart          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,16 +32,16 @@ void	display_map(char *map)
 	}
 }
 
-void	battle(t_champ *champs, int nbc)
+void	battle(t_champ *champs, t_corewar d)
 {
 	int		i;
 	char	*map;
 
 	i = -1;
 	map = ft_memalloc(MEM_SIZE);
-	while (++i < nbc)
+	while (++i < d.nbc)
 	{
-		ft_memcpy(&map[MEM_SIZE / nbc * i], champs[i].content, champs[i].len);
+		ft_memcpy(&map[MEM_SIZE / d.nbc * i], champs[i].content, champs[i].len);
 	}
 	display_map(map);
 }

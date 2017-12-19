@@ -6,7 +6,7 @@
 /*   By: pbernier <pbernier@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/11/09 00:30:13 by pbernier          #+#    #+#             */
-/*   Updated: 2017/12/15 09:05:29 by rlecart          ###   ########.fr       */
+/*   Updated: 2017/12/19 10:11:35 by rlecart          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -137,5 +137,6 @@ char				*ft_ttoa(char **tab);
 void				*ft_realloc(void *ptr, size_t size);
 void				*ft_memsub(void *src, unsigned int start, unsigned int len);
 int					ft_which_endian(void);
+int					ft_min_val(int *tab, int size);
 
 #endif
