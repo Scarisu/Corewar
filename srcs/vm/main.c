@@ -6,7 +6,7 @@
 /*   By: pbernier <pbernier@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/09/29 18:27:41 by pbernier          #+#    #+#             */
-/*   Updated: 2017/12/20 05:50:12 by rlecart          ###   ########.fr       */
+/*   Updated: 2017/12/20 08:18:28 by rlecart          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,6 +25,6 @@ int		main(int argc, char **argv)
 	printf("data.numbers[2] = %d\n", data.numbers[2]);
 	printf("data.numbers[3] = %d\n", data.numbers[3]);
 	champs = get_all_champs(data);
-	battle(champs, data);
+	battle(champs, &data);
 	return (0);
 }

@@ -6,7 +6,7 @@
 /*   By: rlecart <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/12/19 06:43:20 by rlecart           #+#    #+#             */
-/*   Updated: 2017/12/20 05:47:32 by rlecart          ###   ########.fr       */
+/*   Updated: 2017/12/20 08:59:45 by rlecart          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -83,7 +83,7 @@ t_corewar	check_all(int ac, char **av)
 	i = -1;
 	j = -1;
 	ret.nbc = 0;
-	ret.dump = 0;
+	ret.dump = -1;
 	ft_memcpy(ret.numbers, (int[4]){0, 0, 0, 0}, sizeof(int) * 4);
 	while (++i < ac)
 	{

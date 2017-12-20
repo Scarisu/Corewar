@@ -6,7 +6,7 @@
 /*   By: rlecart <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/11/23 06:04:11 by rlecart           #+#    #+#             */
-/*   Updated: 2017/12/20 07:16:02 by rlecart          ###   ########.fr       */
+/*   Updated: 2017/12/20 09:02:04 by rlecart          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,6 +29,12 @@ typedef struct		s_corewar
 	int				nbc;
 	int				dump;
 	int				numbers[4];
+	int				cycle;
+	int				cycle_tmp;
+	int				cycle_to_die;
+	int				cycle_delta;
+	int				nbr_live;
+	int				max_checks;
 	char			*(champs_path[4]);
 }					t_corewar;
 
@@ -37,6 +43,6 @@ void				error(int code, char *val);
 
 t_champ				*get_all_champs(t_corewar data);
 
-void				battle(t_champ *champs, t_corewar data);
+void				battle(t_champ *champs, t_corewar *d);
 
 #endif
