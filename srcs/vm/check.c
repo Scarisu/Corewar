@@ -6,7 +6,7 @@
 /*   By: rlecart <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/12/19 06:43:20 by rlecart           #+#    #+#             */
-/*   Updated: 2017/12/20 05:15:38 by rlecart          ###   ########.fr       */
+/*   Updated: 2017/12/20 05:47:32 by rlecart          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,7 +17,7 @@ void		check_dump(int ac, char **av, t_corewar *ret, int *i)
 	if (*i + 1 < ac && (ft_c_atoi(av[*i + 1])) > 0)
 		ret->dump = ft_c_atoi(av[(*i)++ + 1]);
 	else
-		error(0);
+		error(0, NULL);
 }
 
 void		check_n(int ac, char **av, t_corewar *ret, int *(i[2]))
@@ -31,16 +31,16 @@ void		check_n(int ac, char **av, t_corewar *ret, int *(i[2]))
 		if (++*(i[1]) < 4)
 		{
 			if ((ft_al_exist(ret->numbers, tmp, 4)))
-				error(0);
+				error(0, NULL);
 			ret->numbers[*(i[1])] = tmp;
 			ret->champs_path[*(i[1])] = av[*(i[0]) + 2];
 		}
 		else
-			error(0);
+			error(0, NULL);
 		*(i[0]) += 2;
 	}
 	else
-		error(0);
+		error(0, NULL);
 }
 
 void		check_cor(char **av, t_corewar *ret, int *i, int *j)
@@ -51,7 +51,7 @@ void		check_cor(char **av, t_corewar *ret, int *i, int *j)
 		ret->champs_path[*j] = av[*i];
 	}
 	else
-		error(0);
+		error(0, NULL);
 }
 
 void		rec_norm_cor(t_corewar *ret)
@@ -69,7 +69,7 @@ void		rec_norm_cor(t_corewar *ret)
 			if (!(ft_al_exist(ret->numbers, tmp, 4)))
 				ret->numbers[i] = tmp;
 			else if (tmp > 4)
-				error(0);
+				error(0, NULL);
 		}
 	}
 }
@@ -94,11 +94,11 @@ t_corewar	check_all(int ac, char **av)
 		else if (ft_strequ(".cor", &av[i][ft_strlen(av[i]) - 4]))
 			check_cor(av, &ret, &i, &j);
 		else
-			error(0);
+			error(0, NULL);
 	}
 	ret.nbc = j + 1;
 	if (!ret.nbc)
-		error(0);
+		error(0, NULL);
 	rec_norm_cor(&ret);
 	return (ret);
 }

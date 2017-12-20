@@ -6,7 +6,7 @@
 /*   By: rlecart <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/11/23 06:15:11 by rlecart           #+#    #+#             */
-/*   Updated: 2017/12/19 09:40:54 by rlecart          ###   ########.fr       */
+/*   Updated: 2017/12/20 05:50:06 by rlecart          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,7 +20,8 @@ char		*get_file(char *path, int *len)
 	char	*result;
 
 	i = 0;
-	fd = open(path, O_RDONLY);
+	if ((fd = open(path, O_RDONLY)) < 3)
+		error(5, path);
 	result = ft_strnew(0);
 	while ((read(fd, &tmp, 1)))
 	{
@@ -41,15 +42,15 @@ void		get_head(t_champ *champs, int i)
 		j++;
 	champs[i].name = ft_strdup(&champs[i].content[j]);
 	if ((j = ft_strlen(champs[i].name) + 5) > PROG_NAME_LENGTH - 5)
-		error(2);
+		error(2, NULL);
 	while (!ft_isalnum(champs[i].content[j]))
 		j++;
 	champs[i].comment = ft_strdup(&champs[i].content[j]);
 	if (ft_strlen(champs[i].comment) > COMMENT_LENGTH)
-		error(3);
+		error(3, NULL);
 }
 
-t_champ		*get_all_champs(char **argv, t_corewar data)
+t_champ		*get_all_champs(t_corewar data)
 {
 	int			i;
 	int			add;
@@ -61,10 +62,10 @@ t_champ		*get_all_champs(char **argv, t_corewar data)
 	champs = ft_memalloc(data.nbc * sizeof(t_champ));
 	while (++i < data.nbc)
 	{
-		champs[i].content = get_file(argv[1 + i], &champs[i].len);
+		champs[i].content = get_file(data.champs_path[i], &champs[i].len);
 		get_head(champs, i);
 		if ((champs[i].len -= add) > CHAMP_MAX_SIZE)
-			error(4);
+			error(4, NULL);
 		tmp = ft_memsub(champs[i].content, add, champs[i].len);
 		ft_strdel(&champs[i].content);
 		champs[i].content = tmp;

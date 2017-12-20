@@ -6,7 +6,7 @@
 /*   By: rlecart <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/11/23 06:04:11 by rlecart           #+#    #+#             */
-/*   Updated: 2017/12/20 02:09:29 by rlecart          ###   ########.fr       */
+/*   Updated: 2017/12/20 07:16:02 by rlecart          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,9 +33,9 @@ typedef struct		s_corewar
 }					t_corewar;
 
 t_corewar			check_all(int argc, char **argv);
-void				error(int code);
+void				error(int code, char *val);
 
-t_champ				*get_all_champs(char **argv, t_corewar data);
+t_champ				*get_all_champs(t_corewar data);
 
 void				battle(t_champ *champs, t_corewar data);
 
