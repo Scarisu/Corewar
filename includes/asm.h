@@ -85,6 +85,7 @@ struct			s_enco
 
 struct			s_asm
 {
+	int			flag;
 	t_champ		champ;
 	t_verbos	verbos;
 	t_bin		bin;
@@ -107,8 +108,8 @@ t_enco		*set_enco(t_asm *e);
 void 		set_ptrft(t_asm *e);
 
 
-void	usage(t_asm *e, int argc, char *av);
-
+void	usage(t_asm *e, int argc, char **av);
+void		flag(t_asm *e, char *av);
 void	put_bin(t_asm *e, int **bin, int *add, size_t len_add);
 
 void	check_line(t_asm *e, t_verbos *v, t_champ *c);

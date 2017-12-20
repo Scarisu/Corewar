@@ -1,6 +1,6 @@
 #Attention aux noms donnés aux dossiers !
 asm_name="asm"
-resources_file="vm_champs/"
+resources_file="vm_champs"
 file_test="tests/champions/"
 result_file="result.txt"
 diff_file="diff.txt"
@@ -18,7 +18,7 @@ clean(){
 }
 
 usage(){
-	printf "usage: $0 [clean]\n"
+	printf "usage: $0 [-cs] [clean]\n"
 	exit
 }
 
@@ -26,11 +26,18 @@ usage(){
 if [ $1 ]; then
 	[[ $2 ]] && usage
 	[[ $1 == clean ]] && clean
-	[[ $1 =~ ^-[c]+$ ]] && details="ON" || usage;
+	if [[ $1 =~ ^-[cs]+$ ]]; then
+		[[ $1 =~ [c] ]] && details="ON";
+		[[ $1 =~ [s] ]] && warning="-s";
+	else
+		usage
+	fi
 fi
 
 clear
 make ${asm_name}
+[ -e ! ${asm} ] && exit
+
 
 #Ressource
 mkdir -p ${resources_file}
@@ -71,17 +78,21 @@ printf "${day}${hour}\n" >> ${file_test}${diff_file}
 for champ in ${all_champs[@]}; do
 	((nb_done++))
 	cor="$(echo "${champ}" | sed 's/\.s//').cor"
+	[[ ${details} == "ON" ]] && clear
 	printf "\n[${nb_done}/${nb_champs}] "
 	printf "[${nb_done}/${nb_champs}] [${cor}]\n" >> ${file_test}${result_file}
-	[[ ${details} == "ON" ]] && clear
 	printf "${grey}[$(basename ${cor})]${reset}\n"
-	[[ ${details} == "ON" ]] && cat -bs ${champ}
+	if [[ ${details} == "ON" ]]; then
+		printf "\n"
+		cat -ns ${name}
+		printf "\n"
+	fi
 	read
-	printf "[REAL] - "
+	printf "\n[REAL]\n"
 	${resources_asm} ${champ}
 	[[ -e ${cor} ]] && mv ${cor} ${file_test}cor_real || printf "[REAL] - $(basename ${cor}) hasn't been created\n" >> ${file_test}${result_file}
-	printf "\n[MINE] - "
-	./${asm_name} ${champ}
+	printf "\n[MINE]\n"
+	./${asm_name} ${champ} ${warning}
 	[[ -e ${cor} ]] && mv ${cor} ${file_test}cor_mine || printf "[MINE] - $(basename ${cor}) hasn't been created\n" >> ${file_test}${result_file}
 	if [ -e "${file_test}cor_mine/$(basename ${cor})" ] && [ -e "${file_test}cor_real/$(basename ${cor})" ]; then
 		printf "[${nb_done}/${nb_champs}] [${cor}]\n" >> ${file_test}${diff_file}

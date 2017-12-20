@@ -12,23 +12,37 @@
 
 #include <asm.h>
 
-void	usage(t_asm *e, int argc, char *av)
+void	usage(t_asm *e, int argc, char **av)
 {
 	int	len;
 
-	if (argc != 2)
+	if (argc != 2 && argc != 3)
 		error(e, NB_ARG);
-	len = ft_strlen(av);
-	if (av[len - 2] != '.' && av[len - 1] != 's')
+	if (argc == 3)
+		flag(e, av[2]);
+	len = ft_strlen(av[1]);
+	if (av[1][len - 2] != '.' && av[1][len - 1] != 's')
 		error(e, EXTENTION);
-	if ((e->champ.fd = open(av, O_RDONLY)) < 2)
+	if ((e->champ.fd = open(av[1], O_RDONLY)) < 2)
 		error(e, OPEN_CHAMP);
 	len -= 3;
-	while (len > 0 && av[len] != '/')
+	while (len > 0 && av[1][len] != '/')
 		--len;
-	len += (av[len] == '/') ? 1 : 0;
-	if (!(e->champ.file_path = ft_strsub(av, 0, len)))
+	len += (av[1][len] == '/') ? 1 : 0;
+	if (!(e->champ.file_path = ft_strsub(av[1], 0, len)))
 		error(e, MALLOC);
-	if (!(e->champ.file_name = ft_strsub(av, len, ft_strlen(av) - len - 2)))
+	if (!(e->champ.file_name = ft_strsub(av[1], len,
+		ft_strlen(av[1]) - len - 2)))
 		error(e, MALLOC);
+}
+
+void	flag(t_asm *e, char *av)
+{
+	int	i;
+
+	i = 0;
+	if (av[i] != '-' || ft_strlen(av) == 1)
+		error(e, USAGE);
+	while (av[++i])
+		av[i] != 's' ? error(e, USAGE) : (e->flag = 1);
 }

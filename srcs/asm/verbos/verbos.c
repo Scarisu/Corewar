@@ -14,10 +14,9 @@
 
 int		verbos(t_asm *e, int err)
 {
-	if (err == LABEL_USED)
-		++e->verbos.nb_warning;
-	else
-		++e->verbos.nb_error;
+	if (err == LABEL_USED && e->flag)
+		return (0);
+	(err == LABEL_USED) ? (++e->verbos.nb_warning) : (++e->verbos.nb_error);
 	if (err != MISSING_NAME && err != MISSING_COMMENT)
 		ft_memcpy(e->verbos.frag->coo,
 			(int[2]){e->verbos.nb_line, I + 1}, sizeof(int[2]));

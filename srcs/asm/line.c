@@ -62,6 +62,4 @@ void	check_line(t_asm *e, t_verbos *v, t_champ *c)
 		if (!(v->line_left) && !c->valid.comment_done)
 			verbos(e, MISSING_COMMENT);
 	}
-	(void)v;
-	(void)c;
 }

@@ -17,7 +17,7 @@ int		main(int argc, char **argv)
 	t_asm	e;
 
 	init_all(&e);
-	usage(&e, argc, argv[1]);
+	usage(&e, argc, argv);
 	check_line(&e, &e.verbos, &e.champ);
 	if (!print_verbos(&e.verbos))
 		create_cor(&e);
@@ -27,6 +27,7 @@ int		main(int argc, char **argv)
 
 void	init_all(t_asm *e)
 {
+	e->flag = 0;
 	set_champ(e, &e->champ);
 	set_verbos(e, &e->verbos);
 	set_bin(e, &e->bin);

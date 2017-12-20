@@ -31,11 +31,12 @@
 ** error
 */
 # define NB_ARG				1
-# define EXTENTION			2
-# define OPEN_CHAMP			3
-# define READ_CHAMP			4
-# define MALLOC				5
-# define CREATE				6
+# define USAGE				2
+# define EXTENTION			3
+# define OPEN_CHAMP			4
+# define READ_CHAMP			5
+# define MALLOC				6
+# define CREATE				7
 
 /*
 ** verbos
