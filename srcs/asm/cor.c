@@ -6,13 +6,13 @@
 /*   By: pbernier <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/12/15 00:09:05 by pbernier          #+#    #+#             */
-/*   Updated: 2017/12/15 00:09:06 by pbernier         ###   ########.fr       */
+/*   Updated: 2017/12/19 23:29:18 by pbernier         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <asm.h>
 
-void	create_cor(t_asm *e)
+void		create_cor(t_asm *e)
 {
 	int		fd;
 	size_t	i;
@@ -72,7 +72,7 @@ void		set_file(t_asm *e, t_enco *i)
 		nb = -1;
 		while (++nb < i->nb_arg)
 		{
-            shift = set_shift(i, nb);
+			shift = set_shift(i, nb);
 			if (i->arg[nb].arg_label)
 				exist_label(e, i->arg[nb].arg_label, &e->champ.valid, shift);
 			else
@@ -84,14 +84,14 @@ void		set_file(t_asm *e, t_enco *i)
 	}
 }
 
-int        set_shift(t_enco *i, int nb)
+int			set_shift(t_enco *i, int nb)
 {
-    int		shift;
+	int		shift;
 
-    shift = (i->arg[nb].type == T_REG) ? 1 : 2;
-    shift += (i->arg[nb].type == T_DIR &&
-    (i->opcode == LIVE || i->opcode == LD || i->opcode == AND ||
-    i->opcode == OR || i->opcode == XOR || i->opcode == LLD)) ? 2 : 0;
-    shift *= 8;
-    return (shift);
+	shift = (i->arg[nb].type == T_REG) ? 1 : 2;
+	shift += (i->arg[nb].type == T_DIR &&
+	(i->opcode == LIVE || i->opcode == LD || i->opcode == AND ||
+	i->opcode == OR || i->opcode == XOR || i->opcode == LLD)) ? 2 : 0;
+	shift *= 8;
+	return (shift);
 }

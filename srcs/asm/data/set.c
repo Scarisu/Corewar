@@ -12,38 +12,71 @@
 
 #include <asm.h>
 
-void	set_data(t_asm *e)
+void	set_champ(t_asm *e, t_champ *c)
 {
-	if (!(e->bin.head = (int *)malloc(sizeof(int))))
+	c->fd = -1;
+	c->file_path = NULL;
+	c->file_name = NULL;
+	c->line = NULL;
+	c->valid.name_done = 0;
+	c->valid.comment_done = 0;
+	c->valid.name = NULL;
+	c->valid.comment = NULL;
+	c->valid.label = set_label(e, (int[2]){0, 0});
+	c->valid.label_start = e->champ.valid.label;
+}
+
+void	set_verbos(t_asm *e, t_verbos *v)
+{
+	v->nb_error = 0;
+	v->nb_warning = 0;
+	v->nb_line = 1;
+	v->i = 0;
+	v->len_arrow = 0;
+	v->cmd_invalid = NULL;
+	v->opcode_name = NULL;
+	v->pars = NULL;
+	v->prev_pars = NULL;
+	v->frag = set_frag(e, (int[2]){0, 0});
+	v->frag_start = e->verbos.frag;
+	set_ptrver(v);
+}
+
+void	set_ptrver(t_verbos *v)
+{
+	v->tab[NAME_EXIST] = name_exist;
+	v->tab[SYNTAX] = syntax;
+	v->tab[NAME_LEN] = name_len;
+	v->tab[INVALID_CHAR] = invalid_char;
+	v->tab[COMMENT_EXIST] = comment_exist;
+	v->tab[COMMENT_LEN] = comment_len;
+	v->tab[INVALID_COMMANDE] = invalid_command;
+	v->tab[INVALID_LABEL] = invalid_label;
+	v->tab[INVALID_OPCODE] = invalid_opcode;
+	v->tab[OPCODE_EXIST] = opcode_exist;
+	v->tab[MISSING_NAME] = missing_name;
+	v->tab[MISSING_COMMENT] = missing_comment;
+	v->tab[NEED_ARG] = need_arg;
+	v->tab[WRONG_ARG] = wrong_arg;
+	v->tab[INVALID_REG] = invalid_reg;
+	v->tab[NOT_ENOUGHT_ARG] = not_enought_arg;
+	v->tab[INVALID_DIR_VAL] = invalid_dir_val;
+	v->tab[INVALID_IND_VAL] = invalid_ind_val;
+	v->tab[INVALID_LABEL_ARG] = invalid_label_arg;
+	v->tab[LABEL_USED] = label_used;
+	v->tab[LABEL_MULTI_INIT] = label_multi_init;
+	v->tab[LABEL_EXIST] = label_exist;
+}
+
+void	set_bin(t_asm *e, t_bin *b)
+{
+	if (!(b->head = (int *)malloc(sizeof(int))))
 		error(e, MALLOC);
-	e->bin.len_head = 0;
-	if (!(e->bin.file = (int *)malloc(sizeof(int))))
+	b->len_head = 0;
+	if (!(b->file = (int *)malloc(sizeof(int))))
 		error(e, MALLOC);
-	e->bin.len_file = 0;
-	e->bin.op_pos = 1;
-	e->enco = set_enco(e);
-	e->enco_start = e->enco;
-	e->champ.fd = -1;
-	e->champ.file_path = NULL;
-	e->champ.file_name = NULL;
-	e->champ.line = NULL;
-	e->champ.valid.name_done = 0;
-	e->champ.valid.comment_done = 0;
-	e->champ.valid.name = NULL;
-	e->champ.valid.comment = NULL;
-	e->champ.valid.label = set_label(e, (int[2]){0, 0});
-	e->champ.valid.label_start = e->champ.valid.label;
-	e->verbos.nb_error = 0;
-	e->verbos.nb_warning = 0;
-	e->verbos.nb_line = 1;
-	I = 0;
-	e->verbos.len_arrow = 0;
-	e->verbos.cmd_invalid = NULL;
-	e->verbos.opcode_name = NULL;
-	e->verbos.pars = NULL;
-	e->verbos.prev_pars = NULL;
-	e->verbos.frag = set_frag(e, (int[2]){0, 0});
-	e->verbos.frag_start = e->verbos.frag;
+	b->len_file = 0;
+	b->op_pos = 1;
 }
 
 void	set_ptrft(t_asm *e)
@@ -54,77 +87,4 @@ void	set_ptrft(t_asm *e)
 	e->tab[3] = cmd_check;
 	e->tab[4] = ins_label;
 	e->tab[5] = ins_opcode;
-}
-
-void	set_ptrver(t_asm *e)
-{
-	e->verbos.tab[NAME_EXIST] = name_exist;
-	e->verbos.tab[SYNTAX] = syntax;
-	e->verbos.tab[NAME_LEN] = name_len;
-	e->verbos.tab[INVALID_CHAR] = invalid_char;
-	e->verbos.tab[COMMENT_EXIST] = comment_exist;
-	e->verbos.tab[COMMENT_LEN] = comment_len;
-	e->verbos.tab[INVALID_COMMANDE] = invalid_command;
-	e->verbos.tab[INVALID_LABEL] = invalid_label;
-	e->verbos.tab[INVALID_OPCODE] = invalid_opcode;
-	e->verbos.tab[OPCODE_EXIST] = opcode_exist;
-	e->verbos.tab[MISSING_NAME] = missing_name;
-	e->verbos.tab[MISSING_COMMENT] = missing_comment;
-	e->verbos.tab[NEED_ARG] = need_arg;
-	e->verbos.tab[WRONG_ARG] = wrong_arg;
-	e->verbos.tab[INVALID_REG] = invalid_reg;
-	e->verbos.tab[NOT_ENOUGHT_ARG] = not_enought_arg;
-	e->verbos.tab[INVALID_DIR_VAL] = invalid_dir_val;
-	e->verbos.tab[INVALID_IND_VAL] = invalid_ind_val;
-	e->verbos.tab[INVALID_LABEL_ARG] = invalid_label_arg;
-	e->verbos.tab[LABEL_USED] = label_used;
-	e->verbos.tab[LABEL_MULTI_INIT] = label_multi_init;
-	e->verbos.tab[LABEL_EXIST] = label_exist;
-}
-
-t_label	*set_label(t_asm *e, int coo[2])
-{
-	t_label *new;
-
-	if (!(new = (t_label *)malloc(sizeof(t_label))))
-		error(e, MALLOC);
-	ft_memcpy(new->coo, coo, sizeof(int[2]));
-	new->name = NULL;
-	new->line = NULL;
-	new->used = 0;
-	new->next = NULL;
-	return (new);
-}
-
-t_frag	*set_frag(t_asm *e, int coo[2])
-{
-	t_frag	*new;
-
-	if (!(new = (t_frag *)malloc(sizeof(t_frag))))
-		error(e, MALLOC);
-	ft_memcpy(new->coo, coo, sizeof(int[2]));
-	new->print = NULL;
-	new->next = NULL;
-	return (new);
-}
-
-t_enco	*set_enco(t_asm *e)
-{
-	int		i;
-	t_enco	*new;
-
-	i = -1;
-	if (!(new = (t_enco *)malloc(sizeof(t_enco))))
-		error(e, MALLOC);
-	new->opcode = 0;
-	new->bin_arg = 0b00000000;
-	while (++i < MAX_ARGS_NUMBER - 1)
-	{
-		new->arg[i].arg_value = 0;
-		new->arg[i].arg_label = NULL;
-		new->arg[i].type = 0;
-	}
-	new->nb_arg = 0;
-	new->next = NULL;
-	return (new);
 }

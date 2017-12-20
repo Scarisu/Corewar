@@ -98,24 +98,31 @@ void	arrow(t_asm *e)
 	add_cont(e, &V_LINE, RESET "\n");
 }
 
-void	add_cont(t_asm *e, char **line, char const *add)
+int		print_verbos(t_verbos *v)
 {
-	size_t	l[2];
-	char	*final;
+	int		left;
+	t_frag	*print;
 
-	l[0] = (*line) ? ft_strlen(*line) : 0;
-	l[1] = (add) ? ft_strlen(add) : 0;
-	if (!(final = (char *)malloc(sizeof(char) * (l[0] + l[1] + 1))))
-		error(e, MALLOC);
-	final[l[0] + l[1]] = '\0';
-	ft_memcpy(l, ((size_t[2]){0, 0}), sizeof(size_t[2]));
-	while ((*line)[l[0]])
+	if ((left = v->nb_error + v->nb_warning + 1) == 1)
+		return (0);
+	while (--left)
 	{
-		final[l[0]] = (*line)[l[0]];
-		++l[0];
+		v->frag = v->frag_start;
+		print = NULL;
+		while (v->frag && v->frag->next)
+		{
+			if (v->frag->coo[0] != -1 &&
+			(!print || v->frag->coo[0] < print->coo[0]))
+				print = v->frag;
+			v->frag = v->frag->next;
+		}
+		ft_putstr_fd(print->print, 2);
+		ft_memcpy(print->coo, (int[2]){-1, -1}, sizeof(int[2]));
 	}
-	ft_memdel((void **)line);
-	while (add[l[1]])
-		final[l[0]++] = add[l[1]++];
-	*line = final;
+	((v->line_left)) ? ft_putstr_fd("Minimun ", 2) : 0;
+	ft_putnbr_fd(v->nb_error + v->nb_warning, 2);
+	(!v->nb_error) ? ft_putstr_fd(" warning", 2) : ft_putstr_fd(" error", 2);
+	(v->nb_error + v->nb_warning > 1) ? ft_putchar_fd('s', 2) : 0;
+	ft_putstr_fd(" generated.\n", 2);
+	return (v->nb_error);
 }

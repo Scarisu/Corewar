@@ -16,50 +16,21 @@ int		main(int argc, char **argv)
 {
 	t_asm	e;
 
-	set_data(&e);
-	set_ptrft(&e);
-	set_ptrver(&e);
+	init_all(&e);
 	usage(&e, argc, argv[1]);
-	check_line(&e);
+	check_line(&e, &e.verbos, &e.champ);
 	if (!print_verbos(&e.verbos))
 		create_cor(&e);
 	clean(&e);
 	return (0);
 }
 
-int		print_verbos(t_verbos *v)
+void	init_all(t_asm *e)
 {
-	int		left;
-	t_frag	*print;
-
-	if (!(left = v->nb_error + v->nb_warning))
-		return (0);
-	while (left)
-	{
-		v->frag = v->frag_start;
-		print = NULL;
-		while (v->frag && v->frag->next)
-		{
-			if (v->frag->coo[0] != -1 &&
-			(!print || v->frag->coo[0] < print->coo[0]))
-				print = v->frag;
-			v->frag = v->frag->next;
-		}
-		ft_putstr_fd(print->print, 2);
-		--left;
-		print->coo[0] = -1;
-		print->coo[1] = -1;
-	}
-	return (nb_error(v));
-}
-
-int		nb_error(t_verbos *v)
-{
-	if ((v->line_left))
-		ft_putstr_fd("Minimun ", 2);
-	ft_putnbr_fd(v->nb_error + v->nb_warning, 2);
-	(!v->nb_error) ? ft_putstr_fd(" warning", 2) : ft_putstr_fd(" error", 2);
-	(v->nb_error + v->nb_warning > 1) ? ft_putchar_fd('s', 2) : 0;
-	ft_putstr_fd(" generated.\n", 2);
-	return (v->nb_error);
+	set_champ(e, &e->champ);
+	set_verbos(e, &e->verbos);
+	set_bin(e, &e->bin);
+	e->enco = set_enco(e);
+	e->enco_start = e->enco;
+	set_ptrft(e);
 }

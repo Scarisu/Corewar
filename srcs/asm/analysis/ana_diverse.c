@@ -26,14 +26,6 @@ int		skip_tab(t_asm *e, char *line)
 	return (1);
 }
 
-void	missing_data(t_asm *e)
-{
-	if (!(e->verbos.line_left) && !e->champ.valid.name_done)
-		verbos(e, MISSING_NAME);
-	if (!(e->verbos.line_left) && !e->champ.valid.comment_done)
-		verbos(e, MISSING_COMMENT);
-}
-
 int		cmd_check(t_asm *e, char *line)
 {
 	int	cmd_len;
@@ -87,4 +79,26 @@ void	put_bin(t_asm *e, int **bin, int *add, size_t len_add)
 	while (l[1] < len_add)
 		final[l[0]++] = add[l[1]++];
 	*bin = final;
+}
+
+void	add_cont(t_asm *e, char **line, char const *add)
+{
+	size_t	l[2];
+	char	*final;
+
+	l[0] = (*line) ? ft_strlen(*line) : 0;
+	l[1] = (add) ? ft_strlen(add) : 0;
+	if (!(final = (char *)malloc(sizeof(char) * (l[0] + l[1] + 1))))
+		error(e, MALLOC);
+	final[l[0] + l[1]] = '\0';
+	ft_memcpy(l, ((size_t[2]){0, 0}), sizeof(size_t[2]));
+	while ((*line)[l[0]])
+	{
+		final[l[0]] = (*line)[l[0]];
+		++l[0];
+	}
+	ft_memdel((void **)line);
+	while (add[l[1]])
+		final[l[0]++] = add[l[1]++];
+	*line = final;
 }

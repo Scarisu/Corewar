@@ -1,0 +1,26 @@
+20/12/2017
+04:54
+
+[1/69] [./vm_champs//VM/champs/42.cor]
+[DIFF] - SAME
+
+[2/69] [./vm_champs//VM/champs/Backward.cor]
+[REAL] - Backward.cor hasn't been created
+[MINE] - Backward.cor hasn't been created
+
+[3/69] [./vm_champs//VM/champs/barriere.cor]
+[DIFF] - SAME
+
+[4/69] [./vm_champs//VM/champs/Car.cor]
+[DIFF] - SAME
+
+[5/69] [./vm_champs//VM/champs/championships/2014/bguy/sam_2.0.cor]
+[DIFF] - SAME
+
+[6/69] [./vm_champs//VM/champs/championships/2014/bjacob/doge.cor]
+[DIFF] - SAME
+
+[7/69] [./vm_champs//VM/champs/championships/2014/brandazz/Rainbow_dash.cor]
+[MINE] - Rainbow_dash.cor hasn't been created
+
+[8/69] [./vm_champs//VM/champs/championships/2014/cdivry/youforkmytralala.cor]

@@ -36,28 +36,32 @@ int		get_line(t_asm *e, char **line)
 	return (size);
 }
 
-void	check_line(t_asm *e)
+void	check_line(t_asm *e, t_verbos *v, t_champ *c)
 {
 	int i;
 
-	while ((!e->verbos.nb_error
-		|| ((e->verbos.nb_error)
-		&& (e->verbos.nb_line - e->verbos.frag_start->coo[0]) < MAX_LINE))
-		&& (e->verbos.line_left = get_line(e, &e->champ.line)))
+	while ((!v->nb_error || ((v->nb_error)
+		&& (v->nb_line - v->frag_start->coo[0]) < MAX_LINE))
+		&& (v->line_left = get_line(e, &c->line)))
 	{
 		i = 0;
 		I = 0;
-		while (i < 6 && (e->tab[i](e, e->champ.line)))
+		while (i < 6 && (e->tab[i](e, c->line)))
 			++i;
-		ft_memdel((void **)&e->champ.line);
-		++e->verbos.nb_line;
+		ft_memdel((void **)&c->line);
+		++v->nb_line;
 	}
-	ft_memdel((void **)&e->champ.line);
-	label_mutli(e, &e->verbos, &e->champ.valid);
-	if (!e->verbos.line_left)
+	ft_memdel((void **)&c->line);
+	label_mutli(e, v, &c->valid);
+	if (!v->line_left)
 	{
 		set_file(e, e->enco);
-		used_label(e, &e->champ.valid);
-		missing_data(e);
+		used_label(e, &c->valid);
+		if (!(v->line_left) && !c->valid.name_done)
+			verbos(e, MISSING_NAME);
+		if (!(v->line_left) && !c->valid.comment_done)
+			verbos(e, MISSING_COMMENT);
 	}
+	(void)v;
+	(void)c;
 }

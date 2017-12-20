@@ -30,7 +30,8 @@ SRC_VERBOS		=	usage.c \
 					ver_type.c
 SRC_DATA		=	op.c \
 					set.c \
-					clear.c
+					clear.c \
+					frag.c
 SRC_RACINE		=	main.c \
 					line.c \
 					cor.c

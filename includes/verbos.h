@@ -13,60 +13,58 @@
 #ifndef VERBOS_H
 # define VERBOS_H
 
-# define MAX_LINE 100
+# define MAX_LINE			100
 
 /*
 ** color
 */
-# define RESET "\033[0m"
-# define RED "\033[38;5;1m"
-# define RED_MINUS "\033[38;5;9m"
-# define GREEN_MINUS "\033[38;5;10m"
-# define GREY "\033[38;5;8m"
-# define WHITE "\033[38;5;7m"
-# define GRAS "\033[1m"
-# define PINK "\033[35m"
+# define RESET				"\033[0m"
+# define RED				"\033[38;5;1m"
+# define RED_MINUS			"\033[38;5;9m"
+# define GREEN_MINUS		"\033[38;5;10m"
+# define GREY				"\033[38;5;8m"
+# define WHITE				"\033[38;5;7m"
+# define GRAS				"\033[1m"
+# define PINK				"\033[35m"
 
 /*
 ** error
 */
-# define NB_ARG 1
-# define EXTENTION 2
-# define OPEN_CHAMP 3
-# define READ_CHAMP 4
-# define MALLOC 5
-# define CREATE 6
+# define NB_ARG				1
+# define EXTENTION			2
+# define OPEN_CHAMP			3
+# define READ_CHAMP			4
+# define MALLOC				5
+# define CREATE				6
 
 /*
 ** verbos
 */
-# define NAME_EXIST 0
-# define SYNTAX 1
-# define NAME_LEN 2
-// # define INVALID_NAME 3
-// # define NAME_DIFF_FILE 4
-# define INVALID_CHAR 3
-# define COMMENT_EXIST 4
-# define COMMENT_LEN 5
-# define INVALID_COMMANDE 6
-# define INVALID_LABEL 7
-# define INVALID_OPCODE 8
-# define OPCODE_EXIST 9
-# define NEED_ARG 10
-# define WRONG_ARG 11
-# define INVALID_REG 12
-# define NOT_ENOUGHT_ARG 13
-# define INVALID_DIR_VAL 14
-# define INVALID_IND_VAL 15
-# define INVALID_LABEL_ARG 16
-# define LABEL_MULTI_INIT 17
-# define LABEL_EXIST 18
-# define LABEL_USED 19
-# define MISSING_NAME 20
-# define MISSING_COMMENT 21
+# define NAME_EXIST			0
+# define SYNTAX				1
+# define NAME_LEN 			2
+# define INVALID_CHAR		3
+# define COMMENT_EXIST		4
+# define COMMENT_LEN		5
+# define INVALID_COMMANDE	6
+# define INVALID_LABEL		7
+# define INVALID_OPCODE		8
+# define OPCODE_EXIST		9
+# define NEED_ARG			10
+# define WRONG_ARG			11
+# define INVALID_REG		12
+# define NOT_ENOUGHT_ARG	13
+# define INVALID_DIR_VAL	14
+# define INVALID_IND_VAL	15
+# define INVALID_LABEL_ARG	16
+# define LABEL_MULTI_INIT	17
+# define LABEL_EXIST		18
+# define LABEL_USED			19
+# define MISSING_NAME		20
+# define MISSING_COMMENT	21
 
-typedef struct s_frag	t_frag;
-typedef struct s_verbos	t_verbos;
+typedef struct s_frag		t_frag;
+typedef struct s_verbos		t_verbos;
 
 struct			s_frag
 {
