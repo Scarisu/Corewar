@@ -30,6 +30,7 @@ void	clean(t_asm *e)
 	clean_label(e->champ.valid.label_start);
 	clean_frag(e->verbos.frag_start);
 	clean_enco(e->enco_start);
+	read(0, e->champ.buff, 1);
 }
 
 void	clean_label(t_label *l)

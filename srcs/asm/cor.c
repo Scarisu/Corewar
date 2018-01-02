@@ -61,7 +61,7 @@ void		set_head(t_asm *e)
 void		set_file(t_asm *e, t_enco *i)
 {
 	int		shift;
-	int		nb;
+
 
 	i = e->enco_start;
 	while (i && i->next)
@@ -70,16 +70,17 @@ void		set_file(t_asm *e, t_enco *i)
 		if (i->opcode != LIVE && i->opcode != ZJMP &&
 			i->opcode != FORK && i->opcode != LFORK)
 			put_bin(e, &e->bin.file, (int[1]){i->bin_arg}, 1);
-		nb = -1;
-		while (++nb < i->nb_arg)
+		e->verbos.nb = -1;
+		while (++e->verbos.nb < i->nb_arg)
 		{
-			shift = set_shift(i, nb);
-			if (i->arg[nb].arg_label)
-				exist_label(e, i->arg[nb].arg_label, &e->champ.valid, shift);
+			shift = set_shift(i, e->verbos.nb);
+			if (i->arg[e->verbos.nb].arg_label)
+				exist_label(e, i->arg[e->verbos.nb].arg_label,
+					&e->champ.valid, shift);
 			else
 				while ((shift -= 8) >= 0)
 					put_bin(e, &e->bin.file,
-					(int[1]){i->arg[nb].arg_value >> shift}, 1);
+					(int[1]){i->arg[e->verbos.nb].arg_value >> shift}, 1);
 		}
 		i = i->next;
 	}

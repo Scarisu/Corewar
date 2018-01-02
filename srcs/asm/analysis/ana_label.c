@@ -90,6 +90,7 @@ int		exist_label(t_asm *e, t_label *exi, t_valid *val, int shift)
 		error(e, MALLOC);
 	e->verbos.nb_line = exi->coo[0];
 	I = exi->coo[1];
+	e->verbos.exi = exi;
 	verbos(e, LABEL_EXIST);
 	ft_memdel((void **)&e->champ.line);
 	return (0);

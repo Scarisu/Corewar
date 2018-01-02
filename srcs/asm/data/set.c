@@ -35,6 +35,7 @@ void	set_verbos(t_asm *e, t_verbos *v)
 	v->len_arrow = 0;
 	v->cmd_invalid = NULL;
 	v->opcode_name = NULL;
+	v->exi = NULL;
 	v->pars = NULL;
 	v->prev_pars = NULL;
 	v->frag = set_frag(e, (int[2]){0, 0});

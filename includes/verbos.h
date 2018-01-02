@@ -77,6 +77,7 @@ struct			s_frag
 struct			s_verbos
 {
 	int			i;
+	int			nb;
 	int			nb_error;
 	int			nb_warning;
 	int			nb_line;
@@ -84,10 +85,12 @@ struct			s_verbos
 	int			line_left;
 	int			opcode;
 	int			reg_nbr;
+	char		*label;
 	char		*cmd_invalid;
 	char		*opcode_name;
 	t_label		*pars;
 	t_label		*prev_pars;
+	t_label		*exi;
 	t_frag		*frag;
 	t_frag		*frag_start;
 	void		(*tab[21])(t_asm *);

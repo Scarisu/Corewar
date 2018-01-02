@@ -33,12 +33,13 @@ void	label_multi_init(t_asm *e)
 
 void	label_exist(t_asm *e)
 {
-	// if ((e->verbos.len_arrow = ft_strlen(e->enco->arg_label->name)) > 30)
-	// 	e->verbos.len_arrow = 30;
-	// else if (e->enco->arg_label->type == T_DIR)
-	// 	++e->verbos.len_arrow;
+	if ((e->verbos.len_arrow = ft_strlen(e->verbos.exi->name)) > 30)
+	 	e->verbos.len_arrow = 30;
+	else if (e->champ.line[I + 1] == LABEL_CHAR)
+	 	++e->verbos.len_arrow;
 	add_cont(e, &V_LINE, WHITE "Label \"" GREY);
-	// add_cont(e, &V_LINE, e->enco->arg_label->name);
+	add_cont(e, &V_LINE, e->verbos.exi->name);
+	e->verbos.exi = NULL;
 	add_cont(e, &V_LINE, WHITE "\" isn't initialized");
 	(void)e;
 }
