@@ -12,12 +12,6 @@
 
 #include <asm.h>
 
-void	invalid_opcode(t_asm *e)
-{
-	add_cont(e, &V_LINE, WHITE "Invalid opcode");
-	(void)e;
-}
-
 void	opcode_exist(t_asm *e)
 {
 	if ((e->verbos.len_arrow = ft_strlen(e->verbos.opcode_name) - 1) > 30)

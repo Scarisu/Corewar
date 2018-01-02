@@ -52,14 +52,13 @@ void	set_ptrver(t_verbos *v)
 	v->tab[COMMENT_LEN] = comment_len;
 	v->tab[INVALID_COMMANDE] = invalid_command;
 	v->tab[INVALID_LABEL] = invalid_label;
-	v->tab[INVALID_OPCODE] = invalid_opcode;
 	v->tab[OPCODE_EXIST] = opcode_exist;
 	v->tab[MISSING_NAME] = missing_name;
 	v->tab[MISSING_COMMENT] = missing_comment;
 	v->tab[NEED_ARG] = need_arg;
 	v->tab[WRONG_ARG] = wrong_arg;
+	v->tab[TOO_MANY_ARG] = too_many_arg;
 	v->tab[INVALID_REG] = invalid_reg;
-	v->tab[NOT_ENOUGHT_ARG] = not_enought_arg;
 	v->tab[INVALID_DIR_VAL] = invalid_dir_val;
 	v->tab[INVALID_IND_VAL] = invalid_ind_val;
 	v->tab[INVALID_LABEL_ARG] = invalid_label_arg;

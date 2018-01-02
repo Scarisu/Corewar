@@ -131,6 +131,7 @@ int				type_param(int type, char first_char);
 int					arg_reg(t_asm *e, char *line, t_arg *arg);
 int					arg_val(t_asm *e, char *line, t_arg *arg, int type);
 int					arg_lab(t_asm *e, char *line, t_arg *arg, int type);
+int						arg_left(t_asm *e, char *line, int content_len);
 int				opcode_position(t_enco *i);
 
 void	label_mutli(t_asm *e, t_verbos *ver, t_valid *val);

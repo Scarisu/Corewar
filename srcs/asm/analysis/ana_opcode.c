@@ -23,8 +23,6 @@ int		ins_opcode(t_asm *e, char *line)
 	while (line[content_len] && line[content_len] != ' '
 		&& line[content_len] != '\n')
 		++content_len;
-	if (line[content_len] != ' ')
-		return (verbos(e, INVALID_OPCODE));
 	content_len -= I;
 	if (!(e->verbos.opcode_name = ft_strsub(line, I, content_len)))
 		error(e, MALLOC);

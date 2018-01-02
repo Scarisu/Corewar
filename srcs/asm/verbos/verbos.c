@@ -23,9 +23,7 @@ int		verbos(t_asm *e, int err)
 	if (!(e->verbos.frag->print = ft_strnew(1)))
 		error(e, MALLOC);
 	print_pos(e, err);
-	if (err == LABEL_USED)
-		add_cont(e, &V_LINE, PINK " warning: ");
-	else
+	err == LABEL_USED ? add_cont(e, &V_LINE, PINK " warning: ") :
 		add_cont(e, &V_LINE, RED_MINUS " error: ");
 	e->verbos.tab[err](e);
 	add_cont(e, &V_LINE, RESET "\n");
@@ -44,6 +42,7 @@ void	print_pos(t_asm *e, int err)
 	add_cont(e, &V_LINE, GRAS);
 	add_cont(e, &V_LINE, WHITE);
 	add_cont(e, &V_LINE, e->champ.file_path);
+	add_cont(e, &V_LINE, e->champ.file_name);
 	add_cont(e, &V_LINE, ":");
 	if (err == MISSING_NAME || err == MISSING_COMMENT)
 		return ;

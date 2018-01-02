@@ -56,7 +56,20 @@ void	wrong_arg(t_asm *e)
 	add_cont(e, &V_LINE, WHITE "}");
 }
 
-void	not_enought_arg(t_asm *e)
+void		too_many_arg(t_asm *e)
 {
-	add_cont(e, &V_LINE, WHITE "NOT ENOUGHT ARG");
+	char	*nbr;
+
+	nbr = NULL;
+	add_cont(e, &V_LINE, WHITE "Too many arguments, opcode \"" GREY);
+	add_cont(e, &V_LINE, e->verbos.opcode_name);
+	ft_memdel((void **)&e->verbos.opcode_name);
+	add_cont(e, &V_LINE, WHITE "\" only need {" GREY);
+	if (!(nbr = ft_itoa(g_op_tab[e->verbos.opcode].nb_params)))
+		error(e, MALLOC);
+	add_cont(e, &V_LINE, nbr);
+	ft_memdel((void **)&nbr);
+	add_cont(e, &V_LINE, WHITE "} argument");
+	if (g_op_tab[e->verbos.opcode].nb_params > 1)
+		add_cont(e, &V_LINE, "s");
 }

@@ -21,23 +21,23 @@ int		check_param(t_asm *e, t_enco *i, char *line)
 	while ((g_op_tab[i->opcode - 1].type[i->nb_arg]))
 	{
 		i->bin_arg <<= 2;
-		while (line[I] == ' ')
-			++I;
-		if ((ret =
-		type_param(g_op_tab[i->opcode - 1].type[i->nb_arg], line[I])) < 0)
+		if (!skip_tab(e, line) || (
+		ret = type_param(g_op_tab[i->opcode - 1].type[i->nb_arg], line[I])) < 0)
 			return (verbos(e, WRONG_ARG));
 		i->bin_arg += ret + 1;
 		if ((ret == 0 && !arg_reg(e, line, &i->arg[i->nb_arg])) ||
 			(ret != 0 && !arg_val(e, line, &i->arg[i->nb_arg], ret)))
 			return (0);
-		while (line[I] == ' ')
-			++I;
-		if (i->nb_arg + 1 < g_op_tab[i->opcode - 1].nb_params && line[I] != ',')
-			return (verbos(e, NOT_ENOUGHT_ARG));
-		++I;
-		++i->nb_arg;
+		printf("[%s]\n", &line[I]);
+		if (i->nb_arg + 1 < g_op_tab[i->opcode - 1].nb_params &&
+			(line[I] != SEPARATOR_CHAR))
+			return (verbos(e, NEED_ARG));
+		++i->nb_arg != g_op_tab[i->opcode - 1].nb_params ? (++I) : 0;
 	}
-	e->enco->bin_arg <<= (2 * (4 - i->nb_arg));
+	printf("\n");
+	(skip_tab(e, line)) ? line[I] == SEPARATOR_CHAR ?
+		verbos(e, TOO_MANY_ARG) : verbos(e, INVALID_CHAR) :
+		(e->enco->bin_arg <<= (2 * (4 - i->nb_arg)));
 	return (0);
 }
 

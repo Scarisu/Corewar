@@ -15,6 +15,7 @@
 int		arg_reg(t_asm *e, char *line, t_arg *arg)
 {
 	int		content_len;
+	int		ret;
 	char	*reg;
 
 	content_len = I + 1;
@@ -22,9 +23,9 @@ int		arg_reg(t_asm *e, char *line, t_arg *arg)
 		++content_len;
 	while (line[content_len] >= '0' && line[content_len] <= '9')
 		++content_len;
-	if ((line[content_len] != ',' && line[content_len] != ' ' &&
-		line[content_len] != '\n') || (I + 1) == content_len ||
-		line[content_len - 1] == '-')
+	if ((line[content_len] != SEPARATOR_CHAR && line[content_len] != ' ' &&
+		line[content_len] != '\n' && line[content_len] != COMMENT_CHAR) ||
+		(I + 1) == content_len || line[content_len - 1] == '-')
 		return (verbos(e, INVALID_REG));
 	if (!(reg = ft_strsub(line, I + 1, content_len - I - 1)))
 		error(e, MALLOC);
@@ -33,7 +34,9 @@ int		arg_reg(t_asm *e, char *line, t_arg *arg)
 	arg->type = T_REG;
 	if (arg->arg_value < 1 || arg->arg_value > REG_NUMBER)
 		return (verbos(e, INVALID_REG));
-	I = content_len;
+	if (!(ret = arg_left(e, line, content_len)))
+		return (verbos(e, INVALID_REG));
+	I = ret;
 	return (1);
 }
 
@@ -49,9 +52,9 @@ int		arg_val(t_asm *e, char *line, t_arg *arg, int type)
 		++content_len;
 	while (line[content_len] >= '0' && line[content_len] <= '9')
 		++content_len;
-	if ((line[content_len] != ',' && line[content_len] != ' ' &&
-		line[content_len] != '\n') || (I + 2 - type) == content_len ||
-		line[content_len - 1] == '-')
+	if ((line[content_len] != SEPARATOR_CHAR && line[content_len] != ' ' &&
+		line[content_len] != '\n' && line[content_len] != COMMENT_CHAR) ||
+		(I + 2 - type) == content_len || line[content_len - 1] == '-')
 		return (verbos(e, (type == 1) ? INVALID_DIR_VAL : INVALID_IND_VAL));
 	if (!(value = ft_strsub(line, I + 2 - type, content_len - I - (2 - type))))
 		error(e, MALLOC);
@@ -68,8 +71,8 @@ int		arg_lab(t_asm *e, char *line, t_arg *arg, int type)
 	char	*label;
 
 	content_len = (I + 4 - (type * 2));
-	while (line[content_len] != ',' && line[content_len] != ' '
-		&& line[content_len] != '\n')
+	while (line[content_len] != SEPARATOR_CHAR && line[content_len] != ' '
+		&& line[content_len] != '\n' && line[content_len] != COMMENT_CHAR)
 		++content_len;
 	if (!(label = ft_strsub(line, I + 3 - type, content_len - I - (3 - type))))
 		error(e, MALLOC);
@@ -86,4 +89,14 @@ int		arg_lab(t_asm *e, char *line, t_arg *arg, int type)
 	!(arg->arg_label->line = ft_strdup(line)) ? error(e, MALLOC) : 0;
 	I = content_len;
 	return (1);
+}
+
+int		arg_left(t_asm *e, char *line, int content_len)
+{
+	while (line[content_len] == ' ')
+		++content_len;
+	return (e->enco->nb_arg + 1 < g_op_tab[e->enco->opcode - 1].nb_params ?
+	line[content_len] == COMMENT_CHAR ? content_len - 1 : line[content_len] ==
+	SEPARATOR_CHAR ? content_len : 0 : !line[content_len] || line[content_len]
+	== '\n' || line[content_len] == COMMENT_CHAR ? content_len : 0);
 }

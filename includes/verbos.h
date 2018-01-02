@@ -49,20 +49,20 @@
 # define COMMENT_LEN		5
 # define INVALID_COMMANDE	6
 # define INVALID_LABEL		7
-# define INVALID_OPCODE		8
-# define OPCODE_EXIST		9
-# define NEED_ARG			10
-# define WRONG_ARG			11
+# define OPCODE_EXIST		8
+# define NEED_ARG			9
+# define WRONG_ARG			10
+# define TOO_MANY_ARG		11
 # define INVALID_REG		12
-# define NOT_ENOUGHT_ARG	13
-# define INVALID_DIR_VAL	14
-# define INVALID_IND_VAL	15
-# define INVALID_LABEL_ARG	16
-# define LABEL_MULTI_INIT	17
-# define LABEL_EXIST		18
-# define LABEL_USED			19
-# define MISSING_NAME		20
-# define MISSING_COMMENT	21
+
+# define INVALID_DIR_VAL	13
+# define INVALID_IND_VAL	14
+# define INVALID_LABEL_ARG	15
+# define LABEL_MULTI_INIT	16
+# define LABEL_EXIST		17
+# define LABEL_USED			18
+# define MISSING_NAME		19
+# define MISSING_COMMENT	20
 
 typedef struct s_frag		t_frag;
 typedef struct s_verbos		t_verbos;
@@ -90,7 +90,7 @@ struct			s_verbos
 	t_label		*prev_pars;
 	t_frag		*frag;
 	t_frag		*frag_start;
-	void		(*tab[22])(t_asm *);
+	void		(*tab[21])(t_asm *);
 };
 
 int		verbos(t_asm *e, int err);
@@ -111,12 +111,10 @@ void		comment_len(t_asm *e);
 void		invalid_command(t_asm *e);
 
 void		invalid_label(t_asm *e);
-void		invalid_opcode(t_asm *e);
 void 		opcode_exist(t_asm *e);
 void		need_arg(t_asm *e);
-
-void		not_enought_arg(t_asm *e);
 void 		wrong_arg(t_asm *e);
+void		too_many_arg(t_asm *e);
 
 void		invalid_reg(t_asm *e);
 void		invalid_dir_val(t_asm *e);

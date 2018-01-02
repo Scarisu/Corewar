@@ -28,8 +28,9 @@ void		create_cor(t_asm *e)
 	i = 0;
 	while (i < e->bin.len_file)
 		ft_putchar_fd(e->bin.file[i++], fd);
-	ft_putstr(e->champ.file_name);
-	ft_putstr(".cor a bien été créeeee\n");
+	ft_putstr("asm: file .cor \"" GREY);
+	ft_putstr(e->champ.file_path);
+	ft_putstr(".cor" RESET "\" has been created\n");
 }
 
 void		set_head(t_asm *e)
