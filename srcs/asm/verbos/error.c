@@ -14,13 +14,12 @@
 
 void	error(t_asm *e, int err)
 {
-	err == NB_ARG ? ft_putstr_fd("pb nb arg\n", 2) : 0;
-	err == USAGE ? ft_putstr_fd("Usage\n", 2) : 0;
-	err == EXTENTION ? ft_putstr_fd("pb d extention\n", 2) : 0;
-	err == OPEN_CHAMP ? ft_putstr_fd("Can't open champ\n", 2) : 0;
-	err == READ_CHAMP ? ft_putstr_fd("Can't read champ\n", 2) : 0;
-	err == MALLOC ? ft_putstr_fd("MALLOC error\n", 2) : 0;
-	err == CREATE ? ft_putstr_fd("Can't create file cor\n", 2) : 0;
+	err == NB_ARG || err == USAGE || err == EXTENTION ?
+		ft_putstr_fd("usage: asm [-s] {file}.s\n", 2) : ft_putstr_fd("asm:", 2);
+	err == OPEN_CHAMP ? ft_putstr_fd(" Can't open champ\n", 2) : 0;
+	err == READ_CHAMP ? ft_putstr_fd(" Can't read champ\n", 2) : 0;
+	err == MALLOC ? ft_putstr_fd(" Malloc error\n", 2) : 0;
+	err == CREATE ? ft_putstr_fd(" Can't create file cor\n", 2) : 0;
 	clean(e);
 	exit(err);
 }

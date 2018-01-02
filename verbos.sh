@@ -83,7 +83,7 @@ for name in ${all_tests[@]}; do
 		cat -ns ${name}
 		printf "\n"
 	fi
-	./${asm_name} ${name} ${warning}
+	./${asm_name} ${warning} ${name}
 	rm -f $(find ./${file_test} -name "*.cor")
 	read
 done
