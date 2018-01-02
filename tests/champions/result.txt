@@ -1,5 +1,5 @@
 02/01/2018
-20:00
+23:33
 
 [1/69] [./vm_champs/VM/champs/42.cor]
 [DIFF] - SAME
@@ -27,3 +27,196 @@
 [DIFF] - SAME
 
 [9/69] [./vm_champs/VM/champs/championships/2014/clafleur/big_feet.cor]
+[DIFF] - SAME
+
+[10/69] [./vm_champs/VM/champs/championships/2014/dcohen/loose.cor]
+[DIFF] - SAME
+
+[11/69] [./vm_champs/VM/champs/championships/2014/ekocevar/mandragore.cor]
+[DIFF] - SAME
+
+[12/69] [./vm_champs/VM/champs/championships/2014/esusseli/gedeon.cor]
+[DIFF] - SAME
+
+[13/69] [./vm_champs/VM/champs/championships/2014/evlasova/terminator.cor]
+[DIFF] - SAME
+
+[14/69] [./vm_champs/VM/champs/championships/2014/fcorre/ultimate-surrender.cor]
+[MINE] - ultimate-surrender.cor hasn't been created
+
+[15/69] [./vm_champs/VM/champs/championships/2014/gbir/_.cor]
+[DIFF] - SAME
+
+[16/69] [./vm_champs/VM/champs/championships/2014/gjestin/salamahenagalabadoun.cor]
+[DIFF] - SAME
+
+[17/69] [./vm_champs/VM/champs/championships/2014/gleger/Machine-gun.cor]
+[DIFF] - SAME
+
+[18/69] [./vm_champs/VM/champs/championships/2014/gmange/corelol.cor]
+[DIFF] - SAME
+
+[19/69] [./vm_champs/VM/champs/championships/2014/gpetrov/MarineKing.cor]
+[DIFF] - SAME
+
+[20/69] [./vm_champs/VM/champs/championships/2014/gudepard/Kappa.cor]
+[DIFF] - SAME
+
+[21/69] [./vm_champs/VM/champs/championships/2014/hmichals/Wall.cor]
+[DIFF] - SAME
+
+[22/69] [./vm_champs/VM/champs/championships/2014/hmoutaou/Misaka_Mikoto.cor]
+[MINE] - Misaka_Mikoto.cor hasn't been created
+
+[23/69] [./vm_champs/VM/champs/championships/2014/kelickel/Varimathras.cor]
+[DIFF] - SAME
+
+[24/69] [./vm_champs/VM/champs/championships/2014/kmonrose/justin_bee.cor]
+[DIFF] - SAME
+
+[25/69] [./vm_champs/VM/champs/championships/2014/ldesgoui/_honeybadger.cor]
+[DIFF] - SAME
+
+[26/69] [./vm_champs/VM/champs/championships/2014/lseguin/skynet.cor]
+[DIFF] - SAME
+
+[27/69] [./vm_champs/VM/champs/championships/2014/lsirigna/live.cor]
+[DIFF] - SAME
+
+[28/69] [./vm_champs/VM/champs/championships/2014/mbacoux/meowluigi.cor]
+[DIFF] - SAME
+
+[29/69] [./vm_champs/VM/champs/championships/2014/mconraux/dubo.cor]
+[DIFF] - SAME
+
+[30/69] [./vm_champs/VM/champs/championships/2014/rabid-on/jinx.cor]
+[DIFF] - SAME
+
+[31/69] [./vm_champs/VM/champs/championships/2014/rmasse/THUNDER.cor]
+[DIFF] - SAME
+
+[32/69] [./vm_champs/VM/champs/championships/2014/sbuono/Asombra.cor]
+[DIFF] - SAME
+
+[33/69] [./vm_champs/VM/champs/championships/2014/srabah-m/littlepuppy.cor]
+[DIFF] - SAME
+
+[34/69] [./vm_champs/VM/champs/championships/2014/tdemay/champ.cor]
+[MINE] - champ.cor hasn't been created
+
+[35/69] [./vm_champs/VM/champs/championships/2014/vrey/darksasuke.cor]
+[DIFF] - SAME
+
+[36/69] [./vm_champs/VM/champs/championships/2014/ybouvet/casimir.cor]
+[DIFF] - SAME
+
+[37/69] [./vm_champs/VM/champs/championships/2017/adenis/Explosive_Kitty.cor]
+[MINE] - Explosive_Kitty.cor hasn't been created
+
+[38/69] [./vm_champs/VM/champs/championships/2017/agregoir/Kittystrophic.cor]
+[MINE] - Kittystrophic.cor hasn't been created
+
+[39/69] [./vm_champs/VM/champs/championships/2017/gnebie/ultima.cor]
+[MINE] - ultima.cor hasn't been created
+
+[40/69] [./vm_champs/VM/champs/championships/2017/iburel/gateau.cor]
+[DIFF] - SAME
+
+[41/69] [./vm_champs/VM/champs/championships/2017/jaustry/mise_a_jour_windows95.cor]
+[MINE] - mise_a_jour_windows95.cor hasn't been created
+
+[42/69] [./vm_champs/VM/champs/championships/2017/nolivier/run_Kitty_RUN.cor]
+[MINE] - run_Kitty_RUN.cor hasn't been created
+
+[43/69] [./vm_champs/VM/champs/championships/2017/pzarmehr/overwatch.cor]
+[DIFF] - SAME
+
+[44/69] [./vm_champs/VM/champs/championships/2017/tbillard/Douceur_power.cor]
+[DIFF] - SAME
+
+[45/69] [./vm_champs/VM/champs/Death.cor]
+[REAL] - Death.cor hasn't been created
+[MINE] - Death.cor hasn't been created
+
+[46/69] [./vm_champs/VM/champs/ex.cor]
+[DIFF] - SAME
+
+[47/69] [./vm_champs/VM/champs/examples/bee_gees.cor]
+[MINE] - bee_gees.cor hasn't been created
+
+[48/69] [./vm_champs/VM/champs/examples/bigzork.cor]
+[DIFF] - SAME
+
+[49/69] [./vm_champs/VM/champs/examples/fluttershy.cor]
+[DIFF] - SAME
+
+[50/69] [./vm_champs/VM/champs/examples/helltrain.cor]
+[DIFF] - SAME
+
+[51/69] [./vm_champs/VM/champs/examples/turtle.cor]
+[DIFF] - SAME
+
+[52/69] [./vm_champs/VM/champs/examples/zork.cor]
+[DIFF] - SAME
+
+[53/69] [./vm_champs/VM/champs/Gagnant.cor]
+[DIFF] - SAME
+
+[54/69] [./vm_champs/VM/champs/jumper.cor]
+[DIFF] - SAME
+
+[55/69] [./vm_champs/VM/champs/lde.cor]
+[REAL] - lde.cor hasn't been created
+[MINE] - lde.cor hasn't been created
+
+[56/69] [./vm_champs/VM/champs/leeloo.cor]
+[REAL] - leeloo.cor hasn't been created
+[MINE] - leeloo.cor hasn't been created
+
+[57/69] [./vm_champs/VM/champs/mat.cor]
+[REAL] - mat.cor hasn't been created
+[MINE] - mat.cor hasn't been created
+
+[58/69] [./vm_champs/VM/champs/maxidef.cor]
+[DIFF] - SAME
+
+[59/69] [./vm_champs/VM/champs/mortel.cor]
+[DIFF] - SAME
+
+[60/69] [./vm_champs/VM/champs/new.cor]
+[REAL] - new.cor hasn't been created
+[MINE] - new.cor hasn't been created
+
+[61/69] [./vm_champs/VM/champs/Octobre_Rouge_V4.2.cor]
+[DIFF] - SAME
+
+[62/69] [./vm_champs/VM/champs/sebc.cor]
+[REAL] - sebc.cor hasn't been created
+[MINE] - sebc.cor hasn't been created
+
+[63/69] [./vm_champs/VM/champs/slider2.cor]
+[DIFF] - SAME
+
+[64/69] [./vm_champs/VM/champs/Survivor.cor]
+[REAL] - Survivor.cor hasn't been created
+[MINE] - Survivor.cor hasn't been created
+
+[65/69] [./vm_champs/VM/champs/tdc2.cor]
+[REAL] - tdc2.cor hasn't been created
+[MINE] - tdc2.cor hasn't been created
+
+[66/69] [./vm_champs/VM/champs/tdc3.cor]
+[REAL] - tdc3.cor hasn't been created
+[MINE] - tdc3.cor hasn't been created
+
+[67/69] [./vm_champs/VM/champs/tdc4.cor]
+[REAL] - tdc4.cor hasn't been created
+[MINE] - tdc4.cor hasn't been created
+
+[68/69] [./vm_champs/VM/champs/Torpille.cor]
+[REAL] - Torpille.cor hasn't been created
+[MINE] - Torpille.cor hasn't been created
+
+[69/69] [./vm_champs/VM/champs/toto.cor]
+[DIFF] - SAME
+

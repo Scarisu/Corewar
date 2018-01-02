@@ -43,6 +43,7 @@ int		arg_reg(t_asm *e, char *line, t_arg *arg)
 int		arg_val(t_asm *e, char *line, t_arg *arg, int type)
 {
 	int		content_len;
+	int		ret;
 	char	*value;
 
 	content_len = (I + 2 - type);
@@ -61,13 +62,16 @@ int		arg_val(t_asm *e, char *line, t_arg *arg, int type)
 	arg->arg_value = ft_atoi(value);
 	ft_memdel((void **)&value);
 	arg->type = (type == 1) ? T_DIR : T_IND;
-	I = content_len;
+	if (!(ret = arg_left(e, line, content_len)))
+		return (verbos(e, (type == 1) ? INVALID_DIR_VAL : INVALID_IND_VAL));
+	I = ret;
 	return (1);
 }
 
 int		arg_lab(t_asm *e, char *line, t_arg *arg, int type)
 {
 	int		content_len;
+	int		ret;
 	char	*label;
 
 	content_len = (I + 4 - (type * 2));
@@ -76,7 +80,7 @@ int		arg_lab(t_asm *e, char *line, t_arg *arg, int type)
 		++content_len;
 	if (!(label = ft_strsub(line, I + 3 - type, content_len - I - (3 - type))))
 		error(e, MALLOC);
-	if (!valid_label(label))
+	if (!valid_label(label) || !(ret = arg_left(e, line, content_len)))
 	{
 		ft_memdel((void **)&label);
 		return (verbos(e, INVALID_LABEL_ARG));
@@ -87,7 +91,7 @@ int		arg_lab(t_asm *e, char *line, t_arg *arg, int type)
 	!(arg->arg_label->name = ft_strdup(label)) ? error(e, MALLOC) : 0;
 	ft_memdel((void **)&label);
 	!(arg->arg_label->line = ft_strdup(line)) ? error(e, MALLOC) : 0;
-	I = content_len;
+	I = ret;
 	return (1);
 }
 
@@ -98,5 +102,6 @@ int		arg_left(t_asm *e, char *line, int content_len)
 	return (e->enco->nb_arg + 1 < g_op_tab[e->enco->opcode - 1].nb_params ?
 	line[content_len] == COMMENT_CHAR ? content_len - 1 : line[content_len] ==
 	SEPARATOR_CHAR ? content_len : 0 : !line[content_len] || line[content_len]
-	== '\n' || line[content_len] == COMMENT_CHAR ? content_len : 0);
+	== '\n' || line[content_len] == SEPARATOR_CHAR || line[content_len] ==
+	COMMENT_CHAR ? content_len : 0);
 }

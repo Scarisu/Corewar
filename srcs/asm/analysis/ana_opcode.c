@@ -21,7 +21,7 @@ int		ins_opcode(t_asm *e, char *line)
 		return (0);
 	content_len = I;
 	while (line[content_len] && line[content_len] != ' '
-		&& line[content_len] != '\n')
+		&& line[content_len] != '\n' && line[content_len] != COMMENT_CHAR)
 		++content_len;
 	content_len -= I;
 	if (!(e->verbos.opcode_name = ft_strsub(line, I, content_len)))

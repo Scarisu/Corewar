@@ -120,6 +120,7 @@ void		invalid_reg(t_asm *e);
 void		invalid_dir_val(t_asm *e);
 void		invalid_ind_val(t_asm *e);
 void		invalid_label_arg(t_asm *e);
+void			adjust_arrow_arg(t_asm *e);
 
 void		label_multi_init(t_asm *e);
 void		label_exist(t_asm *e);

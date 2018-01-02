@@ -18,7 +18,7 @@ int		ins_label(t_asm *e, char *line)
 
 	content_len = I;
 	while (line[content_len] && line[content_len] != LABEL_CHAR
-		&& line[content_len] != ' ')
+		&& line[content_len] != ' ' && line[content_len] != COMMENT_CHAR)
 		++content_len;
 	if (line[content_len] != LABEL_CHAR)
 		return (1);
