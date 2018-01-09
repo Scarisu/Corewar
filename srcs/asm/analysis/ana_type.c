@@ -97,11 +97,23 @@ int		arg_lab(t_asm *e, char *line, t_arg *arg, int type)
 
 int		arg_left(t_asm *e, char *line, int content_len)
 {
+	int	ret;
+
+	ret = 0;
 	while (line[content_len] == ' ')
 		++content_len;
-	return (e->enco->nb_arg + 1 < g_op_tab[e->enco->opcode - 1].nb_params ?
-	line[content_len] == COMMENT_CHAR ? content_len - 1 : line[content_len] ==
-	SEPARATOR_CHAR ? content_len : 0 : !line[content_len] || line[content_len]
-	== '\n' || line[content_len] == SEPARATOR_CHAR || line[content_len] ==
-	COMMENT_CHAR ? content_len : 0);
+	if (e->enco->nb_arg + 1 < g_op_tab[e->enco->opcode - 1].nb_params)
+	{
+		if (line[content_len] == COMMENT_CHAR)
+			ret = content_len - 1;
+		else if (line[content_len] == SEPARATOR_CHAR)
+			ret = content_len;
+		else
+			ret = 0;
+	}
+	else if (!line[content_len] || line[content_len] == '\n'
+		|| line[content_len] == SEPARATOR_CHAR
+		|| line[content_len] == COMMENT_CHAR)
+		ret = content_len;
+	return (ret);
 }

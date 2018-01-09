@@ -56,7 +56,7 @@ void	wrong_arg(t_asm *e)
 	add_cont(e, &V_LINE, WHITE "}");
 }
 
-void		too_many_arg(t_asm *e)
+void	too_many_arg(t_asm *e)
 {
 	char	*nbr;
 

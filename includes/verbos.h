@@ -65,6 +65,8 @@
 # define MISSING_COMMENT	21
 
 typedef struct s_frag		t_frag;
+typedef struct s_label		t_label;
+typedef struct s_asm		t_asm;
 typedef struct s_verbos		t_verbos;
 
 struct			s_frag
@@ -96,46 +98,43 @@ struct			s_verbos
 	void		(*tab[22])(t_asm *);
 };
 
-int		verbos(t_asm *e, int err);
+int				verbos(t_asm *e, int err);
 
-void	print_pos(t_asm *e, int err);
-void	add_cont(t_asm *e, char **line, char const *add);
+void			print_pos(t_asm *e, int err);
+void			add_cont(t_asm *e, char **line, char const *add);
 
-void		name_exist(t_asm *e);
-void		syntax(t_asm *e);
-void		name_len(t_asm *e);
-void		invalid_char(t_asm *e);
+void			name_exist(t_asm *e);
+void			syntax(t_asm *e);
+void			name_len(t_asm *e);
+void			invalid_char(t_asm *e);
 void			print_invalid_char(t_asm *e, int nb_inv,
 				int nb_uni, char inv[31]);
 
-void		comment_exist(t_asm *e);
-void		comment_len(t_asm *e);
+void			comment_exist(t_asm *e);
+void			comment_len(t_asm *e);
 
-void		invalid_command(t_asm *e);
+void			invalid_command(t_asm *e);
+void			invalid_label(t_asm *e);
+void			opcode_exist(t_asm *e);
+void			need_arg(t_asm *e);
+void			wrong_arg(t_asm *e);
+void			too_many_arg(t_asm *e);
 
-void		invalid_label(t_asm *e);
-void 		opcode_exist(t_asm *e);
-void		need_arg(t_asm *e);
-void 		wrong_arg(t_asm *e);
-void		too_many_arg(t_asm *e);
-
-void		invalid_reg(t_asm *e);
-void		invalid_dir_val(t_asm *e);
-void		invalid_ind_val(t_asm *e);
-void		invalid_label_arg(t_asm *e);
+void			invalid_reg(t_asm *e);
+void			invalid_dir_val(t_asm *e);
+void			invalid_ind_val(t_asm *e);
+void			invalid_label_arg(t_asm *e);
 void			adjust_arrow_arg(t_asm *e);
 
-void		label_multi_init(t_asm *e);
-void		champ_too_long(t_asm *e);
-void		label_exist(t_asm *e);
-void		label_used(t_asm *e);
+void			label_multi_init(t_asm *e);
+void			champ_too_long(t_asm *e);
+void			label_exist(t_asm *e);
+void			label_used(t_asm *e);
 
-void		missing_name(t_asm *e);
-void		missing_comment(t_asm *e);
+void			missing_name(t_asm *e);
+void			missing_comment(t_asm *e);
 
-void	adapt_line(t_asm *e, char *line);
-void	arrow(t_asm *e);
+void			adapt_line(t_asm *e, char *line);
+void			arrow(t_asm *e);
 
-
-
-# endif
+#endif

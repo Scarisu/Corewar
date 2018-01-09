@@ -34,9 +34,9 @@ void	label_multi_init(t_asm *e)
 void	label_exist(t_asm *e)
 {
 	if ((e->verbos.len_arrow = ft_strlen(e->verbos.exi->name)) > 30)
-	 	e->verbos.len_arrow = 30;
+		e->verbos.len_arrow = 30;
 	else if (e->champ.line[I + 1] == LABEL_CHAR)
-	 	++e->verbos.len_arrow;
+		++e->verbos.len_arrow;
 	add_cont(e, &V_LINE, WHITE "Label \"" GREY);
 	add_cont(e, &V_LINE, e->verbos.exi->name);
 	e->verbos.exi = NULL;

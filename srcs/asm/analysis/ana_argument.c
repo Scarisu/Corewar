@@ -33,9 +33,11 @@ int		check_param(t_asm *e, t_enco *i, char *line)
 			return (verbos(e, NEED_ARG));
 		++i->nb_arg != g_op_tab[i->opcode - 1].nb_params ? (++I) : 0;
 	}
-	(skip_tab(e, line)) ? line[I] == SEPARATOR_CHAR ?
-		verbos(e, TOO_MANY_ARG) : verbos(e, INVALID_CHAR) :
-		(e->enco->bin_arg <<= (2 * (4 - i->nb_arg)));
+	if (skip_tab(e, line))
+		line[I] == SEPARATOR_CHAR ?
+		verbos(e, TOO_MANY_ARG) : verbos(e, INVALID_CHAR);
+	else
+		e->enco->bin_arg <<= (2 * (4 - i->nb_arg));
 	return (0);
 }
 

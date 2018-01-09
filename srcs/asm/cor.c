@@ -62,7 +62,6 @@ void		set_file(t_asm *e, t_enco *i)
 {
 	int		shift;
 
-
 	i = e->enco_start;
 	while (i && i->next)
 	{
