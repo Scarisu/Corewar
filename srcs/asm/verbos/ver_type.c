@@ -42,7 +42,8 @@ void	invalid_ind_val(t_asm *e)
 void	invalid_label_arg(t_asm *e)
 {
 	adjust_arrow_arg(e);
-	add_cont(e, &V_LINE, WHITE "BAD LABEL ARG");
+	add_cont(e, &V_LINE, WHITE "Invalid argument, label must be initialised ");
+	add_cont(e, &V_LINE, WHITE "and right correctly");
 }
 
 void	adjust_arrow_arg(t_asm *e)

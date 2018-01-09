@@ -87,3 +87,21 @@ void	print_invalid_char(t_asm *e, int nb_inv, int nb_uni, char inv[31])
 		add_cont(e, &V_LINE, WHITE "...");
 	add_cont(e, &V_LINE, WHITE "}");
 }
+
+void	champ_too_long(t_asm *e)
+{
+	char	*size;
+
+	add_cont(e, &V_LINE, WHITE "Invalid champion's size {" GREY);
+	if (!(size = ft_itoa(e->bin.len_file)))
+		error(e, MALLOC);
+	add_cont(e, &V_LINE, size);
+	ft_memdel((void **)&size);
+	add_cont(e, &V_LINE, WHITE "}, must be positive and under {" GREY);
+	if (!(size = ft_itoa(CHAMP_MAX_SIZE)))
+		error(e, MALLOC);
+	add_cont(e, &V_LINE, size);
+	ft_memdel((void **)&size);
+	add_cont(e, &V_LINE, WHITE "}");
+	add_cont(e, &V_LINE, RESET "\n");
+}

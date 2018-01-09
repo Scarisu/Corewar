@@ -92,7 +92,7 @@ for champ in ${all_champs[@]}; do
 	${resources_asm} ${champ}
 	[[ -e ${cor} ]] && mv ${cor} ${file_test}cor_real || printf "[REAL] - $(basename ${cor}) hasn't been created\n" >> ${file_test}${result_file}
 	printf "\n[MINE]\n"
-	./${asm_name} ${warning} ${champ} 
+	./${asm_name} ${warning} ${champ}
 	[[ -e ${cor} ]] && mv ${cor} ${file_test}cor_mine || printf "[MINE] - $(basename ${cor}) hasn't been created\n" >> ${file_test}${result_file}
 	if [ -e "${file_test}cor_mine/$(basename ${cor})" ] && [ -e "${file_test}cor_real/$(basename ${cor})" ]; then
 		printf "[${nb_done}/${nb_champs}] [${cor}]\n" >> ${file_test}${diff_file}

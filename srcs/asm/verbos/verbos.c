@@ -16,18 +16,20 @@ int		verbos(t_asm *e, int err)
 {
 	if (err == LABEL_USED && e->flag)
 		return (0);
-	(err == LABEL_USED) ? (++e->verbos.nb_warning) : (++e->verbos.nb_error);
-	if (err != MISSING_NAME && err != MISSING_COMMENT)
+	(err == LABEL_USED || err == CHAMP_TOO_LONG) ?
+		(++e->verbos.nb_warning) : (++e->verbos.nb_error);
+	if (err != MISSING_NAME && err != MISSING_COMMENT && err != CHAMP_TOO_LONG)
 		ft_memcpy(e->verbos.frag->coo,
 			(int[2]){e->verbos.nb_line, I + 1}, sizeof(int[2]));
 	if (!(e->verbos.frag->print = ft_strnew(1)))
 		error(e, MALLOC);
 	print_pos(e, err);
-	err == LABEL_USED ? add_cont(e, &V_LINE, PINK " warning: ") :
+	(err == LABEL_USED || err == CHAMP_TOO_LONG) ?
+		add_cont(e, &V_LINE, PINK " warning: ") :
 		add_cont(e, &V_LINE, RED_MINUS " error: ");
 	e->verbos.tab[err](e);
 	add_cont(e, &V_LINE, RESET "\n");
-	if (err != MISSING_NAME && err != MISSING_COMMENT)
+	if (err != MISSING_NAME && err != MISSING_COMMENT && err != CHAMP_TOO_LONG)
 		adapt_line(e, e->champ.line);
 	e->verbos.frag->next = set_frag(e, (int[2]){0, 0});
 	e->verbos.frag = e->verbos.frag->next;

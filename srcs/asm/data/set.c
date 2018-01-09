@@ -66,6 +66,7 @@ void	set_ptrver(t_verbos *v)
 	v->tab[LABEL_USED] = label_used;
 	v->tab[LABEL_MULTI_INIT] = label_multi_init;
 	v->tab[LABEL_EXIST] = label_exist;
+	v->tab[CHAMP_TOO_LONG] = champ_too_long;
 }
 
 void	set_bin(t_asm *e, t_bin *b)

@@ -54,15 +54,15 @@
 # define WRONG_ARG			10
 # define TOO_MANY_ARG		11
 # define INVALID_REG		12
-
 # define INVALID_DIR_VAL	13
 # define INVALID_IND_VAL	14
 # define INVALID_LABEL_ARG	15
 # define LABEL_MULTI_INIT	16
-# define LABEL_EXIST		17
-# define LABEL_USED			18
-# define MISSING_NAME		19
-# define MISSING_COMMENT	20
+# define CHAMP_TOO_LONG		17
+# define LABEL_EXIST		18
+# define LABEL_USED			19
+# define MISSING_NAME		20
+# define MISSING_COMMENT	21
 
 typedef struct s_frag		t_frag;
 typedef struct s_verbos		t_verbos;
@@ -93,7 +93,7 @@ struct			s_verbos
 	t_label		*exi;
 	t_frag		*frag;
 	t_frag		*frag_start;
-	void		(*tab[21])(t_asm *);
+	void		(*tab[22])(t_asm *);
 };
 
 int		verbos(t_asm *e, int err);
@@ -126,6 +126,7 @@ void		invalid_label_arg(t_asm *e);
 void			adjust_arrow_arg(t_asm *e);
 
 void		label_multi_init(t_asm *e);
+void		champ_too_long(t_asm *e);
 void		label_exist(t_asm *e);
 void		label_used(t_asm *e);
 

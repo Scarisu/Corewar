@@ -57,9 +57,9 @@ void	check_line(t_asm *e, t_verbos *v, t_champ *c)
 	{
 		set_file(e, e->enco);
 		used_label(e, &c->valid);
-		if (!(v->line_left) && !c->valid.name_done)
-			verbos(e, MISSING_NAME);
-		if (!(v->line_left) && !c->valid.comment_done)
-			verbos(e, MISSING_COMMENT);
+		if (e->bin.len_file > CHAMP_MAX_SIZE || e->bin.len_file <= 0)
+			verbos(e, CHAMP_TOO_LONG);
+		!c->valid.name_done ? verbos(e, MISSING_NAME) : 0;
+		!c->valid.comment_done ? verbos(e, MISSING_COMMENT) : 0;
 	}
 }
