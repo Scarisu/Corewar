@@ -6,7 +6,7 @@
 /*   By: rlecart <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/11/23 06:04:11 by rlecart           #+#    #+#             */
-/*   Updated: 2017/12/20 09:02:04 by rlecart          ###   ########.fr       */
+/*   Updated: 2018/01/11 23:14:47 by rlecart          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,6 +18,7 @@
 typedef struct		s_champ
 {
 	int				len;
+	int				nbr_live;
 	bool			alive;
 	char			*name;
 	char			*comment;
@@ -28,12 +29,12 @@ typedef struct		s_corewar
 {
 	int				nbc;
 	int				dump;
+	int				nbr_live_all;
 	int				numbers[4];
 	int				cycle;
 	int				cycle_tmp;
 	int				cycle_to_die;
 	int				cycle_delta;
-	int				nbr_live;
 	int				max_checks;
 	char			*(champs_path[4]);
 }					t_corewar;
