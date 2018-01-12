@@ -6,7 +6,7 @@
 /*   By: pbernier <pbernier@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/11/09 00:30:13 by pbernier          #+#    #+#             */
-/*   Updated: 2017/12/20 05:15:24 by rlecart          ###   ########.fr       */
+/*   Updated: 2018/01/12 02:19:54 by rlecart          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,6 +14,8 @@
 # define LIBFT_H
 
 # define BUFF_SIZE 100
+# define HEXA "0123456789abcdef"
+
 # include <string.h>
 # include <stdlib.h>
 # include <stdio.h>

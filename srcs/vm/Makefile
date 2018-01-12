@@ -10,7 +10,10 @@ SRC_RACINE		=	main.c \
 					battle.c \
 					get.c \
 					error.c \
-					check.c
+					check.c \
+					live.c \
+					game.c \
+					display.c
 
 FLAGS			=	$(WFLAGS)
 INC				=	$(addprefix $(MP)$(DIR_INC),$(SRC_INCLUD))
@@ -27,16 +30,16 @@ endif
 $(notdir $(NAME_VM)): all
 
 $(NAME_VM): $(LIB_PATH) $(PATH_OBJ) $(OBJ)
-	@printf "[$(PROJECT_VM)] Objs compilation done.      \n"
-	@$(CC) -o $(NAME_VM) $(OBJ) $(LIB_PATH) $(FLAGS)
+	@printf "[$(PROJECT_VM)] Objs compilation done.                          \n"
+	@$(CC) -o $(NAME_VM) $(OBJ) $(LIB_PATH) $(FLAGS) -lncurses
 	@printf "[$(PROJECT_VM)] "
 ifeq ($(FLAGS),$(DFLAGS))
 	@printf "(lldb mode) "
 endif
-	@printf "$(notdir $(NAME_VM)) compiled.\n"
+	@printf "$(notdir $(NAME_VM)) compiled.                                  \n"
 
 $(PATH_OBJ)%.o: %.c $(INC) Makefile
-	@printf "[$(PROJECT_VM)] Compiling $(notdir $<) to $(notdir $@)              \r"
+	@printf "[$(PROJECT_VM)] Compiling $(notdir $<) to $(notdir $@)                                   \r"
 	@$(CC) $(FLAGS) $(INCLUDES) -o $@ -c $<
 
 $(LIB_PATH):

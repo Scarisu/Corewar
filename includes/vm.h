@@ -6,7 +6,7 @@
 /*   By: rlecart <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/11/23 06:04:11 by rlecart           #+#    #+#             */
-/*   Updated: 2018/01/11 23:14:47 by rlecart          ###   ########.fr       */
+/*   Updated: 2018/01/12 03:29:20 by rlecart          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,6 +14,7 @@
 # define VM_H
 
 # include <corewar.h>
+# include <ncurses.h>
 
 typedef struct		s_champ
 {
@@ -44,6 +45,15 @@ void				error(int code, char *val);
 
 t_champ				*get_all_champs(t_corewar data);
 
+int					still_alive(t_champ *champs, int nbc);
+int					live_counter(t_champ *champs, t_corewar *d);
+void				reset_lives(t_champ *champs, int nbc);
+
 void				battle(t_champ *champs, t_corewar *d);
+
+void				display_map(char *map, t_corewar *d, int o);
+
+void				game(char *map);
+void				end_game(t_champ *champs, int nbc);
 
 #endif
