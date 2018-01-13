@@ -11,6 +11,7 @@ SRC_RACINE		=	main.c \
 					get.c \
 					error.c \
 					check.c \
+					check_flags.c \
 					live.c \
 					game.c \
 					display.c

@@ -6,7 +6,7 @@
 /*   By: rlecart <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/11/23 06:04:11 by rlecart           #+#    #+#             */
-/*   Updated: 2018/01/13 03:32:55 by rlecart          ###   ########.fr       */
+/*   Updated: 2018/01/13 04:07:42 by rlecart          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -53,10 +53,16 @@ struct				s_corewar
 	int				cycle_to_die;
 	int				cycle_delta;
 	int				max_checks;
+	int				last_live_call;
+	bool			flag_v;
 	char			*(champs_path[4]);
 };
 
+void				check_dump(int ac, char **av, t_corewar *ret, int *i);
+void				check_n(int ac, char **av, t_corewar *ret, int *(i[2]));
+void				check_cor(char **av, t_corewar *ret, int *i, int *j);
 t_corewar			check_all(int argc, char **argv);
+
 void				error(int code, char *val);
 
 t_champ				*get_all_champs(t_corewar data);
@@ -70,6 +76,6 @@ void				battle(t_champ *champs, t_corewar *d);
 void				display_map(char *map, t_corewar *d, int o);
 
 void				game(char *map);
-void				end_game(t_champ *champs, int nbc);
+void				end_game(t_champ *champs, t_corewar *d);
 
 #endif

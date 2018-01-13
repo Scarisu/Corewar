@@ -6,13 +6,13 @@
 /*   By: rlecart <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/01/12 02:22:01 by rlecart           #+#    #+#             */
-/*   Updated: 2018/01/13 02:37:45 by rlecart          ###   ########.fr       */
+/*   Updated: 2018/01/13 04:03:51 by rlecart          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <vm.h>
 
-void	display_map(char *map, t_corewar *d, int o)
+void	display_v(char *map, t_corewar *d, int o)
 {
 	int		i;
 
@@ -38,4 +38,10 @@ void	display_map(char *map, t_corewar *d, int o)
 	}
 	printw("\n");
 	refresh();						/* Print it on to the real screen */
+}
+
+void	display_map(char *map, t_corewar *d, int o)
+{
+	if (d->flag_v)
+		display_v(map, d, o);
 }

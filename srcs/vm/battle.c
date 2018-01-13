@@ -6,7 +6,7 @@
 /*   By: rlecart <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/11/23 06:12:46 by rlecart           #+#    #+#             */
-/*   Updated: 2018/01/13 03:37:59 by rlecart          ###   ########.fr       */
+/*   Updated: 2018/01/13 04:07:54 by rlecart          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,6 +24,7 @@ char	*init_battle(t_champ *champs, t_corewar *d)
 		ft_memcpy(&map[MEM_SIZE / d->nbc * i], champs[i].content, champs[i].len);
 		REG = ft_memalloc(sizeof(t_reg*));
 		ft_bzero(REG->r, sizeof(REG->r));
+		REG->r[0][REG_SIZE - 1] = i;
 		REG->pc = &map[MEM_SIZE / d->nbc * i];
 		REG->carry = 0;
 		REG->prev = NULL;
@@ -35,11 +36,13 @@ char	*init_battle(t_champ *champs, t_corewar *d)
 	d->cycle_to_die = CYCLE_TO_DIE;
 	d->cycle_delta = CYCLE_DELTA;
 	d->max_checks = MAX_CHECKS;
+	d->last_live_call = 0;
 	return (map);
 }
 
 void	foam_bat(void)
 {
+	/* FOAM BAT SOUND */
 }
 
 void	champions_killer(t_champ *champs, t_corewar *d)
@@ -97,5 +100,5 @@ void	battle(t_champ *champs, t_corewar *d)
 		if (d->cycle % 2650)
 			champs[0].nbr_live++;
 	}
-	end_game(champs, d->nbc);
+	end_game(champs, d);
 }
