@@ -6,7 +6,7 @@
 /*   By: rlecart <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/11/23 06:04:11 by rlecart           #+#    #+#             */
-/*   Updated: 2018/01/12 03:29:20 by rlecart          ###   ########.fr       */
+/*   Updated: 2018/01/13 03:12:15 by rlecart          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,7 +16,20 @@
 # include <corewar.h>
 # include <ncurses.h>
 
-typedef struct		s_champ
+typedef struct		s_reg		t_reg;
+typedef struct		s_champ		t_champ;
+typedef struct		s_corewar	t_corewar;
+
+struct				s_reg
+{
+	char			r[REG_NUMBER][REG_SIZE];
+	char			*pc;
+	char			carry;
+	t_reg			*before;
+	t_reg			*next;
+};
+
+struct				s_champ
 {
 	int				len;
 	int				nbr_live;
@@ -24,9 +37,10 @@ typedef struct		s_champ
 	char			*name;
 	char			*comment;
 	char			*content;
-}					t_champ;
+	t_reg			*reg;
+};
 
-typedef struct		s_corewar
+struct				s_corewar
 {
 	int				nbc;
 	int				dump;
@@ -38,7 +52,7 @@ typedef struct		s_corewar
 	int				cycle_delta;
 	int				max_checks;
 	char			*(champs_path[4]);
-}					t_corewar;
+};
 
 t_corewar			check_all(int argc, char **argv);
 void				error(int code, char *val);

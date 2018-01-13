@@ -6,7 +6,7 @@
 /*   By: rlecart <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/01/12 02:22:01 by rlecart           #+#    #+#             */
-/*   Updated: 2018/01/12 03:09:42 by rlecart          ###   ########.fr       */
+/*   Updated: 2018/01/13 02:37:45 by rlecart          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,18 +17,12 @@ void	display_map(char *map, t_corewar *d, int o)
 	int		i;
 
 	i = -1;
-	clear();
-	printw("Cycle : ");
-	printw("%d", d->cycle);
-	printw(" | Cycle to die : ");
-	printw("%d", d->cycle_to_die);
-	printw(" | Cycle delta : ");
-	printw("%d", d->cycle_delta);
-	printw(" | Max checks : ");
-	printw("%d", d->max_checks);
-	printw(" | Lives : ");
-	printw("%d", d->nbr_live_all);
-	printw("\n\n");
+	erase();
+	printw("Cycle : %d | ", d->cycle);
+	printw("Cycle to die : %d | ", d->cycle_to_die);
+	printw("Cycle delta : %d | ", d->cycle_delta);
+	printw("Max checks : %d | ", d->max_checks);
+	printw("Lives : %d\n\n", d->nbr_live_all);
 	while (++i < MEM_SIZE)
 	{
 		if (map[i] >= 0 && map[i] < 16)
@@ -38,11 +32,10 @@ void	display_map(char *map, t_corewar *d, int o)
 		else
 			printw(ft_itoa_base(map[i], 16, HEXA));
 		if ((i + 1) % (ft_sqrt(MEM_SIZE) / o))
-			printw("%c", ' ');
+			printw(" ");
 		else
-			printw("%c", '\n');
+			printw("\n");
 	}
-	printw("%c", '\n');
+	printw("\n");
 	refresh();						/* Print it on to the real screen */
-	printw("%d", getch());
 }
