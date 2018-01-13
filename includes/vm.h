@@ -6,12 +6,14 @@
 /*   By: rlecart <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/11/23 06:04:11 by rlecart           #+#    #+#             */
-/*   Updated: 2018/01/13 03:12:15 by rlecart          ###   ########.fr       */
+/*   Updated: 2018/01/13 03:32:55 by rlecart          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef VM_H
 # define VM_H
+
+# define REG champs[i].reg
 
 # include <corewar.h>
 # include <ncurses.h>
@@ -25,7 +27,7 @@ struct				s_reg
 	char			r[REG_NUMBER][REG_SIZE];
 	char			*pc;
 	char			carry;
-	t_reg			*before;
+	t_reg			*prev;
 	t_reg			*next;
 };
 
