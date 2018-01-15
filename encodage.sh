@@ -35,12 +35,12 @@ if [ $1 ]; then
 fi
 
 clear
-make ${asm_name}
-[ -e ! ${asm} ] && exit
-
+if [ ! -e ${asm_name} ]; then
+	printf "\"${grey}${asm_name}${reset}\" hasen't been found\n"
+	exit
+fi
 
 #Ressource
-mkdir -p ${resources_file}
 curl -s ${resources_adress} | tar x - -C ${resources_file}
 rm -f $(find ./${resources_file} -name "*.cor")
 resources_asm=$(find ./${resources_file} -name "${asm_name}")

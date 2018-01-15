@@ -69,7 +69,6 @@ if [ -n "${dir_invalid}" ]; then
 fi
 
 make normal
-read
 [ -e ! ${asm} ] && exit
 
 
