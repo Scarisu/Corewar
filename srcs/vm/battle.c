@@ -6,39 +6,11 @@
 /*   By: rlecart <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/11/23 06:12:46 by rlecart           #+#    #+#             */
-/*   Updated: 2018/01/13 04:07:54 by rlecart          ###   ########.fr       */
+/*   Updated: 2018/01/16 10:21:15 by rlecart          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <vm.h>
-
-char	*init_battle(t_champ *champs, t_corewar *d)
-{
-	int		i;
-	char	*map;
-
-	i = -1;
-	map = ft_memalloc(MEM_SIZE);
-	while (++i < d->nbc)
-	{
-		ft_memcpy(&map[MEM_SIZE / d->nbc * i], champs[i].content, champs[i].len);
-		REG = ft_memalloc(sizeof(t_reg*));
-		ft_bzero(REG->r, sizeof(REG->r));
-		REG->r[0][REG_SIZE - 1] = i;
-		REG->pc = &map[MEM_SIZE / d->nbc * i];
-		REG->carry = 0;
-		REG->prev = NULL;
-		REG->next = NULL;
-	}
-	d->cycle = 0;
-	d->cycle_tmp = 0;
-	d->nbr_live_all = 0;
-	d->cycle_to_die = CYCLE_TO_DIE;
-	d->cycle_delta = CYCLE_DELTA;
-	d->max_checks = MAX_CHECKS;
-	d->last_live_call = 0;
-	return (map);
-}
 
 void	foam_bat(void)
 {
@@ -58,7 +30,7 @@ void	champions_killer(t_champ *champs, t_corewar *d)
 		}
 }
 
-void	cycle_check(t_champ *champs, t_corewar *d)
+int		cycle_check(t_champ *champs, t_corewar *d)
 {
 	if (d->cycle_tmp >= d->cycle_to_die)
 	{
@@ -73,29 +45,34 @@ void	cycle_check(t_champ *champs, t_corewar *d)
 		}
 		reset_lives(champs, d->nbc);
 	}
+	if (d->cycle_to_die < 0)
+		return (0);
+	else
+		return (1);
 }
 
 void	battle(t_champ *champs, t_corewar *d)
 {
+	int		*colors;
 	char	*map;
 
 	map = init_battle(champs, d);
+	colors = init_colors(champs, d);
 	while (d->cycle_to_die > 0/* && still_alive(champs, d->nbc)*/)
 	{
-		if ((d->dump >= 0 && d->cycle == d->dump) ||
-			(d->cycle_tmp + 1 >= d->cycle_to_die &&
-			 d->cycle_to_die - d->cycle_delta <= 0))
+		if ((d->dump >= 0 && d->cycle == d->dump))
 		{
-			display_map(map, d, 2);
+			display(map, colors, d);
 			break ;
 		}
-		d->cycle += 20;
-		d->cycle_tmp += 20;
+		d->cycle += 1;
+		d->cycle_tmp += 1;
 		d->nbr_live_all = live_counter(champs, d);
-		cycle_check(champs, d);
+		if (!(cycle_check(champs, d)))
+			break ;
 		game(map);
-		if (d->dump == -1)
-			display_map(map, d, 1);
+		if (d->flag_v && d->dump == -1)
+			display_map(map, colors, d);
 		/* A RETIRER */
 		if (d->cycle % 2650)
 			champs[0].nbr_live++;

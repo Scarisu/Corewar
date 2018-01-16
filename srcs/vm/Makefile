@@ -14,7 +14,8 @@ SRC_RACINE		=	main.c \
 					check_flags.c \
 					live.c \
 					game.c \
-					display.c
+					display.c \
+					init.c
 
 FLAGS			=	$(WFLAGS)
 INC				=	$(addprefix $(MP)$(DIR_INC),$(SRC_INCLUD))

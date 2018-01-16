@@ -6,7 +6,7 @@
 /*   By: rlecart <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/12/19 06:43:20 by rlecart           #+#    #+#             */
-/*   Updated: 2018/01/13 04:20:15 by rlecart          ###   ########.fr       */
+/*   Updated: 2018/01/16 07:15:18 by rlecart          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,13 +49,13 @@ t_corewar	check_all(int ac, char **av)
 	ft_memcpy(ret.numbers, (int[4]){0, 0, 0, 0}, sizeof(int) * 4);
 	while (++i < ac)
 	{
-		if ((ft_strequ("-dump", av[i])))
+		if ((ft_strequ("-dump", av[i])) && !ret.flag_v)
 			check_dump(ac, av, &ret, &i);
 		else if ((ft_strequ("-n", av[i])))
 			check_n(ac, av, &ret, (int*[2]){&i, &j});
 		else if (ft_strequ(".cor", &av[i][ft_strlen(av[i]) - 4]))
 			check_cor(av, &ret, &i, &j);
-		else if ((ft_strequ("-v", av[i])))
+		else if ((ft_strequ("-v", av[i])) && ret.dump == -1)
 			ret.flag_v = true;
 		else
 			error(0, NULL);
