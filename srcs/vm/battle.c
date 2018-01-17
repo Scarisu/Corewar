@@ -6,7 +6,7 @@
 /*   By: rlecart <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/11/23 06:12:46 by rlecart           #+#    #+#             */
-/*   Updated: 2018/01/16 10:21:15 by rlecart          ###   ########.fr       */
+/*   Updated: 2018/01/17 17:48:21 by rlecart          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -62,7 +62,7 @@ void	battle(t_champ *champs, t_corewar *d)
 	{
 		if ((d->dump >= 0 && d->cycle == d->dump))
 		{
-			display(map, colors, d);
+			display_map(map, colors, d);
 			break ;
 		}
 		d->cycle += 1;
@@ -71,7 +71,7 @@ void	battle(t_champ *champs, t_corewar *d)
 		if (!(cycle_check(champs, d)))
 			break ;
 		game(map);
-		if (d->flag_v && d->dump == -1)
+		if (d->dump == -1)
 			display_map(map, colors, d);
 		/* A RETIRER */
 		if (d->cycle % 2650)

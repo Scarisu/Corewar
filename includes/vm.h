@@ -6,7 +6,7 @@
 /*   By: rlecart <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/11/23 06:04:11 by rlecart           #+#    #+#             */
-/*   Updated: 2018/01/16 11:04:22 by rlecart          ###   ########.fr       */
+/*   Updated: 2018/01/17 19:13:02 by rlecart          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -76,8 +76,9 @@ char				*init_battle(t_champ *champs, t_corewar *d);
 
 void				battle(t_champ *champs, t_corewar *d);
 
-void				display_map(char *map, int *colors, t_corewar *d);
 void				display(char *map, int *colors, t_corewar *d);
+void				display_map(char *map, int *colors, t_corewar *d);
+void				display_champs_color(int color);
 
 void				game(char *map);
 void				end_game(t_champ *champs, t_corewar *d);

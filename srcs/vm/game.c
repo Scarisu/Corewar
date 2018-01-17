@@ -6,7 +6,7 @@
 /*   By: rlecart <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/01/12 02:15:05 by rlecart           #+#    #+#             */
-/*   Updated: 2018/01/13 04:07:50 by rlecart          ###   ########.fr       */
+/*   Updated: 2018/01/17 20:03:47 by rlecart          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,7 +28,11 @@ void	end_game(t_champ *champs, t_corewar *d)
 		error(-1, "haha");
 	if (d->flag_v)
 	{
-		printw("Le joueur %d(%s) a gagne.\n\n", i + 1, champs[i].name);
+		printw("Le joueur %d(", i + 1);
+		display_champs_color(i + 1);
+		printw("%s", champs[i].name);
+		printw(") a gagne.\n\n");
+		display_champs_color(0);
 		printw("Appuyez sur une touche pour continuer.");
 	}
 	else
@@ -36,7 +40,9 @@ void	end_game(t_champ *champs, t_corewar *d)
 		ft_putstr("Le joueur ");
 		ft_putnbr(i + 1);
 		ft_putstr("(");
+		display_champs_color(i + 1);
 		ft_putstr(champs[i].name);
+		display_champs_color(0);
 		ft_putstr(") a gagne.\n");
 	}
 }

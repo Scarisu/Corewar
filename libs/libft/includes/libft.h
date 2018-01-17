@@ -6,7 +6,7 @@
 /*   By: pbernier <pbernier@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/11/09 00:30:13 by pbernier          #+#    #+#             */
-/*   Updated: 2018/01/12 02:19:54 by rlecart          ###   ########.fr       */
+/*   Updated: 2018/01/17 17:56:28 by rlecart          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,6 +15,16 @@
 
 # define BUFF_SIZE 100
 # define HEXA "0123456789abcdef"
+
+# define C_RESET "\033[0m"
+# define C_RED "\033[38;5;1m"
+# define C_RED_MINUS "\033[38;5;9m"
+# define C_GREEN "\033[38;5;2m"
+# define C_YELLOW "\033[38;5;3m"
+# define C_BLUE "\033[38;5;4m"
+# define C_PINK "\033[38;5;5m"
+# define C_BRIGHT_BLUE "\033[38;5;6m"
+# define C_GREY "\033[38;5;8m"
 
 # include <string.h>
 # include <stdlib.h>

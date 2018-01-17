@@ -6,32 +6,57 @@
 /*   By: rlecart <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/01/12 02:22:01 by rlecart           #+#    #+#             */
-/*   Updated: 2018/01/16 10:55:36 by rlecart          ###   ########.fr       */
+/*   Updated: 2018/01/17 19:15:07 by rlecart          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <vm.h>
 
+void	display_header(t_corewar *d)
+{
+	if (d->flag_v)
+	{
+		printw("Cycle : %d | ", d->cycle);
+		printw("Cycle to die : %d | ", d->cycle_to_die);
+		printw("Cycle delta : %d | ", d->cycle_delta);
+		printw("Max checks : %d | ", d->max_checks);
+		printw("Lives : %d\n\n", d->nbr_live_all);
+	}
+	else
+	{
+		ft_putstr("Cycle : ");
+		ft_putnbr(d->cycle);
+		ft_putstr(" | Cycle to die : ");
+		ft_putnbr(d->cycle_to_die);
+		ft_putstr(" | Cycle delta : ");
+		ft_putnbr(d->cycle_delta);
+		ft_putstr(" | Max checks : ");
+		ft_putnbr(d->max_checks);
+		ft_putstr(" | Lives : ");
+		ft_putnbr(d->nbr_live_all);
+		ft_putstr("\n\n");
+	}
+}
+
 void	display_v(char *map, int *colors, t_corewar *d)
 {
 	int		i;
+	char	*tmp;
 
 	i = -1;
 	erase();
-	printw("Cycle : %d | ", d->cycle);
-	printw("Cycle to die : %d | ", d->cycle_to_die);
-	printw("Cycle delta : %d | ", d->cycle_delta);
-	printw("Max checks : %d | ", d->max_checks);
-	printw("Lives : %d\n\n", d->nbr_live_all);
+	display_header(d);
 	while (++i < MEM_SIZE)
 	{
 		attron(COLOR_PAIR(colors[i]));
 		if (map[i] >= 0 && map[i] < 16)
-			printw("%c", '0');
+			printw("0");
 		if (map[i] < 0)
-			printw(ft_itoa_base(256 + map[i], 16, HEXA));
+			tmp = ft_itoa_base(256 + map[i], 16, HEXA);
 		else
-			printw(ft_itoa_base(map[i], 16, HEXA));
+			tmp = ft_itoa_base(map[i], 16, HEXA);
+		printw("%s", tmp);
+		ft_strdel(&tmp);
 		if ((i + 1) % (ft_sqrt(MEM_SIZE)))
 			printw(" ");
 		else
@@ -39,22 +64,23 @@ void	display_v(char *map, int *colors, t_corewar *d)
 		attroff(COLOR_PAIR(colors[i]));
 	}
 	printw("\n");
-	refresh();						/* Print it on to the real screen */
+	refresh();
 }
 
-void	display_header(t_corewar *d)
+void	display_champs_color(int color)
 {
-	ft_putstr("Cycle : ");
-	ft_putnbr(d->cycle);
-	ft_putstr(" | Cycle to die : ");
-	ft_putnbr(d->cycle_to_die);
-	ft_putstr(" | Cycle delta : ");
-	ft_putnbr(d->cycle_delta);
-	ft_putstr(" | Max checks : ");
-	ft_putnbr(d->max_checks);
-	ft_putstr(" | Lives : ");
-	ft_putnbr(d->nbr_live_all);
-	ft_putstr("\n\n");
+	if (color == 0)
+		ft_putstr(C_RESET);
+	else if (color == 1)
+		ft_putstr(C_GREEN);
+	else if (color == 2)
+		ft_putstr(C_BLUE);
+	else if (color == 3)
+		ft_putstr(C_RED);
+	else if (color == 4)
+		ft_putstr(C_YELLOW);
+	else
+		ft_putstr(C_GREY);
 }
 
 void	display(char *map, int *colors, t_corewar *d)
@@ -67,6 +93,7 @@ void	display(char *map, int *colors, t_corewar *d)
 	display_header(d);
 	while (++i < MEM_SIZE)
 	{
+		display_champs_color(colors[i]);
 		if (map[i] >= 0 && map[i] < 16)
 			ft_putchar('0');
 		if (map[i] < 0)
@@ -79,12 +106,17 @@ void	display(char *map, int *colors, t_corewar *d)
 			ft_putchar(' ');
 		else
 			ft_putchar('\n');
+		ft_putstr("");
+		display_champs_color(0);
 	}
 	ft_putchar('\n');
 }
 
 void	display_map(char *map, int *colors, t_corewar *d)
 {
-	if (d->flag_v)
+	if (d->flag_v && d->dump == -1)
 		display_v(map, colors, d);
+	else if (!d->flag_v && d->dump > 0)
+		display(map, colors, d);
+	ft_putstr(C_RESET);
 }
