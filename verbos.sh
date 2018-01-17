@@ -68,8 +68,11 @@ if [ -n "${dir_invalid}" ]; then
 	exit
 fi
 
-make normal
-[ -e ! ${asm} ] && exit
+make ${asm_name}
+if [ ! -e ${asm_name} ]; then
+	printf "\"${grey}${asm_name}${reset}\" hasen't been found\n"
+	exit
+fi
 
 
 for name in ${all_tests[@]}; do

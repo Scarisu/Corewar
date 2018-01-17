@@ -30,7 +30,7 @@ void		create_cor(t_asm *e)
 		ft_putchar_fd(e->bin.file[i++], fd);
 	ft_putstr("asm: file .cor \"" GREY);
 	ft_putstr(e->champ.file_path);
-	ft_putstr(".cor" RESET "\" has been created\n");
+	ft_putstr(RESET "\" has been created\n");
 }
 
 void		set_head(t_asm *e)

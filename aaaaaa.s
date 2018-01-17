@@ -1,10 +1,8 @@
 .name "aaaaaa"
 .comment "aaaaaaaa  aaa a aaa aaaaaa aaa aaaaaaa aa a a aaaaaa aaa a a a  aaaaa"
 
-#37.62%
-
 a:
-    live    %42
+    live    %1
     ld      5,  r2
     st      r2, 427
     st      r2, 442
@@ -15,7 +13,7 @@ a:
     fork    %:aaaaaaaaa
 
 aa:
-    live    %42
+    live    %1
     ld      5,  r3
     st      r2, 389
     st      r3, 404
@@ -26,7 +24,7 @@ aa:
     fork    %:a
 
 aaa:
-    live    %42
+    live    %1
     ld      5,  r4
     st      r3, 351
     st      r4, 366
@@ -38,7 +36,7 @@ aaa:
 
 
 aaaa:
-    live    %42
+    live    %1
     ld      5,  r5
     st      r4, 313
     st      r5, 328
@@ -49,7 +47,7 @@ aaaa:
     zjmp    %:aaaaa
 
 aaaaa:
-    live    %42
+    live    %1
     ld      5,  r6
     st      r6, 375
     st      r5, 390
@@ -60,7 +58,7 @@ aaaaa:
     zjmp    %:aa
 
 aaaaaa:
-    live    %42
+    live    %1
     ld      5,  r7
     st      r7, 337
     st      r6, 352
@@ -71,7 +69,7 @@ aaaaaa:
     zjmp    %:a
 
 aaaaaaa:
-    live    %42
+    live    %1
     ld      5,  r8
     st      r7, 299
     st      r7, 314
@@ -82,7 +80,7 @@ aaaaaaa:
     zjmp    %:aaa
 
 aaaaaaaa:
-    live    %42
+    live    %1
     ld      5,  r9
     st      r9, 261
     st      r8, 276
@@ -93,7 +91,7 @@ aaaaaaaa:
     zjmp    %:a
 
 aaaaaaaaa:
-    live    %42
+    live    %1
     ld      5,  r10
     st      r9, 323
     st      r10, 323

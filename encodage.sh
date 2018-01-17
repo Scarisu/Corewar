@@ -35,6 +35,7 @@ if [ $1 ]; then
 fi
 
 clear
+make asm
 if [ ! -e ${asm_name} ]; then
 	printf "\"${grey}${asm_name}${reset}\" hasen't been found\n"
 	exit
@@ -46,9 +47,6 @@ rm -f $(find ./${resources_file} -name "*.cor")
 resources_asm=$(find ./${resources_file} -name "${asm_name}")
 chmod 744 ${resources_asm}
 
-				resources_asm="./.resources/asm"
-
-#Test directory
 all_dir=""
 for dir in $(echo ${file_test} | tr "/" "\n"); do
 	all_dir="${all_dir}${dir}/"
