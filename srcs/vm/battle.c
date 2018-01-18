@@ -6,7 +6,7 @@
 /*   By: rlecart <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/11/23 06:12:46 by rlecart           #+#    #+#             */
-/*   Updated: 2018/01/17 17:48:21 by rlecart          ###   ########.fr       */
+/*   Updated: 2018/01/18 01:34:50 by rlecart          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -53,29 +53,26 @@ int		cycle_check(t_champ *champs, t_corewar *d)
 
 void	battle(t_champ *champs, t_corewar *d)
 {
-	int		*colors;
-	char	*map;
-
-	map = init_battle(champs, d);
-	colors = init_colors(champs, d);
+	d->map = init_battle(champs, d);
+	d->colors = init_colors(champs, d);
 	while (d->cycle_to_die > 0/* && still_alive(champs, d->nbc)*/)
 	{
 		if ((d->dump >= 0 && d->cycle == d->dump))
 		{
-			display_map(map, colors, d);
+			display_map(d->map, d->colors, d);
 			break ;
 		}
 		d->cycle += 1;
 		d->cycle_tmp += 1;
-		d->nbr_live_all = live_counter(champs, d);
 		if (!(cycle_check(champs, d)))
 			break ;
-		game(map);
+		game(champs, d, d->map);
+		d->nbr_live_all = live_counter(champs, d);
 		if (d->dump == -1)
-			display_map(map, colors, d);
+			display_map(d->map, d->colors, d);
 		/* A RETIRER */
-		if (d->cycle % 2650)
-			champs[0].nbr_live++;
+		//usleep(100000);
+		//sleep(1);
 	}
 	end_game(champs, d);
 }

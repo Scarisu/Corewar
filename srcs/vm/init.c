@@ -6,7 +6,7 @@
 /*   By: rlecart <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/01/16 07:52:05 by rlecart           #+#    #+#             */
-/*   Updated: 2018/01/16 10:55:27 by rlecart          ###   ########.fr       */
+/*   Updated: 2018/01/18 01:35:59 by rlecart          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,7 +25,9 @@ char	*init_battle(t_champ *champs, t_corewar *d)
 		REG = ft_memalloc(sizeof(t_reg));
 		ft_bzero(REG->r, sizeof(REG->r));
 		REG->r[0][REG_SIZE - 1] = i;
-		REG->pc = &map[MEM_SIZE / d->nbc * i];
+		REG->n = i + 1;
+		REG->pc = MEM_SIZE / d->nbc * i;
+		REG->cycle = 0;
 		REG->carry = 0;
 		REG->prev = NULL;
 		REG->next = NULL;
@@ -37,6 +39,7 @@ char	*init_battle(t_champ *champs, t_corewar *d)
 	d->cycle_delta = CYCLE_DELTA;
 	d->max_checks = MAX_CHECKS;
 	d->last_live_call = 0;
+	d->map = map;
 	return (map);
 }
 
@@ -52,5 +55,29 @@ int		*init_colors(t_champ *champs, t_corewar *d)
 	while (++i < d->nbc && (j = -1))
 		while (++j < champs[i].len)
 			colors[MEM_SIZE / d->nbc * i + j] = i + 1;
+	i = -1;
+	while (++i < d->nbc)
+		colors[champs[i].reg->pc] += 5;
 	return (colors);
+}
+
+void	init_opcodes(t_corewar *d)
+{
+	d->opcodes[0] = &op_null;
+	d->opcodes[1] = &op_live;
+	d->opcodes[2] = &op_ld;
+	d->opcodes[3] = &op_st;
+	d->opcodes[4] = &op_add;
+	d->opcodes[5] = &op_sub;
+	d->opcodes[6] = &op_and;
+	d->opcodes[7] = &op_or;
+	d->opcodes[8] = &op_xor;
+	d->opcodes[9] = &op_zjmp;
+	d->opcodes[10] = &op_ldi;
+	d->opcodes[11] = &op_sti;
+	d->opcodes[12] = &op_fork;
+	d->opcodes[13] = &op_lld;
+	d->opcodes[14] = &op_lldi;
+	d->opcodes[15] = &op_lfork;
+	d->opcodes[16] = &op_aff;
 }

@@ -6,7 +6,7 @@
 /*   By: rlecart <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/01/12 02:22:01 by rlecart           #+#    #+#             */
-/*   Updated: 2018/01/17 19:15:07 by rlecart          ###   ########.fr       */
+/*   Updated: 2018/01/17 22:47:42 by rlecart          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -57,11 +57,11 @@ void	display_v(char *map, int *colors, t_corewar *d)
 			tmp = ft_itoa_base(map[i], 16, HEXA);
 		printw("%s", tmp);
 		ft_strdel(&tmp);
+		attroff(COLOR_PAIR(colors[i]));
 		if ((i + 1) % (ft_sqrt(MEM_SIZE)))
 			printw(" ");
 		else
 			printw("\n");
-		attroff(COLOR_PAIR(colors[i]));
 	}
 	printw("\n");
 	refresh();
@@ -88,7 +88,6 @@ void	display(char *map, int *colors, t_corewar *d)
 	int		i;
 	char	*tmp;
 
-	(void)colors;
 	i = -1;
 	display_header(d);
 	while (++i < MEM_SIZE)
@@ -102,12 +101,12 @@ void	display(char *map, int *colors, t_corewar *d)
 			tmp = ft_itoa_base(map[i], 16, HEXA);
 		ft_putstr(tmp);
 		ft_strdel(&tmp);
+		display_champs_color(0);
 		if ((i + 1) % (ft_sqrt(MEM_SIZE) / 2))
 			ft_putchar(' ');
 		else
 			ft_putchar('\n');
 		ft_putstr("");
-		display_champs_color(0);
 	}
 	ft_putchar('\n');
 }

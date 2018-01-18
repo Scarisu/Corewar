@@ -6,7 +6,7 @@
 /*   By: pbernier <pbernier@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/09/29 18:27:41 by pbernier          #+#    #+#             */
-/*   Updated: 2018/01/17 17:51:39 by rlecart          ###   ########.fr       */
+/*   Updated: 2018/01/17 22:47:50 by rlecart          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,6 +29,11 @@ int		main(int argc, char **argv)
 		init_pair(3, COLOR_RED, COLOR_BLACK);
 		init_pair(4, COLOR_YELLOW, COLOR_BLACK);
 		init_pair(5, COLOR_BLACK, 8);
+		init_pair(6, COLOR_BLACK, COLOR_GREEN);
+		init_pair(7, COLOR_BLACK, COLOR_BLUE);
+		init_pair(8, COLOR_BLACK, COLOR_RED);
+		init_pair(9, COLOR_BLACK, COLOR_YELLOW);
+		init_pair(10, 8, COLOR_BLACK);
 		keypad(stdscr, TRUE);
 		noecho();
 	}

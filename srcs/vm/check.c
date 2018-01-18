@@ -6,7 +6,7 @@
 /*   By: rlecart <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/12/19 06:43:20 by rlecart           #+#    #+#             */
-/*   Updated: 2018/01/16 07:15:18 by rlecart          ###   ########.fr       */
+/*   Updated: 2018/01/17 22:47:40 by rlecart          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -61,5 +61,6 @@ t_corewar	check_all(int ac, char **av)
 			error(0, NULL);
 	}
 	rec_norm_cor(&ret, j);
+	init_opcodes(&ret);
 	return (ret);
 }

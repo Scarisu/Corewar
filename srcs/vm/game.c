@@ -6,16 +6,11 @@
 /*   By: rlecart <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/01/12 02:15:05 by rlecart           #+#    #+#             */
-/*   Updated: 2018/01/17 20:03:47 by rlecart          ###   ########.fr       */
+/*   Updated: 2018/01/17 23:50:28 by rlecart          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <vm.h>
-
-void	game(char *map)
-{
-	(void)map;
-}
 
 void	end_game(t_champ *champs, t_corewar *d)
 {
@@ -44,5 +39,27 @@ void	end_game(t_champ *champs, t_corewar *d)
 		ft_putstr(champs[i].name);
 		display_champs_color(0);
 		ft_putstr(") a gagne.\n");
+	}
+}
+
+void	game(t_champ *champs, t_corewar *d, char *map)
+{
+	int		i;
+	int		pc;
+	t_reg	*t;
+
+	i = -1;
+	while (++i < d->nbc)
+	{
+		if (champs[i].alive)
+		{
+			t = champs[i].reg;
+			while (t)
+			{
+				if ((pc = map[champs[i].reg->pc]) >= 0)
+					d->opcodes[pc](&champs[i], d, t);
+				t = t->next;
+			}
+		}
 	}
 }

@@ -4,6 +4,25 @@ include			$(GLOBAL)
 
 DIR_RACINE		=
 
+DIR_OPCODES		=	opcodes/
+
+SRC_OPCODES		=	op_add.c \
+					op_aff.c \
+					op_and.c \
+					op_fork.c \
+					op_ld.c \
+					op_ldi.c \
+					op_lfork.c \
+					op_live.c \
+					op_lld.c \
+					op_lldi.c \
+					op_or.c \
+					op_st.c \
+					op_sti.c \
+					op_sub.c \
+					op_xor.c \
+					op_zjmp.c \
+					op_null.c
 SRC_INCLUD		=	corewar.h \
 					op.h
 SRC_RACINE		=	main.c \
@@ -15,13 +34,15 @@ SRC_RACINE		=	main.c \
 					live.c \
 					game.c \
 					display.c \
-					init.c
+					init.c \
+					utils.c
 
 FLAGS			=	$(WFLAGS)
 INC				=	$(addprefix $(MP)$(DIR_INC),$(SRC_INCLUD))
 PATH_OBJ		=	$(DIR_OBJ)$(DIR_VM)
-DIR				=	$(DIR_RACINE)
-SRC				=	$(addprefix $(DIR_RACINE),$(SRC_RACINE))
+DIR				=	$(DIR_RACINE) $(DIR_OPCODES)
+SRC				=	$(addprefix $(DIR_RACINE),$(SRC_RACINE)) \
+					$(addprefix $(DIR_OPCODES),$(SRC_OPCODES))
 OBJ				=	$(addprefix $(PATH_OBJ),$(SRC:.c=.o))
 
 all: $(NAME_VM)
@@ -50,6 +71,7 @@ $(LIB_PATH):
 $(PATH_OBJ):
 	@mkdir -p $(DIR_OBJ)
 	@mkdir -p $(PATH_OBJ)
+	@mkdir -p $(addprefix $(PATH_OBJ), $(DIR))
 
 lldb:
 	@make -C $(LIB_MAKE) lldb
