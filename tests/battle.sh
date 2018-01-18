@@ -1,20 +1,29 @@
 #Attention aux noms donnés aux dossiers !
 asm_name="asm"
 vm_name="corewar"
-champ_name="aaaaaa.s"
+champ_name="../aaaaaa.s"
 resources_file="vm_champs"
 file_test="tests/battle"
 result_file="result.txt"
 output_file="battle.txt"
 
-list_long=("mandragore.s" "gedeon.s" "youforkmytralala.s" "Car.s" "_honeybadger.s")
+dir_champ="champions"
+dir_exem="exemples"
+dir_ship="championships"
+dir_long="longs"
+
+list_long=("gedeon.s" "youforkmytralala.s" "_honeybadger.s" "mandragore.s")
+#"Car.s" 25m
 list_inva=("42.s" "barriere.s" "Backward.s" "Death.s" "bee_gees.s" "lde.s"
 "leeloo.s" "mat.s" "new.s" "sebc.s" "Survivor.s" "tdc2.s" "tdc3.s" "tdc4.s"
 "Torpille.s" "Rainbow_dash.s" "ultimate-surrender.s" "Misaka_Mikoto.s"
 "champ.s" "Explosive_Kitty.s" "Kittystrophic.s" "ultima.s"
-"mise_a_jour_windows95.s" "run_Kitty_RUN.s")
+"mise_a_jour_windows95.s" "run_Kitty_RUN.s"
+"Car.s")
 
 resources_adress="https://projects.intra.42.fr/uploads/document/document/391/vm_champs.tar"
+
+path="../"
 
 champs_exem=()
 champs_ship=()
@@ -24,16 +33,11 @@ flag_exem="ON"
 flag_ship="ON"
 flag_long="ON"
 
-dir_champ="champions"
-dir_exem="exemples"
-dir_ship="championships"
-dir_long="longs"
-
 grey="\033[38;5;8m"
 reset="\033[0m"
 
 clean(){
-	rm -rf ${file_test}
+	rm -rf ${path}${file_test}
 	printf "\"${grey}${file_test}${reset}\" has been removed\n"
 	exit
 }
@@ -66,20 +70,19 @@ fi
 
 clear
 
-
 #Ressource
 printf " ${grey}[DOWLOADING RESOURCES]  ${reset}\r"
-mkdir -p ${resources_file}
-curl -s ${resources_adress} | tar x - -C ${resources_file}
-rm -f $(find ./${resources_file} -name "*.cor")
-resources_vm=$(find ./${resources_file} -name "${vm_name}")
+mkdir -p ${path}${resources_file}
+curl -s ${resources_adress} | tar x - -C ${path}${resources_file}
+rm -f $(find ${path}${resources_file} -name "*.cor")
+resources_vm=$(find ${path}${resources_file} -name "${vm_name}")
 chmod 744 ${resources_vm}
 
 #Check champ list
 printf " ${grey}[CHEAKING CHAMPION LIST]${reset}\r"
 if [ ${flag_long} == "ON" ]; then
 	for champ in ${list_long[@]}; do
-		find=$(find ./${resources_file} -name "${champ}")
+		find=$(find ${path}${resources_file} -name "${champ}")
 		if [[ ${find} == "" ]]; then
 			list_long=${list_long[@]/${champ}}
 			printf "Champion \"${grey}${champ}${reset}\", doesn't exist. Removed from \"${grey}list_long${reset}\"\n"
@@ -87,7 +90,7 @@ if [ ${flag_long} == "ON" ]; then
 	done
 fi
 for champ in ${list_inva[@]}; do
-	find=$(find ./${resources_file} -name "${champ}")
+	find=$(find ${path}${resources_file} -name "${champ}")
 	if [[ ${find} == "" ]]; then
 		list_inva=${list_inva[@]/${champ}}
 		printf "Champion \"${grey}${champ}${reset}\", doesn't exist. Removed from \"${grey}list_inva${reset}\"\n"
@@ -99,17 +102,17 @@ printf " ${grey}[CREATING DIRECTORY]    ${reset}\r"
 all_dir=""
 for dir in $(echo ${file_test} | tr "/" "\n"); do
 	all_dir="${all_dir}${dir}/"
-	mkdir -p ${all_dir}
+	mkdir -p ${path}${all_dir}
 done
-rm -rf ${file_test}/${dir_champ}
-[ ${flag_exem} == "ON" ] && mkdir -p ${file_test}/${dir_champ}/${dir_exem}
-[ ${flag_ship} == "ON" ] && mkdir -p ${file_test}/${dir_champ}/${dir_ship}
-[ ${flag_long} == "ON" ] && mkdir -p ${file_test}/${dir_champ}/${dir_long}
-rm -f ${file_test}/${output_file}
+rm -rf ${path}${file_test}/${dir_champ}
+[ ${flag_exem} == "ON" ] && mkdir -p ${path}${file_test}/${dir_champ}/${dir_exem}
+[ ${flag_ship} == "ON" ] && mkdir -p ${path}${file_test}/${dir_champ}/${dir_ship}
+[ ${flag_long} == "ON" ] && mkdir -p ${path}${file_test}/${dir_champ}/${dir_long}
+rm -f ${path}${file_test}/${output_file}
 
 #Setup data
 printf " ${grey}[SORTING CHAMPIONS]     ${reset}\r"
-champs_all=$(find ./${resources_file} -name "*.s")
+champs_all=$(find ${path}${resources_file} -name "*.s")
 for champ in ${champs_all[@]}; do
 	sort="NO"
 	for inva in ${list_inva[@]}; do
@@ -138,15 +141,15 @@ for champ in ${champs_all[@]}; do
 done
 
 #Make asm
-make ${asm_name} > /dev/null
-if [ ! -e ${asm_name} ]; then
+make -C ${path} ${asm_name} > /dev/null
+if [ ! -e ${path}${asm_name} ]; then
 	printf "\"${grey}${asm_name}${reset}\" hasen't been found\n"
 	exit
 fi
 
 #Compiling principal Champion
-./${asm_name} -s ${champ_name} > /dev/null 2> /dev/null
-cor="$(echo "${champ_name}" | sed 's/\.s//').cor"
+./${path}${asm_name} -s ${champ_name} > /dev/null 2> /dev/null
+cor="$(echo "${champ_name}" | sed 's/\.s$//').cor"
 if [[ ! -e ${cor} ]]; then
 	printf " Champion \"${grey}$(basename ${cor})${reset}\" does not compile\n"
 	exit
@@ -176,10 +179,10 @@ compile_champ(){
 	printf "${nb_done_total}/"
 	[ "${nb_champs}" -le "9" ] && printf "0"
 	printf "${nb_champs}] ${reset}\r"
-	./${asm_name} -s ${1} > /dev/null 2> /dev/null
-	local cor="$(echo "${1}" | sed 's/\.s//').cor"
+	./${path}${asm_name} -s ${1} > /dev/null 2> /dev/null
+	local cor="$(echo "${1}" | sed 's/\.s$//').cor"
  	if [[ -e ${cor} ]]; then
-		mv ${cor} ${file_test}/${dir_champ}/${2}
+		mv ${cor} ${path}${file_test}/${dir_champ}/${2}
 	else
 		printf "\"${grey}$(basename ${cor})${reset}\" hasn't been created"
 		local error_len="\"$(basename ${cor})\" hasn't been created"
@@ -199,12 +202,11 @@ for champ in ${champs_long[@]}; do
 done
 
 #Champions fighting
-printf " ${grey}[CHAMPIONS FIGHTING]${reset}"
 for i in $(seq 0 $(echo $((${compile_len}-21)))); do printf " "; done
-printf "\n"
-[ ${flag_exem} == "ON" ] && cor_exem=$(find ./${file_test}/${dir_champ}/${dir_exem} -name "*.cor")
-[ ${flag_ship} == "ON" ] && cor_ship=$(find ./${file_test}/${dir_champ}/${dir_ship} -name "*.cor")
-[ ${flag_long} == "ON" ] && cor_long=$(find ./${file_test}/${dir_champ}/${dir_long} -name "*.cor")
+printf "\r"
+[ ${flag_exem} == "ON" ] && cor_exem=$(find ${path}${file_test}/${dir_champ}/${dir_exem} -name "*.cor")
+[ ${flag_ship} == "ON" ] && cor_ship=$(find ${path}${file_test}/${dir_champ}/${dir_ship} -name "*.cor")
+[ ${flag_long} == "ON" ] && cor_long=$(find ${path}${file_test}/${dir_champ}/${dir_long} -name "*.cor")
 
 nb_done_total=0
 nb_win_total=0
@@ -212,53 +214,53 @@ fight_len=0
 nb_champs=$(echo $((${#champs_exem[@]}+${#champs_ship[@]}+${#champs_long[@]})))
 
 hour="$(date +%H):$(date +%M):$(date +%S)"
-regex="\"$(echo "${champ_name}" | sed 's/\.s//')\", has won !$"
+regex="$(echo "$(grep .name "${champ_name}")" | sed 's/\.name//' | sed 's/^[ \t]*//;s/[ \t]*$//'), has won !$"
 
 print_column(){
 	#Voir arrondir selon impair ou pair
 	space=${1}
 	pos=$(echo $(((16/2)-((${#2}+2)/2))))
 	[[ "${pos}" -ge "$(echo $((${space}*(-1))))" ]] && space=$(echo $((${space}+${pos}))) || space=0
-	for i in $(seq 1 ${space}); do printf " " >> ${file_test}/${result_file}; done
-	printf "[${2}]" >> ${file_test}/${result_file}
+	for i in $(seq 1 ${space}); do printf " " >> ${path}${file_test}/${result_file}; done
+	printf "[${2}]" >> ${path}${file_test}/${result_file}
 }
 
-if [ ! -e ${file_test}/${result_file} ]; then
+if [ ! -e ${path}${file_test}/${result_file} ]; then
 	print_column "10" ${dir_exem}
 	print_column $(echo $((${space}-6))) ${dir_ship}
 	print_column $(echo $((${space}-4))) ${dir_long}
 	print_column $(echo $((${space}-4))) "TOTAL"
-	printf "\n" >> ${file_test}/${result_file}
+	printf "\n" >> ${path}${file_test}/${result_file}
 
 fi
-printf "${hour}: " >> ${file_test}/${result_file}
+printf "${hour}: " >> ${path}${file_test}/${result_file}
 
-champ_name="$(echo "${champ_name}" | sed 's/\.s//').cor"
-[ ${flag_exem} == "ON" ] && printf "[${dir_exem}]\n" >> ${file_test}/${output_file}
-[ ${flag_ship} == "ON" ] && printf "[${dir_ship}]\n" >> ${file_test}/${output_file}
-[ ${flag_long} == "ON" ] && printf "[${dir_long}]\n" >> ${file_test}/${output_file}
-printf "\n" >> ${file_test}/${output_file}
+champ_name="$(echo "${champ_name}" | sed 's/\.s$//').cor"
+[ ${flag_exem} == "ON" ] && printf "[${dir_exem}]\n" >> ${path}${file_test}/${output_file}
+[ ${flag_ship} == "ON" ] && printf "[${dir_ship}]\n" >> ${path}${file_test}/${output_file}
+[ ${flag_long} == "ON" ] && printf "[${dir_long}]\n" >> ${path}${file_test}/${output_file}
+printf "\n" >> ${path}${file_test}/${output_file}
 
 fighting(){
 	hour="$(date +%H):$(date +%M):$(date +%S)"
 	no_path_champ=$(basename ${champ})
 	((nb_done_total++))
-	printf " [${hour}] (1) [${nb_done_total}/${nb_champs}] [ ${grey}${champ_name}${reset} VS ${no_path_champ}]"
+	printf " [${hour}] (1) [${nb_done_total}/${nb_champs}] [ ${grey}$(basename ${champ_name})${reset} VS ${no_path_champ}]"
 	space=$(echo $((${fight_len}-29+${#no_path_champ}+${#champ_name})))
 	[[ "${space}" -gt "0" ]] && for i in $(seq 0 ${space}); do printf " "; done
 	printf "\r"
 
-	printf " [${hour}] (1) [${nb_done_total}/${nb_champs}] [ ${champ_name} VS ${no_path_champ}]\n" >> ${file_test}/${output_file}
-	local output=$(./${resources_vm} ${champ_name} ${champ})
-	printf "${output}\n\n" >> ${file_test}/${output_file}
+	printf " [${hour}] (1) [${nb_done_total}/${nb_champs}] [ $(basename ${champ_name}) VS ${no_path_champ}]\n" >> ${path}${file_test}/${output_file}
+	local output=$(./${path}${resources_vm} ${champ_name} ${champ})
+	printf "${output}\n\n" >> ${path}${file_test}/${output_file}
 	if [[ ${output} =~ ${regex} ]]; then
 		((nb_win_total++))
 		((nb_win_type++))
 	fi
-	printf " [${hour}] (2) [${nb_done_total}/${nb_champs}] [ ${no_path_champ} VS ${grey}${champ_name}${reset}]\r"
-	printf " [${hour}] (2) [${nb_done_total}/${nb_champs}] [ ${no_path_champ} VS ${champ_name}]\n" >> ${file_test}/${output_file}
-	local output=$(./${resources_vm} ${champ_name} ${champ})
-	printf "${output}\n\n" >> ${file_test}/${output_file}
+	printf " [${hour}] (2) [${nb_done_total}/${nb_champs}] [ ${no_path_champ} VS ${grey}$(basename ${champ_name})${reset}]\r"
+	printf " [${hour}] (2) [${nb_done_total}/${nb_champs}] [ ${no_path_champ} VS $(basename ${champ_name})]\n" >> ${path}${file_test}/${output_file}
+	local output=$(./${path}${resources_vm} ${champ_name} ${champ})
+	printf "${output}\n\n" >> ${path}${file_test}/${output_file}
 	if [[ ${output} =~ ${regex} ]]; then
 		((nb_win_total++))
 		((nb_win_type++))
@@ -267,18 +269,18 @@ fighting(){
 }
 
 print_result(){
-	printf "[" >> ${file_test}/${result_file}
-	[ "${2}" -le "9" ] && printf "0" >> ${file_test}/${result_file}
-	printf "${2}/" >> ${file_test}/${result_file}
-	[ "${1}" -le "9" ] && printf "0" >> ${file_test}/${result_file}
-	printf "${1}] (" >> ${file_test}/${result_file}
+	printf "[" >> ${path}${file_test}/${result_file}
+	[ "${2}" -le "9" ] && printf "0" >> ${path}${file_test}/${result_file}
+	printf "${2}/" >> ${path}${file_test}/${result_file}
+	[ "${1}" -le "9" ] && printf "0" >> ${path}${file_test}/${result_file}
+	printf "${1}] (" >> ${path}${file_test}/${result_file}
 	[[ "${1}" != "0" ]] && percent=$(echo $(((10000 / (${1})) * (${2})))) || percent=0
 	nbr=$(echo $((${percent} / 100)))
-	[ "${nbr}" -le "9" ] && printf "0" >> ${file_test}/${result_file}
-	printf "${nbr}," >> ${file_test}/${result_file}
+	[ "${nbr}" -le "9" ] && printf "0" >> ${path}${file_test}/${result_file}
+	printf "${nbr}," >> ${path}${file_test}/${result_file}
 	dec=$(echo $((${percent} % 100)))
-	[ "${dec}" -le "9" ] && printf "0" >> ${file_test}/${result_file}
-	printf "${dec}%%)${3}" >> ${file_test}/${result_file}
+	[ "${dec}" -le "9" ] && printf "0" >> ${path}${file_test}/${result_file}
+	printf "${dec}%%)${3}" >> ${path}${file_test}/${result_file}
 }
 
 if [ ${flag_exem} == "ON" ]; then
@@ -289,7 +291,7 @@ if [ ${flag_exem} == "ON" ]; then
 	nb_cor_total=$(echo $((${nb_cor_total}+${nb_cor})))
 	print_result ${nb_cor} ${nb_win_type} "    "
 else
-	printf "[--/--] (--,--%%)    " >> ${file_test}/${result_file}
+	printf "[--/--] (--,--%%)    " >> ${path}${file_test}/${result_file}
 fi
 if [ ${flag_ship} == "ON" ]; then
 	nb_win_type=0
@@ -299,7 +301,7 @@ if [ ${flag_ship} == "ON" ]; then
 	nb_cor_total=$(echo $((${nb_cor_total}+${nb_cor})))
 	print_result ${nb_cor} ${nb_win_type} "    "
 else
-	printf "[--/--] (--,--%%)    " >> ${file_test}/${result_file}
+	printf "[--/--] (--,--%%)    " >> ${path}${file_test}/${result_file}
 fi
 if [ ${flag_long} == "ON" ]; then
 	nb_win_type=0
@@ -309,7 +311,7 @@ if [ ${flag_long} == "ON" ]; then
 	nb_cor_total=$(echo $((${nb_cor_total}+${nb_cor})))
 	print_result ${nb_cor} ${nb_win_type} "    "
 else
-	printf "[--/--] (--,--%%)    " >> ${file_test}/${result_file}
+	printf "[--/--] (--,--%%)    " >> ${path}${file_test}/${result_file}
 fi
 print_result ${nb_cor_total} ${nb_win_total} "   $(basename ${champ_name})\n"
 rm ${champ_name}
