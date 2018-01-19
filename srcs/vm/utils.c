@@ -6,7 +6,7 @@
 /*   By: rlecart <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/01/17 23:39:21 by rlecart           #+#    #+#             */
-/*   Updated: 2018/01/17 23:40:19 by rlecart          ###   ########.fr       */
+/*   Updated: 2018/01/19 07:37:23 by rlecart          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,6 +15,7 @@
 void	jump_to_next(t_corewar *d, t_reg *reg, int o)
 {
 	d->colors[reg->pc] -= 5;
-	reg->pc += o;
+	if ((reg->pc += o) == MEM_SIZE)
+		reg->pc = 0;
 	d->colors[reg->pc] += 5;
 }

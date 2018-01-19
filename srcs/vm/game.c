@@ -6,26 +6,35 @@
 /*   By: rlecart <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/01/12 02:15:05 by rlecart           #+#    #+#             */
-/*   Updated: 2018/01/17 23:50:28 by rlecart          ###   ########.fr       */
+/*   Updated: 2018/01/19 08:18:01 by rlecart          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <vm.h>
+
+void	end_ww(t_corewar *d)
+{
+	if (d->flag_v)
+		printw("Aucun champion n'a gagne.\n");
+	else
+		ft_putstr("Aucun champion n'a gagne.\n");
+}
 
 void	end_game(t_champ *champs, t_corewar *d)
 {
 	int		i;
 
 	i = 0;
-	while (champs[i].alive == false)
-		i++;
-	if (i >= d->nbc)
-		error(-1, "haha");
+	if (d->last_live_call <= 0)
+	{
+		end_ww(d);
+		return ;
+	}
 	if (d->flag_v)
 	{
 		printw("Le joueur %d(", i + 1);
 		display_champs_color(i + 1);
-		printw("%s", champs[i].name);
+		printw("%s", champs[d->last_live_call - 1].name);
 		printw(") a gagne.\n\n");
 		display_champs_color(0);
 		printw("Appuyez sur une touche pour continuer.");

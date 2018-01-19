@@ -6,7 +6,7 @@
 /*   By: rlecart <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/11/23 06:12:46 by rlecart           #+#    #+#             */
-/*   Updated: 2018/01/18 01:34:50 by rlecart          ###   ########.fr       */
+/*   Updated: 2018/01/19 08:11:40 by rlecart          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,7 +34,7 @@ int		cycle_check(t_champ *champs, t_corewar *d)
 {
 	if (d->cycle_tmp >= d->cycle_to_die)
 	{
-		champions_killer(champs, d);
+		//champions_killer(champs, d);
 		if (d->nbr_live_all >= NBR_LIVE && (d->max_checks = MAX_CHECKS + 1))
 			d->cycle_to_die -= d->cycle_delta;
 		d->cycle_tmp = 0;
@@ -55,15 +55,15 @@ void	battle(t_champ *champs, t_corewar *d)
 {
 	d->map = init_battle(champs, d);
 	d->colors = init_colors(champs, d);
-	while (d->cycle_to_die > 0/* && still_alive(champs, d->nbc)*/)
+	while (d->cycle_to_die > 0 && still_alive(champs, d->nbc))
 	{
 		if ((d->dump >= 0 && d->cycle == d->dump))
 		{
 			display_map(d->map, d->colors, d);
 			break ;
 		}
-		d->cycle += 1;
-		d->cycle_tmp += 1;
+		d->cycle += 100;
+		d->cycle_tmp += 100;
 		if (!(cycle_check(champs, d)))
 			break ;
 		game(champs, d, d->map);

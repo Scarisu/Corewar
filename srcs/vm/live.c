@@ -6,7 +6,7 @@
 /*   By: rlecart <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/01/12 02:13:58 by rlecart           #+#    #+#             */
-/*   Updated: 2018/01/17 22:47:49 by rlecart          ###   ########.fr       */
+/*   Updated: 2018/01/19 07:11:32 by rlecart          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,7 +22,7 @@ int		still_alive(t_champ *champs, int nbc)
 	while (++i < nbc)
 		if (champs[i].alive == true)
 			count++;
-	return (count > 1 ? 1 : 0);
+	return (count > 0 ? 1 : 0);
 }
 
 int		live_counter(t_champ *champs, t_corewar *d)
