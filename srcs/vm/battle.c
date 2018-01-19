@@ -6,7 +6,7 @@
 /*   By: rlecart <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/11/23 06:12:46 by rlecart           #+#    #+#             */
-/*   Updated: 2018/01/19 08:11:40 by rlecart          ###   ########.fr       */
+/*   Updated: 2018/01/19 10:47:30 by rlecart          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -62,8 +62,8 @@ void	battle(t_champ *champs, t_corewar *d)
 			display_map(d->map, d->colors, d);
 			break ;
 		}
-		d->cycle += 100;
-		d->cycle_tmp += 100;
+		d->cycle += 1;
+		d->cycle_tmp += 1;
 		if (!(cycle_check(champs, d)))
 			break ;
 		game(champs, d, d->map);
