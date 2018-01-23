@@ -6,7 +6,7 @@
 /*   By: rlecart <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/11/23 06:15:11 by rlecart           #+#    #+#             */
-/*   Updated: 2018/01/17 22:47:46 by rlecart          ###   ########.fr       */
+/*   Updated: 2018/01/23 04:24:44 by rlecart          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,6 +18,7 @@ char		*get_file(char *path, int *len)
 	int		fd;
 	char	tmp;
 	char	*result;
+	char	*result_tmp;
 
 	i = 0;
 	if ((fd = open(path, O_RDONLY)) < 3)
@@ -25,11 +26,14 @@ char		*get_file(char *path, int *len)
 	result = ft_strnew(0);
 	while ((read(fd, &tmp, 1)))
 	{
-		result = ft_realloc(result, ++i + 1);
-		result[i] = tmp;
+		result_tmp = ft_strnew(i + 1);
+		ft_memcpy(result_tmp, result, i);
+		result_tmp[i++] = tmp;
+		ft_memdel((void*)&result);
+		result = result_tmp;
 	}
 	close(fd);
-	*len = i + 1;
+	*len = i;
 	return (result);
 }
 
@@ -58,7 +62,7 @@ t_champ		*get_all_champs(t_corewar data)
 	t_champ		*champs;
 
 	i = -1;
-	add = PROG_NAME_LENGTH + COMMENT_LENGTH + 16 + 1;
+	add = PROG_NAME_LENGTH + COMMENT_LENGTH + 16;
 	champs = ft_memalloc(data.nbc * sizeof(t_champ));
 	while (++i < data.nbc)
 	{
