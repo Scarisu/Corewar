@@ -6,7 +6,7 @@
 /*   By: rlecart <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/01/17 21:44:52 by rlecart           #+#    #+#             */
-/*   Updated: 2018/01/19 13:41:53 by rlecart          ###   ########.fr       */
+/*   Updated: 2018/01/23 06:01:03 by rlecart          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,8 +26,7 @@ void	op_ld(t_champ *champs, t_corewar *d, t_reg *reg)
 		i[1] = reg->pc;
 		while (++i[0] < 6)
 		{
-			i[1]++;
-			if (i[1] > MEM_SIZE)
+			if (++i[1] > MEM_SIZE)
 				i[1] = 0;
 			if (i[0] == 5)
 				r = d->map[i[1]];
@@ -36,7 +35,7 @@ void	op_ld(t_champ *champs, t_corewar *d, t_reg *reg)
 		}
 		if (r >= 0 && r <= 16)
 			ft_memcpy(reg->r[r], param, 4);
-		jump_to_next(d, reg, 7);
+		jump_to_next(d, reg, 5);
 		reg->cycle = 0;
 	}
 }

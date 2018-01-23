@@ -6,7 +6,7 @@
 /*   By: rlecart <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/11/23 06:04:11 by rlecart           #+#    #+#             */
-/*   Updated: 2018/01/18 00:25:23 by rlecart          ###   ########.fr       */
+/*   Updated: 2018/01/23 04:42:02 by rlecart          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,6 +14,10 @@
 # define VM_H
 
 # define REG champs[i].reg
+
+# define DIRECT		0
+# define INDIRECT	1
+# define REGISTER	2
 
 # include <corewar.h>
 # include <ncurses.h>

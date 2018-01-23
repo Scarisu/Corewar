@@ -6,38 +6,50 @@
 /*   By: rlecart <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/01/17 21:45:27 by rlecart           #+#    #+#             */
-/*   Updated: 2018/01/23 01:47:45 by rlecart          ###   ########.fr       */
+/*   Updated: 2018/01/23 10:27:39 by rlecart          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <vm.h>
 
+int		find_ocp(char desc)
+{
+	if (desc == 80)
+		return (REGISTER);
+	else
+		return (INDIRECT);
+}
+
 void	op_st(t_champ *champs, t_corewar *d, t_reg *reg)
 {
-	int		r;
-	int		i;
-	int		pc;
-	char	param[2];
+	int		r1;
+	int		r2;
+	int		ind;
+	int		ocp;
+	int		pc2;
 
 	(void)champs;
-	r = -1;
 	if (++reg->cycle == 5)
 	{
-		i = -1;
-		pc = reg->pc;
-		while (++i < 4)
+		(pc2 = reg->pc + 2) > MEM_SIZE ? pc2 -= MEM_SIZE : pc2;
+		r1 = d->map[pc2] - 1;
+		if ((ocp = find_ocp(d->map[reg->pc + 1])) == REGISTER)
 		{
-			pc++;
-			if (pc > MEM_SIZE)
-				pc = 0;
-			if (i == 1)
-				r = d->map[pc];
-			if (i > 1)
-				param[i - 2] = d->map[pc];
+			(pc2 = reg->pc + 3) > MEM_SIZE ? pc2 -= MEM_SIZE : pc2;
+			r2 = d->map[pc2] - 1;
+			if (r1 >= 0 && r1 <= 16 && r2 >= 0 && r2 <= 16)
+				memcpy(reg->r[r2], reg->r[r1], 2);
+			jump_to_next(d, reg, 4);
 		}
-		if (r >= 0 && r <= 16)
-			ft_memcpy(reg->r[r], param, 2);
-		jump_to_next(d, reg, 5);
+		else if (ocp == INDIRECT)
+		{
+			(pc2 = reg->pc + 3) > MEM_SIZE ? pc2 -= MEM_SIZE : pc2;
+			ind = d->map[reg->pc + 3];
+			(pc2 = reg->pc + 4) > MEM_SIZE ? pc2 -= MEM_SIZE : pc2;
+			ind += d->map[pc2];
+			ft_memcpy(&d->map[reg->pc + ind + 1], reg->r[r1], 2);
+			jump_to_next(d, reg, 5);
+		}
 		reg->cycle = 0;
 	}
 }
