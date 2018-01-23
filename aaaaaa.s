@@ -2,7 +2,7 @@
 .comment "aaaaaaaa  aaa a aaa aaaaaa aaa aaaaaaa aa a a aaaaaa aaa a a a  aaaaa"
 
 a:
-    live    %0
+    live %0
     ld      5,  r2
     st      r2, 427
     st      r2, 442

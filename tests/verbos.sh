@@ -10,6 +10,8 @@ dir_invalid=()
 champ_invalid=()
 nb_done=0;
 
+path="../"
+
 underline="\033[4m"
 reset="\033[0m"
 grey="\033[38;5;8m"
@@ -28,7 +30,7 @@ if [ $1 ]; then
 			dir_list=( "$@" )
 			unset dir_list[0]
 			if [[ -z "${dir_list[@]}" ]]; then
-				printf "usage: $0 -d [$(ls -m ${file_test})]\n"
+				printf "usage: $0 -d [$(ls -dm ${path}${file_test})]\n"
 				exit
 			fi
 		elif [ $2 ]; then
@@ -44,7 +46,7 @@ fi
 #Regroupement de tout les tests dans all_tests
 for dir in ${dir_list[@]}; do
 	valid="dont exist"
-	for dir_exist in $(echo "$(ls ${file_test})"); do
+	for dir_exist in $(echo "$(ls ${path}${file_test})"); do
 		if [ ${dir} == ${dir_exist} ]; then
 			valid="exist"
 		fi
@@ -52,7 +54,7 @@ for dir in ${dir_list[@]}; do
 	if [[ ${valid} = "dont exist" ]]; then
 		dir_invalid[${#dir_invalid[@]}]=${dir}
 	else
-		dir_tests=$(ls -R ${file_test}${dir}/*.s)
+		dir_tests=$(ls -R ${path}${file_test}${dir}/*.s)
 		for test in ${dir_tests[@]}; do
 			all_tests[${#all_tests[@]}]=${test}
 		done
@@ -68,8 +70,8 @@ if [ -n "${dir_invalid}" ]; then
 	exit
 fi
 
-make ${asm_name}
-if [ ! -e ${asm_name} ]; then
+make -C ${path} ${asm_name} > /dev/null
+if [ ! -e ${path}${asm_name} ]; then
 	printf "\"${grey}${asm_name}${reset}\" hasen't been found\n"
 	exit
 fi
@@ -85,7 +87,7 @@ for name in ${all_tests[@]}; do
 		cat -ns ${name}
 		printf "\n"
 	fi
-	./${asm_name} ${warning} ${name}
-	rm -f $(find ./${file_test} -name "*.cor")
+	./${path}${asm_name} ${warning} ${name}
+	rm -f $(find ./${path}${file_test} -name "*.cor")
 	read
 done
