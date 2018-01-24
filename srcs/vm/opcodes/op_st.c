@@ -6,34 +6,26 @@
 /*   By: rlecart <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/01/17 21:45:27 by rlecart           #+#    #+#             */
-/*   Updated: 2018/01/23 10:27:39 by rlecart          ###   ########.fr       */
+/*   Updated: 2018/01/24 10:01:13 by rlecart          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <vm.h>
-
-int		find_ocp(char desc)
-{
-	if (desc == 80)
-		return (REGISTER);
-	else
-		return (INDIRECT);
-}
 
 void	op_st(t_champ *champs, t_corewar *d, t_reg *reg)
 {
 	int		r1;
 	int		r2;
 	int		ind;
-	int		ocp;
 	int		pc2;
+	t_ocp	ocp;
 
 	(void)champs;
 	if (++reg->cycle == 5)
 	{
 		(pc2 = reg->pc + 2) > MEM_SIZE ? pc2 -= MEM_SIZE : pc2;
 		r1 = d->map[pc2] - 1;
-		if ((ocp = find_ocp(d->map[reg->pc + 1])) == REGISTER)
+		if ((ocp = find_ocp(d->map[reg->pc + 1])).p[1] == O_REG)
 		{
 			(pc2 = reg->pc + 3) > MEM_SIZE ? pc2 -= MEM_SIZE : pc2;
 			r2 = d->map[pc2] - 1;
@@ -41,13 +33,15 @@ void	op_st(t_champ *champs, t_corewar *d, t_reg *reg)
 				memcpy(reg->r[r2], reg->r[r1], 2);
 			jump_to_next(d, reg, 4);
 		}
-		else if (ocp == INDIRECT)
+		else if (ocp.p[1] == O_IND)
 		{
 			(pc2 = reg->pc + 3) > MEM_SIZE ? pc2 -= MEM_SIZE : pc2;
 			ind = d->map[reg->pc + 3];
 			(pc2 = reg->pc + 4) > MEM_SIZE ? pc2 -= MEM_SIZE : pc2;
 			ind += d->map[pc2];
-			ft_memcpy(&d->map[reg->pc + ind + 1], reg->r[r1], 2);
+			(pc2 = reg->pc + (ind * IDX_MOD) + 1) > MEM_SIZE ?
+				pc2 -= MEM_SIZE : pc2;
+			ft_memcpy(&d->map[pc2], reg->r[r1], 2);
 			jump_to_next(d, reg, 5);
 		}
 		reg->cycle = 0;

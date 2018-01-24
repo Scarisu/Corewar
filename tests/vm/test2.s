@@ -4,6 +4,6 @@
 live:	live%5
 		live%5
 
-ld:		ld :st, r1
+ld:		ld 6, r1
 
 st:		st r1, :live

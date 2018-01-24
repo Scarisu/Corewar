@@ -6,7 +6,7 @@
 /*   By: rlecart <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/01/12 02:15:05 by rlecart           #+#    #+#             */
-/*   Updated: 2018/01/19 08:18:01 by rlecart          ###   ########.fr       */
+/*   Updated: 2018/01/24 09:43:17 by rlecart          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -57,8 +57,8 @@ void	game(t_champ *champs, t_corewar *d, char *map)
 	int		pc;
 	t_reg	*t;
 
-	i = -1;
-	while (++i < d->nbc)
+	i = d->nbc;
+	while (--i >= 0)
 	{
 		if (champs[i].alive)
 		{

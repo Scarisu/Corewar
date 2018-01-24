@@ -6,25 +6,42 @@
 /*   By: rlecart <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/11/23 06:04:11 by rlecart           #+#    #+#             */
-/*   Updated: 2018/01/23 04:42:02 by rlecart          ###   ########.fr       */
+/*   Updated: 2018/01/24 09:20:53 by rlecart          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef VM_H
 # define VM_H
 
-# define REG champs[i].reg
-
-# define DIRECT		0
-# define INDIRECT	1
-# define REGISTER	2
-
 # include <corewar.h>
 # include <ncurses.h>
 
-typedef struct		s_reg		t_reg;
-typedef struct		s_champ		t_champ;
-typedef struct		s_corewar	t_corewar;
+# define REG champs[i].reg
+
+# define O_NONE		-1
+# define O_DIR		0
+# define O_IND		1
+# define O_REG		2
+
+typedef struct		s_reg			t_reg;
+typedef struct		s_champ			t_champ;
+typedef struct		s_corewar		t_corewar;
+typedef struct		s_ocp			t_ocp;
+typedef struct		s_need_ocp		t_need_ocp;
+
+struct				s_need_ocp
+{
+	int				i;
+	int				j;
+	int				j2;
+	int				tmp2;
+	char			*tmp;
+};
+
+struct				s_ocp
+{
+	int				p[3];
+};
 
 struct				s_reg
 {
@@ -112,5 +129,6 @@ void				op_lfork(t_champ *champs, t_corewar *d, t_reg *reg);
 void				op_aff(t_champ *champs, t_corewar *d, t_reg *reg);
 
 void				jump_to_next(t_corewar *d, t_reg *reg, int o);
+t_ocp				find_ocp(unsigned char ocp);
 
 #endif
