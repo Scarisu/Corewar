@@ -6,7 +6,7 @@
 /*   By: rlecart <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/11/23 06:04:11 by rlecart           #+#    #+#             */
-/*   Updated: 2018/01/24 09:20:53 by rlecart          ###   ########.fr       */
+/*   Updated: 2018/01/24 13:20:17 by rlecart          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,6 +15,7 @@
 
 # include <corewar.h>
 # include <ncurses.h>
+# include <limits.h>
 
 # define REG champs[i].reg
 

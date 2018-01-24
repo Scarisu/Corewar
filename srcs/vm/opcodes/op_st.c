@@ -6,7 +6,7 @@
 /*   By: rlecart <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/01/17 21:45:27 by rlecart           #+#    #+#             */
-/*   Updated: 2018/01/24 11:58:54 by rlecart          ###   ########.fr       */
+/*   Updated: 2018/01/24 14:17:11 by rlecart          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,9 +39,9 @@ void	op_st(t_champ *champs, t_corewar *d, t_reg *reg)
 			ind = d->map[reg->pc + 3];
 			(pc = reg->pc + 4) >= MEM_SIZE ? pc -= MEM_SIZE : pc;
 			ind += d->map[pc];
-			(pc = reg->pc + (ind * IDX_MOD) + 1) >= MEM_SIZE ?
+			(pc = reg->pc + (ind % IDX_MOD) + 1) >= MEM_SIZE ?
 				pc -= MEM_SIZE : pc;
-			ft_memcpy(&d->map[pc], reg->r[r1], 2);
+			ft_memcpy(&d->map[pc], reg->r[r1], 4);
 			jump_to_next(d, reg, 5);
 		}
 		reg->cycle = 0;

@@ -6,7 +6,7 @@
 /*   By: rlecart <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/01/17 21:44:52 by rlecart           #+#    #+#             */
-/*   Updated: 2018/01/24 11:52:29 by rlecart          ###   ########.fr       */
+/*   Updated: 2018/01/24 14:17:04 by rlecart          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,19 +14,23 @@
 
 void	op_ld(t_champ *champs, t_corewar *d, t_reg *reg)
 {
-	int		r;
-	int		pc;
-	char	param[2];
+	int				r;
+	int				pc;
+	unsigned char	param[4];
 
 	(void)champs;
 	if (++reg->cycle == 5)
 	{
-		(pc = reg->pc + 2) >= MEM_SIZE ? pc -= MEM_SIZE : pc;
+		(pc = d->map[(int)d->map[reg->pc + 2]]) >= MEM_SIZE ? pc -= MEM_SIZE : pc;
 		param[0] = d->map[pc];
 		(++pc) >= MEM_SIZE ? pc -= MEM_SIZE : pc;
 		param[1] = d->map[pc];
 		(++pc) >= MEM_SIZE ? pc -= MEM_SIZE : pc;
-		r = d->map[pc];
+		param[2] = d->map[pc];
+		(++pc) >= MEM_SIZE ? pc -= MEM_SIZE : pc;
+		param[3] = d->map[pc];
+		(pc = reg->pc + 4) >= MEM_SIZE ? pc -= MEM_SIZE : pc;
+		r = d->map[pc] - 1;
 		if (r >= 0 && r <= 16)
 			ft_memcpy(reg->r[r], param, 2);
 		jump_to_next(d, reg, 5);
