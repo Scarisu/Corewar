@@ -6,7 +6,7 @@
 /*   By: rlecart <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/11/23 06:04:11 by rlecart           #+#    #+#             */
-/*   Updated: 2018/02/06 00:59:53 by rlecart          ###   ########.fr       */
+/*   Updated: 2018/02/06 01:19:21 by rlecart          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,7 +50,7 @@ struct				s_reg
 	int				pc;
 	int				cycle;
 	char			carry;
-	unsigned char	r[REG_NUMBER][REG_SIZE];
+	int				r[REG_NUMBER];
 	t_reg			*prev;
 	t_reg			*next;
 };

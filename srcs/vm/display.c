@@ -6,7 +6,7 @@
 /*   By: rlecart <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/01/12 02:22:01 by rlecart           #+#    #+#             */
-/*   Updated: 2018/01/17 22:47:42 by rlecart          ###   ########.fr       */
+/*   Updated: 2018/02/06 02:04:55 by rlecart          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,9 +52,9 @@ void	display_v(char *map, int *colors, t_corewar *d)
 		if (map[i] >= 0 && map[i] < 16)
 			printw("0");
 		if (map[i] < 0)
-			tmp = ft_itoa_base(256 + map[i], 16, HEXA);
+			tmp = ft_itoa_base(256 + map[i], 16);
 		else
-			tmp = ft_itoa_base(map[i], 16, HEXA);
+			tmp = ft_itoa_base(map[i], 16);
 		printw("%s", tmp);
 		ft_strdel(&tmp);
 		attroff(COLOR_PAIR(colors[i]));
@@ -96,9 +96,9 @@ void	display(char *map, int *colors, t_corewar *d)
 		if (map[i] >= 0 && map[i] < 16)
 			ft_putchar('0');
 		if (map[i] < 0)
-			tmp = ft_itoa_base(256 + map[i], 16, HEXA);
+			tmp = ft_itoa_base(256 + map[i], 16);
 		else
-			tmp = ft_itoa_base(map[i], 16, HEXA);
+			tmp = ft_itoa_base(map[i], 16);
 		ft_putstr(tmp);
 		ft_strdel(&tmp);
 		display_champs_color(0);

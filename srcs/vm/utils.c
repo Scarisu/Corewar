@@ -6,7 +6,7 @@
 /*   By: rlecart <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/01/17 23:39:21 by rlecart           #+#    #+#             */
-/*   Updated: 2018/02/06 01:01:27 by rlecart          ###   ########.fr       */
+/*   Updated: 2018/02/06 02:58:53 by rlecart          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -80,7 +80,7 @@ t_ocp	find_ocp(unsigned char ocp)
 
 	ocp = 244;
 	e.tmp2 = ocp * sizeof(int);
-	e.tmp = ft_itoa_base(e.tmp2, 2, "01");
+	e.tmp = ft_itoa_base(e.tmp2, 2);
 	ft_memset(ret.p, O_NONE, sizeof(int) * 3);
 	if (ocp > 127)
 		find_ocp_sup(e, &ret);
@@ -101,9 +101,9 @@ int		find_hexa(char *str, int i, int len)
 	ft_bzero(tab, sizeof(char[3]) * len);
 	while (++j < len || ((tmp = ft_strnew(0)) && !(j = -1)))
 	{
-		if (str[i] < 0)
-			return (-1);
-		tmp = ft_itoa_base(str[i], 16, "0123456789abcdef");
+		tmp = ft_itoa_base(str[i], 16);
+		printw(">>%d<<\n", str[i]);
+		printw(">%s<\n", tmp);
 		ft_memcpy(tab[j], tmp, 2);
 		ft_strdel(&tmp);
 		i = i + 1 >= MEM_SIZE ? 0 : i + 1;
