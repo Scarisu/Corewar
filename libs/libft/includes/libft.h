@@ -6,7 +6,7 @@
 /*   By: pbernier <pbernier@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/11/09 00:30:13 by pbernier          #+#    #+#             */
-/*   Updated: 2018/01/17 17:56:28 by rlecart          ###   ########.fr       */
+/*   Updated: 2018/02/05 23:15:47 by rlecart          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -152,5 +152,6 @@ int					ft_which_endian(void);
 int					ft_max_val(int *tab, int size);
 int					ft_c_atoi(char *str);
 int					ft_al_exist(void *tab, int nb, int size);
+int					ft_atoi_base(char *str, char *strbase);
 
 #endif

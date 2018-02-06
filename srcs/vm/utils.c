@@ -6,17 +6,19 @@
 /*   By: rlecart <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/01/17 23:39:21 by rlecart           #+#    #+#             */
-/*   Updated: 2018/01/24 09:40:17 by rlecart          ###   ########.fr       */
+/*   Updated: 2018/02/06 01:01:27 by rlecart          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <vm.h>
 
-void	jump_to_next(t_corewar *d, t_reg *reg, int o)
+void	jump_to_next(t_corewar *d, t_reg *reg, int o, bool fork)
 {
-	d->colors[reg->pc] -= 5;
-	if ((reg->pc += o) == MEM_SIZE)
-		reg->pc = 0;
+	if (!fork)
+		d->colors[reg->pc] -= 5;
+	reg->pc += o;
+	while (reg->pc >= MEM_SIZE)
+		reg->pc -= MEM_SIZE;
 	d->colors[reg->pc] += 5;
 }
 
@@ -84,5 +86,34 @@ t_ocp	find_ocp(unsigned char ocp)
 		find_ocp_sup(e, &ret);
 	else
 		find_ocp_inf(e, &ret);
+	return (ret);
+}
+
+int		find_hexa(char *str, int i, int len)
+{
+	int		j;
+	int		ret;
+	char	tab[len][3];
+	char	*tmp;
+	char	*tmp2;
+
+	j = -1;
+	ft_bzero(tab, sizeof(char[3]) * len);
+	while (++j < len || ((tmp = ft_strnew(0)) && !(j = -1)))
+	{
+		if (str[i] < 0)
+			return (-1);
+		tmp = ft_itoa_base(str[i], 16, "0123456789abcdef");
+		ft_memcpy(tab[j], tmp, 2);
+		ft_strdel(&tmp);
+		i = i + 1 >= MEM_SIZE ? 0 : i + 1;
+	}
+	while (++j < len || !(ret = ft_atoi_base(tmp, "0123456789abcdef")))
+	{
+		tmp2 = ft_strjoin(tmp, tab[j]);
+		ft_strdel(&tmp);
+		tmp = tmp2;
+	}
+	ft_strdel(&tmp);
 	return (ret);
 }

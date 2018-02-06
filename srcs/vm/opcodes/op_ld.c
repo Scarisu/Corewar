@@ -6,7 +6,7 @@
 /*   By: rlecart <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/01/17 21:44:52 by rlecart           #+#    #+#             */
-/*   Updated: 2018/01/24 14:17:04 by rlecart          ###   ########.fr       */
+/*   Updated: 2018/02/06 01:00:53 by rlecart          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,7 +33,7 @@ void	op_ld(t_champ *champs, t_corewar *d, t_reg *reg)
 		r = d->map[pc] - 1;
 		if (r >= 0 && r <= 16)
 			ft_memcpy(reg->r[r], param, 2);
-		jump_to_next(d, reg, 5);
+		jump_to_next(d, reg, 5, false);
 		reg->carry = 1;
 		reg->cycle = 0;
 	}

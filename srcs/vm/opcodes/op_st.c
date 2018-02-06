@@ -6,7 +6,7 @@
 /*   By: rlecart <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/01/17 21:45:27 by rlecart           #+#    #+#             */
-/*   Updated: 2018/01/24 14:44:58 by rlecart          ###   ########.fr       */
+/*   Updated: 2018/02/06 01:00:29 by rlecart          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,7 +31,7 @@ void	op_st(t_champ *champs, t_corewar *d, t_reg *reg)
 			r2 = d->map[pc] - 1;
 			if (r1 >= 0 && r1 <= 16 && r2 >= 0 && r2 <= 16)
 				memcpy(reg->r[r2], reg->r[r1], 2);
-			jump_to_next(d, reg, 4);
+			jump_to_next(d, reg, 4, false);
 		}
 		else if (ocp.p[1] == O_IND)
 		{
@@ -42,7 +42,7 @@ void	op_st(t_champ *champs, t_corewar *d, t_reg *reg)
 			(pc = reg->pc + (ind % IDX_MOD) + 1) >= MEM_SIZE ?
 				pc -= MEM_SIZE : pc;
 			ft_memcpy(&d->map[pc], reg->r[r1], 4);
-			jump_to_next(d, reg, 5);
+			jump_to_next(d, reg, 5, false);
 		}
 		reg->cycle = 0;
 	}

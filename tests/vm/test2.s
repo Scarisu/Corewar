@@ -4,6 +4,6 @@
 live:	live%5
 		live%5
 
-ld:		ld :live, r1
+ld:		ld %10, r1
 
-zjmp:	zjmp %4200
+fork:	fork %4

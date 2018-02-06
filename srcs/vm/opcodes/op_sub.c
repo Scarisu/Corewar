@@ -6,7 +6,7 @@
 /*   By: rlecart <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/01/17 21:45:34 by rlecart           #+#    #+#             */
-/*   Updated: 2018/01/24 14:52:25 by rlecart          ###   ########.fr       */
+/*   Updated: 2018/02/06 01:00:11 by rlecart          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,7 +35,7 @@ void	op_sub(t_champ *champs, t_corewar *d, t_reg *reg)
 			else
 				param[i] = reg->r[r[0]][i] - reg->r[r[1]][i];
 		ft_memcpy(reg->r[r[2]], param, 4);
-		jump_to_next(d, reg, 5);
+		jump_to_next(d, reg, 5, false);
 		reg->carry = 1;
 		reg->cycle = 0;
 	}
