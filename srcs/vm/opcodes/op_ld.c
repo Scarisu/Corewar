@@ -6,7 +6,7 @@
 /*   By: rlecart <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/01/17 21:44:52 by rlecart           #+#    #+#             */
-/*   Updated: 2018/02/06 02:43:40 by rlecart          ###   ########.fr       */
+/*   Updated: 2018/02/07 19:10:11 by rlecart          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,16 +17,22 @@ void	op_ld(t_champ *champs, t_corewar *d, t_reg *reg)
 	int		r;
 	int		pc;
 	int		param;
+	t_ocp	ocp;
 
 	(void)champs;
 	if (++reg->cycle == 5)
 	{
 		(void)param;
-		(pc = reg->pc + 2) >= MEM_SIZE ? pc -= MEM_SIZE : pc;
-		pc = find_hexa(d->map, pc, 2);
-		printw("%d\n", pc);
-		if (pc > 256 * 256)
-			pc -= 256 * 256;
+		(pc = reg->pc + 1) >= MEM_SIZE ? pc -= MEM_SIZE : pc;
+		ocp = find_ocp(pc);
+		printw("o = %d\n", ocp.p[0]);
+		printw("o = %d\n", ocp.p[1]);
+		printw("o = %d\n", ocp.p[2]);
+		(++pc) >= MEM_SIZE ? pc -= MEM_SIZE : pc;
+		if (ocp.p[0] == O_IND)
+			pc = find_hexa(d->map, pc, 4);
+		else
+			pc = find_hexa(d->map, pc, 2);
 		printw("%d\n", pc);
 		refresh();
 		while (1);

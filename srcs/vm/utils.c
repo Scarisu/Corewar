@@ -6,7 +6,7 @@
 /*   By: rlecart <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/01/17 23:39:21 by rlecart           #+#    #+#             */
-/*   Updated: 2018/02/06 02:58:53 by rlecart          ###   ########.fr       */
+/*   Updated: 2018/02/07 19:11:32 by rlecart          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -93,19 +93,35 @@ int		find_hexa(char *str, int i, int len)
 {
 	int		j;
 	int		ret;
-	char	tab[len][3];
+	char	tab[4];
+
+	j = -1;
+	ft_bzero(tab, 4);
+	ft_memcpy(tab, &str[i], len);
+	printw("%d %d %d %d\n", tab[0], tab[1], tab[2], tab[3]);
+	while (++j < len)
+	{
+		ret = tab[j];
+		ret >>= 1;
+	}
+	//ret = (int)tab;
+	return (ret);
+}
+
+/*int		find_hexa(char *str, int i, int len)
+{
+	int		j;
+	int		ret;
+	char	*tab[len + 1];
 	char	*tmp;
 	char	*tmp2;
 
 	j = -1;
-	ft_bzero(tab, sizeof(char[3]) * len);
-	while (++j < len || ((tmp = ft_strnew(0)) && !(j = -1)))
+	while (++j < len || (!(tab[j] = NULL) && (tmp = ft_strnew(0)) && !(j = -1)))
 	{
-		tmp = ft_itoa_base(str[i], 16);
+		tab[j] = ft_itoa_base(str[i], 16);
 		printw(">>%d<<\n", str[i]);
-		printw(">%s<\n", tmp);
-		ft_memcpy(tab[j], tmp, 2);
-		ft_strdel(&tmp);
+		printw(">%s<\n\n", tab[j]);
 		i = i + 1 >= MEM_SIZE ? 0 : i + 1;
 	}
 	while (++j < len || !(ret = ft_atoi_base(tmp, "0123456789abcdef")))
@@ -116,4 +132,4 @@ int		find_hexa(char *str, int i, int len)
 	}
 	ft_strdel(&tmp);
 	return (ret);
-}
+}*/
