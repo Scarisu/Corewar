@@ -4,4 +4,4 @@
 live:	live%5
 		live%5
 
-ld: ld :live, r2
+ld: ld %4200, r2

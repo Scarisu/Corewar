@@ -6,7 +6,7 @@
 /*   By: rlecart <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/01/17 23:39:21 by rlecart           #+#    #+#             */
-/*   Updated: 2018/02/07 19:11:32 by rlecart          ###   ########.fr       */
+/*   Updated: 2018/02/09 03:33:21 by rlecart          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -75,10 +75,9 @@ void	find_ocp_sup(t_need_ocp e, t_ocp *ret)
 
 t_ocp	find_ocp(unsigned char ocp)
 {
-	t_ocp	ret;
+	t_ocp		ret;
 	t_need_ocp	e;
 
-	ocp = 244;
 	e.tmp2 = ocp * sizeof(int);
 	e.tmp = ft_itoa_base(e.tmp2, 2);
 	ft_memset(ret.p, O_NONE, sizeof(int) * 3);
@@ -96,15 +95,11 @@ int		find_hexa(char *str, int i, int len)
 	char	tab[4];
 
 	j = -1;
+	ret = 0;
 	ft_bzero(tab, 4);
 	ft_memcpy(tab, &str[i], len);
-	printw("%d %d %d %d\n", tab[0], tab[1], tab[2], tab[3]);
 	while (++j < len)
-	{
-		ret = tab[j];
-		ret >>= 1;
-	}
-	//ret = (int)tab;
+		ret += tab[j];
 	return (ret);
 }
 
