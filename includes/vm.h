@@ -6,7 +6,7 @@
 /*   By: rlecart <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/11/23 06:04:11 by rlecart           #+#    #+#             */
-/*   Updated: 2018/02/06 01:19:21 by rlecart          ###   ########.fr       */
+/*   Updated: 2018/02/13 04:48:23 by rlecart          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -130,6 +130,7 @@ void				op_lfork(t_champ *champs, t_corewar *d, t_reg *reg);
 void				op_aff(t_champ *champs, t_corewar *d, t_reg *reg);
 
 int					find_hexa(char *str, int i, int len);
+void				put_hexa(char *map, int pc, int value);
 void				jump_to_next(t_corewar *d, t_reg *reg, int o, bool fork);
 t_ocp				find_ocp(unsigned char ocp);
 

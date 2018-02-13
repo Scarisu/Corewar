@@ -6,7 +6,7 @@
 /*   By: pbernier <pbernier@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/11/09 00:30:13 by pbernier          #+#    #+#             */
-/*   Updated: 2018/02/06 01:56:26 by rlecart          ###   ########.fr       */
+/*   Updated: 2018/02/13 04:48:16 by rlecart          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -131,7 +131,7 @@ void				ft_lstadd(t_list **alst, t_list *newlst);
 void				ft_lstiter(t_list *lst, void (*f)(t_list *elem));
 t_list				*ft_lstmap(t_list *lst, t_list *(*f)(t_list *elem));
 int					ft_sqrt(int nb);
-void				ft_swap(int *a, int *b);
+void				ft_swap(void *tab, size_t len);
 int					*ft_range(int min, int max);
 char				*ft_strrev(char *str);
 t_list				*ft_lstlast(t_list **alst);

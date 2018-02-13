@@ -6,7 +6,7 @@
 /*   By: rlecart <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/01/17 23:39:21 by rlecart           #+#    #+#             */
-/*   Updated: 2018/02/09 03:33:21 by rlecart          ###   ########.fr       */
+/*   Updated: 2018/02/13 05:13:47 by rlecart          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -90,20 +90,33 @@ t_ocp	find_ocp(unsigned char ocp)
 
 int		find_hexa(char *str, int i, int len)
 {
-	int		j;
-	int		ret;
-	char	tab[4];
+	int				j;
+	int				ret;
+	unsigned char	tab[4];
 
 	j = -1;
 	ret = 0;
 	ft_bzero(tab, 4);
 	ft_memcpy(tab, &str[i], len);
+	printw("%x, %x, %x, %x\n", tab[0], tab[1], tab[2], tab[3]);
 	while (++j < len)
-		ret += tab[j];
+	{
+		ret += tab[j] << 8 * (len - j - 1);
+		printw("v = %x\n", tab[j]);
+		printw("f = %x\n\n", ret << 8 * (j - 1));
+		//ret <<= 8;
+	}
+	//ret >>= 8;
+	//ft_memcpy(&ret, tab, sizeof(char) * len);
+	printw("t = %d\n", ret);
+	printw("t# = %x\n", ret);
+	printw("tt = %d\n", 0xfd7f2180);
+	refresh();
+	while (1);
 	return (ret);
 }
 
-/*int		find_hexa(char *str, int i, int len)
+/*int		find_hexa2(char *str, int i, int len)
 {
 	int		j;
 	int		ret;
@@ -126,5 +139,8 @@ int		find_hexa(char *str, int i, int len)
 		tmp = tmp2;
 	}
 	ft_strdel(&tmp);
+	printw("ret = %d\n", ret);
+	refresh();
+	while (1);
 	return (ret);
 }*/

@@ -1,29 +1,27 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_swap.c                                          :+:      :+:    :+:   */
+/*   utils2.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: pbernier <pbernier@student.42.fr>          +#+  +:+       +#+        */
+/*   By: rlecart <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2016/11/22 06:10:31 by pbernier          #+#    #+#             */
-/*   Updated: 2018/02/13 04:54:21 by rlecart          ###   ########.fr       */
+/*   Created: 2018/02/09 04:14:13 by rlecart           #+#    #+#             */
+/*   Updated: 2018/02/13 03:41:11 by rlecart          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "libft.h"
+#include <vm.h>
 
-void	ft_swap(void *tab, size_t len)
+void	put_hexa(char *map, int pc, int value)
 {
-	int		tmp;
-	char	*tab2;
-	size_t	i;
+	int		i;
+	char	tmp[4];
 
 	i = -1;
-	tab2 = (char*)tab;
-	while (++i < len)
+	while (++i < 4)
 	{
-		tmp = tab2[i];
-		tab2[i] = tab2[len - 1 - i];
-		tab2[len - 1 - i] = tmp;
+		tmp[i] = (char)value;
+		value <<= 8;
 	}
+	ft_memcpy(&map[pc + 1], tmp, 4);
 }
