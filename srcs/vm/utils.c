@@ -6,7 +6,7 @@
 /*   By: rlecart <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/01/17 23:39:21 by rlecart           #+#    #+#             */
-/*   Updated: 2018/02/15 18:26:28 by rlecart          ###   ########.fr       */
+/*   Updated: 2018/02/15 21:14:24 by rlecart          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,6 +20,7 @@ void	jump_to_next(t_corewar *d, t_reg *reg, int o, bool fork)
 	while (reg->pc >= MEM_SIZE)
 		reg->pc -= MEM_SIZE;
 	d->colors[reg->pc] += 5;
+	//d->colors[reg->pc] += 5 >= 10 ? 0 : 5;
 }
 
 void	find_ocp_inf(t_need_ocp e, t_ocp *ret)

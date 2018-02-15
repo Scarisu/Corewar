@@ -6,7 +6,7 @@
 /*   By: rlecart <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/11/23 06:12:46 by rlecart           #+#    #+#             */
-/*   Updated: 2018/01/23 06:04:21 by rlecart          ###   ########.fr       */
+/*   Updated: 2018/02/15 20:14:21 by rlecart          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -71,7 +71,7 @@ void	battle(t_champ *champs, t_corewar *d)
 		if (d->dump == -1)
 			display_map(d->map, d->colors, d);
 		/* A RETIRER */
-		usleep(100000);
+		//usleep(100000);
 		//sleep(1);
 	}
 	end_game(champs, d);
