@@ -6,7 +6,7 @@
 /*   By: rlecart <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/01/17 21:45:02 by rlecart           #+#    #+#             */
-/*   Updated: 2018/01/17 22:49:08 by rlecart          ###   ########.fr       */
+/*   Updated: 2018/02/15 20:09:27 by rlecart          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,15 @@
 
 void	op_lfork(t_champ *champs, t_corewar *d, t_reg *reg)
 {
+	int		pc;
+
 	(void)champs;
-	(void)d;
-	(void)reg;
+	if (++reg->cycle == 1000)
+	{
+		reg->cycle = 0;
+		pc = find_hexa(d->map, reg->pc + 1, 2);
+		reg->next = fork_reg(reg);
+		jump_to_next(d, reg->next, pc, true);
+		jump_to_next(d, reg, 3, false);
+	}
 }

@@ -6,7 +6,7 @@
 /*   By: rlecart <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/01/17 21:44:48 by rlecart           #+#    #+#             */
-/*   Updated: 2018/02/06 01:20:15 by rlecart          ###   ########.fr       */
+/*   Updated: 2018/02/15 20:09:24 by rlecart          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,8 +22,14 @@ t_reg	*fork_reg(t_reg *reg)
 	ret->cycle = reg->cycle;
 	ret->carry = reg->carry;
 	ft_memcpy(ret->r, reg->r, sizeof(int) * REG_NUMBER);
+	if (reg->next)
+	{
+		reg->next->prev = ret;
+		ret->next = reg->next;
+	}
+	else
+		ret->next = NULL;
 	ret->prev = reg;
-	ret->next = NULL;
 	return (ret);
 }
 
