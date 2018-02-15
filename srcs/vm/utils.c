@@ -6,7 +6,7 @@
 /*   By: rlecart <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/01/17 23:39:21 by rlecart           #+#    #+#             */
-/*   Updated: 2018/02/13 05:13:47 by rlecart          ###   ########.fr       */
+/*   Updated: 2018/02/15 18:26:28 by rlecart          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -98,49 +98,16 @@ int		find_hexa(char *str, int i, int len)
 	ret = 0;
 	ft_bzero(tab, 4);
 	ft_memcpy(tab, &str[i], len);
-	printw("%x, %x, %x, %x\n", tab[0], tab[1], tab[2], tab[3]);
+	//printw("%x, %x, %x, %x\n", tab[0], tab[1], tab[2], tab[3]);
+	//if (len == 2)
+	//{
+	//	tab[2] = tab[0];
+	//	tab[3] = tab[1];
+	//	ft_bzero(tab, 2);
+	//}
 	while (++j < len)
-	{
 		ret += tab[j] << 8 * (len - j - 1);
-		printw("v = %x\n", tab[j]);
-		printw("f = %x\n\n", ret << 8 * (j - 1));
-		//ret <<= 8;
-	}
-	//ret >>= 8;
-	//ft_memcpy(&ret, tab, sizeof(char) * len);
-	printw("t = %d\n", ret);
-	printw("t# = %x\n", ret);
-	printw("tt = %d\n", 0xfd7f2180);
-	refresh();
-	while (1);
+//	if (len == 2)
+//		ret = ret >> 16;
 	return (ret);
 }
-
-/*int		find_hexa2(char *str, int i, int len)
-{
-	int		j;
-	int		ret;
-	char	*tab[len + 1];
-	char	*tmp;
-	char	*tmp2;
-
-	j = -1;
-	while (++j < len || (!(tab[j] = NULL) && (tmp = ft_strnew(0)) && !(j = -1)))
-	{
-		tab[j] = ft_itoa_base(str[i], 16);
-		printw(">>%d<<\n", str[i]);
-		printw(">%s<\n\n", tab[j]);
-		i = i + 1 >= MEM_SIZE ? 0 : i + 1;
-	}
-	while (++j < len || !(ret = ft_atoi_base(tmp, "0123456789abcdef")))
-	{
-		tmp2 = ft_strjoin(tmp, tab[j]);
-		ft_strdel(&tmp);
-		tmp = tmp2;
-	}
-	ft_strdel(&tmp);
-	printw("ret = %d\n", ret);
-	refresh();
-	while (1);
-	return (ret);
-}*/
