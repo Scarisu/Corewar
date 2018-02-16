@@ -6,7 +6,7 @@
 /*   By: rlecart <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/01/16 07:52:05 by rlecart           #+#    #+#             */
-/*   Updated: 2018/02/06 01:19:35 by rlecart          ###   ########.fr       */
+/*   Updated: 2018/02/16 21:22:59 by rlecart          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,6 +40,7 @@ char	*init_battle(t_champ *champs, t_corewar *d)
 	d->max_checks = MAX_CHECKS;
 	d->last_live_call = 0;
 	d->map = map;
+	d->champs = champs;
 	return (map);
 }
 

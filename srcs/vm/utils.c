@@ -6,20 +6,44 @@
 /*   By: rlecart <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/01/17 23:39:21 by rlecart           #+#    #+#             */
-/*   Updated: 2018/02/16 20:29:40 by rlecart          ###   ########.fr       */
+/*   Updated: 2018/02/16 21:32:14 by rlecart          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <vm.h>
 
+bool	is_anybody_here(t_corewar *d, int pc)
+{
+	int			i;
+	int			counter;
+	t_reg		*tmp;
+	t_champ		*c;
+
+	i = -1;
+	counter = 0;
+	c = d->champs;
+	while (++i < d->nbc)
+	{
+		tmp = c[i].reg;
+		while (tmp)
+		{
+			if (tmp->pc == pc)
+				counter++;
+			tmp = tmp->next;
+		}
+	}
+	return (counter > 1 ? true : false);
+}
+
 void	jump_to_next(t_corewar *d, t_reg *reg, int o, bool fork)
 {
-	if (!fork)
+	if (!fork && !(is_anybody_here(d, reg->pc)))
 		d->colors[reg->pc] -= 5;
 	reg->pc += o;
 	while (reg->pc >= MEM_SIZE)
 		reg->pc -= MEM_SIZE;
-	d->colors[reg->pc] += 5;
+	if (!(is_anybody_here(d, reg->pc)))
+		d->colors[reg->pc] += 5;
 	//d->colors[reg->pc] += 5 >= 10 ? 0 : 5;
 }
 

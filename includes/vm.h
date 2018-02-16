@@ -6,7 +6,7 @@
 /*   By: rlecart <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/11/23 06:04:11 by rlecart           #+#    #+#             */
-/*   Updated: 2018/02/15 21:17:41 by rlecart          ###   ########.fr       */
+/*   Updated: 2018/02/16 20:45:45 by rlecart          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -83,6 +83,7 @@ struct				s_corewar
 	char			*map;
 	char			*(champs_path[4]);
 	void			(*opcodes[17])(t_champ *, t_corewar *, t_reg *);
+	t_champ			*champs;
 };
 
 void				check_dump(int ac, char **av, t_corewar *ret, int *i);
