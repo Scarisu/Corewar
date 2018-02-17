@@ -6,7 +6,7 @@
 /*   By: rlecart <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/01/17 21:44:48 by rlecart           #+#    #+#             */
-/*   Updated: 2018/02/15 21:18:05 by rlecart          ###   ########.fr       */
+/*   Updated: 2018/02/16 23:42:41 by rlecart          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,7 +38,7 @@ void	op_fork(t_champ *champs, t_corewar *d, t_reg *reg)
 	int		pc;
 
 	(void)champs;
-	if (++reg->cycle == 10)
+	if (++reg->cycle == 800)
 	{
 		reg->cycle = 0;
 		pc = find_hexa(d->map, reg->pc + 1, 2);

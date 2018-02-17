@@ -6,7 +6,7 @@
 /*   By: rlecart <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/01/16 07:52:05 by rlecart           #+#    #+#             */
-/*   Updated: 2018/02/16 21:22:59 by rlecart          ###   ########.fr       */
+/*   Updated: 2018/02/17 02:21:25 by rlecart          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,7 +24,7 @@ char	*init_battle(t_champ *champs, t_corewar *d)
 		ft_memcpy(&map[MEM_SIZE / d->nbc * i], champs[i].content, champs[i].len);
 		REG = ft_memalloc(sizeof(t_reg));
 		ft_bzero(REG->r, sizeof(REG->r));
-		REG->r[0] = i;
+		REG->r[0] = i + 1;
 		REG->n = i + 1;
 		REG->pc = MEM_SIZE / d->nbc * i;
 		REG->cycle = 0;

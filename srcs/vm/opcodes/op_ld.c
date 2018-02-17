@@ -6,7 +6,7 @@
 /*   By: rlecart <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/01/17 21:44:52 by rlecart           #+#    #+#             */
-/*   Updated: 2018/02/13 03:30:22 by rlecart          ###   ########.fr       */
+/*   Updated: 2018/02/17 02:11:06 by rlecart          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,7 +34,7 @@ void	op_ld(t_champ *champs, t_corewar *d, t_reg *reg)
 		r = d->map[reg->pc];
 		reg->r[r - 1] = param;
 		jump_to_next(d, reg, 1, false);
-		reg->carry = 1;
+		reg->carry = !param ? 1 : 0;
 		reg->cycle = 0;
 	}
 }

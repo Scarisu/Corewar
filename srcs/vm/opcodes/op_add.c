@@ -6,7 +6,7 @@
 /*   By: rlecart <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/01/17 21:44:24 by rlecart           #+#    #+#             */
-/*   Updated: 2018/02/15 17:30:25 by rlecart          ###   ########.fr       */
+/*   Updated: 2018/02/17 03:02:12 by rlecart          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,7 +30,7 @@ void	op_add(t_champ *champs, t_corewar *d, t_reg *reg)
 		r[2] = d->map[pc] - 1;
 		reg->r[r[2]] = reg->r[r[0]] + reg->r[r[1]];
 		jump_to_next(d, reg, 5, false);
-		reg->carry = 1;
+		reg->carry = !reg->r[r[2]] ? 1 : 0;
 		reg->cycle = 0;
 		//printw("r%d = %d\n", r[0], reg->r[r[0]]);
 		//printw("r%d = %d\n", r[1], reg->r[r[1]]);

@@ -6,7 +6,7 @@
 /*   By: rlecart <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/01/17 21:45:12 by rlecart           #+#    #+#             */
-/*   Updated: 2018/01/17 22:49:14 by rlecart          ###   ########.fr       */
+/*   Updated: 2018/02/17 02:13:33 by rlecart          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,4 +17,5 @@ void	op_lld(t_champ *champs, t_corewar *d, t_reg *reg)
 	(void)champs;
 	(void)d;
 	(void)reg;
+	//reg->carry = !param ? 1 : 0;
 }

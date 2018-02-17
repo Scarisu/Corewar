@@ -6,7 +6,7 @@
 /*   By: rlecart <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/01/17 21:45:40 by rlecart           #+#    #+#             */
-/*   Updated: 2018/02/06 01:00:03 by rlecart          ###   ########.fr       */
+/*   Updated: 2018/02/17 03:02:56 by rlecart          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,6 +29,6 @@ void	op_zjmp(t_champ *champs, t_corewar *d, t_reg *reg)
 			reg->cycle = 0;
 		}
 		else
-			jump_to_next(d, reg, 1, false);
+			jump_to_next(d, reg, 3, false);
 	}
 }

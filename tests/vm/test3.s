@@ -1,7 +1,8 @@
 .name "test"
 .comment "just a basic test prog"
 
-live:	live%5
-		live%5
+live:	live%1
 
-lfork:	lfork%3500
+ldi:	ldi r1, r2, r3
+
+st:		st r3, :live

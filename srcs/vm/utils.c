@@ -6,7 +6,7 @@
 /*   By: rlecart <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/01/17 23:39:21 by rlecart           #+#    #+#             */
-/*   Updated: 2018/02/16 21:32:14 by rlecart          ###   ########.fr       */
+/*   Updated: 2018/02/17 04:50:29 by rlecart          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,8 +40,13 @@ void	jump_to_next(t_corewar *d, t_reg *reg, int o, bool fork)
 	if (!fork && !(is_anybody_here(d, reg->pc)))
 		d->colors[reg->pc] -= 5;
 	reg->pc += o;
-	while (reg->pc >= MEM_SIZE)
-		reg->pc -= MEM_SIZE;
+	while (reg->pc >= MEM_SIZE || reg->pc < 0)
+	{
+		if (reg->pc >= MEM_SIZE)
+			reg->pc -= MEM_SIZE;
+		else if (reg->pc < 0)
+			reg->pc += MEM_SIZE;
+	}
 	if (!(is_anybody_here(d, reg->pc)))
 		d->colors[reg->pc] += 5;
 	//d->colors[reg->pc] += 5 >= 10 ? 0 : 5;
@@ -116,23 +121,21 @@ t_ocp	find_ocp(unsigned char ocp)
 int		find_hexa(char *str, int i, int len)
 {
 	int				j;
+	int				pc;
 	int				ret;
 	unsigned char	tab[4];
 
 	j = -1;
+	pc = i - 1;
 	ret = 0;
 	ft_bzero(tab, 4);
-	ft_memcpy(tab, &str[i], len);
-	//printw("%x, %x, %x, %x\n", tab[0], tab[1], tab[2], tab[3]);
-	//if (len == 2)
-	//{
-	//	tab[2] = tab[0];
-	//	tab[3] = tab[1];
-	//	ft_bzero(tab, 2);
-	//}
+	while (++j < len)
+	{
+		(++pc) >= MEM_SIZE ? pc -= MEM_SIZE : pc;
+		tab[j] = str[pc];
+	}
+	j = -1;
 	while (++j < len)
 		ret += tab[j] << 8 * (len - j - 1);
-//	if (len == 2)
-//		ret = ret >> 16;
 	return (ret);
 }
