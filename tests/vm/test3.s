@@ -3,6 +3,12 @@
 
 live:	live%1
 
-ldi:	ldi r1, r2, r3
+sub:	add r1, r1, r4
+		sub r1, r4, r4
+		sub r1, r4, r4
+		sub r1, r4, r4
+		sub r1, r4, r4
+
+ldi:	ldi r4, %:live, r3
 
 st:		st r3, :live

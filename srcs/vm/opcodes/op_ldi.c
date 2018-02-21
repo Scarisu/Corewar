@@ -6,7 +6,7 @@
 /*   By: rlecart <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/01/17 21:44:58 by rlecart           #+#    #+#             */
-/*   Updated: 2018/02/17 05:48:23 by rlecart          ###   ########.fr       */
+/*   Updated: 2018/02/20 20:51:55 by rlecart          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,9 +32,11 @@ void	op_ldi(t_champ *champs, t_corewar *d, t_reg *reg)
 		{
 			tmp = o.p[i] == O_REG ? 1 : 2;
 			r[i] = find_hexa(d->map, pc, tmp);
+			if (i < 2 && o.p[i] == O_REG && r[i] >= 1 && r[i] <= 16)
+				r[i] = reg->r[r[i] - 1];
 			(pc += tmp) >= MEM_SIZE ? pc -= MEM_SIZE : pc;
 		}
-		tmp = r[0] + r[1] - 1;
+		tmp = reg->pc - ((r[0] + r[1]) % IDX_MOD);
 		while (tmp >= MEM_SIZE || tmp < 0)
 		{
 			if (tmp >= MEM_SIZE)
@@ -45,11 +47,12 @@ void	op_ldi(t_champ *champs, t_corewar *d, t_reg *reg)
 		if (r[2] >= 1 && r[2] <= 16)
 			reg->r[r[2] - 1] = find_hexa(d->map, tmp, 4);
 		jump_to_next(d, reg, pc - reg->pc, false);
-		display_map(d->map, d->colors, d);
-		printw("pc = %d\n", pc);
-		printw("tmp = %d\n", tmp);
-		printw("reg->r[%d] = %x\n", r[2] - 1, reg->r[r[2] - 1]);
-		refresh();
-		while (1);
+		//display_map(d->map, d->colors, d);
+		//printw("pc = %d\n", pc);
+		//printw("tmp = %d\n", tmp);
+		//printw("reg->r[%d] =\t%x\n", r[2] - 1, reg->r[r[2] - 1]);
+		//printw("\t\t%d\n", reg->r[r[2] - 1]);
+		//refresh();
+		//while (1);
 	}
 }
