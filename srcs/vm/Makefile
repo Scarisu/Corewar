@@ -38,7 +38,7 @@ SRC_RACINE		=	main.c \
 					utils.c \
 					utils2.c
 
-FLAGS			=	$(WFLAGS)
+FLAGS			=	$(DFLAGS)
 INC				=	$(addprefix $(MP)$(DIR_INC),$(SRC_INCLUD))
 PATH_OBJ		=	$(DIR_OBJ)$(DIR_VM)
 DIR				=	$(DIR_RACINE) $(DIR_OPCODES)
