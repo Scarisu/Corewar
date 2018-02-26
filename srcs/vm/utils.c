@@ -6,7 +6,7 @@
 /*   By: rlecart <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/01/17 23:39:21 by rlecart           #+#    #+#             */
-/*   Updated: 2018/02/25 17:22:42 by rlecart          ###   ########.fr       */
+/*   Updated: 2018/02/27 00:19:09 by rlecart          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -129,6 +129,7 @@ int		find_hexa(char *str, int i, int len)
 	pc = i - 1;
 	ret = 0;
 	ft_bzero(tab, 4);
+	true_pc(&pc);
 	while (++j < len)
 	{
 		(++pc) >= MEM_SIZE ? pc -= MEM_SIZE : pc;
