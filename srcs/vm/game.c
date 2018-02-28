@@ -6,7 +6,7 @@
 /*   By: rlecart <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/01/12 02:15:05 by rlecart           #+#    #+#             */
-/*   Updated: 2018/02/28 03:07:27 by rlecart          ###   ########.fr       */
+/*   Updated: 2018/02/28 16:00:53 by rlecart          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,6 +51,13 @@ void	end_game(t_champ *champs, t_corewar *d)
 	}
 }
 
+t_reg	*get_first_reg(t_reg *reg)
+{
+	while (reg && reg->prev)
+		reg = reg->prev;
+	return (reg);
+}
+
 void	game(t_champ *champs, t_corewar *d, char *map)
 {
 	int		i;
@@ -60,14 +67,20 @@ void	game(t_champ *champs, t_corewar *d, char *map)
 	i = d->nbc;
 	while (--i >= 0)
 	{
+		//t = get_first_reg(champs[i].reg);
 		t = champs[i].reg;
 		while (t)
 		{
+			printw("%p\n", t);
+			refresh();
 			if ((pc = map[t->pc]) > 0 && pc < 16)
 				d->opcodes[pc](&champs[i], d, t);
 			else
 				d->opcodes[0](&champs[i], d, t);
+			//sleep(2);
 			t = t->next;
 		}
+		while (champs[i].reg && champs[i].reg->prev)
+			champs[i].reg = champs[i].reg->prev;
 	}
 }

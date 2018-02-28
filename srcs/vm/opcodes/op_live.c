@@ -6,7 +6,7 @@
 /*   By: rlecart <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/01/17 21:45:07 by rlecart           #+#    #+#             */
-/*   Updated: 2018/02/28 07:24:02 by rlecart          ###   ########.fr       */
+/*   Updated: 2018/02/28 15:09:13 by rlecart          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,18 +19,27 @@ void	im_alive(t_corewar *d, t_champ *champs, t_reg *reg)
 	attroff(COLOR_PAIR(d->colors[reg->pc] - 5));
 	printw(": IM ALIIIVE\n", reg->n);
 	refresh();
-	//sleep(1);
+	sleep(1);
 }
 
 void	op_live(t_champ *champs, t_corewar *d, t_reg *reg)
 {
+	int		pc;
+	int		param;
+
 	if (++reg->cycle == 10 && !(reg->cycle = 0))
 	{
-		if (d->flag_v)
-			im_alive(d, champs, reg);
-		jump_to_next(d, reg, 5, false);
-		reg->live_counter++;
-		champs->nbr_live++;
-		d->last_live_call = reg->n;
+		(pc = reg->pc + 1) >= MEM_SIZE ? pc -= MEM_SIZE : pc;
+		if ((param = find_hexa(d->map, pc, 4)) >= 1 && param <= 4)
+		{
+			if (d->flag_v)
+				im_alive(d, champs, reg);
+			reg->live_counter++;
+			d->last_live_call = param;
+			d->champs[param - 1].nbr_live++;
+			jump_to_next(d, reg, 5, false);
+		}
+		else
+			jump_to_next(d, reg, 1, false);
 	}
 }

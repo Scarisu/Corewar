@@ -6,7 +6,7 @@
 /*   By: rlecart <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/02/09 04:14:13 by rlecart           #+#    #+#             */
-/*   Updated: 2018/02/28 07:34:15 by rlecart          ###   ########.fr       */
+/*   Updated: 2018/02/28 15:32:47 by rlecart          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,8 +22,14 @@ bool	false_command(t_corewar *d, t_reg *reg, bool carry)
 
 bool	valid_ocp(t_ocp o)
 {
-	if (o.p[0] == O_NONE || o.p[1] == O_NONE || o.p[2] == O_NONE)
-		return (false);
+	(void)o;
+//	if (o.p[0] == O_NONE)
+//		return (false);
+//	if (o.p[0] == O_DIR &&
+//			(op == 1 || op == 2 || (op >= 6 && op <= 15 && op != 11)))
+//		;
+//	if (o.p[0] == O_NONE || o.p[1] == O_NONE || o.p[2] == O_NONE)
+//		return (false);
 	return (true);
 }
 
