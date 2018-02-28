@@ -6,7 +6,7 @@
 /*   By: rlecart <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/01/17 21:45:37 by rlecart           #+#    #+#             */
-/*   Updated: 2018/02/17 02:13:10 by rlecart          ###   ########.fr       */
+/*   Updated: 2018/02/28 07:23:19 by rlecart          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,7 +29,7 @@ void	op_xor_loop(t_corewar *d, t_reg *reg, t_ocp o, int pc)
 		{
 			if ((r[i] = find_hexa(d->map, pc, len[0])) > 65535 / 2)
 				r[i] -= 65535;
-			r[i] = find_hexa(d->map, pc + r[i] - len[0] - 1, len[0] + 2);
+			r[i] = find_hexa(d->map, pc + ((r[i] - len[0] - 1) % IDX_MOD), len[0] + 2);
 		}
 		else
 			r[i] = d->map[pc] - 1;
@@ -47,12 +47,13 @@ void	op_xor(t_champ *champs, t_corewar *d, t_reg *reg)
 	t_ocp	o;
 
 	(void)champs;
-	if (++reg->cycle == 8)
+	if (++reg->cycle == 8 && !(reg->cycle = 0))
 	{
 		(pc = reg->pc + 1) >= MEM_SIZE ? pc -= MEM_SIZE : pc;
 		o = find_ocp(d->map[pc]);
+		if (!valid_ocp(o) && (false_command(d, reg, true)))
+			return ;
 		(++pc) >= MEM_SIZE ? pc -= MEM_SIZE : pc;
 		op_xor_loop(d, reg, o, pc);
-		reg->cycle = 0;
 	}
 }

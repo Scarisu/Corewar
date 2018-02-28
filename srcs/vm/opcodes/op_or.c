@@ -6,7 +6,7 @@
 /*   By: rlecart <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/01/17 21:45:23 by rlecart           #+#    #+#             */
-/*   Updated: 2018/02/17 02:12:58 by rlecart          ###   ########.fr       */
+/*   Updated: 2018/02/28 07:23:37 by rlecart          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,12 +47,13 @@ void	op_or(t_champ *champs, t_corewar *d, t_reg *reg)
 	t_ocp	o;
 
 	(void)champs;
-	if (++reg->cycle == 7)
+	if (++reg->cycle == 7 && !(reg->cycle = 0))
 	{
 		(pc = reg->pc + 1) >= MEM_SIZE ? pc -= MEM_SIZE : pc;
 		o = find_ocp(d->map[pc]);
+		if (!valid_ocp(o) && (false_command(d, reg, true)))
+			return ;
 		(++pc) >= MEM_SIZE ? pc -= MEM_SIZE : pc;
 		op_or_loop(d, reg, o, pc);
-		reg->cycle = 0;
 	}
 }

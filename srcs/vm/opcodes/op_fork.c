@@ -6,7 +6,7 @@
 /*   By: rlecart <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/01/17 21:44:48 by rlecart           #+#    #+#             */
-/*   Updated: 2018/02/16 23:42:41 by rlecart          ###   ########.fr       */
+/*   Updated: 2018/02/28 07:43:31 by rlecart          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,29 +21,33 @@ t_reg	*fork_reg(t_reg *reg)
 	ret->pc = reg->pc;
 	ret->cycle = reg->cycle;
 	ret->carry = reg->carry;
+	ret->live_counter = reg->live_counter;;
 	ft_memcpy(ret->r, reg->r, sizeof(int) * REG_NUMBER);
+	while (reg && reg->prev)
+		reg = reg->prev;
 	if (reg->next)
 	{
-		reg->next->prev = ret;
-		ret->next = reg->next;
+		reg->prev = ret;
+		ret->next = reg;
 	}
 	else
 		ret->next = NULL;
-	ret->prev = reg;
+	ret->prev = NULL;
 	return (ret);
 }
 
 void	op_fork(t_champ *champs, t_corewar *d, t_reg *reg)
 {
 	int		pc;
+	t_reg	*tmp;
 
 	(void)champs;
-	if (++reg->cycle == 800)
+	if (++reg->cycle == 800 && !(reg->cycle = 0))
 	{
-		reg->cycle = 0;
+		tmp = reg;
 		pc = find_hexa(d->map, reg->pc + 1, 2);
-		reg->next = fork_reg(reg);
-		jump_to_next(d, reg->next, pc % IDX_MOD, true);
-		jump_to_next(d, reg, 3, false);
+		reg = fork_reg(reg);
+		jump_to_next(d, reg, pc % IDX_MOD, true);
+		jump_to_next(d, tmp, 3, false);
 	}
 }

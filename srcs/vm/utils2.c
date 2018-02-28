@@ -6,11 +6,26 @@
 /*   By: rlecart <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/02/09 04:14:13 by rlecart           #+#    #+#             */
-/*   Updated: 2018/02/27 00:17:53 by rlecart          ###   ########.fr       */
+/*   Updated: 2018/02/28 07:34:15 by rlecart          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <vm.h>
+
+bool	false_command(t_corewar *d, t_reg *reg, bool carry)
+{
+	jump_to_next(d, reg, 1, false);
+	if (carry)
+		reg->carry = 0;
+	return (true);
+}
+
+bool	valid_ocp(t_ocp o)
+{
+	if (o.p[0] == O_NONE || o.p[1] == O_NONE || o.p[2] == O_NONE)
+		return (false);
+	return (true);
+}
 
 void	true_pc(int *pc)
 {

@@ -6,7 +6,7 @@
 /*   By: rlecart <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/01/17 21:45:18 by rlecart           #+#    #+#             */
-/*   Updated: 2018/02/27 04:05:21 by rlecart          ###   ########.fr       */
+/*   Updated: 2018/02/28 07:25:31 by rlecart          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,12 +21,13 @@ void	op_lldi(t_champ *champs, t_corewar *d, t_reg *reg)
 	t_ocp	o;
 
 	(void)champs;
-	if (++reg->cycle == 25)
+	if (++reg->cycle == 25 && !(reg->cycle = 0))
 	{
-		reg->cycle = 0;
 		i = -1;
 		(pc = reg->pc + 1) >= MEM_SIZE ? pc -= MEM_SIZE : pc;
 		o = find_ocp(d->map[pc]);
+		if (!valid_ocp(o) && (false_command(d, reg, true)))
+			return ;
 		(++pc) >= MEM_SIZE ? pc -= MEM_SIZE : pc;
 		while (++i < 3)
 		{

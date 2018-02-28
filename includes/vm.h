@@ -6,7 +6,7 @@
 /*   By: rlecart <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/11/23 06:04:11 by rlecart           #+#    #+#             */
-/*   Updated: 2018/02/28 02:05:44 by rlecart          ###   ########.fr       */
+/*   Updated: 2018/02/28 07:40:16 by rlecart          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -133,6 +133,8 @@ t_reg				*fork_reg(t_reg *reg);
 
 int					find_hexa(char *str, int i, int len);
 bool				is_anybody_here(t_corewar *d, int pc);
+bool				valid_ocp(t_ocp o);
+bool				false_command(t_corewar *d, t_reg *reg, bool carry);
 void				true_pc(int *pc);
 void				put_hexa(t_corewar *d, int nbc, int pc, int value);
 void				jump_to_next(t_corewar *d, t_reg *reg, int o, bool fork);
