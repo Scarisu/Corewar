@@ -6,7 +6,7 @@
 /*   By: rlecart <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/01/12 02:15:05 by rlecart           #+#    #+#             */
-/*   Updated: 2018/02/16 20:35:43 by rlecart          ###   ########.fr       */
+/*   Updated: 2018/02/28 00:32:03 by rlecart          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -60,17 +60,14 @@ void	game(t_champ *champs, t_corewar *d, char *map)
 	i = d->nbc;
 	while (--i >= 0)
 	{
-		if (champs[i].alive)
+		t = champs[i].reg;
+		while (t)
 		{
-			t = champs[i].reg;
-			while (t)
-			{
-				if ((pc = map[t->pc]) > 0 && pc < 16)
-					d->opcodes[pc](&champs[i], d, t);
-				else
-					d->opcodes[0](&champs[i], d, t);
-				t = t->next;
-			}
+			if ((pc = map[t->pc]) > 0 && pc < 16)
+				d->opcodes[pc](&champs[i], d, t);
+			else
+				d->opcodes[0](&champs[i], d, t);
+			t = t->next;
 		}
 	}
 }

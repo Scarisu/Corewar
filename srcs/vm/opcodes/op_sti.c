@@ -6,7 +6,7 @@
 /*   By: rlecart <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/01/17 21:45:31 by rlecart           #+#    #+#             */
-/*   Updated: 2018/02/27 00:42:46 by rlecart          ###   ########.fr       */
+/*   Updated: 2018/02/28 00:28:37 by rlecart          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,4 +46,3 @@ void	op_sti(t_champ *champs, t_corewar *d, t_reg *reg)
 		jump_to_next(d, reg, pc - reg->pc, false);
 	}
 }
-//rdr

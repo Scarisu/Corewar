@@ -6,7 +6,7 @@
 /*   By: rlecart <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/11/23 06:04:11 by rlecart           #+#    #+#             */
-/*   Updated: 2018/02/27 00:17:51 by rlecart          ###   ########.fr       */
+/*   Updated: 2018/02/28 02:05:44 by rlecart          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,8 +49,9 @@ struct				s_reg
 	int				n;
 	int				pc;
 	int				cycle;
-	char			carry;
+	int				live_counter;
 	int				r[REG_NUMBER];
+	char			carry;
 	t_reg			*prev;
 	t_reg			*next;
 };
@@ -59,7 +60,6 @@ struct				s_champ
 {
 	int				len;
 	int				nbr_live;
-	bool			alive;
 	char			*name;
 	char			*comment;
 	char			*content;

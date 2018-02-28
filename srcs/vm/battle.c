@@ -6,7 +6,7 @@
 /*   By: rlecart <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/11/23 06:12:46 by rlecart           #+#    #+#             */
-/*   Updated: 2018/02/15 20:14:21 by rlecart          ###   ########.fr       */
+/*   Updated: 2018/02/28 02:40:52 by rlecart          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,24 +17,45 @@ void	foam_bat(void)
 	/* FOAM BAT SOUND */
 }
 
-void	champions_killer(t_champ *champs, t_corewar *d)
+void	process_killer(t_champ *champs, t_corewar *d)
 {
 	int		i;
+	t_reg	*t;
+	t_reg	*next;
+	t_reg	*prev;
 
-	i = -1;
-	while (++i < d->nbc)
-		if (!champs[i].nbr_live)
+	i = d->nbc;
+	while (--i >= 0)
+	{
+		t = champs[i].reg;
+		while (t)
 		{
-			champs[i].alive = false;
-			foam_bat();
+			prev = t->prev;
+			next = t->next;
+			if (t->live_counter <= 0)
+			{
+				if (prev)
+					prev->next = next;
+				if (next)
+					next->prev = prev;
+				if (!next && !prev)
+					ft_memdel((void**)&champs[i].reg);
+				else
+					ft_memdel((void**)&t);
+				foam_bat();
+			}
+			else
+				t->live_counter = 0;
+			t = next;
 		}
+	}
 }
 
 int		cycle_check(t_champ *champs, t_corewar *d)
 {
-	if (d->cycle_tmp >= d->cycle_to_die)
+	if (!(d->cycle_tmp % d->cycle_to_die))
 	{
-		//champions_killer(champs, d);
+		process_killer(champs, d);
 		if (d->nbr_live_all >= NBR_LIVE && (d->max_checks = MAX_CHECKS + 1))
 			d->cycle_to_die -= d->cycle_delta;
 		d->cycle_tmp = 0;

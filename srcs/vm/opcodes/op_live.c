@@ -6,7 +6,7 @@
 /*   By: rlecart <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/01/17 21:45:07 by rlecart           #+#    #+#             */
-/*   Updated: 2018/02/16 20:25:32 by rlecart          ###   ########.fr       */
+/*   Updated: 2018/02/28 02:39:47 by rlecart          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,6 +30,7 @@ void	op_live(t_champ *champs, t_corewar *d, t_reg *reg)
 			im_alive(d, champs, reg);
 		reg->cycle = 0;
 		jump_to_next(d, reg, 5, false);
+		reg->live_counter++;
 		champs->nbr_live++;
 		d->last_live_call = reg->n;
 	}
