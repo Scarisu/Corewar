@@ -6,7 +6,7 @@
 /*   By: rlecart <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/11/23 06:04:11 by rlecart           #+#    #+#             */
-/*   Updated: 2018/02/28 15:51:07 by rlecart          ###   ########.fr       */
+/*   Updated: 2018/03/10 08:40:55 by rlecart          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,10 +19,10 @@
 
 # define REG champs[i].reg
 
-# define O_NONE		-1
-# define O_DIR		0
-# define O_IND		1
-# define O_REG		2
+# define O_NONE		0
+# define O_REG		1
+# define O_DIR		2
+# define O_IND		4
 
 typedef struct		s_reg			t_reg;
 typedef struct		s_champ			t_champ;
@@ -82,7 +82,7 @@ struct				s_corewar
 	bool			flag_v;
 	char			*map;
 	char			*(champs_path[4]);
-	void			(*opcodes[17])(t_champ *, t_corewar *, t_reg *);
+	void			(*opcodes[17])(t_corewar *, t_reg *);
 	t_champ			*champs;
 };
 
@@ -112,33 +112,33 @@ void				display_champs_color(int color);
 void				game(t_champ *champs, t_corewar *d, char *map);
 void				end_game(t_champ *champs, t_corewar *d);
 
-void				op_null(t_champ *champs, t_corewar *d, t_reg *reg);
-void				op_live(t_champ *champs, t_corewar *d, t_reg *reg);
-void				op_ld(t_champ *champs, t_corewar *d, t_reg *reg);
-void				op_st(t_champ *champs, t_corewar *d, t_reg *reg);
-void				op_add(t_champ *champs, t_corewar *d, t_reg *reg);
-void				op_sub(t_champ *champs, t_corewar *d, t_reg *reg);
-void				op_and(t_champ *champs, t_corewar *d, t_reg *reg);
-void				op_or(t_champ *champs, t_corewar *d, t_reg *reg);
-void				op_xor(t_champ *champs, t_corewar *d, t_reg *reg);
-void				op_zjmp(t_champ *champs, t_corewar *d, t_reg *reg);
-void				op_ldi(t_champ *champs, t_corewar *d, t_reg *reg);
-void				op_sti(t_champ *champs, t_corewar *d, t_reg *reg);
-void				op_fork(t_champ *champs, t_corewar *d, t_reg *reg);
-void				op_lld(t_champ *champs, t_corewar *d, t_reg *reg);
-void				op_lldi(t_champ *champs, t_corewar *d, t_reg *reg);
-void				op_lfork(t_champ *champs, t_corewar *d, t_reg *reg);
-void				op_aff(t_champ *champs, t_corewar *d, t_reg *reg);
+void				op_null(t_corewar *d, t_reg *reg);
+void				op_live(t_corewar *d, t_reg *reg);
+void				op_ld(t_corewar *d, t_reg *reg);
+void				op_st(t_corewar *d, t_reg *reg);
+void				op_add(t_corewar *d, t_reg *reg);
+void				op_sub(t_corewar *d, t_reg *reg);
+void				op_and(t_corewar *d, t_reg *reg);
+void				op_or(t_corewar *d, t_reg *reg);
+void				op_xor(t_corewar *d, t_reg *reg);
+void				op_zjmp(t_corewar *d, t_reg *reg);
+void				op_ldi(t_corewar *d, t_reg *reg);
+void				op_sti(t_corewar *d, t_reg *reg);
+void				op_fork(t_corewar *d, t_reg *reg);
+void				op_lld(t_corewar *d, t_reg *reg);
+void				op_lldi(t_corewar *d, t_reg *reg);
+void				op_lfork(t_corewar *d, t_reg *reg);
+void				op_aff(t_corewar *d, t_reg *reg);
 t_reg				*fork_reg(t_reg *reg, int pc, bool mod);
 
 int					find_hexa(char *str, int i, int len);
+int					find_ocp(t_ocp *ret, unsigned char op, unsigned char ocp);
 bool				is_anybody_here(t_corewar *d, int pc);
-bool				valid_ocp(t_ocp o);
+bool				valid_ocp(t_ocp *ocp, unsigned char op);
 bool				false_command(t_corewar *d, t_reg *reg, bool carry);
 void				true_pc(int *pc);
 void				put_hexa(t_corewar *d, int nbc, int pc, int value);
 void				jump_to_next(t_corewar *d, t_reg *reg, int o, bool fork);
-t_ocp				find_ocp(unsigned char ocp);
 t_reg				*get_first_reg(t_reg *reg);
 
 #endif

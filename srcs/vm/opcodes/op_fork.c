@@ -6,7 +6,7 @@
 /*   By: rlecart <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/01/17 21:44:48 by rlecart           #+#    #+#             */
-/*   Updated: 2018/02/28 15:51:37 by rlecart          ###   ########.fr       */
+/*   Updated: 2018/03/04 00:54:30 by rlecart          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,12 +40,11 @@ t_reg	*fork_reg(t_reg *reg, int pc, bool mod)
 	return (ret);
 }
 
-void	op_fork(t_champ *champs, t_corewar *d, t_reg *reg)
+void	op_fork(t_corewar *d, t_reg *reg)
 {
 	int		pc;
 	t_reg	*tmp;
 
-	(void)champs;
 	if (++reg->cycle == 800 && !(reg->cycle = 0))
 	{
 		tmp = reg;

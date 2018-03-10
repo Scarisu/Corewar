@@ -6,7 +6,7 @@
 /*   By: rlecart <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/02/09 04:14:13 by rlecart           #+#    #+#             */
-/*   Updated: 2018/02/28 15:32:47 by rlecart          ###   ########.fr       */
+/*   Updated: 2018/03/10 08:54:52 by rlecart          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,16 +20,22 @@ bool	false_command(t_corewar *d, t_reg *reg, bool carry)
 	return (true);
 }
 
-bool	valid_ocp(t_ocp o)
+bool	valid_ocp(t_ocp *ocp, unsigned char op)
 {
-	(void)o;
-//	if (o.p[0] == O_NONE)
-//		return (false);
-//	if (o.p[0] == O_DIR &&
-//			(op == 1 || op == 2 || (op >= 6 && op <= 15 && op != 11)))
-//		;
-//	if (o.p[0] == O_NONE || o.p[1] == O_NONE || o.p[2] == O_NONE)
-//		return (false);
+	int		i;
+	int		tmp;
+
+	i = -1;
+	tmp = 0;
+	while (++i < 3)
+	{
+		if (ocp->p[i] == O_NONE)
+			tmp++;
+		if ((g_op_tab[op].type[i] & ocp->p[i]) != ocp->p[i])
+			return (false);
+	}
+	if (tmp != 3 - g_op_tab[op].nb_params)
+		return (false);
 	return (true);
 }
 

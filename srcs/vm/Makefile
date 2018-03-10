@@ -26,6 +26,7 @@ SRC_OPCODES		=	op_add.c \
 SRC_INCLUD		=	corewar.h \
 					op.h
 SRC_RACINE		=	main.c \
+					../op.c \
 					battle.c \
 					get.c \
 					error.c \

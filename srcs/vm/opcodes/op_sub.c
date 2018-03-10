@@ -6,26 +6,24 @@
 /*   By: rlecart <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/01/17 21:45:34 by rlecart           #+#    #+#             */
-/*   Updated: 2018/02/28 07:23:21 by rlecart          ###   ########.fr       */
+/*   Updated: 2018/03/10 08:22:10 by rlecart          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <vm.h>
 
-void	op_sub(t_champ *champs, t_corewar *d, t_reg *reg)
+void	op_sub(t_corewar *d, t_reg *reg)
 {
 	int		i;
 	int		pc;
 	int		r[3];
 	t_ocp	ocp;
 
-	(void)champs;
 	if (++reg->cycle == 10 && !(reg->cycle = 0))
 	{
 		i = -1;
 		(pc = reg->pc + 1) >= MEM_SIZE ? pc -= MEM_SIZE : pc;
-		ocp = find_ocp(d->map[pc]);
-		if (!valid_ocp(ocp) && (false_command(d, reg, true)))
+		if (!(find_ocp(&ocp, d->map[reg->pc], d->map[pc])) && (false_command(d, reg, true)))
 			return ;
 		while (++i < 3)
 		{

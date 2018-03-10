@@ -6,25 +6,23 @@
 /*   By: rlecart <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/01/17 21:45:27 by rlecart           #+#    #+#             */
-/*   Updated: 2018/02/28 07:23:32 by rlecart          ###   ########.fr       */
+/*   Updated: 2018/03/10 08:22:04 by rlecart          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <vm.h>
 
-void	op_st(t_champ *champs, t_corewar *d, t_reg *reg)
+void	op_st(t_corewar *d, t_reg *reg)
 {
 	int		r;
 	int		pc;
 	int		param;
 	t_ocp	ocp;
 
-	(void)champs;
 	if (++reg->cycle == 5 && !(reg->cycle = 0))
 	{
 		(pc = reg->pc + 1) >= MEM_SIZE ? pc -= MEM_SIZE : pc;
-		ocp = find_ocp(d->map[pc]);
-		if (!valid_ocp(ocp) && (false_command(d, reg, false)))
+		if (!(find_ocp(&ocp, d->map[reg->pc], d->map[pc])) && (false_command(d, reg, true)))
 			return ;
 		(++pc) >= MEM_SIZE ? pc -= MEM_SIZE : pc;
 		if ((r = d->map[pc]) > 0 && r < 16)

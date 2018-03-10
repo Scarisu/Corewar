@@ -6,7 +6,7 @@
 /*   By: rlecart <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/01/17 23:39:21 by rlecart           #+#    #+#             */
-/*   Updated: 2018/02/28 11:43:20 by rlecart          ###   ########.fr       */
+/*   Updated: 2018/03/10 08:22:50 by rlecart          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -103,19 +103,20 @@ void	find_ocp_sup(t_need_ocp e, t_ocp *ret)
 	}
 }
 
-t_ocp	find_ocp(unsigned char ocp)
+int		find_ocp(t_ocp *ret, unsigned char op, unsigned char ocp)
 {
-	t_ocp		ret;
 	t_need_ocp	e;
 
 	e.tmp2 = ocp * sizeof(int);
 	e.tmp = ft_itoa_base(e.tmp2, 2);
-	ft_memset(ret.p, O_NONE, sizeof(int) * 3);
+	ft_memset(ret->p, O_NONE, sizeof(int) * 3);
 	if (ocp > 127)
-		find_ocp_sup(e, &ret);
+		find_ocp_sup(e, ret);
 	else
-		find_ocp_inf(e, &ret);
-	return (ret);
+		find_ocp_inf(e, ret);
+	if (!(valid_ocp(ret, op - 1)))
+		return (0);
+	return (-1);
 }
 
 int		find_hexa(char *str, int i, int len)

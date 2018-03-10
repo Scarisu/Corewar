@@ -6,25 +6,23 @@
 /*   By: rlecart <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/01/17 21:45:12 by rlecart           #+#    #+#             */
-/*   Updated: 2018/02/28 07:24:55 by rlecart          ###   ########.fr       */
+/*   Updated: 2018/03/10 08:21:52 by rlecart          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <vm.h>
 
-void	op_lld(t_champ *champs, t_corewar *d, t_reg *reg)
+void	op_lld(t_corewar *d, t_reg *reg)
 {
 	int		r;
 	int		pc;
 	int		param;
 	t_ocp	ocp;
 
-	(void)champs;
 	if (++reg->cycle == 5 && !(reg->cycle = 0))
 	{
 		(pc = reg->pc + 1) >= MEM_SIZE ? pc -= MEM_SIZE : pc;
-		ocp = find_ocp(d->map[pc]);
-		if (!valid_ocp(ocp) && (false_command(d, reg, true)))
+		if (!(find_ocp(&ocp, d->map[reg->pc], d->map[pc])) && (false_command(d, reg, true)))
 			return ;
 		(++pc) >= MEM_SIZE ? pc -= MEM_SIZE : pc;
 		if (ocp.p[0] == O_IND)
