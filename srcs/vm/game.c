@@ -6,7 +6,7 @@
 /*   By: rlecart <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/01/12 02:15:05 by rlecart           #+#    #+#             */
-/*   Updated: 2018/03/10 08:19:50 by rlecart          ###   ########.fr       */
+/*   Updated: 2018/03/19 22:18:28 by rlecart          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,7 +15,7 @@
 void	end_ww(t_corewar *d)
 {
 	if (d->flag_v)
-		printw("Aucun champion n'a gagne.\n");
+		printw("\nAucun champion n'a gagne.\n");
 	else
 		ft_putstr("Aucun champion n'a gagne.\n");
 }
