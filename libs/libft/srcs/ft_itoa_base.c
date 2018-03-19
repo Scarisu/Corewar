@@ -6,7 +6,7 @@
 /*   By: pbernier <pbernier@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/01/03 12:51:01 by pbernier          #+#    #+#             */
-/*   Updated: 2018/02/06 02:14:25 by rlecart          ###   ########.fr       */
+/*   Updated: 2018/03/19 20:39:29 by rlecart          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,7 +38,7 @@ int		int_len(int nb, int base)
 	int		len;
 
 	len = 0;
-	if (nb < 0 && base == 10)
+	if ((nb < 0 && base == 10))
 		len++;
 	while ((nb /= base) != 0)
 		len++;

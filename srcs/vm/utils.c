@@ -6,7 +6,7 @@
 /*   By: rlecart <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/01/17 23:39:21 by rlecart           #+#    #+#             */
-/*   Updated: 2018/03/10 08:22:50 by rlecart          ###   ########.fr       */
+/*   Updated: 2018/03/19 21:21:08 by rlecart          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,73 +52,6 @@ void	jump_to_next(t_corewar *d, t_reg *reg, int o, bool fork)
 	//d->colors[reg->pc] += 5 >= 10 ? 0 : 5;
 }
 
-void	find_ocp_inf(t_need_ocp e, t_ocp *ret)
-{
-	e.i = -1;
-	e.j = 0;
-	e.j2 = 0;
-	while (++e.i < 3)
-	{
-		if (e.i > 0)
-			e.j2 = 1;
-		if (e.tmp[e.j] == '0' || !e.i)
-		{
-			if (e.tmp[e.j + e.j2] == '0')
-				ret->p[e.i] = O_NONE;
-			else
-				ret->p[e.i] = O_REG;
-		}
-		else
-		{
-			if (e.tmp[e.j + e.j2] == '0')
-				ret->p[e.i] = O_DIR;
-			else
-				ret->p[e.i] = O_IND;
-		}
-		e.j += e.i > 0 ? 2 : 1;
-	}
-}
-
-void	find_ocp_sup(t_need_ocp e, t_ocp *ret)
-{
-	e.i = -1;
-	e.j = -2;
-	while (++e.i < 3)
-	{
-		e.j += 2;
-		if (e.tmp[e.j] == '0')
-		{
-			if (e.tmp[e.j + 1] == '0')
-				ret->p[e.i] = O_NONE;
-			else
-				ret->p[e.i] = O_REG;
-		}
-		else
-		{
-			if (e.tmp[e.j + 1] == '0')
-				ret->p[e.i] = O_DIR;
-			else
-				ret->p[e.i] = O_IND;
-		}
-	}
-}
-
-int		find_ocp(t_ocp *ret, unsigned char op, unsigned char ocp)
-{
-	t_need_ocp	e;
-
-	e.tmp2 = ocp * sizeof(int);
-	e.tmp = ft_itoa_base(e.tmp2, 2);
-	ft_memset(ret->p, O_NONE, sizeof(int) * 3);
-	if (ocp > 127)
-		find_ocp_sup(e, ret);
-	else
-		find_ocp_inf(e, ret);
-	if (!(valid_ocp(ret, op - 1)))
-		return (0);
-	return (-1);
-}
-
 int		find_hexa(char *str, int i, int len)
 {
 	int				j;
@@ -140,4 +73,32 @@ int		find_hexa(char *str, int i, int len)
 	while (++j < len)
 		ret += tab[j] << 8 * (len - j - 1);
 	return (ret);
+}
+
+int		find_ocp(t_ocp *ret, unsigned char op, unsigned char ocp)
+{
+	int		i;
+	int		j;
+
+	i = 3;
+	j = 0;
+	ft_memset(ret->p, O_NONE, sizeof(int) * 3);
+	while (--i >= 0)
+	{
+		if (ocp >> 2 * ++j & 1)
+		{
+			if (ocp >> (2 * j + 1) & 1)
+				ret->p[i] = O_IND;
+			else
+				ret->p[i] = O_REG;
+		}
+		else
+		{
+			if (ocp >> (2 * j + 1) & 1)
+				ret->p[i] = O_DIR;
+			else
+				ret->p[i] = O_NONE;
+		}
+	}
+	return ((!(valid_ocp(ret, op - 1))) ? 0 : -1);
 }

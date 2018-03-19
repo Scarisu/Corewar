@@ -6,7 +6,7 @@
 /*   By: rlecart <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/01/12 02:13:58 by rlecart           #+#    #+#             */
-/*   Updated: 2018/02/28 00:41:52 by rlecart          ###   ########.fr       */
+/*   Updated: 2018/03/17 01:18:21 by rlecart          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,4 +45,3 @@ void	reset_lives(t_champ *champs, int nbc)
 	while (++i < nbc)
 		champs[i].nbr_live = 0;
 }
-

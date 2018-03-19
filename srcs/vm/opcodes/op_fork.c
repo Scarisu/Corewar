@@ -6,7 +6,7 @@
 /*   By: rlecart <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/01/17 21:44:48 by rlecart           #+#    #+#             */
-/*   Updated: 2018/03/04 00:54:30 by rlecart          ###   ########.fr       */
+/*   Updated: 2018/03/17 01:19:22 by rlecart          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,7 +25,7 @@ t_reg	*fork_reg(t_reg *reg, int pc, bool mod)
 	true_pc(&ret->pc);
 	ret->cycle = reg->cycle;
 	ret->carry = reg->carry;
-	ret->live_counter = reg->live_counter;;
+	ret->live_counter = reg->live_counter;
 	ft_memcpy(ret->r, reg->r, sizeof(int) * REG_NUMBER);
 	while (reg && reg->prev)
 		reg = reg->prev;

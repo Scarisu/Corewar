@@ -6,7 +6,7 @@
 /*   By: rlecart <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/01/17 21:44:24 by rlecart           #+#    #+#             */
-/*   Updated: 2018/03/10 08:21:31 by rlecart          ###   ########.fr       */
+/*   Updated: 2018/03/17 01:18:41 by rlecart          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,7 +30,7 @@ void	op_add(t_corewar *d, t_reg *reg)
 			(++pc) >= MEM_SIZE ? pc -= MEM_SIZE : pc;
 			if (((r[i] = d->map[pc] - 1) < 0 || r[i] > 16) &&
 					(false_command(d, reg, true)))
-				return;
+				return ;
 		}
 		reg->r[r[2]] = reg->r[r[0]] + reg->r[r[1]];
 		jump_to_next(d, reg, 5, false);
