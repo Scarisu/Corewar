@@ -6,7 +6,7 @@
 /*   By: rlecart <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/11/23 06:04:11 by rlecart           #+#    #+#             */
-/*   Updated: 2018/03/10 08:40:55 by rlecart          ###   ########.fr       */
+/*   Updated: 2018/03/29 08:32:29 by rlecart          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -60,6 +60,7 @@ struct				s_champ
 {
 	int				len;
 	int				nbr_live;
+	bool			is_alive;
 	char			*name;
 	char			*comment;
 	char			*content;
@@ -133,6 +134,7 @@ t_reg				*fork_reg(t_reg *reg, int pc, bool mod);
 
 int					find_hexa(char *str, int i, int len);
 int					find_ocp(t_ocp *ret, unsigned char op, unsigned char ocp);
+int					get_modulo(int n, int modulo);
 bool				is_anybody_here(t_corewar *d, int pc);
 bool				valid_ocp(t_ocp *ocp, unsigned char op);
 bool				false_command(t_corewar *d, t_reg *reg, bool carry);
@@ -140,5 +142,7 @@ void				true_pc(int *pc);
 void				put_hexa(t_corewar *d, int nbc, int pc, int value);
 void				jump_to_next(t_corewar *d, t_reg *reg, int o, bool fork);
 t_reg				*get_first_reg(t_reg *reg);
+
+void				print_reg(t_reg *reg);
 
 #endif

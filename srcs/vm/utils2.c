@@ -6,7 +6,7 @@
 /*   By: rlecart <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/02/09 04:14:13 by rlecart           #+#    #+#             */
-/*   Updated: 2018/03/10 08:54:52 by rlecart          ###   ########.fr       */
+/*   Updated: 2018/03/29 08:08:24 by rlecart          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,6 +50,8 @@ void	true_pc(int *pc)
 	}
 }
 
+//put_hexa(d, reg->n, reg->pc + param, reg->r[r - 1]);
+
 void	put_hexa(t_corewar *d, int nbc, int pc, int value)
 {
 	int		i;
@@ -64,4 +66,13 @@ void	put_hexa(t_corewar *d, int nbc, int pc, int value)
 		d->colors[pc] = nbc;
 		(++pc) >= MEM_SIZE ? pc -= MEM_SIZE : pc;
 	}
+}
+
+int		get_modulo(int n, int modulo)
+{
+	if (n < 0)
+		n = n % -modulo;
+	else
+		n = n % modulo;
+	return (n);
 }

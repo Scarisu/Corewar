@@ -6,7 +6,7 @@
 /*   By: rlecart <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/01/12 02:13:58 by rlecart           #+#    #+#             */
-/*   Updated: 2018/03/17 01:18:21 by rlecart          ###   ########.fr       */
+/*   Updated: 2018/03/29 11:32:58 by rlecart          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,7 +20,7 @@ int		still_alive(t_champ *champs, int nbc)
 	i = -1;
 	count = 0;
 	while (++i < nbc)
-		if (champs[i].reg)
+		if (champs[i].is_alive)
 			count++;
 	return (count > 0 ? 1 : 0);
 }

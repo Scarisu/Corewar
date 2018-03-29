@@ -6,7 +6,7 @@
 /*   By: rlecart <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/01/16 07:52:05 by rlecart           #+#    #+#             */
-/*   Updated: 2018/02/28 02:05:59 by rlecart          ###   ########.fr       */
+/*   Updated: 2018/03/29 11:21:10 by rlecart          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,6 +28,7 @@ char	*init_battle(t_champ *champs, t_corewar *d)
 		REG->n = i + 1;
 		REG->pc = MEM_SIZE / d->nbc * i;
 		REG->cycle = 0;
+		REG->live_counter = 0;
 		REG->carry = 0;
 		REG->prev = NULL;
 		REG->next = NULL;

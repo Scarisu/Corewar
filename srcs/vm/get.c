@@ -6,7 +6,7 @@
 /*   By: rlecart <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/11/23 06:15:11 by rlecart           #+#    #+#             */
-/*   Updated: 2018/02/28 00:39:38 by rlecart          ###   ########.fr       */
+/*   Updated: 2018/03/29 02:58:45 by rlecart          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -74,6 +74,7 @@ t_champ		*get_all_champs(t_corewar data)
 		ft_strdel(&champs[i].content);
 		champs[i].content = tmp;
 		champs[i].nbr_live = 0;
+		champs[i].is_alive = true;
 	}
 	return (champs);
 }

@@ -6,11 +6,19 @@
 /*   By: rlecart <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/01/17 21:44:48 by rlecart           #+#    #+#             */
-/*   Updated: 2018/03/17 01:19:22 by rlecart          ###   ########.fr       */
+/*   Updated: 2018/03/29 13:09:12 by rlecart          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <vm.h>
+
+void	print_reg(t_reg *reg)
+{
+	printw("%x %x %x %x\n", reg->r[0], reg->r[1], reg->r[2], reg->r[3]);
+	printw("%x %x %x %x\n", reg->r[4], reg->r[5], reg->r[6], reg->r[7]);
+	printw("%x %x %x %x\n", reg->r[8], reg->r[9], reg->r[10], reg->r[11]);
+	printw("%x %x %x %x\n\n", reg->r[12], reg->r[13], reg->r[14], reg->r[15]);
+}
 
 t_reg	*fork_reg(t_reg *reg, int pc, bool mod)
 {
@@ -18,24 +26,17 @@ t_reg	*fork_reg(t_reg *reg, int pc, bool mod)
 
 	ret = ft_memalloc(sizeof(t_reg));
 	ret->n = reg->n;
-	if (mod)
-		ret->pc = reg->pc + (pc % IDX_MOD);
-	else
-		ret->pc = reg->pc + pc;
-	true_pc(&ret->pc);
+	(void)pc;
+	(void)mod;
+	ret->pc = reg->pc;
 	ret->cycle = reg->cycle;
+	//ret->cycle = 0;
 	ret->carry = reg->carry;
 	ret->live_counter = reg->live_counter;
 	ft_memcpy(ret->r, reg->r, sizeof(int) * REG_NUMBER);
-	while (reg && reg->prev)
-		reg = reg->prev;
-	if (reg->next)
-	{
-		reg->prev = ret;
-		ret->next = reg;
-	}
-	else
-		ret->next = NULL;
+	ret->next = get_first_reg(reg);
+	if (ret->next)
+		ret->next->prev = ret;
 	ret->prev = NULL;
 	return (ret);
 }
@@ -48,9 +49,12 @@ void	op_fork(t_corewar *d, t_reg *reg)
 	if (++reg->cycle == 800 && !(reg->cycle = 0))
 	{
 		tmp = reg;
-		pc = find_hexa(d->map, reg->pc + 1, 2);
-		reg = fork_reg(reg, pc, true);
-		jump_to_next(d, reg, 0, true);
-		jump_to_next(d, tmp, 3, false);
+		if ((pc = find_hexa(d->map, reg->pc + 1, 2)) > 65535 / 2)
+			pc -= 65535;
+		tmp = fork_reg(reg, pc, true);
+		d->champs[reg->n - 1].reg = tmp;
+		//pc = get_modulo(pc, IDX_MOD);
+		jump_to_next(d, reg, 3, true);
+		jump_to_next(d, tmp, get_modulo(pc, IDX_MOD), false);
 	}
 }

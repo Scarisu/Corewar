@@ -6,7 +6,7 @@
 /*   By: rlecart <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/01/17 21:45:07 by rlecart           #+#    #+#             */
-/*   Updated: 2018/03/10 08:01:17 by rlecart          ###   ########.fr       */
+/*   Updated: 2018/03/29 11:30:59 by rlecart          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,7 +19,7 @@ void	im_alive(t_corewar *d, t_champ *champs, t_reg *reg)
 	attroff(COLOR_PAIR(d->colors[reg->pc] - 5));
 	printw(": IM ALIIIVE\n", reg->n);
 	refresh();
-	sleep(1);
+	//sleep(1);
 }
 
 void	op_live(t_corewar *d, t_reg *reg)

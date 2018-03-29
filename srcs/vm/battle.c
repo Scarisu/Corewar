@@ -6,7 +6,7 @@
 /*   By: rlecart <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/11/23 06:12:46 by rlecart           #+#    #+#             */
-/*   Updated: 2018/02/28 09:13:32 by rlecart          ###   ########.fr       */
+/*   Updated: 2018/03/29 13:45:42 by rlecart          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,7 +22,6 @@ void	process_killer(t_champ *champs, t_corewar *d)
 	int		i;
 	t_reg	*t;
 	t_reg	*next;
-	t_reg	*prev;
 
 	i = d->nbc;
 	while (--i >= 0)
@@ -30,23 +29,35 @@ void	process_killer(t_champ *champs, t_corewar *d)
 		t = champs[i].reg;
 		while (t)
 		{
-			prev = t->prev;
 			next = t->next;
+			if (d->flag_v)
+				printw("t->live_counter = %d\n", t->live_counter);
 			if (t->live_counter <= 0)
 			{
-				if (prev)
-					prev->next = next;
-				if (next)
-					next->prev = prev;
-				if (!next && !prev)
+				if (!t->next && !t->prev)
+				{
 					ft_memdel((void**)&champs[i].reg);
+					champs[i].is_alive = false;
+				}
 				else
-					ft_memdel((void**)&t);
+				{
+					if (t->prev)
+						t->prev->next = t->next;
+					if (t->next)
+						t->next->prev = t->prev;
+					champs[i].reg = get_first_reg(t);
+				}
+				ft_memdel((void**)&t);
 				foam_bat();
 			}
 			else
 				t->live_counter = 0;
 			t = next;
+		}
+		if (d->flag_v)
+		{
+			refresh();
+			sleep(5);
 		}
 	}
 }
@@ -85,15 +96,14 @@ void	battle(t_champ *champs, t_corewar *d)
 		}
 		d->cycle += 1;
 		d->cycle_tmp += 1;
+		d->nbr_live_all = live_counter(champs, d);
 		if (!(cycle_check(champs, d)))
 			break ;
 		game(champs, d, d->map);
-		d->nbr_live_all = live_counter(champs, d);
 		if (d->dump == -1)
 			display_map(d->map, d->colors, d);
 		/* A RETIRER */
 		//usleep(100000);
-		//sleep(1);
 	}
 	end_game(champs, d);
 }

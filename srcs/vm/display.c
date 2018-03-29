@@ -6,7 +6,7 @@
 /*   By: rlecart <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/01/12 02:22:01 by rlecart           #+#    #+#             */
-/*   Updated: 2018/03/19 21:40:09 by rlecart          ###   ########.fr       */
+/*   Updated: 2018/03/29 13:52:27 by rlecart          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,6 +20,7 @@ void	display_header(t_corewar *d)
 		printw("Cycle to die : %d | ", d->cycle_to_die);
 		printw("Cycle delta : %d | ", d->cycle_delta);
 		printw("Max checks : %d | ", d->max_checks);
+		printw("Lives : %d\n\n", d->nbr_live_all);
 		printw("Lives : %d\n\n", d->nbr_live_all);
 	}
 	else
