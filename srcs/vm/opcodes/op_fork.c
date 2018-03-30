@@ -6,7 +6,7 @@
 /*   By: rlecart <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/01/17 21:44:48 by rlecart           #+#    #+#             */
-/*   Updated: 2018/03/29 13:09:12 by rlecart          ###   ########.fr       */
+/*   Updated: 2018/03/30 22:18:15 by rlecart          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,7 +30,6 @@ t_reg	*fork_reg(t_reg *reg, int pc, bool mod)
 	(void)mod;
 	ret->pc = reg->pc;
 	ret->cycle = reg->cycle;
-	//ret->cycle = 0;
 	ret->carry = reg->carry;
 	ret->live_counter = reg->live_counter;
 	ft_memcpy(ret->r, reg->r, sizeof(int) * REG_NUMBER);
@@ -53,7 +52,6 @@ void	op_fork(t_corewar *d, t_reg *reg)
 			pc -= 65535;
 		tmp = fork_reg(reg, pc, true);
 		d->champs[reg->n - 1].reg = tmp;
-		//pc = get_modulo(pc, IDX_MOD);
 		jump_to_next(d, reg, 3, true);
 		jump_to_next(d, tmp, get_modulo(pc, IDX_MOD), false);
 	}

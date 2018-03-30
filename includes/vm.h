@@ -6,7 +6,7 @@
 /*   By: rlecart <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/11/23 06:04:11 by rlecart           #+#    #+#             */
-/*   Updated: 2018/03/29 08:32:29 by rlecart          ###   ########.fr       */
+/*   Updated: 2018/03/30 22:16:27 by rlecart          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -77,6 +77,7 @@ struct				s_corewar
 	int				cycle_delta;
 	int				cycle_to_die;
 	int				nbr_live_all;
+	int				nbr_processes;
 	int				last_live_call;
 	int				numbers[4];
 	int				*colors;
@@ -84,6 +85,7 @@ struct				s_corewar
 	char			*map;
 	char			*(champs_path[4]);
 	void			(*opcodes[17])(t_corewar *, t_reg *);
+	t_reg			**trash;
 	t_champ			*champs;
 };
 

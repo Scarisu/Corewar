@@ -6,7 +6,7 @@
 /*   By: rlecart <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/01/12 02:15:05 by rlecart           #+#    #+#             */
-/*   Updated: 2018/03/29 04:18:17 by rlecart          ###   ########.fr       */
+/*   Updated: 2018/03/30 22:42:11 by rlecart          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -71,23 +71,11 @@ void	game(t_champ *champs, t_corewar *d, char *map)
 		t = champs[i].reg;
 		while (champs[i].is_alive && t)
 		{
-			//printf("champs[%d].is_alive = %d\n", i, champs[i].is_alive);
-			//printf("live_counter = %d\n", t->live_counter);
-			//printf("n = %d\n", t->n);
-			//printf("cycle = %d\n", t->cycle);
-			//printf("%p\n", t->prev);
-			//printf("%p\n", t);
-			//printf("%p\n", t->next);
-			//printf("pc = %d\n\n", t->pc);
-			//refresh();
 			if ((pc = map[t->pc]) > 0 && pc <= 16)
 				d->opcodes[pc](d, t);
 			else
 				d->opcodes[0](d, t);
-			//sleep(2);
 			t = t->next;
 		}
-		//while (champs[i].reg && champs[i].reg->prev)
-		//	champs[i].reg = champs[i].reg->prev;
 	}
 }

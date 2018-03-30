@@ -6,22 +6,41 @@
 /*   By: rlecart <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/01/12 02:22:01 by rlecart           #+#    #+#             */
-/*   Updated: 2018/03/29 13:52:27 by rlecart          ###   ########.fr       */
+/*   Updated: 2018/03/30 22:03:25 by rlecart          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <vm.h>
 
+int		get_processes(int nbc, t_champ *champs)
+{
+	int		count;
+	t_reg	*t;
+
+	count = 0;
+	while (--nbc >= 0)
+	{
+		t = champs[nbc].reg;
+		while (t)
+		{
+			count++;
+			t = t->next;
+		}
+	}
+	return (count);
+}
+
 void	display_header(t_corewar *d)
 {
+	d->nbr_processes = get_processes(d->nbc, d->champs);
 	if (d->flag_v)
 	{
 		printw("Cycle : %d | ", d->cycle);
 		printw("Cycle to die : %d | ", d->cycle_to_die);
 		printw("Cycle delta : %d | ", d->cycle_delta);
 		printw("Max checks : %d | ", d->max_checks);
-		printw("Lives : %d\n\n", d->nbr_live_all);
-		printw("Lives : %d\n\n", d->nbr_live_all);
+		printw("Lives : %d | ", d->nbr_live_all);
+		printw("Processes : %d\n\n", d->nbr_processes);
 	}
 	else
 	{

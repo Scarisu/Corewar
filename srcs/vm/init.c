@@ -6,7 +6,7 @@
 /*   By: rlecart <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/01/16 07:52:05 by rlecart           #+#    #+#             */
-/*   Updated: 2018/03/29 11:21:10 by rlecart          ###   ########.fr       */
+/*   Updated: 2018/03/30 22:04:17 by rlecart          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,6 +36,7 @@ char	*init_battle(t_champ *champs, t_corewar *d)
 	d->cycle = 0;
 	d->cycle_tmp = 0;
 	d->nbr_live_all = 0;
+	d->nbr_processes = 0;
 	d->cycle_to_die = CYCLE_TO_DIE;
 	d->cycle_delta = CYCLE_DELTA;
 	d->max_checks = MAX_CHECKS;

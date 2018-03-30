@@ -6,7 +6,7 @@
 /*   By: rlecart <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/11/23 06:12:46 by rlecart           #+#    #+#             */
-/*   Updated: 2018/03/29 13:45:42 by rlecart          ###   ########.fr       */
+/*   Updated: 2018/03/30 22:54:08 by rlecart          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,8 +30,6 @@ void	process_killer(t_champ *champs, t_corewar *d)
 		while (t)
 		{
 			next = t->next;
-			if (d->flag_v)
-				printw("t->live_counter = %d\n", t->live_counter);
 			if (t->live_counter <= 0)
 			{
 				if (!t->next && !t->prev)
@@ -45,19 +43,14 @@ void	process_killer(t_champ *champs, t_corewar *d)
 						t->prev->next = t->next;
 					if (t->next)
 						t->next->prev = t->prev;
-					champs[i].reg = get_first_reg(t);
 				}
 				ft_memdel((void**)&t);
+				champs[i].reg = get_first_reg(next);
 				foam_bat();
 			}
 			else
 				t->live_counter = 0;
 			t = next;
-		}
-		if (d->flag_v)
-		{
-			refresh();
-			sleep(5);
 		}
 	}
 }
