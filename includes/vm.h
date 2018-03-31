@@ -6,7 +6,7 @@
 /*   By: rlecart <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/11/23 06:04:11 by rlecart           #+#    #+#             */
-/*   Updated: 2018/03/30 22:16:27 by rlecart          ###   ########.fr       */
+/*   Updated: 2018/03/31 00:47:43 by rlecart          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,11 +24,19 @@
 # define O_DIR		2
 # define O_IND		4
 
-typedef struct		s_reg			t_reg;
-typedef struct		s_champ			t_champ;
-typedef struct		s_corewar		t_corewar;
-typedef struct		s_ocp			t_ocp;
-typedef struct		s_need_ocp		t_need_ocp;
+typedef struct s_reg			t_reg;
+typedef struct s_champ			t_champ;
+typedef struct s_corewar		t_corewar;
+typedef struct s_ocp			t_ocp;
+typedef struct s_need_ocp		t_need_ocp;
+typedef struct s_need_norm		t_need_norm;
+
+struct				s_need_norm
+{
+	int		i;
+	int		tp[2];
+	int		r[3];
+};
 
 struct				s_need_ocp
 {
@@ -139,11 +147,12 @@ int					find_ocp(t_ocp *ret, unsigned char op, unsigned char ocp);
 int					get_modulo(int n, int modulo);
 bool				is_anybody_here(t_corewar *d, int pc);
 bool				valid_ocp(t_ocp *ocp, unsigned char op);
-bool				false_command(t_corewar *d, t_reg *reg, bool carry);
+bool				false_cmd(t_corewar *d, t_reg *reg, bool carry);
 void				true_pc(int *pc);
 void				put_hexa(t_corewar *d, int nbc, int pc, int value);
 void				jump_to_next(t_corewar *d, t_reg *reg, int o, bool fork);
 t_reg				*get_first_reg(t_reg *reg);
+int					get_processes(int nbc, t_champ *champs);
 
 void				print_reg(t_reg *reg);
 

@@ -6,7 +6,7 @@
 /*   By: rlecart <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/11/23 06:12:46 by rlecart           #+#    #+#             */
-/*   Updated: 2018/03/30 22:54:08 by rlecart          ###   ########.fr       */
+/*   Updated: 2018/03/30 23:10:39 by rlecart          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,22 @@
 
 void	foam_bat(void)
 {
-	/* FOAM BAT SOUND */
+}
+
+void	delete_process(t_reg *t, t_reg *next, t_champ *champs, int i)
+{
+	if (!t->next && !t->prev && !(champs[i].is_alive = false))
+		ft_memdel((void**)&champs[i].reg);
+	else
+	{
+		if (t->prev)
+			t->prev->next = t->next;
+		if (t->next)
+			t->next->prev = t->prev;
+	}
+	ft_memdel((void**)&t);
+	champs[i].reg = get_first_reg(next);
+	foam_bat();
 }
 
 void	process_killer(t_champ *champs, t_corewar *d)
@@ -31,23 +46,7 @@ void	process_killer(t_champ *champs, t_corewar *d)
 		{
 			next = t->next;
 			if (t->live_counter <= 0)
-			{
-				if (!t->next && !t->prev)
-				{
-					ft_memdel((void**)&champs[i].reg);
-					champs[i].is_alive = false;
-				}
-				else
-				{
-					if (t->prev)
-						t->prev->next = t->next;
-					if (t->next)
-						t->next->prev = t->prev;
-				}
-				ft_memdel((void**)&t);
-				champs[i].reg = get_first_reg(next);
-				foam_bat();
-			}
+				delete_process(t, next, champs, i);
 			else
 				t->live_counter = 0;
 			t = next;
@@ -95,8 +94,6 @@ void	battle(t_champ *champs, t_corewar *d)
 		game(champs, d, d->map);
 		if (d->dump == -1)
 			display_map(d->map, d->colors, d);
-		/* A RETIRER */
-		//usleep(100000);
 	}
 	end_game(champs, d);
 }

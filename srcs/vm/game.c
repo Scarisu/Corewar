@@ -6,18 +6,19 @@
 /*   By: rlecart <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/01/12 02:15:05 by rlecart           #+#    #+#             */
-/*   Updated: 2018/03/30 22:42:11 by rlecart          ###   ########.fr       */
+/*   Updated: 2018/03/30 23:17:13 by rlecart          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <vm.h>
 
-void	end_ww(t_corewar *d)
+int		end_ww(t_corewar *d)
 {
 	if (d->flag_v)
 		printw("\nAucun champion n'a gagne.\n");
 	else
 		ft_putstr("Aucun champion n'a gagne.\n");
+	return (1);
 }
 
 void	end_game(t_champ *champs, t_corewar *d)
@@ -25,11 +26,8 @@ void	end_game(t_champ *champs, t_corewar *d)
 	int		i;
 
 	i = 0;
-	if (d->last_live_call <= 0)
-	{
-		end_ww(d);
+	if (d->last_live_call <= 0 && end_ww(d))
 		return ;
-	}
 	if (d->flag_v)
 	{
 		printw("Le joueur %d(", i + 1);
@@ -67,7 +65,6 @@ void	game(t_champ *champs, t_corewar *d, char *map)
 	i = d->nbc;
 	while (--i >= 0)
 	{
-		//t = get_first_reg(champs[i].reg);
 		t = champs[i].reg;
 		while (champs[i].is_alive && t)
 		{

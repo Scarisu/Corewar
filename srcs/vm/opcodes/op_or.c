@@ -6,7 +6,7 @@
 /*   By: rlecart <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/01/17 21:45:23 by rlecart           #+#    #+#             */
-/*   Updated: 2018/03/10 08:21:59 by rlecart          ###   ########.fr       */
+/*   Updated: 2018/03/31 00:35:48 by rlecart          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,8 +27,8 @@ void	op_or_loop(t_corewar *d, t_reg *reg, t_ocp ocp, int pc)
 			r[i] = find_hexa(d->map, pc, len[0]);
 		else if (ocp.p[i] == O_IND && (len[0] = 2))
 		{
-			if ((r[i] = find_hexa(d->map, pc, len[0])) > 65535 / 2)
-				r[i] -= 65535;
+			if ((r[i] = find_hexa(d->map, pc, len[0])) > 65536 / 2)
+				r[i] -= 65536;
 			r[i] = find_hexa(d->map, pc + r[i] - len[0] - 1, len[0] + 2);
 		}
 		else
@@ -49,7 +49,8 @@ void	op_or(t_corewar *d, t_reg *reg)
 	if (++reg->cycle == 7 && !(reg->cycle = 0))
 	{
 		(pc = reg->pc + 1) >= MEM_SIZE ? pc -= MEM_SIZE : pc;
-		if (!(find_ocp(&ocp, d->map[reg->pc], d->map[pc])) && (false_command(d, reg, true)))
+		if (!(find_ocp(&ocp, d->map[reg->pc], d->map[pc])) &&
+				(false_cmd(d, reg, true)))
 			return ;
 		(++pc) >= MEM_SIZE ? pc -= MEM_SIZE : pc;
 		op_or_loop(d, reg, ocp, pc);

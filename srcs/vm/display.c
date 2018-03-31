@@ -6,29 +6,11 @@
 /*   By: rlecart <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/01/12 02:22:01 by rlecart           #+#    #+#             */
-/*   Updated: 2018/03/30 22:03:25 by rlecart          ###   ########.fr       */
+/*   Updated: 2018/03/30 23:17:36 by rlecart          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <vm.h>
-
-int		get_processes(int nbc, t_champ *champs)
-{
-	int		count;
-	t_reg	*t;
-
-	count = 0;
-	while (--nbc >= 0)
-	{
-		t = champs[nbc].reg;
-		while (t)
-		{
-			count++;
-			t = t->next;
-		}
-	}
-	return (count);
-}
 
 void	display_header(t_corewar *d)
 {

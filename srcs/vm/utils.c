@@ -6,11 +6,29 @@
 /*   By: rlecart <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/01/17 23:39:21 by rlecart           #+#    #+#             */
-/*   Updated: 2018/03/29 08:59:51 by rlecart          ###   ########.fr       */
+/*   Updated: 2018/03/30 23:18:43 by rlecart          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <vm.h>
+
+int		get_processes(int nbc, t_champ *champs)
+{
+	int		count;
+	t_reg	*t;
+
+	count = 0;
+	while (--nbc >= 0)
+	{
+		t = champs[nbc].reg;
+		while (t)
+		{
+			count++;
+			t = t->next;
+		}
+	}
+	return (count);
+}
 
 bool	is_anybody_here(t_corewar *d, int pc)
 {
@@ -41,17 +59,8 @@ void	jump_to_next(t_corewar *d, t_reg *reg, int o, bool fork)
 		d->colors[reg->pc] -= 5;
 	reg->pc += o;
 	true_pc(&reg->pc);
-//	while (reg->pc >= MEM_SIZE || reg->pc < 0)
-//	{
-//		if (reg->pc >= MEM_SIZE)
-//			reg->pc -= MEM_SIZE;
-//		else if (reg->pc < 0)
-//			reg->pc += MEM_SIZE;
-//	}
 	if (!(is_anybody_here(d, reg->pc)))
 		d->colors[reg->pc] += 5;
-	//d->colors[reg->pc] += 5 >= 10 ? 0 : 5;
-	//sleep(1);
 }
 
 int		find_hexa(char *str, int i, int len)

@@ -6,11 +6,25 @@
 /*   By: rlecart <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/01/16 07:52:05 by rlecart           #+#    #+#             */
-/*   Updated: 2018/03/30 22:04:17 by rlecart          ###   ########.fr       */
+/*   Updated: 2018/03/31 07:15:29 by rlecart          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <vm.h>
+
+void	init_values(t_corewar *d, char *map, t_champ *champs)
+{
+	d->cycle = 0;
+	d->cycle_tmp = 0;
+	d->nbr_live_all = 0;
+	d->nbr_processes = 0;
+	d->cycle_to_die = CYCLE_TO_DIE;
+	d->cycle_delta = CYCLE_DELTA;
+	d->max_checks = MAX_CHECKS;
+	d->last_live_call = 0;
+	d->map = map;
+	d->champs = champs;
+}
 
 char	*init_battle(t_champ *champs, t_corewar *d)
 {
@@ -21,7 +35,8 @@ char	*init_battle(t_champ *champs, t_corewar *d)
 	map = ft_memalloc(MEM_SIZE);
 	while (++i < d->nbc)
 	{
-		ft_memcpy(&map[MEM_SIZE / d->nbc * i], champs[i].content, champs[i].len);
+		ft_memcpy(&map[MEM_SIZE / d->nbc * i], champs[i].content,
+				champs[i].len);
 		REG = ft_memalloc(sizeof(t_reg));
 		ft_bzero(REG->r, sizeof(REG->r));
 		REG->r[0] = i + 1;
@@ -33,16 +48,7 @@ char	*init_battle(t_champ *champs, t_corewar *d)
 		REG->prev = NULL;
 		REG->next = NULL;
 	}
-	d->cycle = 0;
-	d->cycle_tmp = 0;
-	d->nbr_live_all = 0;
-	d->nbr_processes = 0;
-	d->cycle_to_die = CYCLE_TO_DIE;
-	d->cycle_delta = CYCLE_DELTA;
-	d->max_checks = MAX_CHECKS;
-	d->last_live_call = 0;
-	d->map = map;
-	d->champs = champs;
+	init_values(d, map, champs);
 	return (map);
 }
 

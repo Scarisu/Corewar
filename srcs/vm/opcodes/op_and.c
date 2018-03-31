@@ -6,11 +6,22 @@
 /*   By: rlecart <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/01/17 21:44:42 by rlecart           #+#    #+#             */
-/*   Updated: 2018/03/10 08:21:38 by rlecart          ###   ########.fr       */
+/*   Updated: 2018/03/31 07:48:42 by rlecart          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <vm.h>
+
+int		find_ind_and(t_corewar *d, int pc, int len[2])
+{
+	int		param;
+
+	if ((param = find_hexa(d->map, pc, len[0])) > 65536 / 2)
+		param -= 65536;
+	param = find_hexa(d->map, pc + ((param - len[0] - 1) % IDX_MOD),
+			len[0] + 2);
+	return (param);
+}
 
 void	op_and_loop(t_corewar *d, t_reg *reg, t_ocp ocp, int pc)
 {
@@ -26,11 +37,7 @@ void	op_and_loop(t_corewar *d, t_reg *reg, t_ocp ocp, int pc)
 		if (ocp.p[i] == O_DIR && (len[0] = 4))
 			r[i] = find_hexa(d->map, pc, len[0]);
 		else if (ocp.p[i] == O_IND && (len[0] = 2))
-		{
-			if ((r[i] = find_hexa(d->map, pc, len[0])) > 65535 / 2)
-				r[i] -= 65535;
-			r[i] = find_hexa(d->map, pc + ((r[i] - len[0] - 1) % IDX_MOD), len[0] + 2);
-		}
+			r[i] = find_ind_and(d, pc, len);
 		else
 			r[i] = d->map[pc] - 1;
 		(pc += len[0]) >= MEM_SIZE ? pc -= MEM_SIZE : pc;
@@ -49,7 +56,8 @@ void	op_and(t_corewar *d, t_reg *reg)
 	if (++reg->cycle == 7 && !(reg->cycle = 0))
 	{
 		(pc = reg->pc + 1) >= MEM_SIZE ? pc -= MEM_SIZE : pc;
-		if (!(find_ocp(&ocp, d->map[reg->pc], d->map[pc])) && (false_command(d, reg, true)))
+		if (!(find_ocp(&ocp, d->map[reg->pc], d->map[pc])) &&
+				(false_cmd(d, reg, true)))
 			return ;
 		(++pc) >= MEM_SIZE ? pc -= MEM_SIZE : pc;
 		op_and_loop(d, reg, ocp, pc);

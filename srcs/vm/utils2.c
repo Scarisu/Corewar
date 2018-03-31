@@ -6,13 +6,13 @@
 /*   By: rlecart <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/02/09 04:14:13 by rlecart           #+#    #+#             */
-/*   Updated: 2018/03/29 08:08:24 by rlecart          ###   ########.fr       */
+/*   Updated: 2018/03/31 00:48:01 by rlecart          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <vm.h>
 
-bool	false_command(t_corewar *d, t_reg *reg, bool carry)
+bool	false_cmd(t_corewar *d, t_reg *reg, bool carry)
 {
 	jump_to_next(d, reg, 1, false);
 	if (carry)
@@ -49,8 +49,6 @@ void	true_pc(int *pc)
 			*pc += MEM_SIZE;
 	}
 }
-
-//put_hexa(d, reg->n, reg->pc + param, reg->r[r - 1]);
 
 void	put_hexa(t_corewar *d, int nbc, int pc, int value)
 {

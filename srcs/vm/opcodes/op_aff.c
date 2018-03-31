@@ -6,7 +6,7 @@
 /*   By: rlecart <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/01/17 21:44:34 by rlecart           #+#    #+#             */
-/*   Updated: 2018/03/29 02:09:16 by rlecart          ###   ########.fr       */
+/*   Updated: 2018/03/31 00:35:14 by rlecart          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,13 +41,14 @@ void	op_aff(t_corewar *d, t_reg *reg)
 	if (++reg->cycle == 2 && !(reg->cycle = 0))
 	{
 		(pc = reg->pc + 1) >= MEM_SIZE ? pc -= MEM_SIZE : pc;
-		if (!(find_ocp(&ocp, d->map[reg->pc], d->map[pc])) && (false_command(d, reg, true)))
+		if (!(find_ocp(&ocp, d->map[reg->pc], d->map[pc])) &&
+				(false_cmd(d, reg, true)))
 			return ;
 		(++pc) >= MEM_SIZE ? pc -= MEM_SIZE : pc;
 		if ((r = find_hexa(d->map, pc, 1)) >= 1 && r <= 16)
 			say_something(reg->r[r - 1], d, reg);
 		else
-			false_command(d, reg, true);
+			false_cmd(d, reg, true);
 		jump_to_next(d, reg, 2, false);
 	}
 }

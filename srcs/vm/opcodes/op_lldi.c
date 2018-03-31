@@ -6,42 +6,47 @@
 /*   By: rlecart <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/01/17 21:45:18 by rlecart           #+#    #+#             */
-/*   Updated: 2018/03/10 08:21:55 by rlecart          ###   ########.fr       */
+/*   Updated: 2018/03/30 23:39:44 by rlecart          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <vm.h>
 
+void	lldi_norm(int tpc[2], t_reg *reg, int r[2], t_corewar *d)
+{
+	tpc[0] = reg->pc - (r[0] + r[1]);
+	true_pc(&tpc[0]);
+	if (r[2] >= 1 && r[2] <= 16)
+		reg->r[r[2] - 1] = find_hexa(d->map, tpc[0], 4);
+	reg->carry = !reg->r[r[2] - 1] ? 1 : 0;
+	jump_to_next(d, reg, tpc[1] - reg->pc, false);
+}
+
 void	op_lldi(t_corewar *d, t_reg *reg)
 {
 	int		i;
-	int		pc;
-	int		tmp;
+	int		tpc[2];
 	int		r[3];
 	t_ocp	ocp;
 
 	if (++reg->cycle == 25 && !(reg->cycle = 0))
 	{
 		i = -1;
-		(pc = reg->pc + 1) >= MEM_SIZE ? pc -= MEM_SIZE : pc;
-		if (!(find_ocp(&ocp, d->map[reg->pc], d->map[pc])) && (false_command(d, reg, true)))
+		(tpc[1] = reg->pc + 1) >= MEM_SIZE ? tpc[1] -= MEM_SIZE : tpc[1];
+		if (!(find_ocp(&ocp, d->map[reg->pc], d->map[tpc[1]])) &&
+				(false_cmd(d, reg, true)))
 			return ;
-		(++pc) >= MEM_SIZE ? pc -= MEM_SIZE : pc;
+		(++tpc[1]) >= MEM_SIZE ? tpc[1] -= MEM_SIZE : tpc[1];
 		while (++i < 3)
 		{
-			tmp = ocp.p[i] == O_REG ? 1 : 2;
-			r[i] = find_hexa(d->map, pc, tmp);
+			tpc[0] = ocp.p[i] == O_REG ? 1 : 2;
+			r[i] = find_hexa(d->map, tpc[1], tpc[0]);
 			if (i < 2 && ocp.p[i] == O_REG && r[i] >= 1 && r[i] <= 16)
 				r[i] = reg->r[r[i] - 1];
-			else if (i < 2 && ocp.p[i] == O_REG && (false_command(d, reg, true)))
+			else if (i < 2 && ocp.p[i] == O_REG && (false_cmd(d, reg, true)))
 				return ;
-			(pc += tmp) >= MEM_SIZE ? pc -= MEM_SIZE : pc;
+			(tpc[1] += tpc[0]) >= MEM_SIZE ? tpc[1] -= MEM_SIZE : tpc[1];
 		}
-		tmp = reg->pc - (r[0] + r[1]);
-		true_pc(&tmp);
-		if (r[2] >= 1 && r[2] <= 16)
-			reg->r[r[2] - 1] = find_hexa(d->map, tmp, 4);
-		reg->carry = !reg->r[r[2] - 1] ? 1 : 0;
-		jump_to_next(d, reg, pc - reg->pc, false);
+		lldi_norm(tpc, reg, r, d);
 	}
 }
