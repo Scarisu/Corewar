@@ -6,7 +6,7 @@
 /*   By: rlecart <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/01/17 21:44:58 by rlecart           #+#    #+#             */
-/*   Updated: 2018/04/03 13:03:42 by rlecart          ###   ########.fr       */
+/*   Updated: 2018/04/03 15:19:28 by rlecart          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -58,6 +58,8 @@ void	op_ldi(t_corewar *d, t_reg *reg)
 				return ;
 			else if (ocp.p[i] == O_IND)
 				r[i] = find_ind_ldi(d, reg, r[i]);
+			else if (ocp.p[i] == O_DIR && r[i] > 65536 / 2)
+				r[i] -= 65536;
 			(tpc[1] += tpc[0]) >= MEM_SIZE ? tpc[1] -= MEM_SIZE : tpc[1];
 		}
 		ldi_norm(tpc, reg, r, d);
