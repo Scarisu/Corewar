@@ -6,7 +6,7 @@
 /*   By: rlecart <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/01/17 21:45:07 by rlecart           #+#    #+#             */
-/*   Updated: 2018/04/03 13:04:56 by rlecart          ###   ########.fr       */
+/*   Updated: 2018/04/03 18:01:08 by rlecart          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,13 +14,15 @@
 
 void	im_alive(t_corewar *d, t_champ *champs, t_reg *reg)
 {
-	attron(COLOR_PAIR(d->colors[reg->pc] - 5));
+	attron(COLOR_PAIR(d->colors[reg->pc]));
 	printw("%s", champs->name);
-	attroff(COLOR_PAIR(d->colors[reg->pc] - 5));
+	attroff(COLOR_PAIR(d->colors[reg->pc]));
 	printw(": IM ALIIIVE\n", reg->n);
 	refresh();
-	//usleep(100000);
 }
+/*
+** usleep(100000);
+*/
 
 void	op_live(t_corewar *d, t_reg *reg)
 {
