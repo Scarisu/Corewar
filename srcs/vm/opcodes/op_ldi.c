@@ -6,7 +6,7 @@
 /*   By: rlecart <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/01/17 21:44:58 by rlecart           #+#    #+#             */
-/*   Updated: 2018/04/03 12:46:14 by rlecart          ###   ########.fr       */
+/*   Updated: 2018/04/03 13:03:42 by rlecart          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,6 +24,7 @@ void	ldi_norm(int tpc[2], t_reg *reg, int r[3], t_corewar *d)
 {
 	tpc[0] = reg->pc + ((r[0] + r[1]) % IDX_MOD);
 	true_pc(&tpc[0]);
+	reg->carry = 0;
 	if (r[2] >= 1 && r[2] <= 16)
 	{
 		reg->r[r[2] - 1] = find_hexa(d->map, tpc[0], 4);

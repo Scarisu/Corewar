@@ -6,7 +6,7 @@
 /*   By: rlecart <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/01/17 21:45:31 by rlecart           #+#    #+#             */
-/*   Updated: 2018/04/03 12:11:10 by rlecart          ###   ########.fr       */
+/*   Updated: 2018/04/03 14:54:14 by rlecart          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,7 +16,7 @@ int		find_ind_sti(t_corewar *d, t_reg *reg, int param)
 {
 	if (param > 65536 / 2)
 		param -= 65536;
-	param = find_hexa(d->map, reg->pc + param, 4);
+	param = find_hexa(d->map, reg->pc + (param % IDX_MOD), 4);
 	return (param);
 }
 
@@ -47,10 +47,13 @@ void	op_sti(t_corewar *d, t_reg *reg)
 			n.r[n.i] = find_hexa(d->map, n.tp[1], n.tp[0]);
 			if (ocp.p[n.i] == O_REG && n.r[n.i] >= 1 && n.r[n.i] <= 16)
 				n.r[n.i] = reg->r[n.r[n.i] - 1];
-			else if (ocp.p[n.i] == O_IND)
-				n.r[n.i] = find_ind_sti(d, reg, n.tp[1]);
-			if (ocp.p[n.i] != O_REG && n.r[n.i] > 65536 / 2)
+			else if (ocp.p[n.i] == O_DIR && n.r[n.i] > 65536 / 2)
 				n.r[n.i] -= 65536;
+			else if (ocp.p[n.i] == O_IND)
+				n.r[n.i] = find_ind_sti(d, reg, n.r[n.i]);
+			else if (ocp.p[n.i] == O_REG && (n.r[n.i] < 1 || n.r[n.i] > 16) &&
+					(false_cmd(d, reg, true)))
+				return ;
 			(n.tp[1] += n.tp[0]) >= MEM_SIZE ? n.tp[1] -= MEM_SIZE : n.tp[1];
 		}
 		sti_norm(n.tp, reg, n.r, d);

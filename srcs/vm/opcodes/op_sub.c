@@ -6,7 +6,7 @@
 /*   By: rlecart <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/01/17 21:45:34 by rlecart           #+#    #+#             */
-/*   Updated: 2018/04/03 12:05:14 by rlecart          ###   ########.fr       */
+/*   Updated: 2018/04/03 13:23:12 by rlecart          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,7 +29,7 @@ void	op_sub(t_corewar *d, t_reg *reg)
 		while (++i < 3)
 		{
 			(++pc) >= MEM_SIZE ? pc -= MEM_SIZE : pc;
-			if (((r[i] = d->map[pc] - 1) < 0 || r[i] > 16) &&
+			if (((r[i] = d->map[pc] - 1) < 0 || r[i] >= 16) &&
 					(false_cmd(d, reg, true)))
 				return ;
 		}

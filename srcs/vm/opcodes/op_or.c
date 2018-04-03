@@ -6,11 +6,21 @@
 /*   By: rlecart <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/01/17 21:45:23 by rlecart           #+#    #+#             */
-/*   Updated: 2018/04/03 12:04:48 by rlecart          ###   ########.fr       */
+/*   Updated: 2018/04/03 13:49:48 by rlecart          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <vm.h>
+
+int		find_ind_or(t_corewar *d, t_reg *reg, int pc, int len)
+{
+	int		param;
+
+	if ((param = find_hexa(d->map, pc, len) > 65536 / 2))
+		param -= 65536;
+	param = find_hexa(d->map, reg->pc + (param % IDX_MOD), len);
+	return (param);
+}
 
 void	op_or_loop(t_corewar *d, t_reg *reg, t_ocp ocp, int pc)
 {
@@ -26,13 +36,12 @@ void	op_or_loop(t_corewar *d, t_reg *reg, t_ocp ocp, int pc)
 		if (ocp.p[i] == O_DIR && (len[0] = 4))
 			r[i] = find_hexa(d->map, pc, len[0]);
 		else if (ocp.p[i] == O_IND && (len[0] = 2))
-		{
-			if ((r[i] = find_hexa(d->map, pc, len[0])) > 65536 / 2)
-				r[i] -= 65536;
-			r[i] = find_hexa(d->map, pc + r[i] - len[0] - 1, len[0] + 2);
-		}
-		else
-			r[i] = d->map[pc] - 1;
+			r[i] = find_ind_or(d, reg, pc, len[0]);
+		else if (((r[i] = d->map[pc] - 1) < 0 || r[i] >= 16) &&
+				(false_cmd(d, reg, true)))
+			return ;
+		else if (i < 2 && r[i] >= 0 && r[i] < 16)
+			r[i] = reg->r[r[i]];
 		(pc += len[0]) >= MEM_SIZE ? pc -= MEM_SIZE : pc;
 		len[1] += len[0];
 	}

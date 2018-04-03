@@ -3,4 +3,7 @@
 
 live:	live %1
 
-ldi:	ldi 50, %50, r2
+ld:		ld %4200, r2
+		ld %4000, r3
+
+sti:	sti r2, :live, %450
