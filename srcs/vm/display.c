@@ -6,7 +6,7 @@
 /*   By: rlecart <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/01/12 02:22:01 by rlecart           #+#    #+#             */
-/*   Updated: 2018/03/30 23:17:36 by rlecart          ###   ########.fr       */
+/*   Updated: 2018/04/03 07:52:57 by rlecart          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,24 +43,27 @@ void	display_header(t_corewar *d)
 void	display_v(char *map, int *colors, t_corewar *d)
 {
 	int		i;
+	int		sq;
 	char	*tmp;
 
 	i = -1;
 	erase();
 	display_header(d);
+	sq = ft_sqrt(MEM_SIZE);
 	while (++i < MEM_SIZE)
 	{
 		attron(COLOR_PAIR(colors[i]));
-		if (map[i] >= 0 && map[i] < 16)
-			printw("0");
-		if (map[i] < 0)
-			tmp = ft_itoa_base(256 + map[i], 16);
-		else
-			tmp = ft_itoa_base(map[i], 16);
-		printw("%s", tmp);
-		ft_strdel(&tmp);
+		//if (map[i] >= 0 && map[i] < 16)
+			//printw("0");
+		//if (map[i] < 0)
+		//	tmp = ft_itoa_base(256 + map[i], 16);
+		//else
+		//	tmp = ft_itoa_base(map[i], 16);
+		printw("%02hhx", map[i]);
+		(void)tmp;
+		//ft_strdel(&tmp);
 		attroff(COLOR_PAIR(colors[i]));
-		if ((i + 1) % (ft_sqrt(MEM_SIZE)))
+		if ((i + 1) % sq)
 			printw(" ");
 		else
 			printw("\n");
@@ -88,10 +91,12 @@ void	display_champs_color(int color)
 void	display(char *map, int *colors, t_corewar *d)
 {
 	int		i;
+	int		sq;
 	char	*tmp;
 
 	i = -1;
 	display_header(d);
+	sq = ft_sqrt(MEM_SIZE) / 2;
 	while (++i < MEM_SIZE)
 	{
 		display_champs_color(colors[i]);
@@ -104,11 +109,10 @@ void	display(char *map, int *colors, t_corewar *d)
 		ft_putstr(tmp);
 		ft_strdel(&tmp);
 		display_champs_color(0);
-		if ((i + 1) % (ft_sqrt(MEM_SIZE) / 2))
+		if ((i + 1) % sq)
 			ft_putchar(' ');
 		else
 			ft_putchar('\n');
-		ft_putstr("");
 	}
 	ft_putchar('\n');
 }

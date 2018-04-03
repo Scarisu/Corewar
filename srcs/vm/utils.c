@@ -6,7 +6,7 @@
 /*   By: rlecart <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/01/17 23:39:21 by rlecart           #+#    #+#             */
-/*   Updated: 2018/03/30 23:18:43 by rlecart          ###   ########.fr       */
+/*   Updated: 2018/04/03 07:52:10 by rlecart          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -55,11 +55,11 @@ bool	is_anybody_here(t_corewar *d, int pc)
 
 void	jump_to_next(t_corewar *d, t_reg *reg, int o, bool fork)
 {
-	if (!fork && !(is_anybody_here(d, reg->pc)))
+	if (!fork && !(is_anybody_here(d, reg->pc)) && d->colors[reg->pc] - 5 > 0)
 		d->colors[reg->pc] -= 5;
 	reg->pc += o;
 	true_pc(&reg->pc);
-	if (!(is_anybody_here(d, reg->pc)))
+	if (!(is_anybody_here(d, reg->pc)) && d->colors[reg->pc] + 5 < 11)
 		d->colors[reg->pc] += 5;
 }
 
