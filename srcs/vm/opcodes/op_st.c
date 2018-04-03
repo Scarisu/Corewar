@@ -6,7 +6,7 @@
 /*   By: rlecart <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/01/17 21:45:27 by rlecart           #+#    #+#             */
-/*   Updated: 2018/04/03 12:05:00 by rlecart          ###   ########.fr       */
+/*   Updated: 2018/04/03 15:13:48 by rlecart          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,6 +48,6 @@ void	op_st(t_corewar *d, t_reg *reg)
 			jump_to_next(reg, rpc[1]);
 		}
 		else
-			jump_to_next(reg, 1);
+			false_cmd(d, reg, true);
 	}
 }
