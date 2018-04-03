@@ -6,7 +6,7 @@
 /*   By: rlecart <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/01/17 21:54:09 by rlecart           #+#    #+#             */
-/*   Updated: 2018/03/04 00:54:37 by rlecart          ###   ########.fr       */
+/*   Updated: 2018/04/03 12:06:03 by rlecart          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,5 +14,6 @@
 
 void	op_null(t_corewar *d, t_reg *reg)
 {
-	jump_to_next(d, reg, 1, false);
+	(void)d;
+	jump_to_next(reg, 1);
 }

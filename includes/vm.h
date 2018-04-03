@@ -6,7 +6,7 @@
 /*   By: rlecart <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/11/23 06:04:11 by rlecart           #+#    #+#             */
-/*   Updated: 2018/03/31 00:47:43 by rlecart          ###   ########.fr       */
+/*   Updated: 2018/04/03 12:02:31 by rlecart          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -150,7 +150,7 @@ bool				valid_ocp(t_ocp *ocp, unsigned char op);
 bool				false_cmd(t_corewar *d, t_reg *reg, bool carry);
 void				true_pc(int *pc);
 void				put_hexa(t_corewar *d, int nbc, int pc, int value);
-void				jump_to_next(t_corewar *d, t_reg *reg, int o, bool fork);
+void				jump_to_next(t_reg *reg, int o);
 t_reg				*get_first_reg(t_reg *reg);
 int					get_processes(int nbc, t_champ *champs);
 

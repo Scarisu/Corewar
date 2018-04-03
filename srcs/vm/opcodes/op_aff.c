@@ -6,7 +6,7 @@
 /*   By: rlecart <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/01/17 21:44:34 by rlecart           #+#    #+#             */
-/*   Updated: 2018/03/31 00:35:14 by rlecart          ###   ########.fr       */
+/*   Updated: 2018/04/03 12:03:14 by rlecart          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,6 +49,6 @@ void	op_aff(t_corewar *d, t_reg *reg)
 			say_something(reg->r[r - 1], d, reg);
 		else
 			false_cmd(d, reg, true);
-		jump_to_next(d, reg, 2, false);
+		jump_to_next(reg, 2);
 	}
 }

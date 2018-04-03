@@ -6,7 +6,7 @@
 /*   By: rlecart <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/01/12 02:22:01 by rlecart           #+#    #+#             */
-/*   Updated: 2018/04/03 07:52:57 by rlecart          ###   ########.fr       */
+/*   Updated: 2018/04/03 11:56:15 by rlecart          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,7 +44,6 @@ void	display_v(char *map, int *colors, t_corewar *d)
 {
 	int		i;
 	int		sq;
-	char	*tmp;
 
 	i = -1;
 	erase();
@@ -53,15 +52,7 @@ void	display_v(char *map, int *colors, t_corewar *d)
 	while (++i < MEM_SIZE)
 	{
 		attron(COLOR_PAIR(colors[i]));
-		//if (map[i] >= 0 && map[i] < 16)
-			//printw("0");
-		//if (map[i] < 0)
-		//	tmp = ft_itoa_base(256 + map[i], 16);
-		//else
-		//	tmp = ft_itoa_base(map[i], 16);
 		printw("%02hhx", map[i]);
-		(void)tmp;
-		//ft_strdel(&tmp);
 		attroff(COLOR_PAIR(colors[i]));
 		if ((i + 1) % sq)
 			printw(" ");
@@ -117,11 +108,82 @@ void	display(char *map, int *colors, t_corewar *d)
 	ft_putchar('\n');
 }
 
+int		get_color_here(t_corewar *d, int pc)
+{
+	int			i;
+	int			ret;
+	t_reg		*tmp;
+	t_champ		*c;
+
+	i = d->nbc;
+	ret = 5;
+	c = d->champs;
+	while (--i >= 0)
+	{
+		tmp = c[i].reg;
+		while (tmp)
+		{
+			if (tmp->pc == pc)
+				ret = tmp->n;
+			tmp = tmp->next;
+		}
+	}
+	return (ret);
+}
+
+void	light_up_pc(t_corewar *d, int *colors)
+{
+	int		i;
+
+	i = -1;
+	while (++i < MEM_SIZE)
+	{
+		if ((is_anybody_here(d, i)))
+			colors[i] += 5;
+	}
+}
+
+void	light_down(t_corewar *d, int *colors)
+{
+	int		i;
+
+	i = -1;
+	while (++i < MEM_SIZE)
+	{
+		if ((is_anybody_here(d, i)))
+			colors[i] -= 5;
+	}
+}
+
+void	dis_oui(int *colors)
+{
+	int		i;
+	int		sq;
+
+	i = -1;
+	sq = ft_sqrt(MEM_SIZE);
+	erase();
+	while (++i < MEM_SIZE)
+	{
+		attron(COLOR_PAIR(colors[i]));
+		printw("%02hhd", colors[i]);
+		attroff(COLOR_PAIR(colors[i]));
+		if ((i + 1) % sq)
+			printw(" ");
+		else
+			printw("\n");
+	}
+	refresh();
+}
+
 void	display_map(char *map, int *colors, t_corewar *d)
 {
+	light_up_pc(d, colors);
 	if (d->flag_v && d->dump == -1)
+		//dis_oui(colors);
 		display_v(map, colors, d);
 	else if (!d->flag_v && d->dump > 0)
 		display(map, colors, d);
 	ft_putstr(C_RESET);
+	light_down(d, colors);
 }

@@ -6,7 +6,7 @@
 /*   By: rlecart <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/01/17 21:45:27 by rlecart           #+#    #+#             */
-/*   Updated: 2018/04/03 07:03:43 by rlecart          ###   ########.fr       */
+/*   Updated: 2018/04/03 12:05:00 by rlecart          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,30 +25,29 @@ int		find_ind_st(t_corewar *d, t_reg *reg, int pc, int r)
 
 void	op_st(t_corewar *d, t_reg *reg)
 {
-	int		r;
-	int		pc;
 	int		param;
+	int		rpc[2];
 	t_ocp	ocp;
 
 	param = 0;
 	if (++reg->cycle == 5 && !(reg->cycle = 0))
 	{
-		(pc = reg->pc + 1) >= MEM_SIZE ? pc -= MEM_SIZE : pc;
-		if (!(find_ocp(&ocp, d->map[reg->pc], d->map[pc])) &&
+		(rpc[1] = reg->pc + 1) >= MEM_SIZE ? rpc[1] -= MEM_SIZE : rpc[1];
+		if (!(find_ocp(&ocp, d->map[reg->pc], d->map[rpc[1]])) &&
 				(false_cmd(d, reg, true)))
 			return ;
-		(++pc) >= MEM_SIZE ? pc -= MEM_SIZE : pc;
-		if ((r = d->map[pc]) >= 1 && r <= 16)
+		(++rpc[1]) >= MEM_SIZE ? rpc[1] -= MEM_SIZE : rpc[1];
+		if ((rpc[0] = d->map[rpc[1]]) >= 1 && rpc[0] <= 16)
 		{
-			(++pc) >= MEM_SIZE ? pc -= MEM_SIZE : pc;
+			(++rpc[1]) >= MEM_SIZE ? rpc[1] -= MEM_SIZE : rpc[1];
 			if (ocp.p[1] == O_IND)
-				param = find_ind_st(d, reg, pc, r);
-			else if ((param = d->map[pc]) == d->map[pc])
-				reg->r[param - 1] = reg->r[r - 1];
-			pc = ocp.p[1] == O_IND ? 5 : 4;
-			jump_to_next(d, reg, pc, false);
+				param = find_ind_st(d, reg, rpc[1], rpc[0]);
+			else if ((param = d->map[rpc[1]]) == d->map[rpc[1]])
+				reg->r[param - 1] = reg->r[rpc[0] - 1];
+			rpc[1] = ocp.p[1] == O_IND ? 5 : 4;
+			jump_to_next(reg, rpc[1]);
 		}
 		else
-			jump_to_next(d, reg, 1, false);
+			jump_to_next(reg, 1);
 	}
 }

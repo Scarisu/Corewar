@@ -6,7 +6,7 @@
 /*   By: rlecart <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/02/09 04:14:13 by rlecart           #+#    #+#             */
-/*   Updated: 2018/03/31 00:48:01 by rlecart          ###   ########.fr       */
+/*   Updated: 2018/04/03 12:08:02 by rlecart          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,8 @@
 
 bool	false_cmd(t_corewar *d, t_reg *reg, bool carry)
 {
-	jump_to_next(d, reg, 1, false);
+	(void)d;
+	jump_to_next(reg, 1);
 	if (carry)
 		reg->carry = 0;
 	return (true);

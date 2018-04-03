@@ -6,7 +6,7 @@
 /*   By: rlecart <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/01/17 21:45:37 by rlecart           #+#    #+#             */
-/*   Updated: 2018/03/31 07:49:10 by rlecart          ###   ########.fr       */
+/*   Updated: 2018/04/03 12:05:22 by rlecart          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,7 +45,7 @@ void	op_xor_loop(t_corewar *d, t_reg *reg, t_ocp ocp, int pc)
 	}
 	reg->r[r[2]] = r[0] ^ r[1];
 	reg->carry = !reg->r[r[2]] ? 1 : 0;
-	jump_to_next(d, reg, len[1] + 2, false);
+	jump_to_next(reg, len[1] + 2);
 }
 
 void	op_xor(t_corewar *d, t_reg *reg)

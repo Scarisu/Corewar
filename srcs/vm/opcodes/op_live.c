@@ -6,7 +6,7 @@
 /*   By: rlecart <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/01/17 21:45:07 by rlecart           #+#    #+#             */
-/*   Updated: 2018/03/31 04:29:18 by rlecart          ###   ########.fr       */
+/*   Updated: 2018/04/03 12:04:14 by rlecart          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,7 +19,7 @@ void	im_alive(t_corewar *d, t_champ *champs, t_reg *reg)
 	attroff(COLOR_PAIR(d->colors[reg->pc] - 5));
 	printw(": IM ALIIIVE\n", reg->n);
 	refresh();
-	usleep(100000);
+	//usleep(100000);
 }
 
 void	op_live(t_corewar *d, t_reg *reg)
@@ -31,15 +31,13 @@ void	op_live(t_corewar *d, t_reg *reg)
 	{
 		(pc = reg->pc + 1) >= MEM_SIZE ? pc -= MEM_SIZE : pc;
 		reg->live_counter++;
-		if ((param = find_hexa(d->map, pc, 4)) >= 1 && param <= 4)
+		if ((param = find_hexa(d->map, pc, 4)) >= 1 && param <= d->nbc)
 		{
 			if (d->flag_v)
 				im_alive(d, d->champs, reg);
 			d->last_live_call = param;
 			d->champs[param - 1].nbr_live++;
 		}
-		jump_to_next(d, reg, 5, false);
-		//else
-		//	jump_to_next(d, reg, 1, false);
+		jump_to_next(reg, 5);
 	}
 }

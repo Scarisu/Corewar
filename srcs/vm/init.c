@@ -6,7 +6,7 @@
 /*   By: rlecart <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/01/16 07:52:05 by rlecart           #+#    #+#             */
-/*   Updated: 2018/04/03 07:54:09 by rlecart          ###   ########.fr       */
+/*   Updated: 2018/04/03 11:55:40 by rlecart          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -63,10 +63,7 @@ int		*init_colors(t_champ *champs, t_corewar *d)
 	ft_memset(colors, 5, MEM_SIZE * sizeof(int));
 	while (++i < d->nbc && (j = -1))
 		while (++j < champs[i].len)
-			colors[MEM_SIZE / d->nbc * i + j] = i + 1;
-	i = -1;
-	while (++i < d->nbc)
-		colors[champs[i].reg->pc] += 5;
+			colors[MEM_SIZE / d->nbc * i + j] = (int)(i + 1);
 	return (colors);
 }
 

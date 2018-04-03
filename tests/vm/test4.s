@@ -3,4 +3,4 @@
 
 live:	live %1
 
-fork:	fork %5
+ldi:	ldi 50, %50, r2

@@ -6,7 +6,7 @@
 /*   By: rlecart <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/01/17 21:45:40 by rlecart           #+#    #+#             */
-/*   Updated: 2018/03/31 00:43:20 by rlecart          ###   ########.fr       */
+/*   Updated: 2018/04/03 12:05:32 by rlecart          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,9 +22,9 @@ void	op_zjmp(t_corewar *d, t_reg *reg)
 		{
 			if ((pc = find_hexa(d->map, reg->pc + 1, 2)) > 65536 / 2)
 				pc -= 65536;
-			jump_to_next(d, reg, get_modulo(pc, IDX_MOD), false);
+			jump_to_next(reg, get_modulo(pc, IDX_MOD));
 		}
 		else
-			jump_to_next(d, reg, 3, false);
+			jump_to_next(reg, 3);
 	}
 }

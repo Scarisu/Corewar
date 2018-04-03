@@ -6,7 +6,7 @@
 /*   By: rlecart <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/01/17 21:44:52 by rlecart           #+#    #+#             */
-/*   Updated: 2018/03/31 00:43:18 by rlecart          ###   ########.fr       */
+/*   Updated: 2018/04/03 12:03:45 by rlecart          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,12 +41,12 @@ void	op_ld(t_corewar *d, t_reg *reg)
 		else
 			param = find_hexa(d->map, pc, 4);
 		pc = ocp.p[0] == O_IND ? 4 : 6;
-		jump_to_next(d, reg, pc, false);
+		jump_to_next(reg, pc);
 		if (((r = d->map[reg->pc]) < 1 || r > 16) &&
 				(false_cmd(d, reg, true)))
 			return ;
 		reg->r[r - 1] = param;
-		jump_to_next(d, reg, 1, false);
+		jump_to_next(reg, 1);
 		reg->carry = !param ? 1 : 0;
 	}
 }

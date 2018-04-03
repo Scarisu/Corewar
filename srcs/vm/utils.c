@@ -6,7 +6,7 @@
 /*   By: rlecart <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/01/17 23:39:21 by rlecart           #+#    #+#             */
-/*   Updated: 2018/04/03 07:52:10 by rlecart          ###   ########.fr       */
+/*   Updated: 2018/04/03 12:02:32 by rlecart          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,17 +50,13 @@ bool	is_anybody_here(t_corewar *d, int pc)
 			tmp = tmp->next;
 		}
 	}
-	return (counter > 1 ? true : false);
+	return (counter > 0 ? true : false);
 }
 
-void	jump_to_next(t_corewar *d, t_reg *reg, int o, bool fork)
+void	jump_to_next(t_reg *reg, int o)
 {
-	if (!fork && !(is_anybody_here(d, reg->pc)) && d->colors[reg->pc] - 5 > 0)
-		d->colors[reg->pc] -= 5;
 	reg->pc += o;
 	true_pc(&reg->pc);
-	if (!(is_anybody_here(d, reg->pc)) && d->colors[reg->pc] + 5 < 11)
-		d->colors[reg->pc] += 5;
 }
 
 int		find_hexa(char *str, int i, int len)

@@ -6,7 +6,7 @@
 /*   By: rlecart <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/01/17 21:44:48 by rlecart           #+#    #+#             */
-/*   Updated: 2018/03/31 00:35:27 by rlecart          ###   ########.fr       */
+/*   Updated: 2018/04/03 12:03:32 by rlecart          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,7 +44,7 @@ void	op_fork(t_corewar *d, t_reg *reg)
 			pc -= 65536;
 		tmp = fork_reg(reg, pc, true);
 		d->champs[reg->n - 1].reg = tmp;
-		jump_to_next(d, reg, 3, true);
-		jump_to_next(d, tmp, get_modulo(pc, IDX_MOD), false);
+		jump_to_next(reg, 3);
+		jump_to_next(tmp, get_modulo(pc, IDX_MOD));
 	}
 }

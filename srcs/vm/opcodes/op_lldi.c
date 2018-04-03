@@ -6,7 +6,7 @@
 /*   By: rlecart <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/01/17 21:45:18 by rlecart           #+#    #+#             */
-/*   Updated: 2018/03/30 23:39:44 by rlecart          ###   ########.fr       */
+/*   Updated: 2018/04/03 12:04:33 by rlecart          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,7 +19,7 @@ void	lldi_norm(int tpc[2], t_reg *reg, int r[2], t_corewar *d)
 	if (r[2] >= 1 && r[2] <= 16)
 		reg->r[r[2] - 1] = find_hexa(d->map, tpc[0], 4);
 	reg->carry = !reg->r[r[2] - 1] ? 1 : 0;
-	jump_to_next(d, reg, tpc[1] - reg->pc, false);
+	jump_to_next(reg, tpc[1] - reg->pc);
 }
 
 void	op_lldi(t_corewar *d, t_reg *reg)

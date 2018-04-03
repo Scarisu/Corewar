@@ -6,7 +6,7 @@
 /*   By: rlecart <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/01/17 21:45:34 by rlecart           #+#    #+#             */
-/*   Updated: 2018/03/30 23:58:17 by rlecart          ###   ########.fr       */
+/*   Updated: 2018/04/03 12:05:14 by rlecart          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,7 +34,7 @@ void	op_sub(t_corewar *d, t_reg *reg)
 				return ;
 		}
 		reg->r[r[2]] = reg->r[r[0]] - reg->r[r[1]];
-		jump_to_next(d, reg, 5, false);
+		jump_to_next(reg, 5);
 		reg->carry = !reg->r[r[2]] ? 1 : 0;
 	}
 }

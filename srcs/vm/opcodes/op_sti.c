@@ -6,7 +6,7 @@
 /*   By: rlecart <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/01/17 21:45:31 by rlecart           #+#    #+#             */
-/*   Updated: 2018/03/31 07:50:34 by rlecart          ###   ########.fr       */
+/*   Updated: 2018/04/03 12:11:10 by rlecart          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,7 +16,7 @@ int		find_ind_sti(t_corewar *d, t_reg *reg, int param)
 {
 	if (param > 65536 / 2)
 		param -= 65536;
-	param = find_hexa(d->map, reg->pc + (param % IDX_MOD), 4);
+	param = find_hexa(d->map, reg->pc + param, 4);
 	return (param);
 }
 
@@ -25,7 +25,7 @@ void	sti_norm(int tp[2], t_reg *reg, int r[3], t_corewar *d)
 	tp[0] = reg->pc + ((r[1] + r[2]) % IDX_MOD);
 	true_pc(&tp[0]);
 	put_hexa(d, reg->n, tp[0], r[0]);
-	jump_to_next(d, reg, tp[1] - reg->pc, false);
+	jump_to_next(reg, tp[1] - reg->pc);
 }
 
 void	op_sti(t_corewar *d, t_reg *reg)
