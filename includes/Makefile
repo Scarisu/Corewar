@@ -30,4 +30,3 @@ INCLUDES		:=	-I $(MP)$(DIR_INC) \
 					-I $(MP)lib/libft/includes/
 
 RES_LINK		=	https://projects.intra.42.fr/uploads/document/document/391/vm_champs.tar
-RES_STAT		=	TELECHARGER 
