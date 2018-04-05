@@ -30,7 +30,7 @@ if [ $1 ]; then
 			dir_list=( "$@" )
 			unset dir_list[0]
 			if [[ -z "${dir_list[@]}" ]]; then
-				printf "usage: $0 -d [$(ls -dm ${path}${file_test})]\n"
+				printf "usage: $0 -d [$(ls -m ${path}${file_test})]\n"
 				exit
 			fi
 		elif [ $2 ]; then

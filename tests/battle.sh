@@ -71,12 +71,12 @@ fi
 clear
 
 #Ressource
-# printf " ${grey}[DOWLOADING RESOURCES]  ${reset}\r"
-# mkdir -p ${path}${resources_file}
-# curl -s ${resources_adress} | tar x - -C ${path}${resources_file}
-# rm -f $(find ${path}${resources_file} -name "*.cor")
+printf " ${grey}[DOWLOADING RESOURCES]  ${reset}\r"
+mkdir -p ${path}${resources_file}
+curl -s ${resources_adress} | tar x - -C ${path}${resources_file}
+rm -f $(find ${path}${resources_file} -name "*.cor")
 resources_vm=$(find ${path}${resources_file} -name "${vm_name}")
-# chmod 744 ${resources_vm}
+chmod 744 ${resources_vm}
 
 #Check champ list
 printf " ${grey}[CHEAKING CHAMPION LIST]${reset}\r"
@@ -98,16 +98,16 @@ for champ in ${list_inva[@]}; do
 done
 
 #Test directory
-# printf " ${grey}[CREATING DIRECTORY]    ${reset}\r"
-# all_dir=""
-# for dir in $(echo ${file_test} | tr "/" "\n"); do
-# 	all_dir="${all_dir}${dir}/"
-# 	mkdir -p ${path}${all_dir}
-# done
-# rm -rf ${path}${file_test}/${dir_champ}
-# [ ${flag_exem} == "ON" ] && mkdir -p ${path}${file_test}/${dir_champ}/${dir_exem}
-# [ ${flag_ship} == "ON" ] && mkdir -p ${path}${file_test}/${dir_champ}/${dir_ship}
-# [ ${flag_long} == "ON" ] && mkdir -p ${path}${file_test}/${dir_champ}/${dir_long}
+printf " ${grey}[CREATING DIRECTORY]    ${reset}\r"
+all_dir=""
+for dir in $(echo ${file_test} | tr "/" "\n"); do
+	all_dir="${all_dir}${dir}/"
+ 	mkdir -p ${path}${all_dir}
+done
+rm -rf ${path}${file_test}/${dir_champ}
+[ ${flag_exem} == "ON" ] && mkdir -p ${path}${file_test}/${dir_champ}/${dir_exem}
+[ ${flag_ship} == "ON" ] && mkdir -p ${path}${file_test}/${dir_champ}/${dir_ship}
+[ ${flag_long} == "ON" ] && mkdir -p ${path}${file_test}/${dir_champ}/${dir_long}
 rm -f ${path}${file_test}/${output_file}
 
 #Setup data
@@ -156,50 +156,50 @@ if [[ ! -e ${cor} ]]; then
 fi
 
 #Compiling Champions
-# max_len=0
-# [[ "${#dir_exem}" -gt "${max_len}" ]] && max_len=${#dir_exem}
-# [[ "${#dir_ship}" -gt "${max_len}" ]] && max_len=${#dir_ship}
-# [[ "${#dir_long}" -gt "${max_len}" ]] && max_len=${#dir_long}
-# nb_done_type=0
-# nb_done_total=0
-# nb_champs=$(echo $((${#champs_exem[@]}+${#champs_ship[@]}+${#champs_long[@]})))
+max_len=0
+[[ "${#dir_exem}" -gt "${max_len}" ]] && max_len=${#dir_exem}
+[[ "${#dir_ship}" -gt "${max_len}" ]] && max_len=${#dir_ship}
+[[ "${#dir_long}" -gt "${max_len}" ]] && max_len=${#dir_long}
+nb_done_type=0
+nb_done_total=0
+nb_champs=$(echo $((${#champs_exem[@]}+${#champs_ship[@]}+${#champs_long[@]})))
 compile_len=$(echo $((${max_len}+41)))
-#
-# compile_champ(){
-# 	((nb_done_total++))
-# 	([[ "${last}" == "${3}" ]] || [ -e ${last} ]) && nb_done_type=$(echo $((${nb_done_type}+1))) || nb_done_type=1
-# 	last=${3}
-# 	printf " ${grey}[COMPILING CHAMPIONS] [${2}: "
-# 	for i in $(seq 0 $(echo $((${max_len}-${#2})))); do printf " "; done
-# 	[ "${nb_done_type}" -le "9" ] && printf "0"
-# 	printf "${nb_done_type}/"
-# 	[ "${3}" -le "9" ] && printf "0"
-# 	printf "${3}] ["
-# 	[ "${nb_done_total}" -le "9" ] && printf "0"
-# 	printf "${nb_done_total}/"
-# 	[ "${nb_champs}" -le "9" ] && printf "0"
-# 	printf "${nb_champs}] ${reset}\r"
-# 	./${path}${asm_name} -s ${1} > /dev/null 2> /dev/null
-# 	local cor="$(echo "${1}" | sed 's/\.s$//').cor"
-#  	if [[ -e ${cor} ]]; then
-# 		mv ${cor} ${path}${file_test}/${dir_champ}/${2}
-# 	else
-# 		printf "\"${grey}$(basename ${cor})${reset}\" hasn't been created"
-# 		local error_len="\"$(basename ${cor})\" hasn't been created"
-# 		for i in $(seq 0 $(echo $((${compile_len}-${#error_len})))); do printf " "; done
-# 		printf "\n"
-# 	fi
-# }
-#
-# for champ in ${champs_exem[@]}; do
-# 	compile_champ ${champ} ${dir_exem} ${#champs_exem[@]}
-# done
-# for champ in ${champs_ship[@]}; do
-# 	compile_champ ${champ} ${dir_ship} ${#champs_ship[@]}
-# done
-# for champ in ${champs_long[@]}; do
-# 	compile_champ ${champ} ${dir_long} ${#champs_long[@]}
-# done
+
+compile_champ(){
+	((nb_done_total++))
+	([[ "${last}" == "${3}" ]] || [ -e ${last} ]) && nb_done_type=$(echo $((${nb_done_type}+1))) || nb_done_type=1
+	last=${3}
+	printf " ${grey}[COMPILING CHAMPIONS] [${2}: "
+	for i in $(seq 0 $(echo $((${max_len}-${#2})))); do printf " "; done
+	[ "${nb_done_type}" -le "9" ] && printf "0"
+	printf "${nb_done_type}/"
+	[ "${3}" -le "9" ] && printf "0"
+	printf "${3}] ["
+	[ "${nb_done_total}" -le "9" ] && printf "0"
+	printf "${nb_done_total}/"
+	[ "${nb_champs}" -le "9" ] && printf "0"
+	printf "${nb_champs}] ${reset}\r"
+	./${path}${asm_name} -s ${1} > /dev/null 2> /dev/null
+	local cor="$(echo "${1}" | sed 's/\.s$//').cor"
+ 	if [[ -e ${cor} ]]; then
+		mv ${cor} ${path}${file_test}/${dir_champ}/${2}
+	else
+		printf "\"${grey}$(basename ${cor})${reset}\" hasn't been created"
+		local error_len="\"$(basename ${cor})\" hasn't been created"
+		for i in $(seq 0 $(echo $((${compile_len}-${#error_len})))); do printf " "; done
+		printf "\n"
+	fi
+}
+
+for champ in ${champs_exem[@]}; do
+	compile_champ ${champ} ${dir_exem} ${#champs_exem[@]}
+done
+for champ in ${champs_ship[@]}; do
+	compile_champ ${champ} ${dir_ship} ${#champs_ship[@]}
+done
+for champ in ${champs_long[@]}; do
+	compile_champ ${champ} ${dir_long} ${#champs_long[@]}
+done
 
 #Champions fighting
 for i in $(seq 0 $(echo $((${compile_len}-21)))); do printf " "; done
@@ -251,7 +251,7 @@ fighting(){
 	printf "\r"
 
 	printf " [${hour}] (1) [${nb_done_total}/${nb_champs}] [ $(basename ${champ_name}) VS ${no_path_champ}]\n" >> ${path}${file_test}/${output_file}
-	local output=$(./${path}${resources_vm} ${champ_name} ${champ})
+	local output=$(./${resources_vm} ${champ_name} ${champ})
 	printf "${output}\n\n" >> ${path}${file_test}/${output_file}
 	if [[ ${output} =~ ${regex} ]]; then
 		((nb_win_total++))
@@ -259,7 +259,7 @@ fighting(){
 	fi
 	printf " [${hour}] (2) [${nb_done_total}/${nb_champs}] [ ${no_path_champ} VS ${grey}$(basename ${champ_name})${reset}]\r"
 	printf " [${hour}] (2) [${nb_done_total}/${nb_champs}] [ ${no_path_champ} VS $(basename ${champ_name})]\n" >> ${path}${file_test}/${output_file}
-	local output=$(./${path}${resources_vm} ${champ_name} ${champ})
+	local output=$(./${resources_vm} ${champ_name} ${champ})
 	printf "${output}\n\n" >> ${path}${file_test}/${output_file}
 	if [[ ${output} =~ ${regex} ]]; then
 		((nb_win_total++))

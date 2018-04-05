@@ -19,6 +19,11 @@ $(NAME_ASM):
 $(NAME_VM):
 	@make -C $(MAKE_VM) $(NAME_VM)
 
+resources:
+	@mkdir -p $(DIR_RES)
+	@curl -s $(RES_LINK) | tar x - -C $(DIR_RES)
+	@printf "[RESOURCES] downloaded\n"
+
 lldb_libft:
 	@make -C $(LIB_MAKE) lldb
 
@@ -55,6 +60,13 @@ clean_$(NAME_ASM):
 clean_$(NAME_VM):
 	@make -C $(MAKE_VM) clean
 
+clean_tests:
+	@rm -rf ./$(DIR_TEST)/battle/champions
+	@printf "[TEST BATTLE] .cor removed\n"
+	@rm -rf ./$(DIR_TEST)/champions/cor_mine
+	@rm -rf ./$(DIR_TEST)/champions/cor_real
+	@printf "[TEST ENCODAGE] .cor removed\n"
+
 clean: clean_lib clean_$(NAME_ASM) clean_$(NAME_VM)
 
 fclean_libft:
@@ -66,7 +78,17 @@ fclean_$(NAME_ASM):
 fclean_$(NAME_VM):
 	@make -C $(MAKE_VM) fclean
 
-fclean: fclean_libft fclean_$(NAME_ASM) fclean_$(NAME_VM)
+fclean_resources:
+	@rm -rf $(DIR_RES)
+	@printf "[RESOURCES] resources removed\n"
+
+fclean_$(DIR_TEST):
+	@rm -rf ./$(DIR_TEST)/battle
+	@printf "[TEST BATTLE] $(DIR_TEST) files removed\n"
+	@rm -rf ./$(DIR_TEST)/champions
+	@printf "[TEST ENCODAGE] $(DIR_TEST) files removed\n"
+
+fclean: fclean_libft fclean_$(NAME_ASM) fclean_$(NAME_VM) fclean_resources fclean_$(DIR_TEST)
 
 re_libft:
 	@make -C $(LIB_MAKE) re
@@ -77,13 +99,15 @@ re_$(NAME_ASM):
 re_$(NAME_VM):
 	@make -C $(MAKE_VM) re
 
-re: re_libft re_$(NAME_ASM) re_$(NAME_VM)
+re_resources: fclean_resources resources
 
-.PHONY: all  $(NAME_ASM) $(NAME_VM) libft \
+re: re_libft re_$(NAME_ASM) re_$(NAME_VM) re_ressources
+
+.PHONY: all  $(NAME_ASM) $(NAME_VM) libft resources \
 		lldb_libft lldb_$(NAME_ASM) lldb_$(NAME_VM) lldb \
 		normal_libft normal_$(NAME_ASM) normal_$(NAME_VM) normal \
 		flag \
-		clean_$(NAME_ASM) clean_$(NAME_VM) clean_libft clean \
-		fclean_$(NAME_ASM) fclean_$(NAME_VM) fclean_libft fclean \
-		re_$(NAME_ASM) re_$(NAME_VM) re_libft re \
+		clean_$(NAME_ASM) clean_$(NAME_VM) clean_libft clean_$(DIR_TEST) clean \
+		fclean_$(NAME_ASM) fclean_$(NAME_VM) fclean_libft fclean_resources fclean_$(DIR_TEST) fclean \
+		re_$(NAME_ASM) re_$(NAME_VM) re_libft re_ressources re \
 		clean_lib fclean_lib re_lib

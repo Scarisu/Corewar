@@ -90,7 +90,7 @@ for champ in ${all_champs[@]}; do
 	fi
 	read
 	printf "\n[REAL]\n"
-	${path}${resources_asm} ${champ}
+	${resources_asm} ${champ}
 	[[ -e ${cor} ]] && mv ${cor} ${path}${file_test}cor_real || printf "[REAL] - $(basename ${cor}) hasn't been created\n" >> ${path}${file_test}${result_file}
 	printf "\n[MINE]\n"
 	./${path}${asm_name} ${warning} ${champ}
