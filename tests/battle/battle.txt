@@ -1,0 +1,532 @@
+[exemples]
+[championships]
+[longs]
+
+ [13:27:28] (1) [1/44] [ aaaaaa.cor VS bigzork.cor]
+Introducing contestants...
+* Player 1, weighing 407 bytes, "aaaaaa" ("aaaaaaaa  aaa a aaa aaaaaa aaa aaaaaaa aa a a aaaaaa aaa a a a  aaaaa") !
+* Player 2, weighing 430 bytes, "bigzork" ("I know i cant win") !
+Contestant 2, "bigzork", has won !
+
+ [13:27:28] (2) [1/44] [ bigzork.cor VS aaaaaa.cor]
+Introducing contestants...
+* Player 1, weighing 407 bytes, "aaaaaa" ("aaaaaaaa  aaa a aaa aaaaaa aaa aaaaaaa aa a a aaaaaa aaa a a a  aaaaa") !
+* Player 2, weighing 430 bytes, "bigzork" ("I know i cant win") !
+Contestant 2, "bigzork", has won !
+
+ [13:27:28] (1) [2/44] [ aaaaaa.cor VS ex.cor]
+Introducing contestants...
+* Player 1, weighing 407 bytes, "aaaaaa" ("aaaaaaaa  aaa a aaa aaaaaa aaa aaaaaaa aa a a aaaaaa aaa a a a  aaaaa") !
+* Player 2, weighing 23 bytes, "zork" ("just a basic living prog") !
+Contestant 2, "zork", has won !
+
+ [13:27:28] (2) [2/44] [ ex.cor VS aaaaaa.cor]
+Introducing contestants...
+* Player 1, weighing 407 bytes, "aaaaaa" ("aaaaaaaa  aaa a aaa aaaaaa aaa aaaaaaa aa a a aaaaaa aaa a a a  aaaaa") !
+* Player 2, weighing 23 bytes, "zork" ("just a basic living prog") !
+Contestant 2, "zork", has won !
+
+ [13:27:28] (1) [3/44] [ aaaaaa.cor VS fluttershy.cor]
+Introducing contestants...
+* Player 1, weighing 407 bytes, "aaaaaa" ("aaaaaaaa  aaa a aaa aaaaaa aaa aaaaaaa aa a a aaaaaa aaa a a a  aaaaa") !
+* Player 2, weighing 490 bytes, "fluttershy" ("oh, my, what a scary project") !
+Contestant 2, "fluttershy", has won !
+
+ [13:27:28] (2) [3/44] [ fluttershy.cor VS aaaaaa.cor]
+Introducing contestants...
+* Player 1, weighing 407 bytes, "aaaaaa" ("aaaaaaaa  aaa a aaa aaaaaa aaa aaaaaaa aa a a aaaaaa aaa a a a  aaaaa") !
+* Player 2, weighing 490 bytes, "fluttershy" ("oh, my, what a scary project") !
+Contestant 2, "fluttershy", has won !
+
+ [13:27:29] (1) [4/44] [ aaaaaa.cor VS Gagnant.cor]
+Introducing contestants...
+* Player 1, weighing 407 bytes, "aaaaaa" ("aaaaaaaa  aaa a aaa aaaaaa aaa aaaaaaa aa a a aaaaaa aaa a a a  aaaaa") !
+* Player 2, weighing 325 bytes, "Celebration Funebre v0.99pl42" ("Jour J") !
+Contestant 1, "aaaaaa", has won !
+
+ [13:27:29] (2) [4/44] [ Gagnant.cor VS aaaaaa.cor]
+Introducing contestants...
+* Player 1, weighing 407 bytes, "aaaaaa" ("aaaaaaaa  aaa a aaa aaaaaa aaa aaaaaaa aa a a aaaaaa aaa a a a  aaaaa") !
+* Player 2, weighing 325 bytes, "Celebration Funebre v0.99pl42" ("Jour J") !
+Contestant 1, "aaaaaa", has won !
+
+ [13:27:29] (1) [5/44] [ aaaaaa.cor VS helltrain.cor]
+Introducing contestants...
+* Player 1, weighing 407 bytes, "aaaaaa" ("aaaaaaaa  aaa a aaa aaaaaa aaa aaaaaaa aa a a aaaaaa aaa a a a  aaaaa") !
+* Player 2, weighing 617 bytes, "helltrain" ("choo-choo, motherf*****s !") !
+Contestant 2, "helltrain", has won !
+
+ [13:27:29] (2) [5/44] [ helltrain.cor VS aaaaaa.cor]
+Introducing contestants...
+* Player 1, weighing 407 bytes, "aaaaaa" ("aaaaaaaa  aaa a aaa aaaaaa aaa aaaaaaa aa a a aaaaaa aaa a a a  aaaaa") !
+* Player 2, weighing 617 bytes, "helltrain" ("choo-choo, motherf*****s !") !
+Contestant 2, "helltrain", has won !
+
+ [13:27:30] (1) [6/44] [ aaaaaa.cor VS jumper.cor]
+Introducing contestants...
+* Player 1, weighing 407 bytes, "aaaaaa" ("aaaaaaaa  aaa a aaa aaaaaa aaa aaaaaaa aa a a aaaaaa aaa a a a  aaaaa") !
+* Player 2, weighing 320 bytes, "Jumper !" ("en fait C forker !") !
+Contestant 1, "aaaaaa", has won !
+
+ [13:27:30] (2) [6/44] [ jumper.cor VS aaaaaa.cor]
+Introducing contestants...
+* Player 1, weighing 407 bytes, "aaaaaa" ("aaaaaaaa  aaa a aaa aaaaaa aaa aaaaaaa aa a a aaaaaa aaa a a a  aaaaa") !
+* Player 2, weighing 320 bytes, "Jumper !" ("en fait C forker !") !
+Contestant 1, "aaaaaa", has won !
+
+ [13:27:30] (1) [7/44] [ aaaaaa.cor VS maxidef.cor]
+Introducing contestants...
+* Player 1, weighing 407 bytes, "aaaaaa" ("aaaaaaaa  aaa a aaa aaaaaa aaa aaaaaaa aa a a aaaaaa aaa a a a  aaaaa") !
+* Player 2, weighing 301 bytes, " maxidef " (" module de defense") !
+Contestant 2, " maxidef ", has won !
+
+ [13:27:30] (2) [7/44] [ maxidef.cor VS aaaaaa.cor]
+Introducing contestants...
+* Player 1, weighing 407 bytes, "aaaaaa" ("aaaaaaaa  aaa a aaa aaaaaa aaa aaaaaaa aa a a aaaaaa aaa a a a  aaaaa") !
+* Player 2, weighing 301 bytes, " maxidef " (" module de defense") !
+Contestant 2, " maxidef ", has won !
+
+ [13:27:30] (1) [8/44] [ aaaaaa.cor VS mortel.cor]
+Introducing contestants...
+* Player 1, weighing 407 bytes, "aaaaaa" ("aaaaaaaa  aaa a aaa aaaaaa aaa aaaaaaa aa a a aaaaaa aaa a a a  aaaaa") !
+* Player 2, weighing 238 bytes, "Booster !" ("Alors la, si ca marche, trop content !  :)") !
+Contestant 1, "aaaaaa", has won !
+
+ [13:27:30] (2) [8/44] [ mortel.cor VS aaaaaa.cor]
+Introducing contestants...
+* Player 1, weighing 407 bytes, "aaaaaa" ("aaaaaaaa  aaa a aaa aaaaaa aaa aaaaaaa aa a a aaaaaa aaa a a a  aaaaa") !
+* Player 2, weighing 238 bytes, "Booster !" ("Alors la, si ca marche, trop content !  :)") !
+Contestant 1, "aaaaaa", has won !
+
+ [13:27:30] (1) [9/44] [ aaaaaa.cor VS Octobre_Rouge_V4.2.cor]
+Introducing contestants...
+* Player 1, weighing 407 bytes, "aaaaaa" ("aaaaaaaa  aaa a aaa aaaaaa aaa aaaaaaa aa a a aaaaaa aaa a a a  aaaaa") !
+* Player 2, weighing 609 bytes, "Octobre Rouge V4.2" ("And the winner is ...") !
+Contestant 2, "Octobre Rouge V4.2", has won !
+
+ [13:27:30] (2) [9/44] [ Octobre_Rouge_V4.2.cor VS aaaaaa.cor]
+Introducing contestants...
+* Player 1, weighing 407 bytes, "aaaaaa" ("aaaaaaaa  aaa a aaa aaaaaa aaa aaaaaaa aa a a aaaaaa aaa a a a  aaaaa") !
+* Player 2, weighing 609 bytes, "Octobre Rouge V4.2" ("And the winner is ...") !
+Contestant 2, "Octobre Rouge V4.2", has won !
+
+ [13:27:31] (1) [10/44] [ aaaaaa.cor VS slider2.cor]
+Introducing contestants...
+* Player 1, weighing 407 bytes, "aaaaaa" ("aaaaaaaa  aaa a aaa aaaaaa aaa aaaaaaa aa a a aaaaaa aaa a a a  aaaaa") !
+* Player 2, weighing 576 bytes, "Sliders" ("And the winner is ...") !
+Contestant 1, "aaaaaa", has won !
+
+ [13:27:31] (2) [10/44] [ slider2.cor VS aaaaaa.cor]
+Introducing contestants...
+* Player 1, weighing 407 bytes, "aaaaaa" ("aaaaaaaa  aaa a aaa aaaaaa aaa aaaaaaa aa a a aaaaaa aaa a a a  aaaaa") !
+* Player 2, weighing 576 bytes, "Sliders" ("And the winner is ...") !
+Contestant 1, "aaaaaa", has won !
+
+ [13:27:32] (1) [11/44] [ aaaaaa.cor VS toto.cor]
+Introducing contestants...
+* Player 1, weighing 407 bytes, "aaaaaa" ("aaaaaaaa  aaa a aaa aaaaaa aaa aaaaaaa aa a a aaaaaa aaa a a a  aaaaa") !
+* Player 2, weighing 325 bytes, "Celebration Funebre v0.99pl42" ("Jour J") !
+Contestant 1, "aaaaaa", has won !
+
+ [13:27:32] (2) [11/44] [ toto.cor VS aaaaaa.cor]
+Introducing contestants...
+* Player 1, weighing 407 bytes, "aaaaaa" ("aaaaaaaa  aaa a aaa aaaaaa aaa aaaaaaa aa a a aaaaaa aaa a a a  aaaaa") !
+* Player 2, weighing 325 bytes, "Celebration Funebre v0.99pl42" ("Jour J") !
+Contestant 1, "aaaaaa", has won !
+
+ [13:27:32] (1) [12/44] [ aaaaaa.cor VS turtle.cor]
+Introducing contestants...
+* Player 1, weighing 407 bytes, "aaaaaa" ("aaaaaaaa  aaa a aaa aaaaaa aaa aaaaaaa aa a a aaaaaa aaa a a a  aaaaa") !
+* Player 2, weighing 394 bytes, "turtle" ("TURTLE FFS U LAMA") !
+Contestant 1, "aaaaaa", has won !
+
+ [13:27:32] (2) [12/44] [ turtle.cor VS aaaaaa.cor]
+Introducing contestants...
+* Player 1, weighing 407 bytes, "aaaaaa" ("aaaaaaaa  aaa a aaa aaaaaa aaa aaaaaaa aa a a aaaaaa aaa a a a  aaaaa") !
+* Player 2, weighing 394 bytes, "turtle" ("TURTLE FFS U LAMA") !
+Contestant 1, "aaaaaa", has won !
+
+ [13:27:32] (1) [13/44] [ aaaaaa.cor VS zork.cor]
+Introducing contestants...
+* Player 1, weighing 407 bytes, "aaaaaa" ("aaaaaaaa  aaa a aaa aaaaaa aaa aaaaaaa aa a a aaaaaa aaa a a a  aaaaa") !
+* Player 2, weighing 23 bytes, "zork" ("I'M ALIIIIVE") !
+Contestant 2, "zork", has won !
+
+ [13:27:32] (2) [13/44] [ zork.cor VS aaaaaa.cor]
+Introducing contestants...
+* Player 1, weighing 407 bytes, "aaaaaa" ("aaaaaaaa  aaa a aaa aaaaaa aaa aaaaaaa aa a a aaaaaa aaa a a a  aaaaa") !
+* Player 2, weighing 23 bytes, "zork" ("I'M ALIIIIVE") !
+Contestant 2, "zork", has won !
+
+ [13:27:32] (1) [14/44] [ aaaaaa.cor VS _.cor]
+Introducing contestants...
+* Player 1, weighing 407 bytes, "aaaaaa" ("aaaaaaaa  aaa a aaa aaaaaa aaa aaaaaaa aa a a aaaaaa aaa a a a  aaaaa") !
+* Player 2, weighing 679 bytes, "Underscore" ("__UNDERSCORE_S__") !
+Contestant 2, "Underscore", has won !
+
+ [13:27:32] (2) [14/44] [ _.cor VS aaaaaa.cor]
+Introducing contestants...
+* Player 1, weighing 407 bytes, "aaaaaa" ("aaaaaaaa  aaa a aaa aaaaaa aaa aaaaaaa aa a a aaaaaa aaa a a a  aaaaa") !
+* Player 2, weighing 679 bytes, "Underscore" ("__UNDERSCORE_S__") !
+Contestant 2, "Underscore", has won !
+
+ [13:27:33] (1) [15/44] [ aaaaaa.cor VS Asombra.cor]
+Introducing contestants...
+* Player 1, weighing 407 bytes, "aaaaaa" ("aaaaaaaa  aaa a aaa aaaaaa aaa aaaaaaa aa a a aaaaaa aaa a a a  aaaaa") !
+* Player 2, weighing 670 bytes, "King Sombra" ("Crystal empire is mine!") !
+Contestant 2, "King Sombra", has won !
+
+ [13:27:33] (2) [15/44] [ Asombra.cor VS aaaaaa.cor]
+Introducing contestants...
+* Player 1, weighing 407 bytes, "aaaaaa" ("aaaaaaaa  aaa a aaa aaaaaa aaa aaaaaaa aa a a aaaaaa aaa a a a  aaaaa") !
+* Player 2, weighing 670 bytes, "King Sombra" ("Crystal empire is mine!") !
+Contestant 2, "King Sombra", has won !
+
+ [13:27:33] (1) [16/44] [ aaaaaa.cor VS big_feet.cor]
+Introducing contestants...
+* Player 1, weighing 407 bytes, "aaaaaa" ("aaaaaaaa  aaa a aaa aaaaaa aaa aaaaaaa aa a a aaaaaa aaa a a a  aaaaa") !
+* Player 2, weighing 277 bytes, "top defense plus plus" ("la meilleure defense c'est d'avoir une bonne defense") !
+Contestant 1, "aaaaaa", has won !
+
+ [13:27:33] (2) [16/44] [ big_feet.cor VS aaaaaa.cor]
+Introducing contestants...
+* Player 1, weighing 407 bytes, "aaaaaa" ("aaaaaaaa  aaa a aaa aaaaaa aaa aaaaaaa aa a a aaaaaa aaa a a a  aaaaa") !
+* Player 2, weighing 277 bytes, "top defense plus plus" ("la meilleure defense c'est d'avoir une bonne defense") !
+Contestant 1, "aaaaaa", has won !
+
+ [13:27:34] (1) [17/44] [ aaaaaa.cor VS casimir.cor]
+Introducing contestants...
+* Player 1, weighing 407 bytes, "aaaaaa" ("aaaaaaaa  aaa a aaa aaaaaa aaa aaaaaaa aa a a aaaaaa aaa a a a  aaaaa") !
+* Player 2, weighing 265 bytes, "CASIMIR" ("GLOUBIBOULGA") !
+Contestant 2, "CASIMIR", has won !
+
+ [13:27:34] (2) [17/44] [ casimir.cor VS aaaaaa.cor]
+Introducing contestants...
+* Player 1, weighing 407 bytes, "aaaaaa" ("aaaaaaaa  aaa a aaa aaaaaa aaa aaaaaaa aa a a aaaaaa aaa a a a  aaaaa") !
+* Player 2, weighing 265 bytes, "CASIMIR" ("GLOUBIBOULGA") !
+Contestant 2, "CASIMIR", has won !
+
+ [13:27:34] (1) [18/44] [ aaaaaa.cor VS corelol.cor]
+Introducing contestants...
+* Player 1, weighing 407 bytes, "aaaaaa" ("aaaaaaaa  aaa a aaa aaaaaa aaa aaaaaaa aa a a aaaaaa aaa a a a  aaaaa") !
+* Player 2, weighing 23 bytes, "laugh" ("aff, just kidding") !
+Contestant 2, "laugh", has won !
+
+ [13:27:34] (2) [18/44] [ corelol.cor VS aaaaaa.cor]
+Introducing contestants...
+* Player 1, weighing 407 bytes, "aaaaaa" ("aaaaaaaa  aaa a aaa aaaaaa aaa aaaaaaa aa a a aaaaaa aaa a a a  aaaaa") !
+* Player 2, weighing 23 bytes, "laugh" ("aff, just kidding") !
+Contestant 2, "laugh", has won !
+
+ [13:27:34] (1) [19/44] [ aaaaaa.cor VS darksasuke.cor]
+Introducing contestants...
+* Player 1, weighing 407 bytes, "aaaaaa" ("aaaaaaaa  aaa a aaa aaaaaa aaa aaaaaaa aa a a aaaaaa aaa a a a  aaaaa") !
+* Player 2, weighing 264 bytes, "Xx_DaRk_SaSuKe_93_xX" ("The Dirty Hamster") !
+Contestant 1, "aaaaaa", has won !
+
+ [13:27:34] (2) [19/44] [ darksasuke.cor VS aaaaaa.cor]
+Introducing contestants...
+* Player 1, weighing 407 bytes, "aaaaaa" ("aaaaaaaa  aaa a aaa aaaaaa aaa aaaaaaa aa a a aaaaaa aaa a a a  aaaaa") !
+* Player 2, weighing 264 bytes, "Xx_DaRk_SaSuKe_93_xX" ("The Dirty Hamster") !
+Contestant 1, "aaaaaa", has won !
+
+ [13:27:34] (1) [20/44] [ aaaaaa.cor VS doge.cor]
+Introducing contestants...
+* Player 1, weighing 407 bytes, "aaaaaa" ("aaaaaaaa  aaa a aaa aaaaaa aaa aaaaaaa aa a a aaaaaa aaa a a a  aaaaa") !
+* Player 2, weighing 679 bytes, "Candy" ("") !
+Contestant 2, "Candy", has won !
+
+ [13:27:34] (2) [20/44] [ doge.cor VS aaaaaa.cor]
+Introducing contestants...
+* Player 1, weighing 407 bytes, "aaaaaa" ("aaaaaaaa  aaa a aaa aaaaaa aaa aaaaaaa aa a a aaaaaa aaa a a a  aaaaa") !
+* Player 2, weighing 679 bytes, "Candy" ("") !
+Contestant 2, "Candy", has won !
+
+ [13:27:34] (1) [21/44] [ aaaaaa.cor VS Douceur_power.cor]
+Introducing contestants...
+* Player 1, weighing 407 bytes, "aaaaaa" ("aaaaaaaa  aaa a aaa aaaaaa aaa aaaaaaa aa a a aaaaaa aaa a a a  aaaaa") !
+* Player 2, weighing 602 bytes, "Douceur-power" ("La douceur de la quenelle") !
+Contestant 2, "Douceur-power", has won !
+
+ [13:27:34] (2) [21/44] [ Douceur_power.cor VS aaaaaa.cor]
+Introducing contestants...
+* Player 1, weighing 407 bytes, "aaaaaa" ("aaaaaaaa  aaa a aaa aaaaaa aaa aaaaaaa aa a a aaaaaa aaa a a a  aaaaa") !
+* Player 2, weighing 602 bytes, "Douceur-power" ("La douceur de la quenelle") !
+Contestant 2, "Douceur-power", has won !
+
+ [13:27:34] (1) [22/44] [ aaaaaa.cor VS dubo.cor]
+Introducing contestants...
+* Player 1, weighing 407 bytes, "aaaaaa" ("aaaaaaaa  aaa a aaa aaaaaa aaa aaaaaaa aa a a aaaaaa aaa a a a  aaaaa") !
+* Player 2, weighing 71 bytes, "dubo" ("Tu veux du pain") !
+Contestant 2, "dubo", has won !
+
+ [13:27:34] (2) [22/44] [ dubo.cor VS aaaaaa.cor]
+Introducing contestants...
+* Player 1, weighing 407 bytes, "aaaaaa" ("aaaaaaaa  aaa a aaa aaaaaa aaa aaaaaaa aa a a aaaaaa aaa a a a  aaaaa") !
+* Player 2, weighing 71 bytes, "dubo" ("Tu veux du pain") !
+Contestant 2, "dubo", has won !
+
+ [13:27:34] (1) [23/44] [ aaaaaa.cor VS gateau.cor]
+Introducing contestants...
+* Player 1, weighing 407 bytes, "aaaaaa" ("aaaaaaaa  aaa a aaa aaaaaa aaa aaaaaaa aa a a aaaaaa aaa a a a  aaaaa") !
+* Player 2, weighing 682 bytes, "🎂" ("🎂") !
+Contestant 2, "🎂", has won !
+
+ [13:27:34] (2) [23/44] [ gateau.cor VS aaaaaa.cor]
+Introducing contestants...
+* Player 1, weighing 407 bytes, "aaaaaa" ("aaaaaaaa  aaa a aaa aaaaaa aaa aaaaaaa aa a a aaaaaa aaa a a a  aaaaa") !
+* Player 2, weighing 682 bytes, "🎂" ("🎂") !
+Contestant 2, "🎂", has won !
+
+ [13:27:35] (1) [24/44] [ aaaaaa.cor VS jinx.cor]
+Introducing contestants...
+* Player 1, weighing 407 bytes, "aaaaaa" ("aaaaaaaa  aaa a aaa aaaaaa aaa aaaaaaa aa a a aaaaaa aaa a a a  aaaaa") !
+* Player 2, weighing 320 bytes, "Jinx" ("Stay still, I'm trying to shoot you..!") !
+Contestant 1, "aaaaaa", has won !
+
+ [13:27:35] (2) [24/44] [ jinx.cor VS aaaaaa.cor]
+Introducing contestants...
+* Player 1, weighing 407 bytes, "aaaaaa" ("aaaaaaaa  aaa a aaa aaaaaa aaa aaaaaaa aa a a aaaaaa aaa a a a  aaaaa") !
+* Player 2, weighing 320 bytes, "Jinx" ("Stay still, I'm trying to shoot you..!") !
+Contestant 1, "aaaaaa", has won !
+
+ [13:27:35] (1) [25/44] [ aaaaaa.cor VS justin_bee.cor]
+Introducing contestants...
+* Player 1, weighing 407 bytes, "aaaaaa" ("aaaaaaaa  aaa a aaa aaaaaa aaa aaaaaaa aa a a aaaaaa aaa a a a  aaaaa") !
+* Player 2, weighing 527 bytes, "L'arene des abeilles" ("Baby, baby, baby, oh !") !
+Contestant 1, "aaaaaa", has won !
+
+ [13:27:35] (2) [25/44] [ justin_bee.cor VS aaaaaa.cor]
+Introducing contestants...
+* Player 1, weighing 407 bytes, "aaaaaa" ("aaaaaaaa  aaa a aaa aaaaaa aaa aaaaaaa aa a a aaaaaa aaa a a a  aaaaa") !
+* Player 2, weighing 527 bytes, "L'arene des abeilles" ("Baby, baby, baby, oh !") !
+Contestant 1, "aaaaaa", has won !
+
+ [13:27:35] (1) [26/44] [ aaaaaa.cor VS Kappa.cor]
+Introducing contestants...
+* Player 1, weighing 407 bytes, "aaaaaa" ("aaaaaaaa  aaa a aaa aaaaaa aaa aaaaaaa aa a a aaaaaa aaa a a a  aaaaa") !
+* Player 2, weighing 682 bytes, "Kappa" ("AKA Kappa Sandwich.") !
+Contestant 2, "Kappa", has won !
+
+ [13:27:35] (2) [26/44] [ Kappa.cor VS aaaaaa.cor]
+Introducing contestants...
+* Player 1, weighing 407 bytes, "aaaaaa" ("aaaaaaaa  aaa a aaa aaaaaa aaa aaaaaaa aa a a aaaaaa aaa a a a  aaaaa") !
+* Player 2, weighing 682 bytes, "Kappa" ("AKA Kappa Sandwich.") !
+Contestant 2, "Kappa", has won !
+
+ [13:27:37] (1) [27/44] [ aaaaaa.cor VS littlepuppy.cor]
+Introducing contestants...
+* Player 1, weighing 407 bytes, "aaaaaa" ("aaaaaaaa  aaa a aaa aaaaaa aaa aaaaaaa aa a a aaaaaa aaa a a a  aaaaa") !
+* Player 2, weighing 274 bytes, "Little Puppy" ("Wang Wang!!!!") !
+Contestant 2, "Little Puppy", has won !
+
+ [13:27:37] (2) [27/44] [ littlepuppy.cor VS aaaaaa.cor]
+Introducing contestants...
+* Player 1, weighing 407 bytes, "aaaaaa" ("aaaaaaaa  aaa a aaa aaaaaa aaa aaaaaaa aa a a aaaaaa aaa a a a  aaaaa") !
+* Player 2, weighing 274 bytes, "Little Puppy" ("Wang Wang!!!!") !
+Contestant 2, "Little Puppy", has won !
+
+ [13:27:38] (1) [28/44] [ aaaaaa.cor VS live.cor]
+Introducing contestants...
+* Player 1, weighing 407 bytes, "aaaaaa" ("aaaaaaaa  aaa a aaa aaaaaa aaa aaaaaaa aa a a aaaaaa aaa a a a  aaaaa") !
+* Player 2, weighing 532 bytes, "zdoh" ("w8 for da next one") !
+Contestant 2, "zdoh", has won !
+
+ [13:27:38] (2) [28/44] [ live.cor VS aaaaaa.cor]
+Introducing contestants...
+* Player 1, weighing 407 bytes, "aaaaaa" ("aaaaaaaa  aaa a aaa aaaaaa aaa aaaaaaa aa a a aaaaaa aaa a a a  aaaaa") !
+* Player 2, weighing 532 bytes, "zdoh" ("w8 for da next one") !
+Contestant 2, "zdoh", has won !
+
+ [13:27:38] (1) [29/44] [ aaaaaa.cor VS loose.cor]
+Introducing contestants...
+* Player 1, weighing 407 bytes, "aaaaaa" ("aaaaaaaa  aaa a aaa aaaaaa aaa aaaaaaa aa a a aaaaaa aaa a a a  aaaaa") !
+* Player 2, weighing 682 bytes, "loose" ("loooose") !
+Contestant 2, "loose", has won !
+
+ [13:27:38] (2) [29/44] [ loose.cor VS aaaaaa.cor]
+Introducing contestants...
+* Player 1, weighing 407 bytes, "aaaaaa" ("aaaaaaaa  aaa a aaa aaaaaa aaa aaaaaaa aa a a aaaaaa aaa a a a  aaaaa") !
+* Player 2, weighing 682 bytes, "loose" ("loooose") !
+Contestant 2, "loose", has won !
+
+ [13:27:38] (1) [30/44] [ aaaaaa.cor VS Machine-gun.cor]
+Introducing contestants...
+* Player 1, weighing 407 bytes, "aaaaaa" ("aaaaaaaa  aaa a aaa aaaaaa aaa aaaaaaa aa a a aaaaaa aaa a a a  aaaaa") !
+* Player 2, weighing 301 bytes, "Machine-gun" ("yipikai mother fucker") !
+Contestant 2, "Machine-gun", has won !
+
+ [13:27:38] (2) [30/44] [ Machine-gun.cor VS aaaaaa.cor]
+Introducing contestants...
+* Player 1, weighing 407 bytes, "aaaaaa" ("aaaaaaaa  aaa a aaa aaaaaa aaa aaaaaaa aa a a aaaaaa aaa a a a  aaaaa") !
+* Player 2, weighing 301 bytes, "Machine-gun" ("yipikai mother fucker") !
+Contestant 2, "Machine-gun", has won !
+
+ [13:27:38] (1) [31/44] [ aaaaaa.cor VS MarineKing.cor]
+Introducing contestants...
+* Player 1, weighing 407 bytes, "aaaaaa" ("aaaaaaaa  aaa a aaa aaaaaa aaa aaaaaaa aa a a aaaaaa aaa a a a  aaaaa") !
+* Player 2, weighing 460 bytes, "MKP" ("SaR ez Gg") !
+Contestant 1, "aaaaaa", has won !
+
+ [13:27:38] (2) [31/44] [ MarineKing.cor VS aaaaaa.cor]
+Introducing contestants...
+* Player 1, weighing 407 bytes, "aaaaaa" ("aaaaaaaa  aaa a aaa aaaaaa aaa aaaaaaa aa a a aaaaaa aaa a a a  aaaaa") !
+* Player 2, weighing 460 bytes, "MKP" ("SaR ez Gg") !
+Contestant 1, "aaaaaa", has won !
+
+ [13:27:39] (1) [32/44] [ aaaaaa.cor VS meowluigi.cor]
+Introducing contestants...
+* Player 1, weighing 407 bytes, "aaaaaa" ("aaaaaaaa  aaa a aaa aaaaaa aaa aaaaaaa aa a a aaaaaa aaa a a a  aaaaa") !
+* Player 2, weighing 525 bytes, "Meow Luigi" ("Here we meoooooow !") !
+Contestant 1, "aaaaaa", has won !
+
+ [13:27:39] (2) [32/44] [ meowluigi.cor VS aaaaaa.cor]
+Introducing contestants...
+* Player 1, weighing 407 bytes, "aaaaaa" ("aaaaaaaa  aaa a aaa aaaaaa aaa aaaaaaa aa a a aaaaaa aaa a a a  aaaaa") !
+* Player 2, weighing 525 bytes, "Meow Luigi" ("Here we meoooooow !") !
+Contestant 1, "aaaaaa", has won !
+
+ [13:27:49] (1) [33/44] [ aaaaaa.cor VS overwatch.cor]
+Introducing contestants...
+* Player 1, weighing 407 bytes, "aaaaaa" ("aaaaaaaa  aaa a aaa aaaaaa aaa aaaaaaa aa a a aaaaaa aaa a a a  aaaaa") !
+* Player 2, weighing 639 bytes, "Overwatch" ("Reinhardt, Pharah, Mercy, Mei, Symmetra & Torbjorn") !
+Contestant 2, "Overwatch", has won !
+
+ [13:27:49] (2) [33/44] [ overwatch.cor VS aaaaaa.cor]
+Introducing contestants...
+* Player 1, weighing 407 bytes, "aaaaaa" ("aaaaaaaa  aaa a aaa aaaaaa aaa aaaaaaa aa a a aaaaaa aaa a a a  aaaaa") !
+* Player 2, weighing 639 bytes, "Overwatch" ("Reinhardt, Pharah, Mercy, Mei, Symmetra & Torbjorn") !
+Contestant 2, "Overwatch", has won !
+
+ [13:27:49] (1) [34/44] [ aaaaaa.cor VS salamahenagalabadoun.cor]
+Introducing contestants...
+* Player 1, weighing 407 bytes, "aaaaaa" ("aaaaaaaa  aaa a aaa aaaaaa aaa aaaaaaa aa a a aaaaaa aaa a a a  aaaaa") !
+* Player 2, weighing 45 bytes, "salamahenagalabadoun" ("sussKBO hin hin") !
+Contestant 1, "aaaaaa", has won !
+
+ [13:27:49] (2) [34/44] [ salamahenagalabadoun.cor VS aaaaaa.cor]
+Introducing contestants...
+* Player 1, weighing 407 bytes, "aaaaaa" ("aaaaaaaa  aaa a aaa aaaaaa aaa aaaaaaa aa a a aaaaaa aaa a a a  aaaaa") !
+* Player 2, weighing 45 bytes, "salamahenagalabadoun" ("sussKBO hin hin") !
+Contestant 1, "aaaaaa", has won !
+
+ [13:27:49] (1) [35/44] [ aaaaaa.cor VS sam_2.0.cor]
+Introducing contestants...
+* Player 1, weighing 407 bytes, "aaaaaa" ("aaaaaaaa  aaa a aaa aaaaaa aaa aaaaaaa aa a a aaaaaa aaa a a a  aaaaa") !
+* Player 2, weighing 235 bytes, "S.A.M." ("Ca roxxe du chameau") !
+Contestant 1, "aaaaaa", has won !
+
+ [13:27:49] (2) [35/44] [ sam_2.0.cor VS aaaaaa.cor]
+Introducing contestants...
+* Player 1, weighing 407 bytes, "aaaaaa" ("aaaaaaaa  aaa a aaa aaaaaa aaa aaaaaaa aa a a aaaaaa aaa a a a  aaaaa") !
+* Player 2, weighing 235 bytes, "S.A.M." ("Ca roxxe du chameau") !
+Contestant 1, "aaaaaa", has won !
+
+ [13:27:49] (1) [36/44] [ aaaaaa.cor VS skynet.cor]
+Introducing contestants...
+* Player 1, weighing 407 bytes, "aaaaaa" ("aaaaaaaa  aaa a aaa aaaaaa aaa aaaaaaa aa a a aaaaaa aaa a a a  aaaaa") !
+* Player 2, weighing 671 bytes, "skynet" ("j'aime les chats") !
+Contestant 2, "skynet", has won !
+
+ [13:27:49] (2) [36/44] [ skynet.cor VS aaaaaa.cor]
+Introducing contestants...
+* Player 1, weighing 407 bytes, "aaaaaa" ("aaaaaaaa  aaa a aaa aaaaaa aaa aaaaaaa aa a a aaaaaa aaa a a a  aaaaa") !
+* Player 2, weighing 671 bytes, "skynet" ("j'aime les chats") !
+Contestant 2, "skynet", has won !
+
+ [13:27:49] (1) [37/44] [ aaaaaa.cor VS terminator.cor]
+Introducing contestants...
+* Player 1, weighing 407 bytes, "aaaaaa" ("aaaaaaaa  aaa a aaa aaaaaa aaa aaaaaaa aa a a aaaaaa aaa a a a  aaaaa") !
+* Player 2, weighing 235 bytes, "terminator" ("Hasta la vista, baby!") !
+Contestant 2, "terminator", has won !
+
+ [13:27:49] (2) [37/44] [ terminator.cor VS aaaaaa.cor]
+Introducing contestants...
+* Player 1, weighing 407 bytes, "aaaaaa" ("aaaaaaaa  aaa a aaa aaaaaa aaa aaaaaaa aa a a aaaaaa aaa a a a  aaaaa") !
+* Player 2, weighing 235 bytes, "terminator" ("Hasta la vista, baby!") !
+Contestant 2, "terminator", has won !
+
+ [13:27:50] (1) [38/44] [ aaaaaa.cor VS THUNDER.cor]
+Introducing contestants...
+* Player 1, weighing 407 bytes, "aaaaaa" ("aaaaaaaa  aaa a aaa aaaaaa aaa aaaaaaa aa a a aaaaaa aaa a a a  aaaaa") !
+* Player 2, weighing 634 bytes, "thunder" ("you've been thunderstruck...") !
+Contestant 2, "thunder", has won !
+
+ [13:27:50] (2) [38/44] [ THUNDER.cor VS aaaaaa.cor]
+Introducing contestants...
+* Player 1, weighing 407 bytes, "aaaaaa" ("aaaaaaaa  aaa a aaa aaaaaa aaa aaaaaaa aa a a aaaaaa aaa a a a  aaaaa") !
+* Player 2, weighing 634 bytes, "thunder" ("you've been thunderstruck...") !
+Contestant 2, "thunder", has won !
+
+ [13:27:50] (1) [39/44] [ aaaaaa.cor VS Varimathras.cor]
+Introducing contestants...
+* Player 1, weighing 407 bytes, "aaaaaa" ("aaaaaaaa  aaa a aaa aaaaaa aaa aaaaaaa aa a a aaaaaa aaa a a a  aaaaa") !
+* Player 2, weighing 318 bytes, "Varimathras" ("If I have wings, why am I always walking?") !
+Contestant 2, "Varimathras", has won !
+
+ [13:27:50] (2) [39/44] [ Varimathras.cor VS aaaaaa.cor]
+Introducing contestants...
+* Player 1, weighing 407 bytes, "aaaaaa" ("aaaaaaaa  aaa a aaa aaaaaa aaa aaaaaaa aa a a aaaaaa aaa a a a  aaaaa") !
+* Player 2, weighing 318 bytes, "Varimathras" ("If I have wings, why am I always walking?") !
+Contestant 2, "Varimathras", has won !
+
+ [13:27:50] (1) [40/44] [ aaaaaa.cor VS Wall.cor]
+Introducing contestants...
+* Player 1, weighing 407 bytes, "aaaaaa" ("aaaaaaaa  aaa a aaa aaaaaa aaa aaaaaaa aa a a aaaaaa aaa a a a  aaaaa") !
+* Player 2, weighing 338 bytes, "Wall" ("Werror(you) Wextra(me)") !
+Contestant 2, "Wall", has won !
+
+ [13:27:50] (2) [40/44] [ Wall.cor VS aaaaaa.cor]
+Introducing contestants...
+* Player 1, weighing 407 bytes, "aaaaaa" ("aaaaaaaa  aaa a aaa aaaaaa aaa aaaaaaa aa a a aaaaaa aaa a a a  aaaaa") !
+* Player 2, weighing 338 bytes, "Wall" ("Werror(you) Wextra(me)") !
+Contestant 2, "Wall", has won !
+
+ [13:27:50] (1) [41/44] [ aaaaaa.cor VS _honeybadger.cor]
+Introducing contestants...
+* Player 1, weighing 407 bytes, "aaaaaa" ("aaaaaaaa  aaa a aaa aaaaaa aaa aaaaaaa aa a a aaaaaa aaa a a a  aaaaa") !
+* Player 2, weighing 681 bytes, "HoneyBadger" ("This is where I'd put the forks. IF I HAD ANY") !
+Contestant 2, "HoneyBadger", has won !
+
+ [13:27:50] (2) [41/44] [ _honeybadger.cor VS aaaaaa.cor]
+Introducing contestants...
+* Player 1, weighing 407 bytes, "aaaaaa" ("aaaaaaaa  aaa a aaa aaaaaa aaa aaaaaaa aa a a aaaaaa aaa a a a  aaaaa") !
+* Player 2, weighing 681 bytes, "HoneyBadger" ("This is where I'd put the forks. IF I HAD ANY") !
+Contestant 2, "HoneyBadger", has won !
+
+ [13:27:50] (1) [42/44] [ aaaaaa.cor VS gedeon.cor]
+Introducing contestants...
+* Player 1, weighing 407 bytes, "aaaaaa" ("aaaaaaaa  aaa a aaa aaaaaa aaa aaaaaaa aa a a aaaaaa aaa a a a  aaaaa") !
+* Player 2, weighing 316 bytes, "Gédéon le Cochon" ("Tout est bon dans Gédéon") !
+Contestant 2, "Gédéon le Cochon", has won !
+
+ [13:27:50] (2) [42/44] [ gedeon.cor VS aaaaaa.cor]
+Introducing contestants...
+* Player 1, weighing 407 bytes, "aaaaaa" ("aaaaaaaa  aaa a aaa aaaaaa aaa aaaaaaa aa a a aaaaaa aaa a a a  aaaaa") !
+* Player 2, weighing 316 bytes, "Gédéon le Cochon" ("Tout est bon dans Gédéon") !
+Contestant 2, "Gédéon le Cochon", has won !
+
+ [13:27:51] (1) [43/44] [ aaaaaa.cor VS mandragore.cor]
+Introducing contestants...
+* Player 1, weighing 407 bytes, "aaaaaa" ("aaaaaaaa  aaa a aaa aaaaaa aaa aaaaaaa aa a a aaaaaa aaa a a a  aaaaa") !
+* Player 2, weighing 400 bytes, "mandragore" ("you can see me, you can't anymore, you can, you can't !") !
+Contestant 1, "aaaaaa", has won !
+
+ [13:27:51] (2) [43/44] [ mandragore.cor VS aaaaaa.cor]
+Introducing contestants...
+* Player 1, weighing 407 bytes, "aaaaaa" ("aaaaaaaa  aaa a aaa aaaaaa aaa aaaaaaa aa a a aaaaaa aaa a a a  aaaaa") !
+* Player 2, weighing 400 bytes, "mandragore" ("you can see me, you can't anymore, you can, you can't !") !
+Contestant 1, "aaaaaa", has won !
+
+ [13:28:15] (1) [44/44] [ aaaaaa.cor VS youforkmytralala.cor]
+Introducing contestants...
+* Player 1, weighing 407 bytes, "aaaaaa" ("aaaaaaaa  aaa a aaa aaaaaa aaa aaaaaaa aa a a aaaaaa aaa a a a  aaaaa") !
+* Player 2, weighing 544 bytes, "Oh, You Fork my TRALALA ..." ("HMMMM, my ding-ding-dong !!") !
+Contestant 2, "Oh, You Fork my TRALALA ...", has won !
+
+ [13:28:15] (2) [44/44] [ youforkmytralala.cor VS aaaaaa.cor]
+Introducing contestants...
+* Player 1, weighing 407 bytes, "aaaaaa" ("aaaaaaaa  aaa a aaa aaaaaa aaa aaaaaaa aa a a aaaaaa aaa a a a  aaaaa") !
+* Player 2, weighing 544 bytes, "Oh, You Fork my TRALALA ..." ("HMMMM, my ding-ding-dong !!") !
+Contestant 2, "Oh, You Fork my TRALALA ...", has won !
+
