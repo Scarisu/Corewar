@@ -6,7 +6,7 @@
 /*   By: rlecart <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/11/23 06:12:46 by rlecart           #+#    #+#             */
-/*   Updated: 2018/04/03 12:01:36 by rlecart          ###   ########.fr       */
+/*   Updated: 2018/04/04 23:59:54 by rlecart          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,12 +29,12 @@ void	delete_process(t_reg *t, t_reg *next, t_champ *champs, int i)
 			t->prev->next = t->next;
 		if (t->next)
 			t->next->prev = t->prev;
+		if (next)
+			champs[i].reg = get_first_reg(next);
+		else if ((champs[i].reg = get_first_reg(t)) == t)
+			champs[i].reg = NULL;
+		ft_memdel((void**)&t);
 	}
-	if (next)
-		champs[i].reg = get_first_reg(next);
-	else if ((champs[i].reg = get_first_reg(t)) == t)
-		champs[i].reg = NULL;
-	ft_memdel((void**)&t);
 	foam_bat();
 }
 

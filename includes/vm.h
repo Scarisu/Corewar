@@ -6,7 +6,7 @@
 /*   By: rlecart <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/11/23 06:04:11 by rlecart           #+#    #+#             */
-/*   Updated: 2018/04/03 12:02:31 by rlecart          ###   ########.fr       */
+/*   Updated: 2018/04/07 00:56:33 by rlecart          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,6 +30,20 @@ typedef struct s_corewar		t_corewar;
 typedef struct s_ocp			t_ocp;
 typedef struct s_need_ocp		t_need_ocp;
 typedef struct s_need_norm		t_need_norm;
+typedef struct s_need_ldi		t_need_ldi;
+
+struct				s_ocp
+{
+	int				p[3];
+};
+
+struct		s_need_ldi
+{
+	int		r[3];
+	int		tpc[2];
+	t_ocp	ocp;
+};
+
 
 struct				s_need_norm
 {
@@ -45,11 +59,6 @@ struct				s_need_ocp
 	int				j2;
 	int				tmp2;
 	char			*tmp;
-};
-
-struct				s_ocp
-{
-	int				p[3];
 };
 
 struct				s_reg
@@ -155,5 +164,8 @@ t_reg				*get_first_reg(t_reg *reg);
 int					get_processes(int nbc, t_champ *champs);
 
 void				print_reg(t_reg *reg);
+void				light_down(t_corewar *d, int *colors);
+void				light_up_pc(t_corewar *d, int *colors);
+int					get_color_here(t_corewar *d, int pc);
 
 #endif

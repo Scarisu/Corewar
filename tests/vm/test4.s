@@ -3,7 +3,8 @@
 
 live:	live %1
 
-ld:		ld %4200, r2
-		ld %4000, r3
+ld:		ld %4200, r1
 
-sti:	sti r2, :live, %450
+ldi:	ldi r1, r1, r2
+
+st:		st r2, :live
