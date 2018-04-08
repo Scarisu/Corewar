@@ -6,7 +6,7 @@
 /*   By: rlecart <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/11/23 06:15:11 by rlecart           #+#    #+#             */
-/*   Updated: 2018/03/29 02:58:45 by rlecart          ###   ########.fr       */
+/*   Updated: 2018/04/08 21:02:16 by rlecart          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,6 +42,8 @@ void		get_head(t_champ *champs, int i)
 	int		j;
 
 	j = 0;
+	if (!champs[i].len)
+		error(6, NULL);
 	while (!ft_isalnum(champs[i].content[j]))
 		j++;
 	champs[i].name = ft_strdup(&champs[i].content[j]);

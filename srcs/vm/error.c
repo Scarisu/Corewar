@@ -6,7 +6,7 @@
 /*   By: rlecart <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/11/23 06:25:10 by rlecart           #+#    #+#             */
-/*   Updated: 2018/03/30 23:13:44 by rlecart          ###   ########.fr       */
+/*   Updated: 2018/04/08 21:03:38 by rlecart          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,6 +40,8 @@ void	error(int code, char *var)
 				"[Error] The champion size is too long.", var)) : 1;
 	code == 5 ? exit(display_error(
 				"[Error] The file doesn't exist.", var)) : 1;
-	code < 0 || code > 5 ? exit(display_error(
+	code == 6 ? exit(display_error(
+				"[Error] Champion's content is empty.", var)) : 1;
+	code < 0 || code > 6 ? exit(display_error(
 				"[Error] Undifined.", var)) : 1;
 }
