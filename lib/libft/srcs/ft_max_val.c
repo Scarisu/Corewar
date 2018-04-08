@@ -1,20 +1,26 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_memset.c                                        :+:      :+:    :+:   */
+/*   ft_max_val.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: pbernier <pbernier@student.42.fr>          +#+  +:+       +#+        */
+/*   By: rlecart <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2016/11/10 07:15:57 by pbernier          #+#    #+#             */
-/*   Updated: 2018/01/16 09:55:15 by rlecart          ###   ########.fr       */
+/*   Created: 2017/12/19 10:10:45 by rlecart           #+#    #+#             */
+/*   Updated: 2017/12/20 05:15:03 by rlecart          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "libft.h"
+#include <libft.h>
 
-void	*ft_memset(void *b, int c, size_t len)
+int		ft_max_val(int *tab, int size)
 {
-	while (len--)
-		((char*)b)[len] = c;
-	return (b);
+	int		i;
+	int		ret;
+
+	i = -1;
+	ret = -1;
+	while (++i < size)
+		if (ret == -1 || (tab[i] > ret && tab[i] > 0))
+			ret = tab[i];
+	return (ret);
 }

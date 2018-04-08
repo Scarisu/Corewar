@@ -1,20 +1,19 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_memset.c                                        :+:      :+:    :+:   */
+/*   op_null.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: pbernier <pbernier@student.42.fr>          +#+  +:+       +#+        */
+/*   By: rlecart <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2016/11/10 07:15:57 by pbernier          #+#    #+#             */
-/*   Updated: 2018/01/16 09:55:15 by rlecart          ###   ########.fr       */
+/*   Created: 2018/01/17 21:54:09 by rlecart           #+#    #+#             */
+/*   Updated: 2018/04/03 12:06:03 by rlecart          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "libft.h"
+#include <vm.h>
 
-void	*ft_memset(void *b, int c, size_t len)
+void	op_null(t_corewar *d, t_reg *reg)
 {
-	while (len--)
-		((char*)b)[len] = c;
-	return (b);
+	(void)d;
+	jump_to_next(reg, 1);
 }

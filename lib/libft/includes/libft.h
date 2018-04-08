@@ -6,7 +6,7 @@
 /*   By: pbernier <pbernier@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/11/09 00:30:13 by pbernier          #+#    #+#             */
-/*   Updated: 2017/11/22 06:44:38 by pbernier         ###   ########.fr       */
+/*   Updated: 2018/02/13 04:48:16 by rlecart          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,9 +14,22 @@
 # define LIBFT_H
 
 # define BUFF_SIZE 100
+# define HEXA "0123456789abcdef"
+
+# define C_RESET "\033[0m"
+# define C_RED "\033[38;5;1m"
+# define C_RED_MINUS "\033[38;5;9m"
+# define C_GREEN "\033[38;5;2m"
+# define C_YELLOW "\033[38;5;3m"
+# define C_BLUE "\033[38;5;4m"
+# define C_PINK "\033[38;5;5m"
+# define C_BRIGHT_BLUE "\033[38;5;6m"
+# define C_GREY "\033[38;5;8m"
+
 # include <string.h>
 # include <stdlib.h>
 # include <stdio.h>
+# include <stdbool.h>
 # include <unistd.h>
 # include <fcntl.h>
 # include <sys/types.h>
@@ -101,6 +114,7 @@ char				*ft_strjoin_char(char const *s1, char c);
 char				*ft_strtrim(char const *s);
 char				**ft_strsplit(char const *s, char c);
 char				*ft_itoa(int n);
+//char				*ft_itoa_base(unsigned int value, int base, char *basestr);
 char				*ft_itoa_base(int value, int base);
 long				ft_itoo(int value);
 void				ft_putendl(char const *s);
@@ -117,7 +131,7 @@ void				ft_lstadd(t_list **alst, t_list *newlst);
 void				ft_lstiter(t_list *lst, void (*f)(t_list *elem));
 t_list				*ft_lstmap(t_list *lst, t_list *(*f)(t_list *elem));
 int					ft_sqrt(int nb);
-void				ft_swap(int *a, int *b);
+void				ft_swap(void *tab, size_t len);
 int					*ft_range(int min, int max);
 char				*ft_strrev(char *str);
 t_list				*ft_lstlast(t_list **alst);
@@ -130,5 +144,15 @@ int					ft_intlen_base(int nbr, int base);
 int					ft_absolute(int nbr);
 void				ft_strreset(char **as, char *reset);
 size_t				ft_llen(long long nbr);
+char				**ft_get_file(char *file);
+size_t				ft_tablen(void **tab);
+char				*ft_ttoa(char **tab);
+void				*ft_realloc(void *ptr, size_t size);
+void				*ft_memsub(void *src, unsigned int start, unsigned int len);
+int					ft_which_endian(void);
+int					ft_max_val(int *tab, int size);
+int					ft_c_atoi(char *str);
+int					ft_al_exist(void *tab, int nb, int size);
+int					ft_atoi_base(char *str, char *strbase);
 
 #endif

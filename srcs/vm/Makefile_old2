@@ -40,11 +40,12 @@ SRC_RACINE		=	main.c \
 					utils2.c \
 					color.c
 
-FLAGS			=	$(WFLAGS)
+FLAGS			=	$(DFLAGS)
 INC				=	$(addprefix $(MP)$(DIR_INC),$(SRC_INCLUD))
 PATH_OBJ		=	$(DIR_OBJ)$(DIR_VM)
-DIR				=	$(DIR_RACINE)
-SRC				=	$(addprefix $(DIR_RACINE),$(SRC_RACINE))
+DIR				=	$(DIR_RACINE) $(DIR_OPCODES)
+SRC				=	$(addprefix $(DIR_RACINE),$(SRC_RACINE)) \
+					$(addprefix $(DIR_OPCODES),$(SRC_OPCODES))
 OBJ				=	$(addprefix $(PATH_OBJ),$(SRC:.c=.o))
 
 all: $(NAME_VM)
@@ -55,16 +56,16 @@ endif
 $(notdir $(NAME_VM)): all
 
 $(NAME_VM): $(LIB_PATH) $(PATH_OBJ) $(OBJ)
-	@printf "[$(PROJECT_VM)] Objs compilation done.      \n"
-	@$(CC) -o $(NAME_VM) $(OBJ) $(LIB_PATH) $(FLAGS)
+	@printf "[$(PROJECT_VM)] Objs compilation done.                          \n"
+	@$(CC) -o $(NAME_VM) $(OBJ) $(LIB_PATH) $(FLAGS) -lncurses
 	@printf "[$(PROJECT_VM)] "
 ifeq ($(FLAGS),$(DFLAGS))
 	@printf "(lldb mode) "
 endif
-	@printf "$(notdir $(NAME_VM)) compiled.\n"
+	@printf "$(notdir $(NAME_VM)) compiled.                                  \n"
 
 $(PATH_OBJ)%.o: %.c $(INC) Makefile
-	@printf "[$(PROJECT_VM)] Compiling $(notdir $<) to $(notdir $@)              \r"
+	@printf "[$(PROJECT_VM)] Compiling $(notdir $<) to $(notdir $@)                                   \r"
 	@$(CC) $(FLAGS) $(INCLUDES) -o $@ -c $<
 
 $(LIB_PATH):
@@ -73,6 +74,7 @@ $(LIB_PATH):
 $(PATH_OBJ):
 	@mkdir -p $(DIR_OBJ)
 	@mkdir -p $(PATH_OBJ)
+	@mkdir -p $(addprefix $(PATH_OBJ), $(DIR))
 
 lldb:
 	@make -C $(LIB_MAKE) lldb

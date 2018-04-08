@@ -1,20 +1,23 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_memset.c                                        :+:      :+:    :+:   */
+/*   ft_tablen.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: pbernier <pbernier@student.42.fr>          +#+  +:+       +#+        */
+/*   By: rlecart <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2016/11/10 07:15:57 by pbernier          #+#    #+#             */
-/*   Updated: 2018/01/16 09:55:15 by rlecart          ###   ########.fr       */
+/*   Created: 2017/11/23 06:48:12 by rlecart           #+#    #+#             */
+/*   Updated: 2017/11/23 06:49:39 by rlecart          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "libft.h"
+#include <libft.h>
 
-void	*ft_memset(void *b, int c, size_t len)
+size_t	ft_tablen(void **tab)
 {
-	while (len--)
-		((char*)b)[len] = c;
-	return (b);
+	size_t	len;
+
+	len = 0;
+	while (tab[len])
+		len++;
+	return (len);
 }

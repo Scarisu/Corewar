@@ -1,20 +1,25 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_memset.c                                        :+:      :+:    :+:   */
+/*   ft_which_endian.c                                  :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: pbernier <pbernier@student.42.fr>          +#+  +:+       +#+        */
+/*   By: rlecart <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2016/11/10 07:15:57 by pbernier          #+#    #+#             */
-/*   Updated: 2018/01/16 09:55:15 by rlecart          ###   ########.fr       */
+/*   Created: 2017/12/15 09:03:01 by rlecart           #+#    #+#             */
+/*   Updated: 2017/12/15 09:06:58 by rlecart          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "libft.h"
+#include <libft.h>
 
-void	*ft_memset(void *b, int c, size_t len)
+/*
+** 0 = Big endian
+** 1 = Little endian
+*/
+
+int		ft_which_endian(void)
 {
-	while (len--)
-		((char*)b)[len] = c;
-	return (b);
+	unsigned int	x = 1;
+
+	return ((((char*)&x)[0]) == 1 ? 0 : 1);
 }

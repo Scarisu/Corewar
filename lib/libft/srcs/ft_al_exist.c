@@ -1,20 +1,24 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_memset.c                                        :+:      :+:    :+:   */
+/*   ft_al_exist.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: pbernier <pbernier@student.42.fr>          +#+  +:+       +#+        */
+/*   By: rlecart <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2016/11/10 07:15:57 by pbernier          #+#    #+#             */
-/*   Updated: 2018/01/16 09:55:15 by rlecart          ###   ########.fr       */
+/*   Created: 2017/12/20 05:12:00 by rlecart           #+#    #+#             */
+/*   Updated: 2017/12/20 05:12:16 by rlecart          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "libft.h"
+#include <libft.h>
 
-void	*ft_memset(void *b, int c, size_t len)
+int		ft_al_exist(void *tab, int nb, int size)
 {
-	while (len--)
-		((char*)b)[len] = c;
-	return (b);
+	int		i;
+
+	i = -1;
+	while (++i < size)
+		if (((int*)tab)[i] == nb)
+			return (1);
+	return (0);
 }

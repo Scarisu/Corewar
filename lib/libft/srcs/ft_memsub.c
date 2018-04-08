@@ -1,29 +1,29 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_swap.c                                          :+:      :+:    :+:   */
+/*   ft_memsub.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: pbernier <pbernier@student.42.fr>          +#+  +:+       +#+        */
+/*   By: rlecart <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2016/11/22 06:10:31 by pbernier          #+#    #+#             */
-/*   Updated: 2018/02/13 04:54:21 by rlecart          ###   ########.fr       */
+/*   Created: 2017/12/01 01:31:27 by rlecart           #+#    #+#             */
+/*   Updated: 2017/12/01 02:00:10 by rlecart          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "libft.h"
+#include <libft.h>
 
-void	ft_swap(void *tab, size_t len)
+void	*ft_memsub(void *src, unsigned int start, unsigned int len)
 {
-	int		tmp;
-	char	*tab2;
-	size_t	i;
+	char			*src_tmp;
+	char			*ret_tmp;
+	void			*ret;
+	unsigned int	i;
 
 	i = -1;
-	tab2 = (char*)tab;
+	ret = ft_memalloc(len);
+	src_tmp = src;
+	ret_tmp = ret;
 	while (++i < len)
-	{
-		tmp = tab2[i];
-		tab2[i] = tab2[len - 1 - i];
-		tab2[len - 1 - i] = tmp;
-	}
+		ret_tmp[i] = src_tmp[start + i];
+	return (ret);
 }
