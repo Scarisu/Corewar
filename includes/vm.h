@@ -6,7 +6,7 @@
 /*   By: rlecart <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/11/23 06:04:11 by rlecart           #+#    #+#             */
-/*   Updated: 2018/04/07 00:56:33 by rlecart          ###   ########.fr       */
+/*   Updated: 2018/04/08 20:33:11 by rlecart          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,26 +30,18 @@ typedef struct s_corewar		t_corewar;
 typedef struct s_ocp			t_ocp;
 typedef struct s_need_ocp		t_need_ocp;
 typedef struct s_need_norm		t_need_norm;
-typedef struct s_need_ldi		t_need_ldi;
 
 struct				s_ocp
 {
 	int				p[3];
 };
 
-struct		s_need_ldi
+struct		s_need_norm
 {
+	int		i;
 	int		r[3];
 	int		tpc[2];
 	t_ocp	ocp;
-};
-
-
-struct				s_need_norm
-{
-	int		i;
-	int		tp[2];
-	int		r[3];
 };
 
 struct				s_need_ocp

@@ -6,7 +6,7 @@
 /*   By: rlecart <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/01/17 21:45:31 by rlecart           #+#    #+#             */
-/*   Updated: 2018/04/03 15:19:30 by rlecart          ###   ########.fr       */
+/*   Updated: 2018/04/08 20:48:08 by rlecart          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,6 +28,30 @@ void	sti_norm(int tp[2], t_reg *reg, int r[3], t_corewar *d)
 	jump_to_next(reg, tp[1] - reg->pc);
 }
 
+int		sti_norm2(t_corewar *d, t_reg *reg, t_need_norm *n)
+{
+	int		i;
+
+	i = -1;
+	while (++i < 3)
+	{
+		n->tpc[0] = n->ocp.p[i] == O_REG ? 1 : 2;
+		n->r[i] = find_hexa(d->map, n->tpc[1], n->tpc[0]);
+		if (n->ocp.p[i] == O_REG && n->r[i] >= 1 && n->r[i] <= 16)
+			n->r[i] = reg->r[n->r[i] - 1];
+		else if (n->ocp.p[i] == O_DIR && n->r[i] > 65536 / 2)
+			n->r[i] -= 65536;
+		else if (n->ocp.p[i] == O_IND)
+			n->r[i] = find_ind_sti(d, reg, n->r[i]);
+		else if (n->ocp.p[i] == O_REG && (n->r[i] < 1 || n->r[i] > 16)
+				&& (false_cmd(d, reg, true)))
+			return (-1);
+		(n->tpc[1] += n->tpc[0]) >= MEM_SIZE ?
+			n->tpc[1] -= MEM_SIZE : n->tpc[1];
+	}
+	return (0);
+}
+
 void	op_sti(t_corewar *d, t_reg *reg)
 {
 	t_ocp			ocp;
@@ -36,26 +60,13 @@ void	op_sti(t_corewar *d, t_reg *reg)
 	if (++reg->cycle == 25 && !(reg->cycle = 0))
 	{
 		n.i = -1;
-		(n.tp[1] = reg->pc + 1) >= MEM_SIZE ? n.tp[1] -= MEM_SIZE : n.tp[1];
-		if (!(find_ocp(&ocp, d->map[reg->pc], d->map[n.tp[1]])) &&
+		(n.tpc[1] = reg->pc + 1) >= MEM_SIZE ? n.tpc[1] -= MEM_SIZE : n.tpc[1];
+		if (!(find_ocp(&ocp, d->map[reg->pc], d->map[n.tpc[1]])) &&
 				(false_cmd(d, reg, true)))
 			return ;
-		(++n.tp[1]) >= MEM_SIZE ? n.tp[1] -= MEM_SIZE : n.tp[1];
-		while (++n.i < 3)
-		{
-			n.tp[0] = ocp.p[n.i] == O_REG ? 1 : 2;
-			n.r[n.i] = find_hexa(d->map, n.tp[1], n.tp[0]);
-			if (ocp.p[n.i] == O_REG && n.r[n.i] >= 1 && n.r[n.i] <= 16)
-				n.r[n.i] = reg->r[n.r[n.i] - 1];
-			else if (ocp.p[n.i] == O_DIR && n.r[n.i] > 65536 / 2)
-				n.r[n.i] -= 65536;
-			else if (ocp.p[n.i] == O_IND)
-				n.r[n.i] = find_ind_sti(d, reg, n.r[n.i]);
-			else if (ocp.p[n.i] == O_REG && (n.r[n.i] < 1 || n.r[n.i] > 16) &&
-					(false_cmd(d, reg, true)))
-				return ;
-			(n.tp[1] += n.tp[0]) >= MEM_SIZE ? n.tp[1] -= MEM_SIZE : n.tp[1];
-		}
-		sti_norm(n.tp, reg, n.r, d);
+		(++n.tpc[1]) >= MEM_SIZE ? n.tpc[1] -= MEM_SIZE : n.tpc[1];
+		ft_memcpy(n.ocp.p, ocp.p, 3 * sizeof(int));
+		if (!(sti_norm2(d, reg, &n)))
+			sti_norm(n.tpc, reg, n.r, d);
 	}
 }

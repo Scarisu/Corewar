@@ -6,7 +6,7 @@
 /*   By: rlecart <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/01/17 21:44:58 by rlecart           #+#    #+#             */
-/*   Updated: 2018/04/08 20:22:30 by rlecart          ###   ########.fr       */
+/*   Updated: 2018/04/08 20:39:15 by rlecart          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,7 +33,7 @@ void	ldi_norm(int tpc[2], t_reg *reg, int r[3], t_corewar *d)
 	jump_to_next(reg, tpc[1] - reg->pc);
 }
 
-int		ldi_norm2(t_corewar *d, t_reg *reg, t_need_ldi *n)
+int		ldi_norm2(t_corewar *d, t_reg *reg, t_need_norm *n)
 {
 	int		i;
 
@@ -62,7 +62,7 @@ void	op_ldi(t_corewar *d, t_reg *reg)
 	int				r[3];
 	int				tpc[2];
 	t_ocp			ocp;
-	t_need_ldi		n;
+	t_need_norm		n;
 
 	if (++reg->cycle == 25 && !(reg->cycle = 0))
 	{
