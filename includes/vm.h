@@ -6,7 +6,7 @@
 /*   By: rlecart <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/11/23 06:04:11 by rlecart           #+#    #+#             */
-/*   Updated: 2018/04/08 20:33:11 by rlecart          ###   ########.fr       */
+/*   Updated: 2018/04/08 20:50:13 by rlecart          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,12 +36,12 @@ struct				s_ocp
 	int				p[3];
 };
 
-struct		s_need_norm
+struct				s_need_norm
 {
-	int		i;
-	int		r[3];
-	int		tpc[2];
-	t_ocp	ocp;
+	int				i;
+	int				r[3];
+	int				tpc[2];
+	t_ocp			ocp;
 };
 
 struct				s_need_ocp
