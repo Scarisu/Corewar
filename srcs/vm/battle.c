@@ -6,15 +6,11 @@
 /*   By: rlecart <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/11/23 06:12:46 by rlecart           #+#    #+#             */
-/*   Updated: 2018/04/08 21:12:45 by rlecart          ###   ########.fr       */
+/*   Updated: 2018/04/08 23:00:56 by rlecart          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <vm.h>
-
-void	foam_bat(void)
-{
-}
 
 void	delete_process(t_reg *t, t_reg *next, t_champ *champs, int i)
 {
@@ -35,7 +31,6 @@ void	delete_process(t_reg *t, t_reg *next, t_champ *champs, int i)
 			champs[i].reg = NULL;
 		ft_memdel((void**)&t);
 	}
-	foam_bat();
 }
 
 void	process_killer(t_champ *champs, t_corewar *d)
