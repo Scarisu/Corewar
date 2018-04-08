@@ -6,7 +6,7 @@
 /*   By: rlecart <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/11/23 06:15:11 by rlecart           #+#    #+#             */
-/*   Updated: 2018/04/08 21:02:16 by rlecart          ###   ########.fr       */
+/*   Updated: 2018/04/08 21:25:31 by rlecart          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,12 +47,12 @@ void		get_head(t_champ *champs, int i)
 	while (!ft_isalnum(champs[i].content[j]))
 		j++;
 	champs[i].name = ft_strdup(&champs[i].content[j]);
-	if ((j = ft_strlen(champs[i].name) + 5) > PROG_NAME_LENGTH - 5)
+	if ((j = ft_strlen(champs[i].name) + 5) > PROG_NAME_LENGTH - 5 || !(j - 5))
 		error(2, NULL);
 	while (!ft_isalnum(champs[i].content[j]))
 		j++;
 	champs[i].comment = ft_strdup(&champs[i].content[j]);
-	if (ft_strlen(champs[i].comment) > COMMENT_LENGTH)
+	if ((j = ft_strlen(champs[i].comment)) > COMMENT_LENGTH || !j)
 		error(3, NULL);
 }
 

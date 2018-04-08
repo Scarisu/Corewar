@@ -6,7 +6,7 @@
 /*   By: rlecart <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/11/23 06:12:46 by rlecart           #+#    #+#             */
-/*   Updated: 2018/04/04 23:59:54 by rlecart          ###   ########.fr       */
+/*   Updated: 2018/04/08 21:12:45 by rlecart          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -75,7 +75,7 @@ int		cycle_check(t_champ *champs, t_corewar *d)
 		}
 		reset_lives(champs, d->nbc);
 	}
-	if (d->cycle_to_die < 0)
+	if (d->cycle_to_die < 0 || !(still_alive(champs, d->nbc)))
 		return (0);
 	else
 		return (1);

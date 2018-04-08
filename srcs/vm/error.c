@@ -6,7 +6,7 @@
 /*   By: rlecart <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/11/23 06:25:10 by rlecart           #+#    #+#             */
-/*   Updated: 2018/04/08 21:03:38 by rlecart          ###   ########.fr       */
+/*   Updated: 2018/04/08 21:21:59 by rlecart          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,20 +28,20 @@ int		display_error(char *str, char *var)
 void	error(int code, char *var)
 {
 	code == 0 ? exit(display_error(
-				"usage: ./corewar [-v] [-dump nbr_cycles] [[-n number] \
-				champion1.cor] ...", var)) : 1;
+	"usage: ./corewar [-v] [-dump nbr_cycles] [[-n number] champion1.cor] ...",
+		var)) : 1;
 	code == 1 ? exit(display_error(
-				"[Error] There is too much players.", var)) : 1;
+	"[Error] There is too much players.", var)) : 1;
 	code == 2 ? exit(display_error(
-				"[Error] The name of the champion is too long.", var)) : 1;
+	"[Error] The name of the champion is too long or empty.", var)) : 1;
 	code == 3 ? exit(display_error(
-				"[Error] The comment of the champion is too long.", var)) : 1;
+	"[Error] The comment of the champion is too long or empty.", var)) : 1;
 	code == 4 ? exit(display_error(
-				"[Error] The champion size is too long.", var)) : 1;
+	"[Error] The champion size is too long.", var)) : 1;
 	code == 5 ? exit(display_error(
-				"[Error] The file doesn't exist.", var)) : 1;
+	"[Error] The file doesn't exist.", var)) : 1;
 	code == 6 ? exit(display_error(
-				"[Error] Champion's content is empty.", var)) : 1;
+	"[Error] Champion's content is empty.", var)) : 1;
 	code < 0 || code > 6 ? exit(display_error(
-				"[Error] Undifined.", var)) : 1;
+	"[Error] Undifined.", var)) : 1;
 }
