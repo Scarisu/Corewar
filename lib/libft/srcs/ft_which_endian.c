@@ -6,7 +6,7 @@
 /*   By: rlecart <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/12/15 09:03:01 by rlecart           #+#    #+#             */
-/*   Updated: 2017/12/15 09:06:58 by rlecart          ###   ########.fr       */
+/*   Updated: 2018/04/08 22:40:34 by rlecart          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,7 +19,8 @@
 
 int		ft_which_endian(void)
 {
-	unsigned int	x = 1;
+	unsigned int	x;
 
+	x = 1;
 	return ((((char*)&x)[0]) == 1 ? 0 : 1);
 }
