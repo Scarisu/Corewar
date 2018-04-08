@@ -6,7 +6,7 @@
 /*   By: rlecart <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/01/17 21:44:58 by rlecart           #+#    #+#             */
-/*   Updated: 2018/04/07 01:03:43 by rlecart          ###   ########.fr       */
+/*   Updated: 2018/04/08 20:17:30 by rlecart          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -74,8 +74,7 @@ void	op_ldi(t_corewar *d, t_reg *reg)
 		ft_memcpy(n.r, r, 3 * sizeof(int));
 		ft_memcpy(n.tpc, tpc, 2 * sizeof(int));
 		ft_memcpy(n.ocp.p, ocp.p, 3 * sizeof(int));
-		if (ldi_norm2(d, reg, &n))
-			return ;
-		ldi_norm(tpc, reg, r, d);
+		if (!(ldi_norm2(d, reg, &n)))
+			ldi_norm(n.tpc, reg, n.r, d);
 	}
 }
