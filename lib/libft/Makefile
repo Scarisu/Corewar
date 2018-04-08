@@ -95,7 +95,7 @@ OBJ			=	$(addprefix $(OBJDIR),$(SRC:.c=.o))
 CC			=	gcc
 WFLAGS		=	-Wall -Werror -Wextra
 DFLAGS		=	$(WFLAGS) -fsanitize=address -g
-FLAGS		=	$(DFLAGS)
+FLAGS		=	$(WFLAGS)
 INCLUDES	=	-I includes/
 
 all: $(NAME)
